@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public abstract class PlayerBase
+using System;
+[Serializable]
+public class PlayerBase
 {
     public float weight;
 
@@ -45,12 +46,28 @@ public abstract class PlayerBase
                 for (int i = 0; i < 6; i++)
                 {
                     _button[i] = (KeyCode)keycode;
+                    keycode++;
                 }
             }
             return _button;
         }
     }
 
+    private string _horizontal
+    {
+        get
+        {
+            return "Horizontal" + playerNum.ToString();
+        }
+    }
+    private string _vertical
+    {
+        get
+        {
+            return "Vertical" + playerNum.ToString();
+        }
+        
+    }
     public PlayerBase(int _playerNum)
     {
         playerNum = _playerNum;
@@ -68,5 +85,23 @@ public abstract class PlayerBase
         return _moveDir;
     }
 
+    public void inputListener()
+    {
+        foreach (KeyCode key in Buttons)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                Debug.Log("按下了" + key);
+            }
+        }
+        if(Input.GetAxis(_horizontal)!=0)
+        {
+            Debug.Log("摇杆" + playerNum + "的水平方向输入为"+Input.GetAxis(_horizontal));
+        }
+        if (Input.GetAxis(_vertical) != 0)
+        {
+            Debug.Log("摇杆" + playerNum + "的竖直方向输入为" + Input.GetAxis(_vertical));
+        }
+    }
 
 }
