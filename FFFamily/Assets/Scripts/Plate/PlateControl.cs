@@ -5,16 +5,22 @@ using UnityEngine;
 public class PlateControl : MonoBehaviour
 {
     public float MaxAngle;
+    public float test;
+
+    void Awake() 
+    {
+        test = -10;
+    }
 
     void Start()
     {
-        WeightCore();
+        
     }
 
     
     void Update()
     {
-        
+        WeightCore();
     }
 
     void WeightCore()
@@ -35,5 +41,12 @@ public class PlateControl : MonoBehaviour
             //Debug.Log(players[i].gameObject + "(" + players[i].gameObject.transform.position.x+"," +players[i].gameObject.transform.position.z+ ")");
         }
         angle = (float)System.Math.Sqrt(Wdirection.x * Wdirection.x + Wdirection.y * Wdirection.y);
+        Vector3 from = Vector3.up;
+        Vector3 to = new Vector3(-Wdirection.x, test, Wdirection.y);
+        //transform.rotation = Quaternion.FromToRotation(from, to);
+        Vector3 Newrotation = Quaternion.FromToRotation(from, to).eulerAngles;
+        Newrotation += new Vector3(0, 0, 180);
+        Newrotation.y = 0;
+        transform.rotation = Quaternion.Euler(Newrotation);
     }
 }
