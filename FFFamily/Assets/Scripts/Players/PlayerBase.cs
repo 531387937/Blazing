@@ -53,6 +53,7 @@ public class PlayerBase
         }
     }
 
+    public GameObject _player;
     private string _horizontal
     {
         get
@@ -65,12 +66,16 @@ public class PlayerBase
         get
         {
             return "Vertical" + playerNum.ToString();
-        }
-        
+        }       
     }
-    public PlayerBase(int _playerNum)
+    private Vector3 m_input;
+    public PlayerBase( int _playerNum,float speed, GameObject player )
     {
         playerNum = _playerNum;
+
+        moveSpeed = speed;
+
+        _player = player;
     }
 
     private KeyCode[] _button = null;
@@ -102,6 +107,15 @@ public class PlayerBase
         {
             Debug.Log("摇杆" + playerNum + "的竖直方向输入为" + Input.GetAxis(_vertical));
         }
+        m_input = SquareToCircle(new Vector2(Input.GetAxis(_horizontal), Input.GetAxis(_vertical)));
+        Debug.Log(m_input);
+        _player.transform.localPosition += m_input * moveSpeed * Time.deltaTime;
     }
-
+    private Vector3 SquareToCircle(Vector2 input)
+    {
+        Vector3 output = Vector3.zero;
+        output.x = input.x * Mathf.Sqrt(1 - (input.y * input.y) / 2.0f);
+        output.z = -input.y * Mathf.Sqrt(1 - (input.x * input.x) / 2.0f);
+        return output;
+    }
 }
