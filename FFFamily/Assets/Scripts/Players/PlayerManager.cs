@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    public Transform _instanPos;
+
     public PlayerBase[] _players;
+
+    public GameObject prefab_Player;
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0;i<_players.Length;i++)
+        for( int i = 0; i<_players.Length; i++)
         {
-            _players[i] = new PlayerBase(i + 1);
+            _players[i] = new PlayerBase( i + 1, 2, Instantiate( prefab_Player,_instanPos ) );
         }
     }
 
