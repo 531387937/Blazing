@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
     {
         for( int i = 0; i<_players.Length; i++)
         {
-            _players[i] = new PlayerBase( i + 1, 2, Instantiate( prefab_Player,_instanPos ) );
+            _players[i] = new PlayerBase( i + 1, 1, Instantiate( prefab_Player,_instanPos ) );
         }
     }
 
