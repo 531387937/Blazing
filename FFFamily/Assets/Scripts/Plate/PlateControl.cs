@@ -37,7 +37,7 @@ public class PlateControl : MonoBehaviour
 
         for (int i = 0; i < players.Count; i++)
         {
-            Wdirection += new Vector3(players[i].gameObject.transform.position.x, players[i].transform.position.z, 0);
+            Wdirection += new Vector3(players[i].gameObject.transform.localPosition.x, players[i].transform.localPosition.z, 0);
             //Debug.Log(players[i].gameObject + "(" + players[i].gameObject.transform.position.x+"," +players[i].gameObject.transform.position.z+ ")");
         }
         angle = (float)System.Math.Sqrt(Wdirection.x * Wdirection.x + Wdirection.y * Wdirection.y);
