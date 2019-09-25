@@ -111,6 +111,7 @@ public class PlayerBase
         Debug.Log(m_input);
         _player.transform.localPosition += m_input * moveSpeed * Time.deltaTime;
     }
+    
     private Vector3 SquareToCircle(Vector2 input)
     {
         Vector3 output = Vector3.zero;
