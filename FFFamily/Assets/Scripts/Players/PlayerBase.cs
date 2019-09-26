@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+public enum playerState
+{
+    OnGround = 1,
+    Jump = 2,
+}
 [Serializable]
 public class PlayerBase
 {
@@ -53,6 +59,8 @@ public class PlayerBase
         }
     }
 
+    private Transform m_parent;
+
     public GameObject _player;
     private string _horizontal
     {
@@ -69,6 +77,11 @@ public class PlayerBase
         }       
     }
     private Vector3 m_input;
+
+    private Rigidbody rig
+    {
+        get { return _player.GetComponent<Rigidbody>(); }
+    }
     public PlayerBase( int _playerNum,float speed, GameObject player )
     {
         playerNum = _playerNum;
@@ -76,13 +89,13 @@ public class PlayerBase
         moveSpeed = speed;
 
         _player = player;
+
+        m_parent = _player.transform.parent;
     }
+    public playerState state = playerState.OnGround;
 
     private KeyCode[] _button = null;
-    public virtual void InitPlayer()
-    {
 
-    }
     public virtual Vector3 Move()
     {
         Vector3 _moveDir = Vector3.zero;
@@ -90,7 +103,7 @@ public class PlayerBase
         return _moveDir;
     }
 
-    public void inputListener()
+    private void inputListener()
     {
         foreach (KeyCode key in Buttons)
         {
@@ -110,13 +123,38 @@ public class PlayerBase
         m_input = SquareToCircle(new Vector2(Input.GetAxis(_horizontal), Input.GetAxis(_vertical)));
         Debug.Log(m_input);
         _player.transform.localPosition += m_input * moveSpeed * Time.deltaTime;
+        jump();
     }
     
+    public void playerUpdate()
+    {
+        inputListener();
+
+        if(state == playerState.OnGround)
+        {
+            _player.transform.SetParent(m_parent);
+        }
+        else
+        {
+            _player.transform.SetParent(m_parent.parent);
+        }
+    }
+
+
     private Vector3 SquareToCircle(Vector2 input)
     {
         Vector3 output = Vector3.zero;
         output.x = input.x * Mathf.Sqrt(1 - (input.y * input.y) / 2.0f);
         output.z = -input.y * Mathf.Sqrt(1 - (input.x * input.x) / 2.0f);
         return output;
+    }
+
+    void jump()
+    {
+        if(Input.GetKeyDown(Buttons[0])&&state == playerState.OnGround)
+        {
+            rig.velocity = new Vector3(0, jumpForce, 0);
+           
+        }
     }
 }
