@@ -7,6 +7,10 @@ public class PlateControl : MonoBehaviour
     public float MaxAngle;
     public float test;
 
+    private PlayerManager m_PlayerManager
+    {
+        get { return PlayerManager.Instance; }
+    }
     void Awake() 
     {
         test = -10;
@@ -48,5 +52,23 @@ public class PlateControl : MonoBehaviour
         Newrotation += new Vector3(0, 0, 180);
         Newrotation.y = 0;
         transform.rotation = Quaternion.Euler(Newrotation);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        PlayerBase pb;
+        if(m_PlayerManager._players.TryGetValue(collision.gameObject,out pb))
+        {
+            pb.state = playerState.Jump;
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        print("Enter");
+        PlayerBase pb;
+        if (m_PlayerManager._players.TryGetValue(collision.gameObject, out pb))
+        {
+            pb.state = playerState.OnGround;
+        }
     }
 }
