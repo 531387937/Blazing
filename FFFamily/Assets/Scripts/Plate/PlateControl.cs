@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class PlateControl : MonoBehaviour
 {
     public float MaxAngle;
     public float test;
 
+    public float rotSpeed;
+    private Quaternion targetRot;
     private PlayerManager m_PlayerManager
     {
         get { return PlayerManager.Instance; }
@@ -24,10 +26,12 @@ public class PlateControl : MonoBehaviour
     
     void Update()
     {
-        WeightCore();
+        targetRot = WeightCore();
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot,rotSpeed * Time.deltaTime);
     }
 
-    void WeightCore()
+    Quaternion WeightCore()
     {
         float angle;
         Vector3 Wdirection = new Vector3(0, 0, 1);
@@ -51,7 +55,7 @@ public class PlateControl : MonoBehaviour
         Vector3 Newrotation = Quaternion.FromToRotation(from, to).eulerAngles;
         Newrotation += new Vector3(0, 0, 180);
         Newrotation.y = 0;
-        transform.rotation = Quaternion.Euler(Newrotation);
+        return Quaternion.Euler(Newrotation);
     }
 
     private void OnCollisionExit(Collision collision)
