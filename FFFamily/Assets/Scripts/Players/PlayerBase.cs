@@ -92,6 +92,14 @@ public class PlayerBase
 
         m_parent = _player.transform.parent;
     }
+    public PlayerBase(PlayerBase _base,GameObject player)
+    {
+        weight = _base.weight;
+        jumpForce = _base.jumpForce;
+        moveSpeed = _base.moveSpeed;
+        _player = player;
+        m_parent = _player.transform.parent;
+    }
     public playerState state = playerState.OnGround;
 
     private KeyCode[] _button = null;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    public PlayerBase _base;
+
     public Transform _instanPos;
 
     public List<PlayerBase> _playersCtr;
@@ -21,7 +23,9 @@ public class PlayerManager : Singleton<PlayerManager>
         for( int i = 0; i<_playersCtr.Count; i++)
         {
             GameObject _player = Instantiate(prefab_Player, _instanPos);
-            _playersCtr[i] = new PlayerBase( i + 1, 1, _player );
+            _playersCtr[i] = new PlayerBase(_base,_player);
+            _playersCtr[i].playerNum = i+1;
+            _playersCtr[i]._player = _player;
             _players.Add(_player,_playersCtr[i]);
         }
     }
