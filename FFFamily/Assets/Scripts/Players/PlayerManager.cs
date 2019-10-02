@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,5 +43,16 @@ public class PlayerManager : Singleton<PlayerManager>
         {
             playerCtr.playerUpdate();
         }
+    }
+
+    public void cdCount(float seconds,Action callback)
+    {
+        StartCoroutine(cdCounts(seconds, callback));
+    }
+
+    IEnumerator cdCounts(float seconds, Action callback)
+    {
+        yield return new WaitForSeconds(seconds);
+        callback();
     }
 }

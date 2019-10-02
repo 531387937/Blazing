@@ -77,7 +77,7 @@ public class PlayerBase
         }       
     }
     private Vector3 m_input;
-
+    public bool canJump = true;
     private Rigidbody rig
     {
         get { return _player.GetComponent<Rigidbody>(); }
@@ -117,19 +117,19 @@ public class PlayerBase
         {
             if (Input.GetKeyDown(key))
             {
-                Debug.Log("按下了" + key);
+                //Debug.Log("按下了" + key);
             }
         }
         if(Input.GetAxis(_horizontal)!=0)
         {
-            Debug.Log("摇杆" + playerNum + "的水平方向输入为"+Input.GetAxis(_horizontal));
+            //Debug.Log("摇杆" + playerNum + "的水平方向输入为"+Input.GetAxis(_horizontal));
         }
         if (Input.GetAxis(_vertical) != 0)
         {
-            Debug.Log("摇杆" + playerNum + "的竖直方向输入为" + Input.GetAxis(_vertical));
+            //Debug.Log("摇杆" + playerNum + "的竖直方向输入为" + Input.GetAxis(_vertical));
         }
         m_input = SquareToCircle(new Vector2(Input.GetAxis(_horizontal), Input.GetAxis(_vertical)));
-        Debug.Log(m_input);
+        //Debug.Log(m_input);
         _player.transform.localPosition += m_input * moveSpeed * Time.deltaTime;
         jump();
     }
@@ -159,10 +159,13 @@ public class PlayerBase
 
     void jump()
     {
+        if(!canJump)
+        { return; }
         if(Input.GetKeyDown(Buttons[0])&&state == playerState.OnGround)
         {
+            canJump = false;
             rig.velocity = new Vector3(0, jumpForce, 0);
-           
+            PlayerManager.Instance.cdCount(3, () => { canJump = true; });
         }
     }
 }
