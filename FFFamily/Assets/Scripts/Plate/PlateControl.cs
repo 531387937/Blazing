@@ -90,7 +90,7 @@ public class PlateControl : MonoBehaviour
         if (m_PlayerManager._players.TryGetValue(collision.gameObject, out pb))
         {
             pb.state = playerState.OnGround;
-            jumpAffect += pb.jumpForce* 3 * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
+            jumpAffect += -pb.maxVelocity * 1.3f * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
             //print(pb.jumpForce * 3 * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0));
         }
     }

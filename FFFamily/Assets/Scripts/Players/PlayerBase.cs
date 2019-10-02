@@ -7,6 +7,7 @@ public enum playerState
 {
     OnGround = 1,
     Jump = 2,
+    Falling = 3,
 }
 [Serializable]
 public class PlayerBase
@@ -78,6 +79,14 @@ public class PlayerBase
     }
     private Vector3 m_input;
     public bool canJump = true;
+    public float maxVelocity
+    {
+        get
+        {
+            return _maxVelocity;
+        }
+    }
+    private float _maxVelocity;
     private Rigidbody rig
     {
         get { return _player.GetComponent<Rigidbody>(); }
@@ -142,9 +151,13 @@ public class PlayerBase
         {
             _player.transform.SetParent(m_parent);
         }
-        else
+        else if(state == playerState.Jump)
         {
             _player.transform.SetParent(m_parent.parent);
+        }
+        if(rig.velocity.y!=0)
+        {
+            _maxVelocity = rig.velocity.y;
         }
     }
 
@@ -167,5 +180,10 @@ public class PlayerBase
             rig.velocity = new Vector3(0, jumpForce, 0);
             PlayerManager.Instance.cdCount(3, () => { canJump = true; });
         }
+    }
+    public void Fall()
+    {
+        state = playerState.Falling;
+        _player.transform.SetParent(m_parent);
     }
 }
