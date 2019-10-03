@@ -184,6 +184,7 @@ public class PlayerBase
     public void Fall()
     {
         state = playerState.Falling;
-        _player.transform.SetParent(m_parent);
+        _player.transform.SetParent(m_parent.parent);
+        _player.transform.position = new Vector3(0, 15, 0);
     }
 }
