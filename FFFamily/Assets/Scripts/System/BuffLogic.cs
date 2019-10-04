@@ -15,7 +15,7 @@ public interface Prop
 }
 
 
-public class PropLogic : Singleton<PropLogic>
+public class BuffLogic : Singleton<BuffLogic>
 {
     public GameObject test;
     // Start is called before the first frame update
@@ -29,12 +29,12 @@ public class PropLogic : Singleton<PropLogic>
     {
         
     }
-    public void EffectRecover(Action recover, PlayerBase _pb, float seconds)
+    public void EffectRecover(Action recover, float seconds)
     {
-        StartCoroutine(Recover(recover, _pb, 3));
+        StartCoroutine(Recover(recover, 3));
     }
 
-    IEnumerator Recover(Action recover, PlayerBase _pb,float seconds)
+    IEnumerator Recover(Action recover,float seconds)
     {
         yield return new WaitForSeconds(seconds);
         recover();
@@ -47,9 +47,9 @@ public class FatProp : MonoBehaviour,Prop
     public void Effect(PlayerBase Pb)
     {
         _pb.weight *= Global.fatEffect;
-        PropLogic.Instance.EffectRecover(()=> { _pb.weight /= Global.fatEffect;
+        BuffLogic.Instance.EffectRecover(()=> { _pb.weight /= Global.fatEffect;
             _pb._player.GetComponent<MeshRenderer>().material.color = Color.white;
-        }, _pb, 3);
+        }, 3);
         Destroy(this.gameObject);
     }
 

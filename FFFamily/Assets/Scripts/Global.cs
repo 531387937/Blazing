@@ -7,4 +7,6 @@ public class Global
     public static float gravity = -98f;
 
     public static float fatEffect = 15f;
+
+    public static float dizzyEffect = 1.5f;
 }

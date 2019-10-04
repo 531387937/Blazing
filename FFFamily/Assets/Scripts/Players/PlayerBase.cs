@@ -87,6 +87,7 @@ public class PlayerBase
         }
     }
     private float _maxVelocity;
+    private bool canMove = true;
     private Rigidbody rig
     {
         get { return _player.GetComponent<Rigidbody>(); }
@@ -145,6 +146,7 @@ public class PlayerBase
     
     public void playerUpdate()
     {
+        if(canMove)
         inputListener();
 
         if(state == playerState.OnGround)
@@ -186,5 +188,16 @@ public class PlayerBase
         state = playerState.Falling;
         _player.transform.SetParent(m_parent.parent);
         _player.transform.position = new Vector3(0, 15, 0);
+    }
+
+    public void Dizzy()
+    {
+        _player.GetComponent<MeshRenderer>().material.color = Color.blue;
+        canMove = false;
+        BuffLogic.Instance.EffectRecover(() =>
+        {
+            _player.GetComponent<MeshRenderer>().material.color = Color.white;
+            canMove = true;
+        }, Global.dizzyEffect);
     }
 }
