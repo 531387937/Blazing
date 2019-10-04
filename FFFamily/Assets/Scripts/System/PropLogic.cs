@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,24 +29,15 @@ public class PropLogic : Singleton<PropLogic>
     {
         
     }
-    public void EffectRecover(PropType type, PlayerBase _pb, float seconds)
+    public void EffectRecover(Action recover, PlayerBase _pb, float seconds)
     {
-        StartCoroutine(Recover(PropType.FAT, _pb, 3));
+        StartCoroutine(Recover(recover, _pb, 3));
     }
 
-    IEnumerator Recover(PropType type,PlayerBase _pb,float seconds)
+    IEnumerator Recover(Action recover, PlayerBase _pb,float seconds)
     {
-        print("????????????????");
         yield return new WaitForSeconds(seconds);
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        switch (type)
-        {
-            case PropType.FAT:
-                print("!!!!!!!!!!!!!!!!!!!!");
-                _pb.weight /= Global.fatEffect;
-                _pb._player.gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
-                break;
-        }
+        recover();
     }
 }
 
@@ -55,7 +47,9 @@ public class FatProp : MonoBehaviour,Prop
     public void Effect(PlayerBase Pb)
     {
         _pb.weight *= Global.fatEffect;
-        PropLogic.Instance.EffectRecover(PropType.FAT, _pb, 3);
+        PropLogic.Instance.EffectRecover(()=> { _pb.weight /= Global.fatEffect;
+            _pb._player.GetComponent<MeshRenderer>().material.color = Color.white;
+        }, _pb, 3);
         Destroy(this.gameObject);
     }
 
