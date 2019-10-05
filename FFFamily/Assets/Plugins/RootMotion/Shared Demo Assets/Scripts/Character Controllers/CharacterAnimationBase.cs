@@ -11,7 +11,6 @@ namespace RootMotion.Demos {
 		public bool smoothFollow = true;
 		public float smoothFollowSpeed = 20f;
 
-		protected bool animatePhysics;
 		private Vector3 lastPosition;
 		private Vector3 localPosition;
 		private Quaternion localRotation;
@@ -46,20 +45,8 @@ namespace RootMotion.Demos {
 			localRotation = Quaternion.Inverse(transform.parent.rotation) * transform.rotation;
 		}
 
-		protected virtual void LateUpdate() {
-			if (animatePhysics) return;
-
-			SmoothFollow();
-		}
-
 		// Smooth interpolation of character position. Helps to smooth out hectic rigidbody motion
-		protected virtual void FixedUpdate() {
-			if (!animatePhysics) return;
-
-			SmoothFollow();
-		}
-
-		private void SmoothFollow() {
+		protected virtual void LateUpdate() {
 			if (smoothFollow) {
 				transform.position = Vector3.Lerp(lastPosition, transform.parent.TransformPoint(localPosition), Time.deltaTime * smoothFollowSpeed);
 				transform.rotation = Quaternion.Lerp(lastRotation, transform.parent.rotation * localRotation, Time.deltaTime * smoothFollowSpeed);

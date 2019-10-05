@@ -25,7 +25,7 @@ namespace RootMotion.Demos {
 
 		protected Transform cam;                    // A reference to the main camera in the scenes transform
 
-		protected virtual void Start () {
+		void Start () {
 			// get the transform of the main camera
 			cam = Camera.main.transform;
 		}
@@ -39,14 +39,7 @@ namespace RootMotion.Demos {
 			float v = Input.GetAxisRaw("Vertical");
 			
 			// calculate move direction
-			Vector3 move = cam.rotation * new Vector3(h, 0f, v).normalized;
-
-			// Flatten move vector to the character.up plane
-			if (move != Vector3.zero) {
-				Vector3 normal = transform.up;
-				Vector3.OrthoNormalize(ref normal, ref move);
-				state.move = move;
-			} else state.move = Vector3.zero;
+			state.move = Quaternion.LookRotation(new Vector3(cam.forward.x, 0f, cam.forward.z).normalized) * new Vector3(h, 0f, v).normalized;
 
 			bool walkToggle = Input.GetKey(KeyCode.LeftShift);
 

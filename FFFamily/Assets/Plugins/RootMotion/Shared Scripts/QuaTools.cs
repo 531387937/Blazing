@@ -9,26 +9,6 @@ namespace RootMotion {
 	public static class QuaTools {
 
 		/// <summary>
-		/// Optimized Quaternion.Lerp
-		/// </summary>
-		public static Quaternion Lerp(Quaternion fromRotation, Quaternion toRotation, float weight) {
-			if (weight <= 0f) return fromRotation;
-			if (weight >= 1f) return toRotation;
-
-			return Quaternion.Lerp(fromRotation, toRotation, weight);
-		}
-
-		/// <summary>
-		/// Optimized Quaternion.Slerp
-		/// </summary>
-		public static Quaternion Slerp(Quaternion fromRotation, Quaternion toRotation, float weight) {
-			if (weight <= 0f) return fromRotation;
-			if (weight >= 1f) return toRotation;
-
-			return Quaternion.Slerp(fromRotation, toRotation, weight);
-		}
-
-		/// <summary>
 		/// Returns the rotation from identity Quaternion to "q", interpolated linearily by "weight".
 		/// </summary>
 		public static Quaternion LinearBlend(Quaternion q, float weight) {
@@ -121,57 +101,5 @@ namespace RootMotion {
 			if (neg) closest = -closest;
 			return closest;
  		}
-
-		/// <summary>
-		/// Clamps the rotation similar to V3Tools.ClampDirection.
-		/// </summary>
-		public static Quaternion ClampRotation(Quaternion rotation, float clampWeight, int clampSmoothing) {
-			if (clampWeight >= 1f) return Quaternion.identity;
-			if (clampWeight <= 0f) return rotation;
-
-			float angle = Quaternion.Angle(Quaternion.identity, rotation);
-			float dot = 1f - (angle / 180f);
-			float targetClampMlp = Mathf.Clamp(1f - ((clampWeight - dot) / (1f - dot)), 0f, 1f);
-			float clampMlp = Mathf.Clamp(dot / clampWeight, 0f, 1f);
-			
-			// Sine smoothing iterations
-			for (int i = 0; i < clampSmoothing; i++) {
-				float sinF = clampMlp * Mathf.PI * 0.5f;
-				clampMlp = Mathf.Sin(sinF);
-			}
-			
-			return Quaternion.Slerp(Quaternion.identity, rotation, clampMlp * targetClampMlp);
-		}
-
-		/// <summary>
-		/// Clamps an angular value.
-		/// </summary>
-		public static float ClampAngle(float angle, float clampWeight, int clampSmoothing) {
-			if (clampWeight >= 1f) return 0f;
-			if (clampWeight <= 0f) return angle;
-			
-			float dot = 1f - (Mathf.Abs(angle) / 180f);
-			float targetClampMlp = Mathf.Clamp(1f - ((clampWeight - dot) / (1f - dot)), 0f, 1f);
-			float clampMlp = Mathf.Clamp(dot / clampWeight, 0f, 1f);
-			
-			// Sine smoothing iterations
-			for (int i = 0; i < clampSmoothing; i++) {
-				float sinF = clampMlp * Mathf.PI * 0.5f;
-				clampMlp = Mathf.Sin(sinF);
-			}
-			
-			return Mathf.Lerp(0f, angle, clampMlp * targetClampMlp);
-		}
-
-		/// <summary>
-		/// Used for matching the rotations of objects that have different orientations.
-		/// </summary>
-		public static Quaternion MatchRotation(Quaternion targetRotation, Vector3 targetforwardAxis, Vector3 targetUpAxis, Vector3 forwardAxis, Vector3 upAxis) {
-			Quaternion f = Quaternion.LookRotation(forwardAxis, upAxis);
-			Quaternion fTarget = Quaternion.LookRotation(targetforwardAxis, targetUpAxis);
-
-			Quaternion d = targetRotation * fTarget;
-			return d * Quaternion.Inverse(f);
-		}
 	}
 }

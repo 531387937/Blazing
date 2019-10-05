@@ -18,8 +18,7 @@ namespace RootMotion.Demos {
 		protected Animator animator;
 		private Vector3 lastForward;
 		private const string groundedDirectional = "Grounded Directional", groundedStrafe = "Grounded Strafe";
-		private float deltaAngle;
-
+		
 		protected override void Start() {
 			base.Start();
 
@@ -43,8 +42,6 @@ namespace RootMotion.Demos {
 		protected virtual void Update() {
 			if (Time.deltaTime == 0f) return;
 
-			animatePhysics = animator.updateMode == AnimatorUpdateMode.AnimatePhysics;
-
 			// Jumping
 			if (characterController.animState.jump) {
 				float runCycle = Mathf.Repeat (animator.GetCurrentAnimatorStateInfo (0).normalizedTime + runCycleLegOffset, 1);
@@ -54,8 +51,7 @@ namespace RootMotion.Demos {
 			}
 			
 			// Calculate the angular delta in character rotation
-			float angle = -GetAngleFromForward(lastForward) - deltaAngle;
-			deltaAngle = 0f;
+			float angle = -GetAngleFromForward(lastForward);
 			lastForward = transform.forward;
 			angle *= turnSensitivity * 0.01f;
 			angle = Mathf.Clamp(angle / Time.deltaTime, -1f, 1f);
@@ -71,9 +67,6 @@ namespace RootMotion.Demos {
 			if (!characterController.animState.onGround) {
 				animator.SetFloat ("Jump", characterController.animState.yVelocity);
 			}
-
-			if (characterController.doubleJumpEnabled) animator.SetBool("DoubleJump", characterController.animState.doubleJump);
-			characterController.animState.doubleJump = false;
 			
 			// the anim speed multiplier allows the overall speed of walking/running to be tweaked in the inspector
 			if (characterController.animState.onGround && characterController.animState.moveDirection.z > 0f) {
@@ -83,13 +76,9 @@ namespace RootMotion.Demos {
 				animator.speed = 1;
 			}
 		}
-
+		
 		// Call OnAnimatorMove manually on the character controller because it doesn't have the Animator component
 		void OnAnimatorMove() {
-			// For not using root rotation in Turn value calculation 
-			Vector3 f = animator.deltaRotation * Vector3.forward;
-			deltaAngle += Mathf.Atan2(f.x, f.z) * Mathf.Rad2Deg;
-
 			characterController.Move(animator.deltaPosition, animator.deltaRotation);
 		}
 	}
