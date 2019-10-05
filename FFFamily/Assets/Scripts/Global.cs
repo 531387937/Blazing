@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Global
+public class Global
 {
     public static float gravity = -98f;
+
+    public static float fatEffect = 15f;
+
+    public static float dizzyEffect = 1.5f;
 }

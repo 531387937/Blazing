@@ -18,24 +18,26 @@ public class PlateControl : MonoBehaviour
     }
     void Awake() 
     {
-        test = -10;
+        
     }
 
     void Start()
     {
-        p = gameObject.transform.Find("Players").gameObject;
+        p = GameObject.Find("Players").gameObject;
     }
 
     
     void Update()
     {
         targetRot = WeightCore();
+        slideSpeed += 0.02f * Time.deltaTime;
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot,rotSpeed * Time.deltaTime);
-
-        p.transform.localPosition += slideSpeed * new Vector3(-transform.rotation.z, 0, transform.rotation.x)*Time.deltaTime;
+        p.transform.localPosition += slideSpeed*slideSpeed * new Vector3(-transform.rotation.z, 0, transform.rotation.x)*Time.deltaTime;
 
         jumpAffect = Vector3.Slerp(jumpAffect, Vector3.zero, 1 * Time.deltaTime);
+
+        print(jumpAffect);
     }
 
     Quaternion WeightCore()
@@ -74,6 +76,7 @@ public class PlateControl : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        print(collision.gameObject.name);
         PlayerBase pb;
         if(m_PlayerManager._players.TryGetValue(collision.gameObject,out pb))
         {
@@ -87,7 +90,8 @@ public class PlateControl : MonoBehaviour
         if (m_PlayerManager._players.TryGetValue(collision.gameObject, out pb))
         {
             pb.state = playerState.OnGround;
-            jumpAffect += -collision.gameObject.GetComponent<Rigidbody>().velocity.y* 10 * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
+            jumpAffect += -pb.maxVelocity * 1.3f * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
+            //print(pb.jumpForce * 3 * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0));
         }
     }
 }

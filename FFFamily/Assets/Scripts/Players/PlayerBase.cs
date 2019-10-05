@@ -7,6 +7,7 @@ public enum playerState
 {
     OnGround = 1,
     Jump = 2,
+    Falling = 3,
 }
 [Serializable]
 public class PlayerBase
@@ -77,7 +78,16 @@ public class PlayerBase
         }       
     }
     private Vector3 m_input;
-
+    public bool canJump = true;
+    public float maxVelocity
+    {
+        get
+        {
+            return _maxVelocity;
+        }
+    }
+    private float _maxVelocity;
+    private bool canMove = true;
     private Rigidbody rig
     {
         get { return _player.GetComponent<Rigidbody>(); }
@@ -117,34 +127,39 @@ public class PlayerBase
         {
             if (Input.GetKeyDown(key))
             {
-                Debug.Log("按下了" + key);
+                //Debug.Log("按下了" + key);
             }
         }
         if(Input.GetAxis(_horizontal)!=0)
         {
-            Debug.Log("摇杆" + playerNum + "的水平方向输入为"+Input.GetAxis(_horizontal));
+            //Debug.Log("摇杆" + playerNum + "的水平方向输入为"+Input.GetAxis(_horizontal));
         }
         if (Input.GetAxis(_vertical) != 0)
         {
-            Debug.Log("摇杆" + playerNum + "的竖直方向输入为" + Input.GetAxis(_vertical));
+            //Debug.Log("摇杆" + playerNum + "的竖直方向输入为" + Input.GetAxis(_vertical));
         }
         m_input = SquareToCircle(new Vector2(Input.GetAxis(_horizontal), Input.GetAxis(_vertical)));
-        Debug.Log(m_input);
+        //Debug.Log(m_input);
         _player.transform.localPosition += m_input * moveSpeed * Time.deltaTime;
         jump();
     }
     
     public void playerUpdate()
     {
+        if(canMove)
         inputListener();
 
         if(state == playerState.OnGround)
         {
             _player.transform.SetParent(m_parent);
         }
-        else
+        else if(state == playerState.Jump)
         {
             _player.transform.SetParent(m_parent.parent);
+        }
+        if(rig.velocity.y!=0)
+        {
+            _maxVelocity = rig.velocity.y;
         }
     }
 
@@ -159,10 +174,30 @@ public class PlayerBase
 
     void jump()
     {
+        if(!canJump)
+        { return; }
         if(Input.GetKeyDown(Buttons[0])&&state == playerState.OnGround)
         {
+            canJump = false;
             rig.velocity = new Vector3(0, jumpForce, 0);
-           
+            PlayerManager.Instance.cdCount(3, () => { canJump = true; });
         }
+    }
+    public void Fall()
+    {
+        state = playerState.Falling;
+        _player.transform.SetParent(m_parent.parent);
+        _player.transform.position = new Vector3(0, 15, 0);
+    }
+
+    public void Dizzy()
+    {
+        _player.GetComponent<MeshRenderer>().material.color = Color.blue;
+        canMove = false;
+        BuffLogic.Instance.EffectRecover(() =>
+        {
+            _player.GetComponent<MeshRenderer>().material.color = Color.white;
+            canMove = true;
+        }, Global.dizzyEffect);
     }
 }
