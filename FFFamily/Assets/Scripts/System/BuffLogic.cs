@@ -11,7 +11,7 @@ public enum PropType
 
 public interface Prop
 {
-    void Effect(PlayerBase Pb);
+    void Effect(Players _player);
 }
 
 
@@ -43,21 +43,20 @@ public class BuffLogic : Singleton<BuffLogic>
 
 public class FatProp : MonoBehaviour,Prop
 {
-    private PlayerBase _pb;
-    public void Effect(PlayerBase Pb)
+    public void Effect(Players _player)
     {
-        _pb.weight *= Global.fatEffect;
-        BuffLogic.Instance.EffectRecover(()=> { _pb.weight /= Global.fatEffect;
-            _pb._player.GetComponent<MeshRenderer>().material.color = Color.white;
+        _player.weight *= Global.fatEffect;
+        BuffLogic.Instance.EffectRecover(()=> { _player.weight /= Global.fatEffect;
+            _player.GetComponent<MeshRenderer>().material.color = Color.white;
         }, 3);
         Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {        
-        if(PlayerManager.Instance._players.TryGetValue(other.gameObject,out _pb))
+        if(other.CompareTag("Player"))
         {
-            Effect(_pb);
+            Effect(other.GetComponent<Players>());
             other.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         }
     }

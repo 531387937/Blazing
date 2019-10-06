@@ -12,7 +12,7 @@ public enum playerState
 public class Players : MonoBehaviour
 {
     //重量
-    public float weigtht;
+    public float weight;
 
     //跳跃力量
     public float jumpForce;
@@ -72,7 +72,7 @@ public class Players : MonoBehaviour
     private Vector3 _input;
 
     private bool canJump = true;
-
+    private bool canMove = true;
     private GameObject plate;
     // Start is called before the first frame update
     void Start()
@@ -85,11 +85,14 @@ public class Players : MonoBehaviour
 
     private void Update()
     {
+        
         StateListener();
+        transform.rotation = plate.transform.rotation;
     }
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(canMove)
         inputListener();
     }
 
@@ -100,11 +103,6 @@ public class Players : MonoBehaviour
         _input = changeByAngle(_input);
         Vector3 targetPos = _input * Time.deltaTime + transform.localPosition;
         rig.MovePosition(targetPos);
-        //Vector3 _horizontalVelocity = new Vector3(rig.velocity.x, 0, rig.velocity.y);
-        //if(_horizontalVelocity.magnitude>=maxSpeed)
-        //{
-        //    rig.velocity = _horizontalVelocity.normalized * maxSpeed +new Vector3(0, rig.velocity.y, 0);
-        //}
         //跳跃
         if (Input.GetKeyDown(Buttons[0]) && state == playerState.OnGround &&canJump)
         {
@@ -112,10 +110,6 @@ public class Players : MonoBehaviour
             rig.velocity += new Vector3(0, jumpForce, 0);
             state = playerState.Jump;
         }
-        //if(rig.velocity.x!=0)
-        //{
-        //    rig.velocity -= new Vector3(rig.velocity.x, 0, 0) * 0.3f;
-        //}
     }
 
     private void StateListener()
@@ -136,17 +130,44 @@ public class Players : MonoBehaviour
         output.z = -input.y * Mathf.Sqrt(1 - (input.x * input.x) / 2.0f);
         return output;
     }
-
+    //根据角度修改行进方向
     private Vector3 changeByAngle(Vector3 orginal)
     {
-        print("orginal" + orginal);
         Vector3 a;
         float sinX = Mathf.Sin(plate.transform.rotation.x * 2 / Mathf.PI);
         float cosX = Mathf.Cos(plate.transform.rotation.x * 2 / Mathf.PI);
         float sinZ = Mathf.Sin(plate.transform.rotation.z * 2 / Mathf.PI);
         float cosZ = Mathf.Cos(plate.transform.rotation.z * 2 / Mathf.PI);
         a = new Vector3(orginal.x * cosX, orginal.x * sinX + orginal.z * sinZ, orginal.z * cosZ);
-        print("After" + a);
         return a;
+    }
+
+    public void Dizzy()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.blue;
+        canMove = false;
+        BuffLogic.Instance.EffectRecover(() =>
+        {
+            GetComponent<MeshRenderer>().material.color = Color.white;
+            canMove = true;
+        }, Global.dizzyEffect);
+    }
+
+    public void Fall()
+    {
+        state = playerState.Falling;
+        transform.position = new Vector3(0, 15, 0);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (collision.GetContact(0).point.y > gameObject.transform.position.y + 0.4f && collision.gameObject.GetComponent<Players>().state == playerState.Jump)
+            {
+                Dizzy();
+                collision.gameObject.GetComponent<Players>().state = playerState.OnGround;
+            }
+        }
     }
 }

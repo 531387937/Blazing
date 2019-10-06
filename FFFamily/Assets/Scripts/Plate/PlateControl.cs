@@ -8,7 +8,8 @@ public class PlateControl : MonoBehaviour
     public float test;
 
     public float rotSpeed;
-    public float slideSpeed;
+
+    public float downEffect;
     List<Transform> players = new List<Transform>();
     private Quaternion targetRot;
     GameObject p;
@@ -35,7 +36,7 @@ public class PlateControl : MonoBehaviour
 
         //p.transform.localPosition += slideSpeed*slideSpeed * new Vector3(-transform.rotation.z, 0, transform.rotation.x)*Time.deltaTime;
 
-        //jumpAffect = Vector3.Slerp(jumpAffect, Vector3.zero, 1 * Time.deltaTime);
+        jumpAffect = Vector3.Slerp(jumpAffect, Vector3.zero, 1 * Time.deltaTime);
 
     }
 
@@ -51,10 +52,11 @@ public class PlateControl : MonoBehaviour
         for (int i = 0; i < players.Count; i++)
         {
             float mass = 1;
+            mass = players[i].gameObject.GetComponent<Players>().weight;
             Wdirection += new Vector3(players[i].gameObject.transform.position.x, players[i].transform.position.z, 0) * mass;
             //Debug.Log(players[i].gameObject + "(" + players[i].gameObject.transform.position.x+"," +players[i].gameObject.transform.position.z+ ")");
         }
-        //Wdirection += jumpAffect;
+        Wdirection += jumpAffect;
         angle = Mathf.Sqrt(Wdirection.x * Wdirection.x + Wdirection.y * Wdirection.y);
         Vector3 from = Vector3.up;
         Vector3 to = new Vector3(-Wdirection.x, test, Wdirection.y);
@@ -86,15 +88,15 @@ public class PlateControl : MonoBehaviour
         {
             players.Add(collision.transform);
             collision.gameObject.GetComponent<Players>().state = playerState.OnGround;
+            jumpAffect += collision.gameObject.GetComponent<Players>().weight * collision.gameObject.GetComponent<Players>().jumpForce * downEffect * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        //if(collision.gameObject.CompareTag("Player")&&!players.Contains(collision.transform))
-        //{
-        //    players.Add(collision.transform);
-        //    collision.gameObject.GetComponent<Players>().state = playerState.OnGround;
-        //}
+        if (collision.gameObject.CompareTag("Player") && !players.Contains(collision.transform))
+        {
+            collision.gameObject.GetComponent<Players>().state = playerState.OnGround;
+        }
     }
 }
