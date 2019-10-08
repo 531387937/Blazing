@@ -100,7 +100,7 @@ public class Players : MonoBehaviour
     private void inputListener()
     {
         _input = SquareToCircle(new Vector2(Input.GetAxis(_horizontal), Input.GetAxis(_vertical)))*moveSpeed*Time.deltaTime;
-        _input = changeByAngle(_input);
+        //_input = changeByAngle(_input);
         Vector3 targetPos = _input * Time.deltaTime + transform.localPosition;
         rig.MovePosition(targetPos);
         //跳跃
