@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum playerState
-{
-    OnGround = 1,
-    Jump = 2,
-    Falling = 3,
-}
 [Serializable]
 public class PlayerBase
 {
