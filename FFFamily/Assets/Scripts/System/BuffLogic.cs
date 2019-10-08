@@ -9,7 +9,7 @@ public enum PropType
     FAT = 1,
 }
 
-public interface Prop
+public interface Prop1
 {
     void Effect(Players _player);
 }
@@ -41,7 +41,7 @@ public class BuffLogic : Singleton<BuffLogic>
     }
 }
 
-public class FatProp : MonoBehaviour,Prop
+public class FatProp : MonoBehaviour,Prop1
 {
     public void Effect(Players _player)
     {
