@@ -8,7 +8,7 @@ public enum playerState
     Jump = 2,
     Falling = 3,
 }
-[RequireComponent(typeof(Rigidbody))]
+
 public class Players : MonoBehaviour
 {
     //重量
@@ -23,6 +23,8 @@ public class Players : MonoBehaviour
     public int playerNum;
 
     public float maxSpeed;
+
+    public Camera cam;
     /// <summary>
     /// 手柄映射
     /// 0--A
@@ -68,7 +70,9 @@ public class Players : MonoBehaviour
     private string _horizontal;
     private string _vertical;
     private KeyCode[] _button = null;
-    private Rigidbody rig;
+    public Rigidbody rig;
+
+    private Animator anim;
     private Vector3 _input;
 
     private bool canJump = true;
@@ -77,41 +81,59 @@ public class Players : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rig = GetComponent<Rigidbody>();
+        //rig = GetComponent<Rigidbody>();
+        anim = rig.GetComponent<Animator>();
         plate = GameObject.Find("Plate");
-        _horizontal = "Horizontal" + playerNum.ToString();
-        _vertical = "Vertical" + playerNum.ToString();
+        _horizontal = "Horizontal";
+        _vertical = "Vertical";
     }
 
     private void Update()
-    {
-        
-        StateListener();
-        transform.rotation = plate.transform.rotation;
+    {        
+        StateListener();       
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         if(canMove)
         inputListener();
+        //transform.rotation = plate.transform.rotation;
     }
 
     //输入监听
     private void inputListener()
     {
         _input = SquareToCircle(new Vector2(Input.GetAxis(_horizontal), Input.GetAxis(_vertical)))*moveSpeed*Time.deltaTime;
+        if(Mathf.Abs(Input.GetAxis(_horizontal))>0.1f|| Mathf.Abs(Input.GetAxis(_vertical)) > 0.1f)
+        {
+            anim.SetBool("Walk", true);
+            Vector3 a = new Vector3(_input.x, 0, _input.z);
+            rig.transform.forward =Vector3.Slerp(rig.transform.forward, a,0.2f);
+        }
+        else
+        {
+            anim.SetBool("Walk", false);
+        }
         //_input = changeByAngle(_input);
-        Vector3 targetPos = _input * Time.deltaTime + transform.localPosition;
-        rig.MovePosition(targetPos);
+        transform.position += _input;
+        //Vector3 targetPos = _input + transform.localPosition;
+        //rig.MovePosition(targetPos);
         //跳跃
-        if (Input.GetKeyDown(Buttons[0]) && state == playerState.OnGround &&canJump)
+        if ((Input.GetKeyDown(Buttons[0])||Input.GetKeyDown(KeyCode.Space)) && state == playerState.OnGround &&canJump)
         {
             canJump = false;
             rig.velocity += new Vector3(0, jumpForce, 0);
             state = playerState.Jump;
         }
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            anim.SetTrigger("Box");
+        }
     }
+    private void camCtr()
+    {
 
+    }
     private void StateListener()
     {
         if (state != playerState.OnGround)
@@ -128,7 +150,8 @@ public class Players : MonoBehaviour
         Vector3 output = Vector3.zero;
         output.x = input.x * Mathf.Sqrt(1 - (input.y * input.y) / 2.0f);
         output.z = -input.y * Mathf.Sqrt(1 - (input.x * input.x) / 2.0f);
-        return output;
+        Vector3 newOutPut = cam.transform.right * output.x + cam.transform.forward * output.z;
+        return newOutPut;
     }
     //根据角度修改行进方向
     private Vector3 changeByAngle(Vector3 orginal)
@@ -156,7 +179,8 @@ public class Players : MonoBehaviour
     public void Fall()
     {
         state = playerState.Falling;
-        transform.position = new Vector3(0, 15, 0);
+        transform.position = new Vector3(0, 150, 0);
+        GetComponent<CamCtr>().changeCam(false);
     }
 
     private void OnCollisionEnter(Collision collision)
