@@ -15,6 +15,9 @@ public class PlateControl : MonoBehaviour
 
     private bool lockX = false;
     private bool lockZ = false;
+
+    private float lockX_A;
+    private float lockZ_A;
     //private Quaternion targetRot;
     //GameObject p;
     //private Vector3 jumpAffect;
@@ -32,26 +35,55 @@ public class PlateControl : MonoBehaviour
     void Update()
     {
 
-        if(transform.eulerAngles.x>30&& transform.eulerAngles.x <= 31)
-        {
-            transform.eulerAngles = new Vector3(30, 0, transform.eulerAngles.z);
-            rig.angularVelocity = new Vector3(0, 0, rig.angularVelocity.z);
-        }
-        else if (transform.eulerAngles.x < 330 && transform.eulerAngles.x > 329)
-        {
-            transform.eulerAngles = new Vector3(330, 0, transform.eulerAngles.z);
-            rig.angularVelocity = new Vector3(0, 0, rig.angularVelocity.z);
-        }
-        if (transform.eulerAngles.z > 30 && transform.eulerAngles.z <= 31)
-        {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, 30);
-            rig.angularVelocity = new Vector3(rig.angularVelocity.x, 0, 0);
-        }
-        else if (transform.eulerAngles.z < 330 && transform.eulerAngles.z > 329)
-        {
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, 330);
-            rig.angularVelocity = new Vector3(rig.angularVelocity.x, 0, 0);
-        }
+        //if(transform.eulerAngles.x>30&& transform.eulerAngles.x <= 31)
+        //{
+        //    if (!lockX)
+        //    {
+        //        lockX_A = transform.eulerAngles.x;
+        //        lockX = true;
+        //    }
+        //    if (lockX)
+        //    {
+        //        transform.eulerAngles = new Vector3(lockX_A, 0, transform.eulerAngles.z);
+        //        rig.angularVelocity = new Vector3(0, 0, rig.angularVelocity.z);
+        //    }
+        //}
+        //else if (transform.eulerAngles.x < 330 && transform.eulerAngles.x > 329)
+        //{
+        //    if (!lockX)
+        //    {
+        //        lockX_A = transform.eulerAngles.x;
+        //        lockX = true;
+        //    }
+        //    if (lockX)
+        //    {
+        //        transform.eulerAngles = new Vector3(lockX_A, 0, transform.eulerAngles.z);
+        //        rig.angularVelocity = new Vector3(0, 0, rig.angularVelocity.z);
+        //    }
+        //    //transform.eulerAngles = new Vector3(330, 0, transform.eulerAngles.z);
+        //    //rig.angularVelocity = new Vector3(0, 0, rig.angularVelocity.z);
+        //}
+        //else
+        //{
+        //    lockX = false;
+        //}
+        //if (transform.eulerAngles.z > 30 && transform.eulerAngles.z <= 31)
+        //{
+        //    if (!lockZ)
+        //    { lockZ_A = transform.eulerAngles.z; }
+        //    if (lockZ)
+        //    {
+        //        transform.eulerAngles = new Vector3(lockX_A, 0, transform.eulerAngles.z);
+        //        rig.angularVelocity = new Vector3(0, 0, rig.angularVelocity.z);
+        //    }
+        //    transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, 30);
+        //    rig.angularVelocity = new Vector3(rig.angularVelocity.x, 0, 0);
+        //}
+        //else if (transform.eulerAngles.z < 330 && transform.eulerAngles.z > 329)
+        //{
+        //    transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, 330);
+        //    rig.angularVelocity = new Vector3(rig.angularVelocity.x, 0, 0);
+        //}
         //targetRot = WeightCore();
         //transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotSpeed * Time.deltaTime);
 
@@ -90,10 +122,7 @@ public class PlateControl : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && players.Contains(collision.transform))
-        {
-            players.Remove(collision.transform);
-        }
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -105,9 +134,8 @@ public class PlateControl : MonoBehaviour
         //    jumpAffect += -pb.maxVelocity * 1.3f * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
         //    //print(pb.jumpForce * 3 * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0));
         //}
-        if (collision.gameObject.CompareTag("Player") && !players.Contains(collision.transform))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            players.Add(collision.transform);
             collision.gameObject.GetComponent<Players>().state = playerState.OnGround;
             //jumpAffect += collision.gameObject.GetComponent<Players>().weight * collision.gameObject.GetComponent<Players>().jumpForce * downEffect * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
         }

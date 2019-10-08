@@ -45,8 +45,9 @@ public class FatProp : MonoBehaviour,Prop
 {
     public void Effect(Players _player)
     {
-        _player.weight *= Global.fatEffect;
-        BuffLogic.Instance.EffectRecover(()=> { _player.weight /= Global.fatEffect;
+        _player.GetComponent<Rigidbody>().mass *= Global.fatEffect;
+        BuffLogic.Instance.EffectRecover(()=> {
+            _player.GetComponent<Rigidbody>().mass /= Global.fatEffect;
             _player.GetComponent<MeshRenderer>().material.color = Color.white;
         }, 3);
         Destroy(this.gameObject);
