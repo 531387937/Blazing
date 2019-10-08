@@ -136,7 +136,7 @@ public class PlateControl : MonoBehaviour
         //}
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Players>().state = playerState.OnGround;
+            collision.gameObject.GetComponentInParent<Players>().state = playerState.OnGround;
             //jumpAffect += collision.gameObject.GetComponent<Players>().weight * collision.gameObject.GetComponent<Players>().jumpForce * downEffect * new Vector3(collision.gameObject.transform.localPosition.x, collision.gameObject.transform.localPosition.z, 0);
         }
     }
