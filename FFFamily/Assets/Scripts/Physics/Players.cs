@@ -14,6 +14,7 @@ public class Players : MonoBehaviour
     //重量
     public float weight;
 
+    public GameObject test;
     //跳跃力量
     public float jumpForce;
 
@@ -89,7 +90,7 @@ public class Players : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {        test.transform.position = rig.transform.position;
         StateListener();       
     }
     // Update is called once per frame
@@ -109,13 +110,14 @@ public class Players : MonoBehaviour
             anim.SetBool("Walk", true);
             Vector3 a = new Vector3(_input.x, 0, _input.z);
             rig.transform.forward =Vector3.Slerp(rig.transform.forward, a,0.2f);
+            
         }
         else
         {
             anim.SetBool("Walk", false);
         }
         //_input = changeByAngle(_input);
-        transform.position += _input;
+        transform.position += new Vector3(_input.x, 0, _input.z);
         //Vector3 targetPos = _input + transform.localPosition;
         //rig.MovePosition(targetPos);
         //跳跃
