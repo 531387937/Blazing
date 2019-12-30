@@ -4,84 +4,145 @@ using UnityEngine;
 using System.Net.Sockets;
 using UnityEngine.UI;
 using System;
-public static class NetManager 
+public static class NetManager
 {
     //定义套接字
     static Socket socket;
 
     //接受缓冲区
-    static byte[] readBuff = new byte[1024];
+    static ByteArray readBuff;
 
-    //委托类型
-    public delegate void MsgListener(string str);
-
-    //监听列表
-    private static Dictionary<string, MsgListener> listeners = new Dictionary<string, MsgListener>();
-
-    //消息列表
-    static List<string> msgList = new List<string>();
-
-    //添加监听
-    public static void AddListener(string msgName, MsgListener listener) { listeners[msgName] = listener; }
-
-    //获取描述
-    public static string GetDesc()
+    //写入队列
+    static Queue<ByteArray> writeQueue;
+    //事件
+    public enum NetEvent
     {
-        if (socket == null) return "";
-        if (!socket.Connected) return "";
-        return socket.LocalEndPoint.ToString();
+        ConnectSucc = 1,
+        ConnectFail = 2,
+        Close = 3,
     }
-
-    //链接
-    public static void Connect(string ip,int port)
+    //事件委托类型
+    public delegate void EventListener(string err);
+    //事件监听列表
+    private static Dictionary<NetEvent, EventListener> eventListeners = new Dictionary<NetEvent, EventListener>();
+    static bool isConnecting = false;
+    static bool isClosing = false;
+    //public方法
+    #region
+    /// <summary>
+    /// 添加事件监听
+    /// </summary>
+    /// <param name="netEvent"></param>
+    /// <param name="listener"></param>
+    public static void AddEventListener(NetEvent netEvent, EventListener listener)
     {
-        //Socket
+        //添加事件
+        if (eventListeners.ContainsKey(netEvent))
+        {
+            eventListeners[netEvent] += listener;
+        }
+        else
+        {
+            eventListeners[netEvent] = listener;
+        }
+    }
+    /// <summary>
+    /// 删除事件监听
+    /// </summary>
+    /// <param name="netEvent"></param>
+    /// <param name="listener"></param>
+    public static void RemoveEventListener(NetEvent netEvent, EventListener listener)
+    {
+        if (eventListeners.ContainsKey(netEvent))
+        {
+            eventListeners[netEvent] -= listener;
+            if (eventListeners[netEvent] == null)
+            {
+                eventListeners.Remove(netEvent);
+            }
+        }
+    }
+    /// <summary>
+    /// 连接
+    /// </summary>
+    /// <param name="ip"></param>
+    /// <param name="port"></param>
+    public static void Connect(string ip, int port)
+    {
+        //状态判断
+        if (socket != null && socket.Connected)
+        {
+            Debug.Log("Connect faul,already connected!");
+            return;
+        }
+        if (isConnecting)
+        {
+            Debug.Log("Connect faul,already isConnecting!");
+            return;
+        }
+        //初始化成员
+        InitState();
+        socket.NoDelay = true;
+        isConnecting = true;
+        socket.BeginConnect(ip, port, ConnectCallback, socket);
+    }
+    public static void Close()
+    {
+        //状态判断
+        if(socket == null||!socket.Connected)
+        {
+            return;
+        }
+        if(isConnecting)
+        {
+            return;
+        }
+        if(writeQueue.Count>0)
+        {
+            isConnecting = true;
+        }
+        else
+        {
+            socket.Close();
+            FireEvent(NetEvent.Close, "");
+        }
+    }
+    #endregion
+    //private方法
+    #region
+    //分发事件
+    private static void FireEvent(NetEvent netEvent, String err)
+    {
+        if (eventListeners.ContainsKey(netEvent))
+        {
+            eventListeners[netEvent](err);
+        }
+    }
+    //初始化状态
+    private static void InitState()
+    {
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        //Connect(用同步方式简化代码)
-        socket.Connect(ip, port);
-        //BeginReceive
-        socket.BeginReceive(readBuff, 0, 1024, 0, ReceiveCallback, socket);
+        readBuff = new ByteArray();
+        writeQueue = new Queue<ByteArray>();
+        isConnecting = false;
+        isClosing = false;
     }
-    //Receive回调
-    private static void ReceiveCallback(IAsyncResult ar)
+    private static void ConnectCallback(IAsyncResult ar)
     {
         try
         {
             Socket socket = (Socket)ar.AsyncState;
-            int count = socket.EndReceive(ar);
-            string recvStr = System.Text.Encoding.Default.GetString(readBuff, 0, count);
-            msgList.Add(recvStr);
-            socket.BeginReceive(readBuff, 0, 1024, 0, ReceiveCallback, socket);
+            socket.EndConnect(ar);
+            Debug.Log("Socket Connect Succ ");
+            FireEvent(NetEvent.ConnectSucc, "");
+            isConnecting = false;
         }
         catch(SocketException ex)
         {
-            Debug.Log("Socket Receive fail" + ex.ToString());
+            Debug.Log("Socket Connect fail " + ex.ToString());
+            FireEvent(NetEvent.ConnectFail, ex.ToString());
+            isConnecting = false;
         }
     }
-    //发送
-    public static void Send(string sendStr)
-    {
-        if (socket == null) return;
-        if (!socket.Connected) return;
-
-        byte[] sendBytes = System.Text.Encoding.Default.GetBytes(sendStr);
-        socket.Send(sendBytes);
-    }
-
-    //Update
-    public static void Update()
-    {
-        if (msgList.Count <= 0)
-            return;
-        string msgStr = msgList[0];
-        msgList.RemoveAt(0);
-        string[] split = msgStr.Split('|');
-        string msgName = split[0];
-        string msgArgs = split[1];
-        //监听回调
-        if(listeners.ContainsKey(msgName))
-        {
-            listeners[msgName](msgArgs);
-        }
-    }
+    #endregion
 }
