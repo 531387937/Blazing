@@ -81,7 +81,9 @@ namespace RagdollMecanimMixer {
                     //rotation drive
                     if (!bone.IsRoot) {
                         if (!bone.withoutAnimation)
-                            bone.joint.targetRotation = CalculateRotation(Vector3.Slerp(bone.joint.axis,(cam.transform.position-transform.position).normalized,1f), bone.joint.secondaryAxis, bone.animLocalRotation, bone.physStartLocalRotation);
+                            bone.joint.targetRotation = CalculateRotation(bone,
+                                bone.joint.axis,
+                                bone.joint.secondaryAxis, bone.animLocalRotation, bone.physStartLocalRotation);
                         else
                             bone.joint.targetRotation = Quaternion.identity;
                     }
@@ -169,18 +171,23 @@ namespace RagdollMecanimMixer {
             }
         }
 
-        private Quaternion CalculateRotation(Vector3 axis, Vector3 secondaryAxis, Quaternion targetRotation, Quaternion startRotation) {
+        private Quaternion CalculateRotation(Bone bone,Vector3 axis, Vector3 secondaryAxis, Quaternion targetRotation, Quaternion startRotation) {
             //calculate rotation from joint axis
             var right = axis;
             var forward = Vector3.Cross(axis, secondaryAxis).normalized;
             var up = Vector3.Cross(forward, right).normalized;
+            //print(right + "," + forward + "," + up);
             Quaternion jointRotation = Quaternion.LookRotation(forward, up);
             //Трансформация в мировую систему
             Quaternion resultRotation = Quaternion.Inverse(jointRotation);
             //Контр ротация и принятие новой локальной ротации
-            resultRotation *= Quaternion.Inverse(targetRotation) * startRotation;
+            resultRotation *= Quaternion.Inverse(targetRotation) * startRotation ;
             //Трансформация обратно в систему джоинта
             resultRotation *= jointRotation;
+            if(bone.dependOnDir)
+            {
+                return resultRotation * Quaternion.AngleAxis((-cam.transform.position.y+0.5f)*10, transform.right);
+            }
             return resultRotation;
         }
 

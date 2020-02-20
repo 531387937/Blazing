@@ -153,11 +153,11 @@ namespace RagdollMecanimMixer {
 
             //BEGIN BONE SETTINGS
             //temp vars for multi edit check
-            bool isKinematic, onlyAnimation, selfCollision, angularLimits;
+            bool isKinematic, onlyAnimation, selfCollision, angularLimits,dependOnDir;
             float positionAccuracy, rotationAccuracy;
             float posSpring, posDamper, rotSpring, rotDamper;
-            bool[] different = new bool[10];
-            bool[] changed = new bool[10];
+            bool[] different = new bool[11];
+            bool[] changed = new bool[11];
             bool isRoot = false;
 
             //find first selected bone
@@ -169,6 +169,7 @@ namespace RagdollMecanimMixer {
                 Bone bone = tgt.bones[first];
                 if (bone.IsRoot) isRoot = true;
                 isKinematic = bone.IsKinematic;
+                dependOnDir = bone.dependOnDir;
                 onlyAnimation = bone.onlyAnimation;
                 selfCollision = bone.selfCollision;
                 positionAccuracy = bone.positionAccuracy;
@@ -197,11 +198,13 @@ namespace RagdollMecanimMixer {
                     if (posDamper != bone.positionDriveDamper) different[7] = true;
                     if (rotSpring != bone.rotationDriveSpring) different[8] = true;
                     if (rotDamper != bone.rotationDriveDamper) different[9] = true;
+                    if (dependOnDir != bone.dependOnDir) different[10] = true;
                 }
 
                 EditorGUILayout.BeginVertical("HelpBox");
                 //Show GUI for parameters
                 changed[0] = ShowAndCheck("Is Kinematic", ref isKinematic, different[0]);
+                changed[10] = ShowAndCheck("Depend On Dir", ref dependOnDir, different[10]);
                 EditorGUI.BeginDisabledGroup(!isKinematic);
                 changed[1] = ShowAndCheck("Only animation", ref onlyAnimation, different[1]);
                 EditorGUI.EndDisabledGroup();
@@ -258,7 +261,7 @@ namespace RagdollMecanimMixer {
                     if (changed[7]) bone.positionDriveDamper = posDamper;
                     if (changed[8]) bone.rotationDriveSpring = rotSpring;
                     if (changed[9]) bone.rotationDriveDamper = rotDamper;
-
+                    if (changed[10]) bone.dependOnDir = dependOnDir;
                     foreach (Bone b in tgt.bones) {
                         Physics.IgnoreCollision(b.collider, bone.collider, !bone.selfCollision);
                     }

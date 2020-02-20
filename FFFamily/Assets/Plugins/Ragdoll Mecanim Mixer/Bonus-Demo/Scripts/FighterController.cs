@@ -61,7 +61,7 @@ namespace FightDemo {
             }
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Default") || (isAttacking && time > 0.5f)) {
                 FindTarget();
-                if (Input.GetButtonDown("Fire1") && !isRun) {
+                if (Input.GetMouseButtonDown(0) && !isRun) {
 
                     animator.SetBool("side", !animator.GetBool("side"));
                     animator.SetInteger("number", Random.Range(0, 3));

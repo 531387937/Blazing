@@ -97,5 +97,7 @@ namespace RagdollMecanimMixer {
                 return parentID == -1;
             }
         }
+
+        public bool dependOnDir = false;
     }
 }
