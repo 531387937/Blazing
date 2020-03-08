@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
-namespace RagdollMecanimMixer {
+namespace RagdollMecanimMixer
+{
     [CustomEditor(typeof(RamecanMixer))]
-    public class RamecanMixerEditor : Editor {
+    public class RamecanMixerEditor : Editor
+    {
         private RamecanMixer tgt;
 
         private Rect[] rects;
@@ -11,8 +13,9 @@ namespace RagdollMecanimMixer {
         private string stateName = "";
         private float stateTransitionSmooth = 0f;
         private bool showDriveSettings = false;
-        
-        private void OnEnable() {
+
+        private void OnEnable()
+        {
             tgt = (RamecanMixer)target;
             if (tgt.bones == null) return;
             rects = new Rect[tgt.bones.Count];
@@ -23,9 +26,11 @@ namespace RagdollMecanimMixer {
             stateTransitionSmooth = tgt.states[tgt.currentState].transitionSmooth;
         }
 
-        public override void OnInspectorGUI() {
+        public override void OnInspectorGUI()
+        {
             //if cannot find ragdoll
-            if (tgt.bones == null || tgt.bones.Count == 0 || tgt.ragdollContainer == null) {
+            if (tgt.bones == null || tgt.bones.Count == 0 || tgt.ragdollContainer == null)
+            {
                 EditorStyles.label.wordWrap = true;
                 EditorGUILayout.LabelField("Cannot find an object 'Ragdoll' near '" + tgt.transform.name + "' in the hierarchy (example below).");
                 EditorGUILayout.LabelField("");
@@ -56,17 +61,20 @@ namespace RagdollMecanimMixer {
             //if state changed
             EditorGUI.BeginChangeCheck();
             tgt.currentState = EditorGUILayout.Popup(tgt.currentState, states);
-            if (EditorGUI.EndChangeCheck()) {
+            if (EditorGUI.EndChangeCheck())
+            {
                 stateName = tgt.states[tgt.currentState].name;
                 stateTransitionSmooth = tgt.states[tgt.currentState].transitionSmooth;
                 tgt.ChangeStateImmediately();
             }
 
-            if (GUILayout.Button("Delete", "miniButton", GUILayout.Width(50))) {
+            if (GUILayout.Button("Delete", "miniButton", GUILayout.Width(50)))
+            {
                 tgt.states.RemoveAt(tgt.currentState);
-                if(tgt.currentState > 0)
+                if (tgt.currentState > 0)
                     tgt.currentState--;
-                if (tgt.states.Count > 0) {
+                if (tgt.states.Count > 0)
+                {
                     stateName = tgt.states[tgt.currentState].name;
                     stateTransitionSmooth = tgt.states[tgt.currentState].transitionSmooth;
                     tgt.ChangeStateImmediately();
@@ -82,23 +90,32 @@ namespace RagdollMecanimMixer {
             EditorGUILayout.EndVertical();
 
             bool stateNameExists = false;
-            foreach (string name in states) {
+            foreach (string name in states)
+            {
                 string sub = name.Substring(name.IndexOf('.') + 2);
-                if (sub.Equals(stateName)) {
+                if (sub.Equals(stateName))
+                {
                     stateNameExists = true;
                     break;
                 }
             }
-            if (stateNameExists) {
-                if (GUILayout.Button("Update", GUILayout.Width(50), GUILayout.Height(32))) {
-                    if (stateName.Length > 0) {
+            if (stateNameExists)
+            {
+                if (GUILayout.Button("Update", GUILayout.Width(50), GUILayout.Height(32)))
+                {
+                    if (stateName.Length > 0)
+                    {
                         tgt.states[tgt.currentState].UpdateState(stateName, stateTransitionSmooth, tgt.bones, false);
                     }
                 }
-            } else {
+            }
+            else
+            {
                 EditorGUI.BeginDisabledGroup(stateName.Length == 0);
-                if (GUILayout.Button("Add", GUILayout.Width(50), GUILayout.Height(32))) {
-                    if (stateName.Length > 0) {
+                if (GUILayout.Button("Add", GUILayout.Width(50), GUILayout.Height(32)))
+                {
+                    if (stateName.Length > 0)
+                    {
                         tgt.states.Add(new State(stateName, stateTransitionSmooth, tgt.bones, false));
                         tgt.currentState = tgt.states.Count - 1;
                     }
@@ -109,13 +126,15 @@ namespace RagdollMecanimMixer {
 
             EditorGUILayout.BeginHorizontal();
             EditorGUI.BeginDisabledGroup(tgt.states.Count == 0);
-            if (GUILayout.Button("Copy States")) {
+            if (GUILayout.Button("Copy States"))
+            {
                 tgt.CopyStates();
             }
             EditorGUI.EndDisabledGroup();
 
             EditorGUI.BeginDisabledGroup(RamecanMixer.statesCopy == null || RamecanMixer.statesCopy.Length == 0);
-            if (GUILayout.Button("Paste States")) {
+            if (GUILayout.Button("Paste States"))
+            {
                 tgt.PasteStates();
                 tgt.currentState = 0;
                 stateName = tgt.states[tgt.currentState].name;
@@ -128,13 +147,16 @@ namespace RagdollMecanimMixer {
             //END STATES SETTINGS
 
             EditorGUILayout.Space();
-            
+
             //BEGIN BONES HIERARCHY
             //select or deselect all bones
-            if (GUILayout.Button("Select/Deselect Bones")) {
+            if (GUILayout.Button("Select/Deselect Bones"))
+            {
                 bool change = false;
-                for (int i = 0; i < selected.Length; i++) {
-                    if (selected[i]) {
+                for (int i = 0; i < selected.Length; i++)
+                {
+                    if (selected[i])
+                    {
                         change = true;
                         break;
                     }
@@ -142,10 +164,11 @@ namespace RagdollMecanimMixer {
                 for (int i = 0; i < selected.Length; i++)
                     selected[i] = !change;
             }
-            
+
             DrawBonesHierarchy(0, true);
 
-            if (ClickBone()) {
+            if (ClickBone())
+            {
                 Repaint();
                 return;
             }
@@ -153,23 +176,23 @@ namespace RagdollMecanimMixer {
 
             //BEGIN BONE SETTINGS
             //temp vars for multi edit check
-            bool isKinematic, onlyAnimation, selfCollision, angularLimits,dependOnDir;
+            bool isKinematic, onlyAnimation, selfCollision, angularLimits;
             float positionAccuracy, rotationAccuracy;
             float posSpring, posDamper, rotSpring, rotDamper;
-            bool[] different = new bool[11];
-            bool[] changed = new bool[11];
+            bool[] different = new bool[10];
+            bool[] changed = new bool[10];
             bool isRoot = false;
 
             //find first selected bone
             int first = -1;
             for (int i = 0; i < selected.Length; i++)
                 if (selected[i]) first = i;
-            if (first != -1) {
+            if (first != -1)
+            {
                 //set values to temp vars from first selected bone
                 Bone bone = tgt.bones[first];
                 if (bone.IsRoot) isRoot = true;
                 isKinematic = bone.IsKinematic;
-                dependOnDir = bone.dependOnDir;
                 onlyAnimation = bone.onlyAnimation;
                 selfCollision = bone.selfCollision;
                 positionAccuracy = bone.positionAccuracy;
@@ -182,7 +205,8 @@ namespace RagdollMecanimMixer {
                 rotDamper = bone.rotationDriveDamper;
 
                 //check differences between bones
-                for (int i = 0; i < selected.Length; i++) {
+                for (int i = 0; i < selected.Length; i++)
+                {
                     if (!selected[i]) continue;
                     bone = tgt.bones[i];
                     if (bone.IsRoot) isRoot = true;
@@ -198,13 +222,11 @@ namespace RagdollMecanimMixer {
                     if (posDamper != bone.positionDriveDamper) different[7] = true;
                     if (rotSpring != bone.rotationDriveSpring) different[8] = true;
                     if (rotDamper != bone.rotationDriveDamper) different[9] = true;
-                    if (dependOnDir != bone.dependOnDir) different[10] = true;
                 }
 
                 EditorGUILayout.BeginVertical("HelpBox");
                 //Show GUI for parameters
                 changed[0] = ShowAndCheck("Is Kinematic", ref isKinematic, different[0]);
-                changed[10] = ShowAndCheck("Depend On Dir", ref dependOnDir, different[10]);
                 EditorGUI.BeginDisabledGroup(!isKinematic);
                 changed[1] = ShowAndCheck("Only animation", ref onlyAnimation, different[1]);
                 EditorGUI.EndDisabledGroup();
@@ -220,7 +242,8 @@ namespace RagdollMecanimMixer {
                 EditorGUILayout.EndVertical();
 
                 showDriveSettings = EditorGUILayout.Foldout(showDriveSettings, "Joint Drive");
-                if (showDriveSettings) {
+                if (showDriveSettings)
+                {
                     EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.BeginVertical();
                     GUILayout.Label("");
@@ -247,7 +270,8 @@ namespace RagdollMecanimMixer {
                 EditorGUI.EndDisabledGroup();
 
                 //edit values of selected bones when changed
-                for (int i = 0; i < selected.Length; i++) {
+                for (int i = 0; i < selected.Length; i++)
+                {
                     if (!selected[i]) continue;
                     bone = tgt.bones[i];
                     if (changed[0]) bone.IsKinematic = isKinematic;
@@ -261,8 +285,9 @@ namespace RagdollMecanimMixer {
                     if (changed[7]) bone.positionDriveDamper = posDamper;
                     if (changed[8]) bone.rotationDriveSpring = rotSpring;
                     if (changed[9]) bone.rotationDriveDamper = rotDamper;
-                    if (changed[10]) bone.dependOnDir = dependOnDir;
-                    foreach (Bone b in tgt.bones) {
+
+                    foreach (Bone b in tgt.bones)
+                    {
                         Physics.IgnoreCollision(b.collider, bone.collider, !bone.selfCollision);
                     }
                 }
@@ -270,11 +295,15 @@ namespace RagdollMecanimMixer {
             //END BONE SETTINGS
         }
 
-        private bool ClickBone() {
+        private bool ClickBone()
+        {
             //click on bone
-            if (Event.current.type == EventType.MouseDown && Event.current.button == 0) {
-                for (int i = 0; i < rects.Length; i++) {
-                    if (rects[i].Contains(Event.current.mousePosition)) {
+            if (Event.current.type == EventType.MouseDown && Event.current.button == 0)
+            {
+                for (int i = 0; i < rects.Length; i++)
+                {
+                    if (rects[i].Contains(Event.current.mousePosition))
+                    {
                         selected[i] = !selected[i];
                         return true;
                     }
@@ -283,21 +312,24 @@ namespace RagdollMecanimMixer {
             return false;
         }
 
-        private bool ShowAndCheck(string text, ref float value, bool different, float min, float max) {
+        private bool ShowAndCheck(string text, ref float value, bool different, float min, float max)
+        {
             EditorGUI.BeginChangeCheck();
             if (different) EditorGUI.showMixedValue = true;
             value = EditorGUILayout.Slider(text, value, min, max);
             if (different) EditorGUI.showMixedValue = false;
             return EditorGUI.EndChangeCheck();
         }
-        private bool ShowAndCheck(ref float value, bool different) {
+        private bool ShowAndCheck(ref float value, bool different)
+        {
             EditorGUI.BeginChangeCheck();
             if (different) EditorGUI.showMixedValue = true;
             value = EditorGUILayout.FloatField(value);
             if (different) EditorGUI.showMixedValue = false;
             return EditorGUI.EndChangeCheck();
         }
-        private bool ShowAndCheck(string text, ref bool value, bool different) {
+        private bool ShowAndCheck(string text, ref bool value, bool different)
+        {
             EditorGUI.BeginChangeCheck();
             if (different) EditorGUI.showMixedValue = true;
             value = EditorGUILayout.Toggle(text, value);
@@ -305,14 +337,16 @@ namespace RagdollMecanimMixer {
             return EditorGUI.EndChangeCheck();
         }
 
-        private void DrawBonesHierarchy(int id, bool singleBranch) {
+        private void DrawBonesHierarchy(int id, bool singleBranch)
+        {
             Bone bone = tgt.bones[id];
-            
+
             if (!singleBranch && bone.childIDs != null) GUILayout.BeginVertical();
 
             RagdollConstructorEditor.DrawBoneBox(bone.name, out rects[id], Color.green, selected[id]);
 
-            if (bone.childIDs != null) {
+            if (bone.childIDs != null)
+            {
                 if (bone.childIDs.Count > 1) GUILayout.BeginHorizontal();
 
                 for (int i = 0; i < bone.childIDs.Count; i++)

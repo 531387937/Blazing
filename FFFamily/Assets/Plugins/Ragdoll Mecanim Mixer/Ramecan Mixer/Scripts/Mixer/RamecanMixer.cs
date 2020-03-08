@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RagdollMecanimMixer {
-    public class RamecanMixer : MonoBehaviour {
+namespace RagdollMecanimMixer
+{
+    public class RamecanMixer : MonoBehaviour
+    {
         public List<Bone> bones;
         public List<State> states;
         public int currentState;
 
         public Transform ragdollContainer;
 
-        public Transform RootBoneTr {
-            get {
+        public Transform RootBoneTr
+        {
+            get
+            {
                 return bones[0].physTransform;
             }
         }
-        public Rigidbody RootBoneRb {
-            get {
+        public Rigidbody RootBoneRb
+        {
+            get
+            {
                 return bones[0].rigidbody;
             }
         }
@@ -27,8 +33,10 @@ namespace RagdollMecanimMixer {
                 return Camera.main;
             }
         }
-        void Start() {
-            foreach (Bone bone in bones) {
+        void Start()
+        {
+            foreach (Bone bone in bones)
+            {
                 //ignore collision between bones
                 foreach (Bone bone1 in bones)
                     Physics.IgnoreCollision(bone.collider, bone1.collider, !bone.selfCollision);
@@ -40,7 +48,8 @@ namespace RagdollMecanimMixer {
 
             ChangeStateImmediately();
 
-            foreach (Bone bone in bones) {
+            foreach (Bone bone in bones)
+            {
                 bone.beforeAnimationPos = bone.animPosition = bone.animTransform.position;
                 bone.beforeAnimationRot = bone.animTransform.rotation;
 
@@ -49,24 +58,30 @@ namespace RagdollMecanimMixer {
             }
         }
 
-        public void ChangeStateImmediately() {
+        public void ChangeStateImmediately()
+        {
             states[currentState].ChangeImmediately(bones);
         }
 
-        public void BeginStateTransition(int stateID) {
+        public void BeginStateTransition(int stateID)
+        {
             if (currentState == stateID) return;
             currentState = stateID;
             states[currentState].BeginTransition(bones);
         }
-        public void BeginStateTransition(string stateName) {
+        public void BeginStateTransition(string stateName)
+        {
             int stateID = -1;
-            for (int i = 0; i < states.Count; i++) {
-                if (states[i].name.Equals(stateName)) {
+            for (int i = 0; i < states.Count; i++)
+            {
+                if (states[i].name.Equals(stateName))
+                {
                     stateID = i;
                     break;
                 }
             }
-            if (stateID == -1) {
+            if (stateID == -1)
+            {
                 Debug.LogError("There is no state with name '" + stateName + "'");
                 return;
             }
@@ -75,20 +90,23 @@ namespace RagdollMecanimMixer {
             states[currentState].BeginTransition(bones);
         }
 
-        private void FixedUpdate() {
-            foreach (Bone bone in bones) {
-                if (!bone.rigidbody.isKinematic) {
+        private void FixedUpdate()
+        {
+            foreach (Bone bone in bones)
+            {
+                if (!bone.rigidbody.isKinematic)
+                {
                     //rotation drive
-                    if (!bone.IsRoot) {
+                    if (!bone.IsRoot)
+                    {
                         if (!bone.withoutAnimation)
-                            bone.joint.targetRotation = CalculateRotation(bone,
-                                bone.joint.axis,
-                                bone.joint.secondaryAxis, bone.animLocalRotation, bone.physStartLocalRotation);
+                            bone.joint.targetRotation = CalculateRotation(bone.joint.axis, bone.joint.secondaryAxis, bone.animLocalRotation, bone.physStartLocalRotation);
                         else
                             bone.joint.targetRotation = Quaternion.identity;
                     }
                     //position drive
-                    if (bone.positionAccuracy > 0 && !bone.withoutAnimation) {
+                    if (bone.positionAccuracy > 0 && !bone.withoutAnimation)
+                    {
                         float force = Vector3.Distance(bone.animPosition, bone.rigidbody.position) * bone.positionDriveSpring * bone.positionAccuracy;
                         Vector3 direction = (bone.animPosition - bone.rigidbody.position).normalized;
                         Vector3 velocity = bone.rigidbody.velocity;
@@ -97,7 +115,9 @@ namespace RagdollMecanimMixer {
 
                     bone.kinVelocity = bone.rigidbody.velocity;
                     bone.kinAngularVelocity = bone.rigidbody.angularVelocity;
-                } else {
+                }
+                else
+                {
                     //calculate velocity when isKinematic
                     bone.kinVelocity = (bone.rigidbody.position - bone.rbPrevPos) / Time.fixedDeltaTime;
 
@@ -114,23 +134,29 @@ namespace RagdollMecanimMixer {
             }
         }
 
-        private void Update() {
-            foreach (Bone bone in bones) {
+        private void Update()
+        {
+            foreach (Bone bone in bones)
+            {
                 bone.beforeAnimationPos = bone.animTransform.position;
                 bone.beforeAnimationRot = bone.animTransform.rotation;
             }
         }
 
-        private void LateUpdate() {
+        private void LateUpdate()
+        {
             Mix();
         }
 
-        private void Mix() {
-            foreach (Bone bone in bones) {
+        private void Mix()
+        {
+            foreach (Bone bone in bones)
+            {
                 //bone.withoutAnimation helps if a certain bone has no animation
                 bone.withoutAnimation = bone.beforeAnimationPos == bone.animTransform.position && bone.beforeAnimationRot == bone.animTransform.rotation;
 
-                if (!bone.IsRoot && !bone.withoutAnimation) {
+                if (!bone.IsRoot && !bone.withoutAnimation)
+                {
                     //setting joint anchors
                     Matrix4x4 matrixTrans = Matrix4x4.identity;
                     Bone parent = bones[bone.parentID];
@@ -138,16 +164,20 @@ namespace RagdollMecanimMixer {
                     bone.joint.connectedAnchor = matrixTrans.inverse.MultiplyPoint3x4(bone.animTransform.position);
                 }
 
-                if (!bone.rigidbody.isKinematic) {
+                if (!bone.rigidbody.isKinematic)
+                {
                     //saving bones position and rotation after animation pass (between Update and LateUpdate)
-                    if (!bone.IsRoot) {
+                    if (!bone.IsRoot)
+                    {
                         Bone parent = bones[bone.parentID];
                         Quaternion parentRot = parent.animTransform.rotation * parent.rotOffset;
                         Quaternion rot = bone.animTransform.rotation * bone.rotOffset;
                         bone.animLocalRotation = Quaternion.Inverse(parentRot) * rot;
                     }
                     bone.animPosition = bone.animTransform.position;
-                } else if (bone.onlyAnimation) {
+                }
+                else if (bone.onlyAnimation)
+                {
                     //setting bones pos and rot directly
                     bone.rigidbody.position = bone.animTransform.position;
                     bone.rigidbody.rotation = bone.animTransform.rotation * bone.rotOffset;
@@ -156,38 +186,37 @@ namespace RagdollMecanimMixer {
 
             //interpolation for smooth movements
             float alpha = (Time.time - Time.fixedTime) / Time.fixedDeltaTime;
-            foreach (Bone bone in bones) {
+            foreach (Bone bone in bones)
+            {
                 bone.rbLerpPos = Vector3.Lerp(bone.rbPrevPos, bone.rigidbody.position, alpha);
                 bone.rbLerpRot = Quaternion.Slerp(bone.rbPrevRot, bone.rigidbody.rotation, alpha) * Quaternion.Inverse(bone.rotOffset);
             }
 
 
-            if (!states[currentState].UpdateTransition(bones)) {
+            if (!states[currentState].UpdateTransition(bones))
+            {
                 //if there is no transition between states, set pos and rot of the bone
-                foreach (Bone bone in bones) {
+                foreach (Bone bone in bones)
+                {
                     bone.animTransform.position = bone.rbLerpPos;
                     bone.animTransform.rotation = bone.rbLerpRot;
                 }
             }
         }
 
-        private Quaternion CalculateRotation(Bone bone,Vector3 axis, Vector3 secondaryAxis, Quaternion targetRotation, Quaternion startRotation) {
+        private Quaternion CalculateRotation(Vector3 axis, Vector3 secondaryAxis, Quaternion targetRotation, Quaternion startRotation)
+        {
             //calculate rotation from joint axis
             var right = axis;
             var forward = Vector3.Cross(axis, secondaryAxis).normalized;
             var up = Vector3.Cross(forward, right).normalized;
-            //print(right + "," + forward + "," + up);
             Quaternion jointRotation = Quaternion.LookRotation(forward, up);
             //Трансформация в мировую систему
             Quaternion resultRotation = Quaternion.Inverse(jointRotation);
             //Контр ротация и принятие новой локальной ротации
-            resultRotation *= Quaternion.Inverse(targetRotation) * startRotation ;
+            resultRotation *= Quaternion.Inverse(targetRotation) * startRotation;
             //Трансформация обратно в систему джоинта
             resultRotation *= jointRotation;
-            if(bone.dependOnDir)
-            {
-                return resultRotation * Quaternion.AngleAxis((-cam.transform.position.y+0.5f)*10, transform.right);
-            }
             return resultRotation;
         }
 
@@ -195,7 +224,8 @@ namespace RagdollMecanimMixer {
         public static State[] statesCopy;
         public static int[] bonesParentsCopy;
 
-        public void CopyStates() {
+        public void CopyStates()
+        {
             RamecanMixer.statesCopy = new State[states.Count];
             RamecanMixer.bonesParentsCopy = new int[bones.Count];
             for (int i = 0; i < states.Count; i++)
@@ -204,9 +234,11 @@ namespace RagdollMecanimMixer {
                 RamecanMixer.bonesParentsCopy[i] = bones[i].parentID;
         }
 
-        public void PasteStates() {
+        public void PasteStates()
+        {
             if (RamecanMixer.statesCopy == null || RamecanMixer.statesCopy.Length == 0) return;
-            if (RamecanMixer.bonesParentsCopy.Length != bones.Count) {
+            if (RamecanMixer.bonesParentsCopy.Length != bones.Count)
+            {
                 Debug.LogError("Cannot paste due to different bone hierarchies.");
                 return;
             }
@@ -215,23 +247,27 @@ namespace RagdollMecanimMixer {
             for (int i = 0; i < bones.Count; i++)
                 if (bones[i].parentID != RamecanMixer.bonesParentsCopy[i])
                     rightAvatar = false;
-            if (!rightAvatar) {
+            if (!rightAvatar)
+            {
                 Debug.LogError("Cannot paste due to different bone hierarchies.");
                 return;
             }
 
             states.Clear();
-            foreach (State state in RamecanMixer.statesCopy) {
+            foreach (State state in RamecanMixer.statesCopy)
+            {
                 states.Add(new State(state));
             }
         }
 
-        public void Reset() {
+        public void Reset()
+        {
             if (!FindBones()) return;
             FindParents();
             Prepare();
 
-            foreach (Bone bone in bones) {
+            foreach (Bone bone in bones)
+            {
                 if (bone.positionDriveSpring == 0) bone.positionDriveSpring = 1000;
                 if (bone.positionDriveDamper == 0) bone.positionDriveDamper = 10;
                 if (bone.rotationDriveSpring == 0) bone.rotationDriveSpring = 1000;
@@ -244,8 +280,10 @@ namespace RagdollMecanimMixer {
             ChangeStateImmediately();
         }
 
-        public void SetDrive(float spring, float damper) {
-            foreach (Bone bone in bones) {
+        public void SetDrive(float spring, float damper)
+        {
+            foreach (Bone bone in bones)
+            {
                 bone.positionDriveSpring = spring;
                 bone.positionDriveDamper = damper;
                 bone.rotationDriveSpring = spring;
@@ -255,9 +293,12 @@ namespace RagdollMecanimMixer {
             }
         }
 
-        private void Prepare() {
-            foreach (Bone bone in bones) {
-                if (!bone.IsRoot) {
+        private void Prepare()
+        {
+            foreach (Bone bone in bones)
+            {
+                if (!bone.IsRoot)
+                {
                     Bone parent = bones[bone.parentID];
                     bone.physStartLocalRotation = Quaternion.Inverse(parent.rigidbody.rotation) * bone.rigidbody.rotation;
 
@@ -268,21 +309,24 @@ namespace RagdollMecanimMixer {
             }
         }
 
-        private bool FindBones() {
+        private bool FindBones()
+        {
             if (transform.parent == null) return false;
             ragdollContainer = transform.parent.Find("Ragdoll");
             if (ragdollContainer == null) return false;
 
             bones = new List<Bone>();
 
-            for (int i = 0; i < ragdollContainer.childCount; i++) {
+            for (int i = 0; i < ragdollContainer.childCount; i++)
+            {
                 Transform physTR = ragdollContainer.GetChild(i);
 
                 Transform animTR = transform.FindDeep(physTR.name);
                 if (animTR == physTR)
                     animTR = null;
 
-                Bone bone = new Bone {
+                Bone bone = new Bone
+                {
                     name = physTR.name,
                     animTransform = animTR,
                     physTransform = physTR,
@@ -297,17 +341,22 @@ namespace RagdollMecanimMixer {
             return true;
         }
 
-        private void FindParents() {
-            for (int i = 0; i < bones.Count; i++) {
+        private void FindParents()
+        {
+            for (int i = 0; i < bones.Count; i++)
+            {
                 Bone bone = bones[i];
-                if (bone.joint == null) {
+                if (bone.joint == null)
+                {
                     bone.parentID = -1;
                     continue;
                 }
-                for (int j = 0; j < bones.Count; j++) {
+                for (int j = 0; j < bones.Count; j++)
+                {
                     Bone parent = bones[j];
                     if (bone == parent) continue;
-                    if (bone.joint.connectedBody == parent.rigidbody) {
+                    if (bone.joint.connectedBody == parent.rigidbody)
+                    {
                         bone.parentID = j;
                         if (parent.childIDs == null)
                             parent.childIDs = new List<int>();
