@@ -66,11 +66,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -98,11 +98,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -130,11 +130,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -162,11 +162,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -194,11 +194,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -226,11 +226,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -259,11 +259,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -293,11 +293,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -325,11 +325,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -357,11 +357,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -389,11 +389,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -422,11 +422,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -455,11 +455,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -487,11 +487,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -519,11 +519,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -552,11 +552,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -571,7 +571,7 @@ MonoBehaviour:
       selfCollision: 0
       positionAccuracy: 0.3
       rotationAccuracy: 1
-      angularLimits: 1
+      angularLimits: 0
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 0
@@ -762,1415 +762,108 @@ MonoBehaviour:
       positionAccuracy: 0
       rotationAccuracy: 1
       angularLimits: 1
-  currentState: 1
+  - name: normal
+    transitionSmooth: 1
+    transitionTimer: 1
+    bonesStates:
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 0
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 0
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+  currentState: 2
   ragdollContainer: {fileID: 7224130309706780812}
---- !u!114 &4813834350445216397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4813834351081896312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62193d381d124644ba3f41d7aed06f8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  avatar: {fileID: 11400000, guid: a7f6447869035184784145b55a89ee98, type: 2}
-  characterBones:
-  - name: Frog
-    avatarConnection: 
-    tr: {fileID: 4813834351081464984}
-    parentID: -1
-    childIDs: 0100000002000000030000003c0000003d0000003e0000003f0000004000000042000000430000004400000045000000460000004700000048000000490000004a000000
-    rect:
-      serializedVersion: 2
-      x: 18
-      y: 543
-      width: 1148
-      height: 17
-    selected: 0
-  - name: bikongL
-    avatarConnection: 
-    tr: {fileID: 4813834351081465060}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 18
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: bikongR
-    avatarConnection: 
-    tr: {fileID: 4813834351081465062}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 62
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: Hips
-    avatarConnection: Hips
-    tr: {fileID: 4813834351081465068}
-    parentID: 0
-    childIDs: 04000000090000000e000000
-    rect:
-      serializedVersion: 2
-      x: 106
-      y: 564
-      width: 480
-      height: 17
-    selected: 1
-  - name: LeftUpLeg
-    avatarConnection: LeftUpLeg
-    tr: {fileID: 4813834351081465050}
-    parentID: 3
-    childIDs: 05000000
-    rect:
-      serializedVersion: 2
-      x: 106
-      y: 585
-      width: 40
-      height: 28
-    selected: 1
-  - name: LeftLeg
-    avatarConnection: LeftLeg
-    tr: {fileID: 4813834351081465042}
-    parentID: 4
-    childIDs: 06000000
-    rect:
-      serializedVersion: 2
-      x: 106
-      y: 617
-      width: 40
-      height: 28
-    selected: 1
-  - name: LeftFoot
-    avatarConnection: LeftFoot
-    tr: {fileID: 4813834351081465076}
-    parentID: 5
-    childIDs: 07000000
-    rect:
-      serializedVersion: 2
-      x: 106
-      y: 649
-      width: 40
-      height: 28
-    selected: 1
-  - name: LeftToeBase
-    avatarConnection: 
-    tr: {fileID: 4813834351081465048}
-    parentID: 6
-    childIDs: 08000000
-    rect:
-      serializedVersion: 2
-      x: 106
-      y: 681
-      width: 40
-      height: 28
-    selected: 0
-  - name: LeftToe_End
-    avatarConnection: 
-    tr: {fileID: 4813834351081465054}
-    parentID: 7
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 106
-      y: 713
-      width: 40
-      height: 28
-    selected: 0
-  - name: RightUpLeg
-    avatarConnection: RightUpLeg
-    tr: {fileID: 4813834351081464978}
-    parentID: 3
-    childIDs: 0a000000
-    rect:
-      serializedVersion: 2
-      x: 150
-      y: 585
-      width: 40
-      height: 28
-    selected: 1
-  - name: RightLeg
-    avatarConnection: RightLeg
-    tr: {fileID: 4813834351081464970}
-    parentID: 9
-    childIDs: 0b000000
-    rect:
-      serializedVersion: 2
-      x: 150
-      y: 617
-      width: 40
-      height: 28
-    selected: 1
-  - name: RightFoot
-    avatarConnection: RightFoot
-    tr: {fileID: 4813834351081465004}
-    parentID: 10
-    childIDs: 0c000000
-    rect:
-      serializedVersion: 2
-      x: 150
-      y: 649
-      width: 40
-      height: 28
-    selected: 1
-  - name: RightToeBase
-    avatarConnection: 
-    tr: {fileID: 4813834351081464976}
-    parentID: 11
-    childIDs: 0d000000
-    rect:
-      serializedVersion: 2
-      x: 150
-      y: 681
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightToe_End
-    avatarConnection: 
-    tr: {fileID: 4813834351081464982}
-    parentID: 12
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 150
-      y: 724
-      width: 40
-      height: 39
-    selected: 0
-  - name: Spine
-    avatarConnection: Spine
-    tr: {fileID: 4813834351081464986}
-    parentID: 3
-    childIDs: 0f000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 585
-      width: 392
-      height: 17
-    selected: 1
-  - name: Spine1
-    avatarConnection: Spine1
-    tr: {fileID: 4813834351081465188}
-    parentID: 14
-    childIDs: 10000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 606
-      width: 392
-      height: 17
-    selected: 1
-  - name: Spine2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465190}
-    parentID: 15
-    childIDs: 110000002500000028000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 627
-      width: 392
-      height: 17
-    selected: 0
-  - name: LeftShoulder
-    avatarConnection: 
-    tr: {fileID: 4813834351081465052}
-    parentID: 16
-    childIDs: 12000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 648
-      width: 172
-      height: 17
-    selected: 0
-  - name: LeftArm
-    avatarConnection: LeftArm
-    tr: {fileID: 4813834351081465066}
-    parentID: 17
-    childIDs: 13000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 669
-      width: 172
-      height: 17
-    selected: 1
-  - name: LeftForeArm
-    avatarConnection: LeftForeArm
-    tr: {fileID: 4813834351081465078}
-    parentID: 18
-    childIDs: 14000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 690
-      width: 172
-      height: 17
-    selected: 1
-  - name: LeftHand
-    avatarConnection: LeftHand
-    tr: {fileID: 4813834351081465072}
-    parentID: 19
-    childIDs: 15000000190000001d00000021000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 711
-      width: 172
-      height: 17
-    selected: 1
-  - name: LeftHandIndex1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465074}
-    parentID: 20
-    childIDs: 16000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 732
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandIndex2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465084}
-    parentID: 21
-    childIDs: 17000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 775
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandIndex3
-    avatarConnection: 
-    tr: {fileID: 4813834351081465086}
-    parentID: 22
-    childIDs: 18000000
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 818
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandIndex4
-    avatarConnection: 
-    tr: {fileID: 4813834351081465080}
-    parentID: 23
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 194
-      y: 861
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandMiddle1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465082}
-    parentID: 20
-    childIDs: 1a000000
-    rect:
-      serializedVersion: 2
-      x: 238
-      y: 732
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandMiddle2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465028}
-    parentID: 25
-    childIDs: 1b000000
-    rect:
-      serializedVersion: 2
-      x: 238
-      y: 775
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandMiddle3
-    avatarConnection: 
-    tr: {fileID: 4813834351081465030}
-    parentID: 26
-    childIDs: 1c000000
-    rect:
-      serializedVersion: 2
-      x: 238
-      y: 818
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandMiddle4
-    avatarConnection: 
-    tr: {fileID: 4813834351081465024}
-    parentID: 27
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 238
-      y: 861
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandRing1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465026}
-    parentID: 20
-    childIDs: 1e000000
-    rect:
-      serializedVersion: 2
-      x: 282
-      y: 732
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandRing2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465036}
-    parentID: 29
-    childIDs: 1f000000
-    rect:
-      serializedVersion: 2
-      x: 282
-      y: 775
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandRing3
-    avatarConnection: 
-    tr: {fileID: 4813834351081465038}
-    parentID: 30
-    childIDs: 20000000
-    rect:
-      serializedVersion: 2
-      x: 282
-      y: 818
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandRing4
-    avatarConnection: 
-    tr: {fileID: 4813834351081465032}
-    parentID: 31
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 282
-      y: 861
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandThumb1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465034}
-    parentID: 20
-    childIDs: 22000000
-    rect:
-      serializedVersion: 2
-      x: 326
-      y: 732
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandThumb2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465044}
-    parentID: 33
-    childIDs: 23000000
-    rect:
-      serializedVersion: 2
-      x: 326
-      y: 775
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandThumb3
-    avatarConnection: 
-    tr: {fileID: 4813834351081465046}
-    parentID: 34
-    childIDs: 24000000
-    rect:
-      serializedVersion: 2
-      x: 326
-      y: 818
-      width: 40
-      height: 39
-    selected: 0
-  - name: LeftHandThumb4
-    avatarConnection: 
-    tr: {fileID: 4813834351081465040}
-    parentID: 35
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 326
-      y: 861
-      width: 40
-      height: 39
-    selected: 0
-  - name: Neck
-    avatarConnection: 
-    tr: {fileID: 4813834351081464992}
-    parentID: 16
-    childIDs: 26000000
-    rect:
-      serializedVersion: 2
-      x: 370
-      y: 648
-      width: 40
-      height: 17
-    selected: 0
-  - name: Head
-    avatarConnection: Head
-    tr: {fileID: 4813834351081465056}
-    parentID: 37
-    childIDs: 27000000
-    rect:
-      serializedVersion: 2
-      x: 370
-      y: 669
-      width: 40
-      height: 17
-    selected: 1
-  - name: HeadTop_End
-    avatarConnection: 
-    tr: {fileID: 4813834351081465058}
-    parentID: 38
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 370
-      y: 690
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightShoulder
-    avatarConnection: 
-    tr: {fileID: 4813834351081464980}
-    parentID: 16
-    childIDs: 29000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 648
-      width: 172
-      height: 17
-    selected: 0
-  - name: RightArm
-    avatarConnection: RightArm
-    tr: {fileID: 4813834351081464994}
-    parentID: 40
-    childIDs: 2a000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 669
-      width: 172
-      height: 17
-    selected: 1
-  - name: RightForeArm
-    avatarConnection: RightForeArm
-    tr: {fileID: 4813834351081465006}
-    parentID: 41
-    childIDs: 2b000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 690
-      width: 172
-      height: 17
-    selected: 1
-  - name: RightHand
-    avatarConnection: RightHand
-    tr: {fileID: 4813834351081465000}
-    parentID: 42
-    childIDs: 2c000000300000003400000038000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 711
-      width: 172
-      height: 17
-    selected: 1
-  - name: RightHandIndex1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465002}
-    parentID: 43
-    childIDs: 2d000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 732
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandIndex2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465012}
-    parentID: 44
-    childIDs: 2e000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 775
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandIndex3
-    avatarConnection: 
-    tr: {fileID: 4813834351081465014}
-    parentID: 45
-    childIDs: 2f000000
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 818
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandIndex4
-    avatarConnection: 
-    tr: {fileID: 4813834351081465008}
-    parentID: 46
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 414
-      y: 861
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandMiddle1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465010}
-    parentID: 43
-    childIDs: 31000000
-    rect:
-      serializedVersion: 2
-      x: 458
-      y: 732
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandMiddle2
-    avatarConnection: 
-    tr: {fileID: 4813834351081465020}
-    parentID: 48
-    childIDs: 32000000
-    rect:
-      serializedVersion: 2
-      x: 458
-      y: 786
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandMiddle3
-    avatarConnection: 
-    tr: {fileID: 4813834351081465022}
-    parentID: 49
-    childIDs: 33000000
-    rect:
-      serializedVersion: 2
-      x: 458
-      y: 840
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandMiddle4
-    avatarConnection: 
-    tr: {fileID: 4813834351081465016}
-    parentID: 50
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 458
-      y: 894
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandRing1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465018}
-    parentID: 43
-    childIDs: 35000000
-    rect:
-      serializedVersion: 2
-      x: 502
-      y: 732
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandRing2
-    avatarConnection: 
-    tr: {fileID: 4813834351081464964}
-    parentID: 52
-    childIDs: 36000000
-    rect:
-      serializedVersion: 2
-      x: 502
-      y: 775
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandRing3
-    avatarConnection: 
-    tr: {fileID: 4813834351081464966}
-    parentID: 53
-    childIDs: 37000000
-    rect:
-      serializedVersion: 2
-      x: 502
-      y: 818
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandRing4
-    avatarConnection: 
-    tr: {fileID: 4813834351081464960}
-    parentID: 54
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 502
-      y: 861
-      width: 40
-      height: 39
-    selected: 0
-  - name: RightHandThumb1
-    avatarConnection: 
-    tr: {fileID: 4813834351081464962}
-    parentID: 43
-    childIDs: 39000000
-    rect:
-      serializedVersion: 2
-      x: 546
-      y: 732
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandThumb2
-    avatarConnection: 
-    tr: {fileID: 4813834351081464972}
-    parentID: 56
-    childIDs: 3a000000
-    rect:
-      serializedVersion: 2
-      x: 546
-      y: 786
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandThumb3
-    avatarConnection: 
-    tr: {fileID: 4813834351081464974}
-    parentID: 57
-    childIDs: 3b000000
-    rect:
-      serializedVersion: 2
-      x: 546
-      y: 840
-      width: 40
-      height: 50
-    selected: 0
-  - name: RightHandThumb4
-    avatarConnection: 
-    tr: {fileID: 4813834351081464968}
-    parentID: 58
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 546
-      y: 894
-      width: 40
-      height: 50
-    selected: 0
-  - name: kanjian
-    avatarConnection: 
-    tr: {fileID: 4813834351081465070}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 590
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: kuzi
-    avatarConnection: 
-    tr: {fileID: 4813834351081465064}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 634
-      y: 564
-      width: 28
-      height: 17
-    selected: 0
-  - name: maozi
-    avatarConnection: 
-    tr: {fileID: 4813834351081464996}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 666
-      y: 564
-      width: 37
-      height: 17
-    selected: 0
-  - name: maozidai
-    avatarConnection: 
-    tr: {fileID: 4813834351081464998}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 707
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: shenti
-    avatarConnection: 
-    tr: {fileID: 4813834351081464988}
-    parentID: 0
-    childIDs: 41000000
-    rect:
-      serializedVersion: 2
-      x: 751
-      y: 564
-      width: 40
-      height: 17
-    selected: 0
-  - name: shenti_2
-    avatarConnection: 
-    tr: {fileID: 4813834351081464990}
-    parentID: 64
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 751
-      y: 585
-      width: 40
-      height: 28
-    selected: 0
-  - name: xiadaimianL
-    avatarConnection: 
-    tr: {fileID: 4813834351081465184}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 795
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: xiadaimianR
-    avatarConnection: 
-    tr: {fileID: 4813834351081465186}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 839
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: xianglian
-    avatarConnection: 
-    tr: {fileID: 4813834351081465196}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 883
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: xiedaiL
-    avatarConnection: 
-    tr: {fileID: 4813834351081465198}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 927
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: xiedaiR
-    avatarConnection: 
-    tr: {fileID: 4813834351081465192}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 971
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: xieL
-    avatarConnection: 
-    tr: {fileID: 4813834351081465194}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 1015
-      y: 564
-      width: 29
-      height: 17
-    selected: 0
-  - name: xieR
-    avatarConnection: 
-    tr: {fileID: 4813834351081465204}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 1048
-      y: 564
-      width: 30
-      height: 17
-    selected: 0
-  - name: yanjingL
-    avatarConnection: 
-    tr: {fileID: 4813834351081465206}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 1082
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  - name: yanjingR
-    avatarConnection: 
-    tr: {fileID: 4813834351081465200}
-    parentID: 0
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 1126
-      y: 564
-      width: 40
-      height: 28
-    selected: 0
-  tempPreviewBones: []
-  previewBones:
-  - name: Hips
-    avatarConnection: 
-    tr: {fileID: 4813834351081465068}
-    parentID: -1
-    childIDs: 010000000400000007000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 1
-    characterBoneId: 3
-    rotation: {x: -0.00000003090862, y: -0.70710677, z: -0.70710677, w: 0.00000003090862}
-    colliderType: 0
-    bounds:
-      m_Center: {x: -0.008134201, y: 0.0042312704, z: 0.04544861}
-      m_Extent: {x: 0.1893606, y: 0.10690604, z: 0.04544861}
-    capsuleBounds:
-      height: 0.3787212
-      radius: 0.10690604
-      direction: 0
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 16.559967
-    swing2Limit: 18.36377
-    direction: {x: -0.15754832, y: -0.043410897, z: 0.010890245}
-    massInPercent: 0.14999998
-  - name: LeftUpLeg
-    avatarConnection: 
-    tr: {fileID: 4813834351081465050}
-    parentID: 0
-    childIDs: 02000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 4
-    rotation: {x: 0.7212315, y: -0.07115136, z: -0.06764624, w: 0.68570155}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.13761517}
-      m_Extent: {x: 0.075, y: 0.075, z: 0.13761517}
-    capsuleBounds:
-      height: 0.27523035
-      radius: 0.075
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -80.50897
-    highTwistLimit: 113.81562
-    swing1Limit: 58.54062
-    swing2Limit: 28.798187
-    direction: {x: -0.053712413, y: -0.26958066, z: -0.013892174}
-    massInPercent: 0.075
-  - name: LeftLeg
-    avatarConnection: 
-    tr: {fileID: 4813834351081465042}
-    parentID: 1
-    childIDs: 03000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 5
-    rotation: {x: 0.75137013, y: -0.0356665, z: -0.031242676, w: 0.6581754}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.134954}
-      m_Extent: {x: 0.1, y: 0.1, z: 0.134954}
-    capsuleBounds:
-      height: 0.269908
-      radius: 0.1
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -100.825195
-    highTwistLimit: -0.4901886
-    swing1Limit: 0
-    swing2Limit: 0
-    direction: {x: -0.0381054, y: -0.40047026, z: -0.05342841}
-    massInPercent: 0.075
-  - name: LeftFoot
-    avatarConnection: 
-    tr: {fileID: 4813834351081465076}
-    parentID: 2
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 6
-    rotation: {x: 0.7069847, y: 0, z: 0, w: 0.70722884}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0.020477533, y: 0.16378403, z: -0.05309625}
-      m_Extent: {x: 0.11485395, y: 0.27813727, z: 0.11485395}
-    capsuleBounds:
-      height: 0.55627453
-      radius: 0.11485395
-      direction: 1
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 12.288544
-    swing2Limit: 33.33737
-    direction: {x: -0.07051479, y: -0.35296467, z: -0.18742105}
-    massInPercent: 0.035
-  - name: RightUpLeg
-    avatarConnection: 
-    tr: {fileID: 4813834351081464978}
-    parentID: 0
-    childIDs: 05000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 9
-    rotation: {x: 0.7118556, y: 0.07022642, z: 0.06860601, w: 0.69543016}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.13747725}
-      m_Extent: {x: 0.075, y: 0.075, z: 0.13747725}
-    capsuleBounds:
-      height: 0.2749545
-      radius: 0.075
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -80.50897
-    highTwistLimit: 113.81562
-    swing1Limit: 58.54062
-    swing2Limit: 28.798187
-    direction: {x: 0.053712443, y: -0.26958072, z: -0.006417513}
-    massInPercent: 0.075
-  - name: RightLeg
-    avatarConnection: 
-    tr: {fileID: 4813834351081464970}
-    parentID: 4
-    childIDs: 06000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 10
-    rotation: {x: 0.70522964, y: 0.032834966, z: 0.032938436, w: 0.7074519}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.134954}
-      m_Extent: {x: 0.1, y: 0.1, z: 0.134954}
-    capsuleBounds:
-      height: 0.269908
-      radius: 0.1
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -100.825195
-    highTwistLimit: -0.4901886
-    swing1Limit: 0
-    swing2Limit: 0
-    direction: {x: 0.03811437, y: -0.408423, z: 0.0012905598}
-    massInPercent: 0.075
-  - name: RightFoot
-    avatarConnection: 
-    tr: {fileID: 4813834351081465004}
-    parentID: 5
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 11
-    rotation: {x: 0.7069847, y: 0, z: 0, w: 0.70722884}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0.008667797, y: 0.12923202, z: -0.05309625}
-      m_Extent: {x: 0.12666368, y: 0.26602545, z: 0.12666368}
-    capsuleBounds:
-      height: 0.5320509
-      radius: 0.12666368
-      direction: 1
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 12.288544
-    swing2Limit: 33.33737
-    direction: {x: 0.09408131, y: -0.3378881, z: -0.21270658}
-    massInPercent: 0.035
-  - name: Spine
-    avatarConnection: 
-    tr: {fileID: 4813834351081464986}
-    parentID: 0
-    childIDs: 08000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 14
-    rotation: {x: 0, y: 0.70967275, z: 0.7045315, w: 0}
-    colliderType: 0
-    bounds:
-      m_Center: {x: -0.008134201, y: 0.0042312704, z: 0.04544861}
-      m_Extent: {x: 0.1893606, y: 0.10690604, z: 0.04544861}
-    capsuleBounds:
-      height: 0.3787212
-      radius: 0.10690604
-      direction: 0
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 16.559967
-    swing2Limit: 18.36377
-    direction: {x: 0, y: 0.09089482, z: -0.0006608963}
-    massInPercent: 0.14999998
-  - name: Spine1
-    avatarConnection: 
-    tr: {fileID: 4813834351081465188}
-    parentID: 7
-    childIDs: 090000000c0000000d000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 15
-    rotation: {x: 0, y: 0.71544087, z: 0.69867325, w: 0}
-    colliderType: 0
-    bounds:
-      m_Center: {x: -0.008134201, y: 0.0042312704, z: 0.04544861}
-      m_Extent: {x: 0.1893606, y: 0.10690604, z: 0.04544861}
-    capsuleBounds:
-      height: 0.3787212
-      radius: 0.10690604
-      direction: 0
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 16.559967
-    swing2Limit: 18.36377
-    direction: {x: 0, y: 0.24655247, z: -0.0058476925}
-    massInPercent: 0.13000011
-  - name: LeftArm
-    avatarConnection: 
-    tr: {fileID: 4813834351081465066}
-    parentID: 8
-    childIDs: 0a000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 18
-    rotation: {x: 0.5035441, y: -0.48429734, z: -0.4959636, w: 0.515674}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.108805664}
-      m_Extent: {x: 0.06, y: 0.06, z: 0.108805664}
-    capsuleBounds:
-      height: 0.21761133
-      radius: 0.06
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -44.690624
-    highTwistLimit: 117.455635
-    swing1Limit: 87.52023
-    swing2Limit: 58.797535
-    direction: {x: -0.21738458, y: -0.008474112, z: 0.0051789284}
-    massInPercent: 0.025
-  - name: LeftForeArm
-    avatarConnection: 
-    tr: {fileID: 4813834351081465078}
-    parentID: 9
-    childIDs: 0b000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 19
-    rotation: {x: -0.4994802, y: 0.50229394, z: 0.5005093, w: -0.49770555}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.08754824}
-      m_Extent: {x: 0.055, y: 0.055, z: 0.08754824}
-    capsuleBounds:
-      height: 0.17509648
-      radius: 0.055
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: 0.24228337
-    highTwistLimit: 108.288216
-    swing1Limit: 0
-    swing2Limit: 0
-    direction: {x: -0.17509261, y: 0.0009835958, z: -0.00062322617}
-    massInPercent: 0.025
-  - name: LeftHand
-    avatarConnection: 
-    tr: {fileID: 4813834351081465072}
-    parentID: 10
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 20
-    rotation: {x: -0.49999997, y: 0.49999997, z: 0.49999997, w: -0.49999997}
-    colliderType: 0
-    bounds:
-      m_Center: {x: 0, y: 0.004427869, z: 0.17661834}
-      m_Extent: {x: 0.02, y: 0.090498805, z: 0.17661089}
-    capsuleBounds:
-      height: 0.35322177
-      radius: 0.090498805
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 16.955383
-    swing2Limit: 18.371368
-    direction: {x: -0.17500557, y: -0.0004031747, z: -0.0056271786}
-    massInPercent: 0.015
-  - name: Head
-    avatarConnection: 
-    tr: {fileID: 4813834351081465056}
-    parentID: 8
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 38
-    rotation: {x: -0.00000003090862, y: -0.70710677, z: -0.70710677, w: 0.00000003090862}
-    colliderType: 2
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.46252707}
-      m_Extent: {x: 0.43015066, y: 0.43015066, z: 0.43015066}
-    capsuleBounds:
-      height: 0.8603013
-      radius: 0.43015066
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -49.364536
-    highTwistLimit: 47.107185
-    swing1Limit: 45.49936
-    swing2Limit: 30.26
-    direction: {x: 1.3369394e-20, y: 0.2466218, z: -1.7112825e-18}
-    massInPercent: 0.07
-  - name: RightArm
-    avatarConnection: 
-    tr: {fileID: 4813834351081464994}
-    parentID: 8
-    childIDs: 0e000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 41
-    rotation: {x: 0.506384, y: 0.4870287, z: 0.4932817, w: 0.51288545}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.10878369}
-      m_Extent: {x: 0.06, y: 0.06, z: 0.10878369}
-    capsuleBounds:
-      height: 0.21756738
-      radius: 0.06
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -44.690624
-    highTwistLimit: 117.455635
-    swing1Limit: 87.52023
-    swing2Limit: 58.797535
-    direction: {x: 0.21738458, y: -0.008474112, z: 0.0027754307}
-    massInPercent: 0.025
-  - name: RightForeArm
-    avatarConnection: 
-    tr: {fileID: 4813834351081465006}
-    parentID: 13
-    childIDs: 0f000000
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 42
-    rotation: {x: 0.49925962, y: 0.50207204, z: 0.5007319, w: 0.4979269}
-    colliderType: 1
-    bounds:
-      m_Center: {x: 0, y: 0, z: 0.087548025}
-      m_Extent: {x: 0.055, y: 0.055, z: 0.087548025}
-    capsuleBounds:
-      height: 0.17509605
-      radius: 0.055
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: 0.24228337
-    highTwistLimit: 108.288216
-    swing1Limit: 0
-    swing2Limit: 0
-    direction: {x: 0.17509267, y: 0.0009835958, z: -0.00046801567}
-    massInPercent: 0.025
-  - name: RightHand
-    avatarConnection: 
-    tr: {fileID: 4813834351081465000}
-    parentID: 14
-    childIDs: 
-    rect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 1
-      height: 1
-    selected: 0
-    characterBoneId: 43
-    rotation: {x: 0.49999997, y: 0.49999997, z: 0.49999997, w: 0.49999997}
-    colliderType: 0
-    bounds:
-      m_Center: {x: 0, y: 0.004427869, z: 0.17661834}
-      m_Extent: {x: 0.02, y: 0.090498805, z: 0.17661089}
-    capsuleBounds:
-      height: 0.35322177
-      radius: 0.090498805
-      direction: 2
-    axis: {x: 1, y: 0, z: 0}
-    swingAxis: {x: 0, y: 1, z: 0}
-    lowTwistLimit: -20
-    highTwistLimit: 20
-    swing1Limit: 16.955383
-    swing2Limit: 18.371368
-    direction: {x: 0.17504221, y: 0.000028606553, z: -0.0043415115}
-    massInPercent: 0.015
-  selectedBoneID: 0
-  configureBonesMode: 1
-  mass: 70
-  layer: 0
-  physicMaterial: {fileID: 0}
-  spring: 1000
-  damper: 10
-  showColliderSettings: 1
-  showJointSettings: 0
-  rotationHandle: 1
-  restorePreviousConfiguration: 1
 --- !u!1 &7224130308332313958
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,7 +2621,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7224130309153378346}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.2, z: -2.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4734,6 +3427,262 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: a6eba330f63ecc04aaa464bb47747b54, type: 2}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465190}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465052}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465066}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[3]
+      value: 
+      objectReference: {fileID: 4813834351081464992}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[4]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[5]
+      value: 
+      objectReference: {fileID: 4813834351081465188}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[6]
+      value: 
+      objectReference: {fileID: 4813834351081464986}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[7]
+      value: 
+      objectReference: {fileID: 4813834351081465068}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[8]
+      value: 
+      objectReference: {fileID: 4813834351081464980}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[9]
+      value: 
+      objectReference: {fileID: 4813834351081464994}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[10]
+      value: 
+      objectReference: {fileID: 4813834351081465000}
+    - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465068}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465076}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465048}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[3]
+      value: 
+      objectReference: {fileID: 4813834351081465068}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[4]
+      value: 
+      objectReference: {fileID: 4813834351081465050}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[5]
+      value: 
+      objectReference: {fileID: 4813834351081464978}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[6]
+      value: 
+      objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[7]
+      value: 
+      objectReference: {fileID: 4813834351081465004}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[8]
+      value: 
+      objectReference: {fileID: 4813834351081464976}
+    - target: {fileID: 13700006, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465068}
+    - target: {fileID: 13700000, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700000, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700002, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700002, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700014, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700014, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465076}
+    - target: {fileID: 13700014, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465048}
+    - target: {fileID: 13700014, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700008, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700008, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700010, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700010, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700020, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700020, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465076}
+    - target: {fileID: 13700020, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465048}
+    - target: {fileID: 13700020, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700022, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 13700022, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465004}
+    - target: {fileID: 13700022, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081464976}
+    - target: {fileID: 13700022, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 13700016, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 13700016, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465004}
+    - target: {fileID: 13700016, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081464976}
+    - target: {fileID: 13700016, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 13700018, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081464992}
+    - target: {fileID: 13700018, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700018, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465190}
+    - target: {fileID: 13700018, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[3]
+      value: 
+      objectReference: {fileID: 4813834351081465052}
+    - target: {fileID: 13700018, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[4]
+      value: 
+      objectReference: {fileID: 4813834351081464980}
+    - target: {fileID: 13700018, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465190}
+    - target: {fileID: 13700028, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700028, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700030, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700030, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700024, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700024, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465076}
+    - target: {fileID: 13700024, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465048}
+    - target: {fileID: 13700024, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465042}
+    - target: {fileID: 13700026, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 13700026, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465004}
+    - target: {fileID: 13700026, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081464976}
+    - target: {fileID: 13700026, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081464970}
     - target: {fileID: 400074, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.022366242
@@ -4746,23 +3695,175 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e6d85b04c1d08014ba6ae090e3a1b16e, type: 2}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[0]
+      value: 
+      objectReference: {fileID: 4813834351081464992}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[1]
+      value: 
+      objectReference: {fileID: 4813834351081465056}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[2]
+      value: 
+      objectReference: {fileID: 4813834351081465190}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[3]
+      value: 
+      objectReference: {fileID: 4813834351081465052}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[4]
+      value: 
+      objectReference: {fileID: 4813834351081465066}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[5]
+      value: 
+      objectReference: {fileID: 4813834351081465078}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[6]
+      value: 
+      objectReference: {fileID: 4813834351081465072}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[7]
+      value: 
+      objectReference: {fileID: 4813834351081465082}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[8]
+      value: 
+      objectReference: {fileID: 4813834351081465026}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[9]
+      value: 
+      objectReference: {fileID: 4813834351081465034}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[10]
+      value: 
+      objectReference: {fileID: 4813834351081465084}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[11]
+      value: 
+      objectReference: {fileID: 4813834351081465086}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[12]
+      value: 
+      objectReference: {fileID: 4813834351081464986}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[13]
+      value: 
+      objectReference: {fileID: 4813834351081465188}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[14]
+      value: 
+      objectReference: {fileID: 4813834351081465068}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[15]
+      value: 
+      objectReference: {fileID: 4813834351081465050}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[16]
+      value: 
+      objectReference: {fileID: 4813834351081465036}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[17]
+      value: 
+      objectReference: {fileID: 4813834351081465028}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[18]
+      value: 
+      objectReference: {fileID: 4813834351081465074}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[19]
+      value: 
+      objectReference: {fileID: 4813834351081465044}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[20]
+      value: 
+      objectReference: {fileID: 4813834351081465030}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[21]
+      value: 
+      objectReference: {fileID: 4813834351081465046}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[22]
+      value: 
+      objectReference: {fileID: 4813834351081465038}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[23]
+      value: 
+      objectReference: {fileID: 4813834351081464980}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[24]
+      value: 
+      objectReference: {fileID: 4813834351081464994}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[25]
+      value: 
+      objectReference: {fileID: 4813834351081465006}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[26]
+      value: 
+      objectReference: {fileID: 4813834351081465000}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[27]
+      value: 
+      objectReference: {fileID: 4813834351081465002}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[28]
+      value: 
+      objectReference: {fileID: 4813834351081465010}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[29]
+      value: 
+      objectReference: {fileID: 4813834351081465018}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[30]
+      value: 
+      objectReference: {fileID: 4813834351081464962}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[31]
+      value: 
+      objectReference: {fileID: 4813834351081465012}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[32]
+      value: 
+      objectReference: {fileID: 4813834351081465014}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[33]
+      value: 
+      objectReference: {fileID: 4813834351081464978}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[34]
+      value: 
+      objectReference: {fileID: 4813834351081464964}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[35]
+      value: 
+      objectReference: {fileID: 4813834351081464972}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[36]
+      value: 
+      objectReference: {fileID: 4813834351081465020}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[37]
+      value: 
+      objectReference: {fileID: 4813834351081465022}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[38]
+      value: 
+      objectReference: {fileID: 4813834351081464974}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Bones.Array.data[39]
+      value: 
+      objectReference: {fileID: 4813834351081464966}
+    - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_RootBone
+      value: 
+      objectReference: {fileID: 4813834351081465068}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
 --- !u!4 &4813834351081464984 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400124, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465060 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465062 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400002, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4796,12 +3897,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465054 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400058, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4813834351081464978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400118, guid: ed0e4d232a1535643adea1929b327bf1,
@@ -4823,12 +3918,6 @@ Transform:
 --- !u!4 &4813834351081464976 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400116, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464982 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400114, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4862,9 +3951,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465078 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400018, guid: ed0e4d232a1535643adea1929b327bf1,
+--- !u!1 &4813834351081896312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4892,12 +3981,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465080 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400028, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4813834351081465082 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400030, guid: ed0e4d232a1535643adea1929b327bf1,
@@ -4913,12 +3996,6 @@ Transform:
 --- !u!4 &4813834351081465030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400034, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465024 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400036, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4940,12 +4017,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465032 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400044, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4813834351081465034 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400046, guid: ed0e4d232a1535643adea1929b327bf1,
@@ -4958,15 +4029,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4813834351081896312 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465040 stripped
+--- !u!4 &4813834351081465046 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400052, guid: ed0e4d232a1535643adea1929b327bf1,
+  m_CorrespondingSourceObject: {fileID: 400050, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4982,15 +4047,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465058 stripped
+--- !u!4 &4813834351081465078 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400006, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464980 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400112, guid: ed0e4d232a1535643adea1929b327bf1,
+  m_CorrespondingSourceObject: {fileID: 400018, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -5030,12 +4089,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465008 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400084, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4813834351081465010 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400086, guid: ed0e4d232a1535643adea1929b327bf1,
@@ -5051,12 +4104,6 @@ Transform:
 --- !u!4 &4813834351081465022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400090, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465016 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400092, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -5078,12 +4125,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465046 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400050, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4813834351081464962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400102, guid: ed0e4d232a1535643adea1929b327bf1,
@@ -5102,105 +4143,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464968 stripped
+--- !u!4 &4813834351081464980 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400108, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465070 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400010, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465064 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400012, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464996 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400064, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464998 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400066, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464988 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400120, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464990 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400122, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465184 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400132, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465186 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400134, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465196 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400136, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465198 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400138, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465192 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400140, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465194 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400142, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465204 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400144, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465206 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400146, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465200 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400148, guid: ed0e4d232a1535643adea1929b327bf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 4813834351081864804}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464960 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400100, guid: ed0e4d232a1535643adea1929b327bf1,
+  m_CorrespondingSourceObject: {fileID: 400112, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
