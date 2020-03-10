@@ -30,6 +30,18 @@ CapsuleCollider:
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0.67, z: 0}
+--- !u!114 &1755269777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813834351081896312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c259af8f3ad174596cfe8a93ef6a99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4813834350445216393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,106 +574,6 @@ MonoBehaviour:
     rotationAccuracy: 1
     dependOnDir: 0
   states:
-  - name: default
-    transitionSmooth: 1
-    transitionTimer: 1
-    bonesStates:
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 0
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 0
-      positionAccuracy: 0.3
-      rotationAccuracy: 1
-      angularLimits: 1
   - name: die
     transitionSmooth: 1
     transitionTimer: 1
@@ -862,7 +774,107 @@ MonoBehaviour:
       positionAccuracy: 0.3
       rotationAccuracy: 1
       angularLimits: 1
-  currentState: 2
+  - name: stunned
+    transitionSmooth: 1
+    transitionTimer: 1
+    bonesStates:
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 0
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+  currentState: 1
   ragdollContainer: {fileID: 7224130309706780812}
 --- !u!1 &7224130308332313958
 GameObject:
@@ -3426,7 +3438,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: a6eba330f63ecc04aaa464bb47747b54, type: 2}
+      objectReference: {fileID: 9100000, guid: edb007e23fb635f4ab9147528d60c7dc, type: 2}
     - target: {fileID: 13700004, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_Bones.Array.data[0]
       value: 
@@ -3939,9 +3951,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465052 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400056, guid: ed0e4d232a1535643adea1929b327bf1,
+--- !u!1 &4813834351081896312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -3951,9 +3963,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4813834351081896312 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1,
+--- !u!4 &4813834351081465078 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400018, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4041,15 +4053,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465056 stripped
+--- !u!4 &4813834351081465052 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400004, guid: ed0e4d232a1535643adea1929b327bf1,
+  m_CorrespondingSourceObject: {fileID: 400056, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081465078 stripped
+--- !u!4 &4813834351081464980 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400018, guid: ed0e4d232a1535643adea1929b327bf1,
+  m_CorrespondingSourceObject: {fileID: 400112, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
@@ -4143,9 +4155,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &4813834351081464980 stripped
+--- !u!4 &4813834351081465056 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 400112, guid: ed0e4d232a1535643adea1929b327bf1,
+  m_CorrespondingSourceObject: {fileID: 400004, guid: ed0e4d232a1535643adea1929b327bf1,
     type: 3}
   m_PrefabInstance: {fileID: 4813834351081864804}
   m_PrefabAsset: {fileID: 0}

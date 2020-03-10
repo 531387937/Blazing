@@ -5,11 +5,17 @@ using RagdollMecanimMixer;
 
 public class RagdollController : MonoBehaviour
 {
+    //眩晕时长
+    public float stunTime = 2f;
+    //死亡时长
+    public float deathTime = 3f;
+
     private RamecanMixer ramecanMixer;
     private Animator anim;
     private Rigidbody rb;
 
     private bool dead = false;
+    private bool stunned = false;
     //private Collider col;
     // Start is called before the first frame update
     void Start()
@@ -17,55 +23,89 @@ public class RagdollController : MonoBehaviour
         ramecanMixer = GetComponent<RamecanMixer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        //col = GetComponent<Collider>();
+        ChangeRagdollState("normal");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(!dead && !stunned)
         {
-            RagdollReceive();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Ragdoll2Die();
+            anim.SetBool("block", Input.GetKeyDown(KeyCode.LeftShift));
+            if(Input.GetMouseButtonDown(0))
+            {
+                anim.SetTrigger("attack");
+            }
+            if(Input.GetMouseButtonDown(1))
+            {
+                anim.SetTrigger("grab");
+            }
+            //To Do
+            //移动逻辑 动画机里对应float变量velocity 
         }
     }
 
-    public void RagdollReceive()
-    {
-        Vector3 reviveDir = ramecanMixer.RootBoneTr.forward;
-        Quaternion reviveRot = Quaternion.LookRotation(-reviveDir, Vector3.up);
-        rb.rotation = Quaternion.Euler(0, reviveRot.eulerAngles.y, 0);
-        //Time.timeScale = 1;
-        anim.SetTrigger("reviveUp");
-
-        anim.SetBool("dead", false);
-        dead = false;
-        //rb.isKinematic = false;
-        //col.enabled = true;
-        ramecanMixer.BeginStateTransition("default");
-    }
     /// <summary>
     /// 将布娃娃转换为正常状态
     /// </summary>
     private void Ragdoll2Normal()
     {
-        ChangeRagdollState("default");
+        ChangeRagdollState("normal");
     }
     /// <summary>
     /// 将布娃娃动画切换为纯布娃娃状态
     /// </summary>
     private void Ragdoll2Die()
     {
-        ChangeRagdollState("die");
-        anim.SetBool("dead", true);
+        if (!dead)
+        {
+            ChangeRagdollState("die");
+            anim.SetBool("dead", true);
+            anim.SetBool("stun", false);
+            anim.SetBool("block", false);
+            dead = true;
+            stunned = false;
+            StartCoroutine(DeathTimer());
+        }
         //TO DO 切换动画为死亡
     }
-
+    /// <summary>
+    /// 布娃娃切换为眩晕状态
+    /// </summary>
+    private void Ragdoll2Stunned()
+    {
+        ChangeRagdollState("stunned");
+        anim.SetBool("stun", true);
+        stunned = true;
+        StartCoroutine(StunnedTimer());
+    }
+    /// <summary>
+    /// 修改布娃娃的状态接口
+    /// </summary>
+    /// <param name="state">状态名</param>
     private void ChangeRagdollState(string state)
     {
         ramecanMixer.BeginStateTransition(state);
+    }
+    //死亡倒计时
+    IEnumerator DeathTimer()
+    {
+        yield return new WaitForSeconds(deathTime);
+        Vector3 reviveDir = ramecanMixer.RootBoneTr.forward;
+        Quaternion reviveRot = Quaternion.LookRotation(-reviveDir, Vector3.up);
+        rb.rotation = Quaternion.Euler(0, reviveRot.eulerAngles.y, 0);
+        //Time.timeScale = 1;
+        anim.SetBool("death", false);
+
+        dead = false;
+        Ragdoll2Normal();
+    }
+    //眩晕倒计时
+    IEnumerator StunnedTimer()
+    {
+        yield return new WaitForSeconds(stunTime);
+        anim.SetBool("stunned", false);
+        stunned = false;
+        Ragdoll2Normal();
     }
 }
