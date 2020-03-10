@@ -596,6 +596,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4813834351074495236, guid: f33e7c07bdb680a488299846f5ba1d7a,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: edb007e23fb635f4ab9147528d60c7dc, type: 2}
     - target: {fileID: 4813834350445216393, guid: f33e7c07bdb680a488299846f5ba1d7a,
         type: 3}
       propertyPath: bones.Array.data[0].selfCollision
