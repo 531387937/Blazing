@@ -42,6 +42,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c259af8f3ad174596cfe8a93ef6a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stunTime: 2
+  deathTime: 3
 --- !u!114 &4813834350445216393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3390,6 +3392,10 @@ PrefabInstance:
     - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_Name
       value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 400124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_LocalPosition.x
