@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 7224130308332313959}
   - component: {fileID: 7224130308332313945}
   - component: {fileID: 7224130308332313944}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,8 @@ GameObject:
   - component: {fileID: 7224130308367542497}
   - component: {fileID: 7224130308367542499}
   - component: {fileID: 7224130308367542498}
-  m_Layer: 0
+  - component: {fileID: 2014045006}
+  m_Layer: 11
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1193,6 +1194,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2014045006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224130308367542496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b588d23f484f44ba507ab31e6263a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canHit: 1
 --- !u!1 &7224130308395491993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1219,7 @@ GameObject:
   - component: {fileID: 7224130308395491994}
   - component: {fileID: 7224130308395491996}
   - component: {fileID: 7224130308395491995}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1363,7 +1377,7 @@ GameObject:
   - component: {fileID: 7224130308489909074}
   - component: {fileID: 7224130308489909076}
   - component: {fileID: 7224130308489909075}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1520,7 +1534,8 @@ GameObject:
   - component: {fileID: 7224130308601152620}
   - component: {fileID: 7224130308601152622}
   - component: {fileID: 7224130308601152621}
-  m_Layer: 0
+  - component: {fileID: 1426526728}
+  m_Layer: 11
   m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1666,6 +1681,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &1426526728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224130308601152619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b588d23f484f44ba507ab31e6263a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canHit: 0
 --- !u!1 &7224130308686720157
 GameObject:
   m_ObjectHideFlags: 0
@@ -1678,7 +1706,7 @@ GameObject:
   - component: {fileID: 7224130308686720158}
   - component: {fileID: 7224130308686720144}
   - component: {fileID: 7224130308686720159}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1836,7 +1864,7 @@ GameObject:
   - component: {fileID: 7224130308871720119}
   - component: {fileID: 7224130308871720105}
   - component: {fileID: 7224130308871720104}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1994,7 +2022,7 @@ GameObject:
   - component: {fileID: 7224130308906108481}
   - component: {fileID: 7224130308906108483}
   - component: {fileID: 7224130308906108482}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2152,7 +2180,7 @@ GameObject:
   - component: {fileID: 7224130308996370313}
   - component: {fileID: 7224130308996370315}
   - component: {fileID: 7224130308996370314}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2309,7 +2337,8 @@ GameObject:
   - component: {fileID: 7224130308997583805}
   - component: {fileID: 7224130308997583807}
   - component: {fileID: 7224130308997583806}
-  m_Layer: 0
+  - component: {fileID: 376177081}
+  m_Layer: 11
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2454,6 +2483,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &376177081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224130308997583804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b588d23f484f44ba507ab31e6263a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canHit: 1
 --- !u!1 &7224130309056382031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2508,7 @@ GameObject:
   - component: {fileID: 7224130309056382016}
   - component: {fileID: 7224130309056382018}
   - component: {fileID: 7224130309056382017}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2621,6 +2663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7224130309153378347}
+  - component: {fileID: 1788918262}
   m_Layer: 0
   m_Name: Frog Container
   m_TagString: Untagged
@@ -2644,6 +2687,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1788918262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224130309153378346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc0f8cef01808541b3991d2ca162dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitBody:
+  - {fileID: 7224130308996370312}
+  - {fileID: 7224130308489909073}
+  - {fileID: 7224130309919086644}
+  - {fileID: 7224130309194784438}
+  - {fileID: 7224130308871720118}
+  - {fileID: 7224130310310838143}
+  - {fileID: 7224130308686720157}
+  - {fileID: 7224130308906108480}
+  damages:
+  - 2
+  - 1
+  - 1
+  - 1
+  - 0.8
+  - 0.8
+  - 0.8
+  - 0.8
+  hand:
+  - {fileID: 376177081}
+  - {fileID: 2014045006}
+  foot:
+  - {fileID: 1426526728}
+  - {fileID: 2022896738}
+  ragCtr: {fileID: 1755269777}
 --- !u!1 &7224130309194784438
 GameObject:
   m_ObjectHideFlags: 0
@@ -2655,7 +2735,7 @@ GameObject:
   - component: {fileID: 7224130309194784425}
   - component: {fileID: 7224130309194784439}
   - component: {fileID: 7224130309194784424}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Hips
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2717,7 +2797,8 @@ GameObject:
   - component: {fileID: 7224130309356905818}
   - component: {fileID: 7224130309356905820}
   - component: {fileID: 7224130309356905819}
-  m_Layer: 0
+  - component: {fileID: 2022896738}
+  m_Layer: 11
   m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2863,6 +2944,19 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!114 &2022896738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7224130309356905817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b588d23f484f44ba507ab31e6263a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canHit: 0
 --- !u!1 &7224130309549688646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2969,7 @@ GameObject:
   - component: {fileID: 7224130309549688647}
   - component: {fileID: 7224130309549688761}
   - component: {fileID: 7224130309549688760}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftForeArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3030,7 +3124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7224130309706780812}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Ragdoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3079,7 +3173,7 @@ GameObject:
   - component: {fileID: 7224130309919086645}
   - component: {fileID: 7224130309919086647}
   - component: {fileID: 7224130309919086646}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3236,7 +3330,7 @@ GameObject:
   - component: {fileID: 7224130310310838128}
   - component: {fileID: 7224130310310838130}
   - component: {fileID: 7224130310310838129}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftUpLeg
   m_TagString: Untagged
   m_Icon: {fileID: 0}

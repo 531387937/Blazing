@@ -10,18 +10,19 @@ public class RagdollController : MonoBehaviour
     //死亡时长
     public float deathTime = 3f;
     //眩晕槽
-    public float stun
+    public float Stun
     {
         get { return stun; }
         set
         {
-            if(stun>=10)
+            if(Stun>=10)
             {
                 Ragdoll2Stunned();
-                stun = 0;
+                Stun = 0;
             }
         }
     }
+    private float stun;
     private RamecanMixer ramecanMixer;
     private Animator anim;
     private Rigidbody rb;
