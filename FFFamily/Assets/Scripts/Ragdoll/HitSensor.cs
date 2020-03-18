@@ -34,6 +34,7 @@ public class HitSensor : MonoBehaviour
     {
         if (canHit && collision.gameObject.layer == 11)
         {
+            canHit = false;
             collision.gameObject.transform.root.GetComponent<HitManager>().GetHurt(collision.gameObject, collision.contacts[0].point, velocity);
         }
     }
