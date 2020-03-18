@@ -15,13 +15,19 @@ public class RagdollController : MonoBehaviour
         get { return stun; }
         set
         {
-            if(Stun>=10)
+            if(stunned)
+            {
+                return;
+            }
+            stun = value;
+            if(stun>=10)
             {
                 Ragdoll2Stunned();
-                Stun = 0;
+                stun = 0;
             }
         }
     }
+    public HitManager hitManager;
     private float stun;
     private RamecanMixer ramecanMixer;
     private Animator anim;
@@ -116,9 +122,18 @@ public class RagdollController : MonoBehaviour
     //眩晕倒计时
     IEnumerator StunnedTimer()
     {
+        anim.ResetTrigger("attack");
         yield return new WaitForSeconds(stunTime);
-        anim.SetBool("stunned", false);
+        anim.SetBool("stun", false);
         stunned = false;
         Ragdoll2Normal();
+    }
+    public void BeginHit(int mode)
+    {
+        hitManager.BeginHit((hitMode)mode);
+    }
+    public void StopHit()
+    {
+        hitManager.StopHit();
     }
 }

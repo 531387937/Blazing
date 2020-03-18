@@ -33,7 +33,7 @@ public class HitManager : MonoBehaviour
         {
             ragCtr.Stun += dam;
             Rigidbody boneRb = go.GetComponent<Rigidbody>();
-            boneRb.AddForceAtPosition(impulse.normalized * 400, point, ForceMode.Impulse);
+            boneRb.AddForceAtPosition(impulse.normalized * 100, point, ForceMode.Impulse);
             Vector3 dir = new Vector3(impulse.x, 0, impulse.z);
             //rb.AddForce(dir.normalized * 400, ForceMode.Impulse);
             //Instantiate(hitParticle, point, Quaternion.identity);
@@ -41,7 +41,7 @@ public class HitManager : MonoBehaviour
     }
 
     List<HitSensor> temp;
-    public void HitMode(hitMode mode)
+    public void BeginHit(hitMode mode)
     {
         switch (mode)
         {

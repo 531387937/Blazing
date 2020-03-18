@@ -44,6 +44,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stunTime: 2
   deathTime: 3
+  hitManager: {fileID: 1788918262}
 --- !u!114 &4813834350445216393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,11 +81,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -112,11 +113,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -144,11 +145,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -176,11 +177,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
-    onlyAnimation: 0
+    selfCollision: 0
+    onlyAnimation: 1
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -208,11 +209,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -240,11 +241,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -273,11 +274,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
-    onlyAnimation: 0
+    selfCollision: 0
+    onlyAnimation: 1
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -307,11 +308,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -339,11 +340,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -371,11 +372,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -403,11 +404,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -436,11 +437,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -469,11 +470,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -501,11 +502,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -533,11 +534,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -566,11 +567,11 @@ MonoBehaviour:
     beforeAnimationPos: {x: 0, y: 0, z: 0}
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
-    selfCollision: 1
+    selfCollision: 0
     onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0
+    positionAccuracy: 0.3
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -798,26 +799,8 @@ MonoBehaviour:
       positionAccuracy: 0.4
       rotationAccuracy: 1
       angularLimits: 1
-    - isKinematic: 1
-      onlyAnimation: 1
-      selfCollision: 1
-      positionAccuracy: 0.4
-      rotationAccuracy: 1
-      angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
-      selfCollision: 1
-      positionAccuracy: 0.4
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 0
-      onlyAnimation: 0
-      selfCollision: 1
-      positionAccuracy: 0.4
-      rotationAccuracy: 1
-      angularLimits: 1
-    - isKinematic: 1
-      onlyAnimation: 1
       selfCollision: 1
       positionAccuracy: 0.4
       rotationAccuracy: 1
@@ -876,7 +859,25 @@ MonoBehaviour:
       positionAccuracy: 0.4
       rotationAccuracy: 1
       angularLimits: 1
-  currentState: 0
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+  currentState: 1
   ragdollContainer: {fileID: 7224130309706780812}
 --- !u!1 &7224130308332313958
 GameObject:
@@ -1081,8 +1082,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.18099761, z: 0.35322177}
-  m_Center: {x: 0, y: 0.004427869, z: 0.17661834}
+  m_Size: {x: 0.04, y: 0.18099761, z: 0.2903179}
+  m_Center: {x: 0, y: 0.004427865, z: 0.1451664}
 --- !u!54 &7224130308367542499
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1206,7 +1207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b588d23f484f44ba507ab31e6263a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canHit: 1
+  canHit: 0
 --- !u!1 &7224130308395491993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1583,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2370,8 +2371,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.18099761, z: 0.35322177}
-  m_Center: {x: 0, y: 0.004427869, z: 0.17661834}
+  m_Size: {x: 0.04, y: 0.18099761, z: 0.28838915}
+  m_Center: {x: 0, y: 0.004427865, z: 0.14420202}
 --- !u!54 &7224130308997583807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2495,7 +2496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b588d23f484f44ba507ab31e6263a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canHit: 1
+  canHit: 0
 --- !u!1 &7224130309056382031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2845,7 +2846,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
