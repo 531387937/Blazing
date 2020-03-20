@@ -26,10 +26,10 @@ CapsuleCollider:
   m_Material: {fileID: 13400000, guid: 547004b29f88e684ea3fae8d4a6c0733, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.71
-  m_Height: 0.5
+  m_Radius: 0.28
+  m_Height: 0.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.73, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!114 &1755269777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,10 +178,10 @@ MonoBehaviour:
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
     selfCollision: 0
-    onlyAnimation: 1
+    onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0.3
+    positionAccuracy: 0.52
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -275,10 +275,10 @@ MonoBehaviour:
     beforeAnimationRot: {x: 0, y: 0, z: 0, w: 0}
     withoutAnimation: 0
     selfCollision: 0
-    onlyAnimation: 1
+    onlyAnimation: 0
     positionDriveSpring: 1000
     positionDriveDamper: 10
-    positionAccuracy: 0.3
+    positionAccuracy: 0.52
     rotationDriveSpring: 1000
     rotationDriveDamper: 10
     rotationAccuracy: 1
@@ -591,91 +591,91 @@ MonoBehaviour:
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
     - isKinematic: 0
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0
-      rotationAccuracy: 1
+      rotationAccuracy: 0
       angularLimits: 1
   - name: normal
     transitionSmooth: 1
@@ -699,10 +699,10 @@ MonoBehaviour:
       positionAccuracy: 0.3
       rotationAccuracy: 1
       angularLimits: 1
-    - isKinematic: 1
-      onlyAnimation: 1
+    - isKinematic: 0
+      onlyAnimation: 0
       selfCollision: 0
-      positionAccuracy: 0.3
+      positionAccuracy: 0.52
       rotationAccuracy: 1
       angularLimits: 1
     - isKinematic: 0
@@ -717,10 +717,10 @@ MonoBehaviour:
       positionAccuracy: 0.3
       rotationAccuracy: 1
       angularLimits: 1
-    - isKinematic: 1
-      onlyAnimation: 1
+    - isKinematic: 0
+      onlyAnimation: 0
       selfCollision: 0
-      positionAccuracy: 0.3
+      positionAccuracy: 0.52
       rotationAccuracy: 1
       angularLimits: 1
     - isKinematic: 0
@@ -875,6 +875,106 @@ MonoBehaviour:
       onlyAnimation: 0
       selfCollision: 1
       positionAccuracy: 0.4
+      rotationAccuracy: 1
+      angularLimits: 1
+  - name: grabing
+    transitionSmooth: 1
+    transitionTimer: 1
+    bonesStates:
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 0
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 1
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 1
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
+      rotationAccuracy: 1
+      angularLimits: 1
+    - isKinematic: 0
+      onlyAnimation: 0
+      selfCollision: 1
+      positionAccuracy: 0.3
       rotationAccuracy: 1
       angularLimits: 1
   currentState: 1
@@ -1082,8 +1182,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.18099761, z: 0.2903179}
-  m_Center: {x: 0, y: 0.004427865, z: 0.1451664}
+  m_Size: {x: 0.04, y: 0.18099761, z: 0.24089742}
+  m_Center: {x: 0, y: 0.004427865, z: 0.12045616}
 --- !u!54 &7224130308367542499
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1208,6 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canHit: 0
+  specialGrab: 0
 --- !u!1 &7224130308395491993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1583,7 +1684,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1695,6 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canHit: 0
+  specialGrab: 0
 --- !u!1 &7224130308686720157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,8 +2473,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.18099761, z: 0.28838915}
-  m_Center: {x: 0, y: 0.004427865, z: 0.14420202}
+  m_Size: {x: 0.04, y: 0.18099761, z: 0.24154699}
+  m_Center: {x: 0, y: 0.004427865, z: 0.120780945}
 --- !u!54 &7224130308997583807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2497,6 +2599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canHit: 0
+  specialGrab: 0
 --- !u!1 &7224130309056382031
 GameObject:
   m_ObjectHideFlags: 0
@@ -2724,6 +2827,7 @@ MonoBehaviour:
   foot:
   - {fileID: 1426526728}
   - {fileID: 2022896738}
+  special: {fileID: 376177081}
   ragCtr: {fileID: 1755269777}
 --- !u!1 &7224130309194784438
 GameObject:
@@ -2846,7 +2950,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2958,6 +3062,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canHit: 0
+  specialGrab: 0
 --- !u!1 &7224130309549688646
 GameObject:
   m_ObjectHideFlags: 0

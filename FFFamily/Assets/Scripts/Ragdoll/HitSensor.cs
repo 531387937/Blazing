@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitSensor : MonoBehaviour
 {
     public bool canHit = false;
+    public bool specialGrab = false;
 
     private Vector3 velocity
     {
@@ -29,6 +30,8 @@ public class HitSensor : MonoBehaviour
     }
     private Vector3[] velocities = new Vector3[2];
     private Vector3 oldPos;
+    private Rigidbody grabRig;
+    private Rigidbody r;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -37,11 +40,32 @@ public class HitSensor : MonoBehaviour
             canHit = false;
             collision.gameObject.transform.root.GetComponent<HitManager>().GetHurt(collision.gameObject, collision.contacts[0].point, velocity);
         }
+        if(specialGrab&& collision.gameObject.layer == 11&&collision.gameObject.transform.root!=transform.root)
+        {
+            specialGrab = false;
+            collision.gameObject.transform.root.GetComponent<HitManager>().BeGrabed();
+            grabRig = collision.gameObject.transform.root.GetComponent<HitManager>().ragCtr.GetComponent<RagdollMecanimMixer.RamecanMixer>().RootBoneRb;
+            r = collision.gameObject.transform.root.GetChild(1).GetComponent<Rigidbody>();
+        }
     }
 
     void FixedUpdate()
     {
         velocity = (transform.position - oldPos) / Time.fixedDeltaTime;
         oldPos = transform.position;
+        if(grabRig)
+        {
+            //grabRig.velocity = velocity*2.3f;
+            grabRig.AddForce(velocity.normalized*170,ForceMode.Acceleration);
+            r.velocity = grabRig.velocity;
+        }
+    }
+    public void StopGrabing()
+    {
+        if (grabRig)
+        {
+            //grabRig.velocity = velocity*20;
+            grabRig = null;
+        }
     }
 }

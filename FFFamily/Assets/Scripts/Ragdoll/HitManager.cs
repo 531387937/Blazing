@@ -5,6 +5,7 @@ public enum hitMode
 {
     hand = 0,
     foot = 1,
+    special = 2,
 }
 public class HitManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class HitManager : MonoBehaviour
 
     public List<HitSensor> hand;
     public List<HitSensor> foot;
-    //public List<HitSensor> special;
+    public HitSensor special;
 
     private Dictionary<GameObject, float> dic = new Dictionary<GameObject, float>();
     public RagdollController ragCtr;
@@ -40,6 +41,11 @@ public class HitManager : MonoBehaviour
         }
     }
 
+    public void BeGrabed()
+    {
+        ragCtr.Ragdoll2Die();
+    }
+
     List<HitSensor> temp;
     public void BeginHit(hitMode mode)
     {
@@ -51,17 +57,28 @@ public class HitManager : MonoBehaviour
             case hitMode.foot:
                 temp = foot;
                 break;
+            case hitMode.special:
+                special.specialGrab = true;
+                break;
         }
-        foreach (HitSensor sensor in temp)
+        if (temp!=null)
         {
-            sensor.canHit = true;
+            foreach (HitSensor sensor in temp)
+            {
+                sensor.canHit = true;
+            }
         }
     }
     public void StopHit()
     {
-        foreach (HitSensor sensor in temp)
+        if (temp != null)
         {
-            sensor.canHit = false;
+            foreach (HitSensor sensor in temp)
+            {
+                sensor.canHit = false;
+            }
         }
+        special.specialGrab = false;
+        special.StopGrabing();
     }
 }

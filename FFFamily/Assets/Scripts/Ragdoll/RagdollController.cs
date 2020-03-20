@@ -58,6 +58,7 @@ public class RagdollController : MonoBehaviour
             if(Input.GetMouseButtonDown(1))
             {
                 anim.SetTrigger("grab");
+                Ragdoll2Grab();
             }
             //To Do
             //移动逻辑 动画机里对应float变量velocity 
@@ -74,19 +75,25 @@ public class RagdollController : MonoBehaviour
     /// <summary>
     /// 将布娃娃动画切换为纯布娃娃状态
     /// </summary>
-    private void Ragdoll2Die()
+    public void Ragdoll2Die()
     {
         if (!dead)
         {
             ChangeRagdollState("die");
-            anim.SetBool("dead", true);
+            anim.SetBool("death", true);
             anim.SetBool("stun", false);
             anim.SetBool("block", false);
             dead = true;
             stunned = false;
+            hitManager.StopHit();
+            anim.applyRootMotion = false;
             StartCoroutine(DeathTimer());
         }
         //TO DO 切换动画为死亡
+    }
+    private void Ragdoll2Grab()
+    {
+        ChangeRagdollState("grabing");
     }
     /// <summary>
     /// 布娃娃切换为眩晕状态
@@ -110,6 +117,7 @@ public class RagdollController : MonoBehaviour
     IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(deathTime);
+        anim.applyRootMotion = true;
         Vector3 reviveDir = ramecanMixer.RootBoneTr.forward;
         Quaternion reviveRot = Quaternion.LookRotation(-reviveDir, Vector3.up);
         rb.rotation = Quaternion.Euler(0, reviveRot.eulerAngles.y, 0);
