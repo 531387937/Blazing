@@ -121,6 +121,7 @@ public class RagdollController : MonoBehaviour
         Vector3 reviveDir = ramecanMixer.RootBoneTr.forward;
         Quaternion reviveRot = Quaternion.LookRotation(-reviveDir, Vector3.up);
         rb.rotation = Quaternion.Euler(0, reviveRot.eulerAngles.y, 0);
+        rb.transform.rotation = Quaternion.Euler(0, 0, 0);
         //Time.timeScale = 1;
         anim.SetBool("death", false);
 
