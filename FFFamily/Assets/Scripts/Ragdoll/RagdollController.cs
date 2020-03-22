@@ -9,7 +9,26 @@ public class RagdollController : MonoBehaviour
     public float stunTime = 2f;
     //死亡时长
     public float deathTime = 3f;
-
+    //眩晕槽
+    public float Stun
+    {
+        get { return stun; }
+        set
+        {
+            if(stunned)
+            {
+                return;
+            }
+            stun = value;
+            if(stun>=10)
+            {
+                Ragdoll2Stunned();
+                stun = 0;
+            }
+        }
+    }
+    public HitManager hitManager;
+    private float stun;
     private RamecanMixer ramecanMixer;
     private Animator anim;
     private Rigidbody rb;
@@ -39,6 +58,7 @@ public class RagdollController : MonoBehaviour
             if(Input.GetMouseButtonDown(1))
             {
                 anim.SetTrigger("grab");
+                Ragdoll2Grab();
             }
             //To Do
             //移动逻辑 动画机里对应float变量velocity 
@@ -56,19 +76,25 @@ public class RagdollController : MonoBehaviour
     /// <summary>
     /// 将布娃娃动画切换为纯布娃娃状态
     /// </summary>
-    private void Ragdoll2Die()
+    public void Ragdoll2Die()
     {
         if (!dead)
         {
             ChangeRagdollState("die");
-            anim.SetBool("dead", true);
+            anim.SetBool("death", true);
             anim.SetBool("stun", false);
             anim.SetBool("block", false);
             dead = true;
             stunned = false;
+            hitManager.StopHit();
+            anim.applyRootMotion = false;
             StartCoroutine(DeathTimer());
         }
         //TO DO 切换动画为死亡
+    }
+    private void Ragdoll2Grab()
+    {
+        ChangeRagdollState("grabing");
     }
     /// <summary>
     /// 布娃娃切换为眩晕状态
@@ -92,9 +118,11 @@ public class RagdollController : MonoBehaviour
     IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(deathTime);
+        anim.applyRootMotion = true;
         Vector3 reviveDir = ramecanMixer.RootBoneTr.forward;
         Quaternion reviveRot = Quaternion.LookRotation(-reviveDir, Vector3.up);
         rb.rotation = Quaternion.Euler(0, reviveRot.eulerAngles.y, 0);
+        rb.transform.rotation = Quaternion.Euler(0, 0, 0);
         //Time.timeScale = 1;
         anim.SetBool("death", false);
 
@@ -104,9 +132,18 @@ public class RagdollController : MonoBehaviour
     //眩晕倒计时
     IEnumerator StunnedTimer()
     {
+        anim.ResetTrigger("attack");
         yield return new WaitForSeconds(stunTime);
-        anim.SetBool("stunned", false);
+        anim.SetBool("stun", false);
         stunned = false;
         Ragdoll2Normal();
+    }
+    public void BeginHit(int mode)
+    {
+        hitManager.BeginHit((hitMode)mode);
+    }
+    public void StopHit()
+    {
+        hitManager.StopHit();
     }
 }

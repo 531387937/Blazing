@@ -132,6 +132,12 @@ namespace RagdollMecanimMixer
                 bone.rbPrevPos = bone.rigidbody.position;
                 bone.rbPrevRot = bone.rigidbody.rotation;
             }
+            if(states[currentState].name.Equals("die"))
+            {
+                ragdollContainer.parent.GetChild(1).transform.position = new Vector3(RootBoneRb.transform.position.x, 
+                 ragdollContainer.parent.GetChild(1).transform.position.y, 
+                    RootBoneRb.transform.position.z);
+            }
         }
 
         private void Update()

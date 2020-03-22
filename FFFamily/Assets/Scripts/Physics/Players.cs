@@ -182,7 +182,7 @@ public class Players : MonoBehaviour
     {
         state = playerState.Falling;
         transform.position = new Vector3(0, 150, 0);
-        GetComponent<CamCtr>().changeCam(false);
+        //GetComponent<CamCtr>().changeCam(false);
     }
 
     private void OnCollisionEnter(Collision collision)
