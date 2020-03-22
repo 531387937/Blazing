@@ -36,13 +36,15 @@ public class HitSensor : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (canHit && collision.gameObject.layer == 11)
+        if (canHit && collision.gameObject.layer == 11 && collision.gameObject.transform.root != transform.root)
         {
+            transform.root.GetComponent<HitManager>().fighting = true;
             canHit = false;
             collision.gameObject.transform.root.GetComponent<HitManager>().GetHurt(collision.gameObject, collision.contacts[0].point, velocity);
         }
-        if(specialGrab&& collision.gameObject.layer == 11&&collision.gameObject.transform.root!=transform.root)
+        if (specialGrab && collision.gameObject.layer == 11 && collision.gameObject.transform.root != transform.root)
         {
+            transform.root.GetComponent<HitManager>().fighting = true;
             specialGrab = false;
             collision.gameObject.transform.root.GetComponent<HitManager>().BeGrabed();
             grabRig = collision.gameObject.transform.root.GetComponent<HitManager>().ragCtr.GetComponent<RagdollMecanimMixer.RamecanMixer>().RootBoneRb;
@@ -56,10 +58,10 @@ public class HitSensor : MonoBehaviour
     {
         velocity = (transform.position - oldPos) / Time.fixedDeltaTime;
         oldPos = transform.position;
-        if(grabRig)
+        if (grabRig)
         {
             //grabRig.velocity = velocity*2.3f;
-            grabRig.AddForce(velocity.normalized*70,ForceMode.Acceleration);
+            grabRig.AddForce(velocity.normalized * 70, ForceMode.Acceleration);
             //r.velocity = grabRig.velocity;
         }
     }
@@ -71,11 +73,11 @@ public class HitSensor : MonoBehaviour
             r.transform.parent.SetParent(null);
             r.transform.localRotation = r.transform.parent.rotation;
             Transform tr = r.transform.parent;
-            r.transform.SetParent(null,true);
-            grabRig.transform.parent.SetParent(null,true);
+            r.transform.SetParent(null, true);
+            grabRig.transform.parent.SetParent(null, true);
             tr.rotation = new Quaternion();
             grabRig.transform.parent.SetParent(tr, true);
-            r.transform.SetParent(tr, true);           
+            r.transform.SetParent(tr, true);
             grabRig = null;
         }
     }

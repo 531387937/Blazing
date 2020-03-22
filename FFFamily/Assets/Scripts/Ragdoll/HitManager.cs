@@ -11,7 +11,7 @@ public class HitManager : MonoBehaviour
 {
     public List<GameObject> hitBody;
     public float[] damages;
-
+    public bool fighting = false;
     public List<HitSensor> hand;
     public List<HitSensor> foot;
     public HitSensor special;
@@ -32,6 +32,7 @@ public class HitManager : MonoBehaviour
         float dam;
         if (dic.TryGetValue(go, out dam))
         {
+            fighting = true;
             ragCtr.Stun += dam;
             Rigidbody boneRb = go.GetComponent<Rigidbody>();
             boneRb.AddForceAtPosition(impulse.normalized * 100, point, ForceMode.Impulse);
@@ -80,5 +81,9 @@ public class HitManager : MonoBehaviour
         }
         special.specialGrab = false;
         special.StopGrabing();
+    }
+    private void LateUpdate()
+    {
+        fighting = false;
     }
 }

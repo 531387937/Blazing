@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class blood : MonoBehaviour
 {
-    Image HP;
+    public RagdollController ragCtr;
+
+    private Image hp;
     // Start is called before the first frame update
     void Start()
     {
-        HP = GetComponent<Image>();
+        hp = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown ("x"))
-            HP.fillAmount = HP.fillAmount - 0.1f;
+        if (ragCtr != null)
+            hp.fillAmount = (10 - ragCtr.Stun) / 10;
     }
 }

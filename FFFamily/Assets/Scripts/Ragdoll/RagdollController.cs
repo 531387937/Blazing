@@ -15,26 +15,35 @@ public class RagdollController : MonoBehaviour
         get { return stun; }
         set
         {
-            if(stunned)
+            if (stunned)
             {
                 return;
             }
-            stun = value;
-            if(stun>=10)
+            if (blocking)
+            {
+                stun = value * 0.2f;
+            }
+            else
+                stun = value;
+            if (stun >= 10)
             {
                 Ragdoll2Stunned();
-                stun = 0;
             }
         }
     }
     public HitManager hitManager;
+    [Range(0.01f, 10)]
     private float stun;
     private RamecanMixer ramecanMixer;
     private Animator anim;
     private Rigidbody rb;
+    //是否在防御
+    private bool blocking = false;
 
     private bool dead = false;
     private bool stunned = false;
+    //脱战时间
+    private float peaceTimer = 0;
     //private Collider col;
     // Start is called before the first frame update
     void Start()
@@ -48,14 +57,14 @@ public class RagdollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!dead && !stunned)
+        if (!dead && !stunned)
         {
             anim.SetBool("block", Input.GetKeyDown(KeyCode.LeftShift));
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 anim.SetTrigger("attack");
             }
-            if(Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1))
             {
                 anim.SetTrigger("grab");
                 Ragdoll2Grab();
@@ -63,6 +72,18 @@ public class RagdollController : MonoBehaviour
             //To Do
             //移动逻辑 动画机里对应float变量velocity 
 
+        }
+        if (!hitManager.fighting)
+        {
+            peaceTimer += Time.deltaTime;
+        }
+        else
+        {
+            peaceTimer = 0;
+        }
+        if (peaceTimer >= 5 && stun >= 0)
+        {
+            stun -= 0.8f * Time.deltaTime;
         }
     }
 
@@ -135,13 +156,16 @@ public class RagdollController : MonoBehaviour
         anim.ResetTrigger("attack");
         yield return new WaitForSeconds(stunTime);
         anim.SetBool("stun", false);
+        stun = 0.01f;
         stunned = false;
         Ragdoll2Normal();
     }
+    //开始有击打判定
     public void BeginHit(int mode)
     {
         hitManager.BeginHit((hitMode)mode);
     }
+    //取消击打判定
     public void StopHit()
     {
         hitManager.StopHit();
