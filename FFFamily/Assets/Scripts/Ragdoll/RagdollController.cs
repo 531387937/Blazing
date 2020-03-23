@@ -8,7 +8,7 @@ public class RagdollController : MonoBehaviour
     //移动
     private Vector3 inputDirection;
     private float inputVelocity;
-    public Transform cam;
+    private Camera cam;
     //眩晕时长
     public float stunTime = 2f;
     //死亡时长
@@ -52,6 +52,7 @@ public class RagdollController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cam = Camera.main;
         ramecanMixer = GetComponent<RamecanMixer>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -61,7 +62,7 @@ public class RagdollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputDirection = Quaternion.Euler(0, cam.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis("Horizontal")), Mathf.Abs(Input.GetAxis("Vertical")));
 
         float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
