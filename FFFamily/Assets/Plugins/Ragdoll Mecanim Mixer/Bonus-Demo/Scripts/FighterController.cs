@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
-namespace FightDemo {
-    public class FighterController : CharController {
+namespace FightDemo
+{
+    public class FighterController : CharController
+    {
         public Transform target;
         public Vector3 lookAtPos;
         public float lookAtTimer;
@@ -21,7 +23,8 @@ namespace FightDemo {
         private bool isRun;
 
         // Use this for initialization
-        void Start() {
+        void Start()
+        {
             rb = GetComponent<Rigidbody>();
             animator = GetComponent<Animator>();
             hitController = GetComponent<HitController>();
@@ -35,15 +38,18 @@ namespace FightDemo {
 
         }
 
-        void FixedUpdate() {
+        void FixedUpdate()
+        {
         }
 
-        public override void Die() {
+        public override void Die()
+        {
 
         }
 
         // Update is called once per frame
-        void Update() {
+        void Update()
+        {
             inputDirection = Quaternion.Euler(0, cam.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
             inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis("Horizontal")), Mathf.Abs(Input.GetAxis("Vertical")));
 
@@ -54,14 +60,17 @@ namespace FightDemo {
             isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsTag("attack");
             float time = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
-            if (hitController.IsDead) {
+            if (hitController.IsDead)
+            {
                 if (Input.GetButtonDown("Fire1"))
                     hitController.Revive();
                 return;
             }
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Default") || (isAttacking && time > 0.5f)) {
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Default") || (isAttacking && time > 0.5f))
+            {
                 FindTarget();
-                if (Input.GetMouseButtonDown(0) && !isRun) {
+                if (Input.GetMouseButtonDown(0) && !isRun)
+                {
 
                     animator.SetBool("side", !animator.GetBool("side"));
                     animator.SetInteger("number", Random.Range(0, 3));
@@ -77,47 +86,60 @@ namespace FightDemo {
                 }*/
             }
 
-            if (Input.GetButtonDown("Fire3")) {
+            if (Input.GetButtonDown("Fire3"))
+            {
                 isRun = true;
                 animator.SetBool("run", true);
                 //Time.timeScale = 1;
             }
-            if (Input.GetButtonUp("Fire3")) {
+            if (Input.GetButtonUp("Fire3"))
+            {
                 animator.SetBool("run", false);
                 isRun = false;
             }
 
             Vector3 pos = transform.TransformPoint(new Vector3(0, 0.6f, 1));
             if (target != null) pos = target.position;
-            if (lookAtTimer > 0) {
+            if (lookAtTimer > 0)
+            {
                 lookAtTimer -= Time.deltaTime;
                 lookAtPos = Vector3.Lerp(lookAtPos, pos, (2 - lookAtTimer) / 2);
-            } else {
+            }
+            else
+            {
                 lookAtPos = pos;
             }
         }
 
-        void FindTarget() {
-            if (isRun) {
+        void FindTarget()
+        {
+            if (isRun)
+            {
                 findTargetTimer = 0;
                 isFocused = false;
                 ChangeTarget(null);
                 return;
             }
-            if (findTargetTimer > 0) {
+            if (findTargetTimer > 0)
+            {
                 findTargetTimer -= Time.deltaTime;
-            } else {
+            }
+            else
+            {
                 if (targets.Length == 0)
                     targets = GameObject.FindGameObjectsWithTag("Enemy");
                 float dist = float.MaxValue;
                 int id = -1;
 
-                for (int i = 0; i < targets.Length; i++) {
+                for (int i = 0; i < targets.Length; i++)
+                {
                     Vector3 dir = targets[i].transform.position - transform.position;
                     //float tempDot = inputVelocity == 0 ? 1 : Vector3.Dot(inputDirection, dir);
                     //tempDot > 0.75 && 
-                    if (dir.magnitude < dist && dir.magnitude < 2) {
-                        if (!targets[i].GetComponent<HitController>().IsDead) {
+                    if (dir.magnitude < dist && dir.magnitude < 2)
+                    {
+                        if (!targets[i].GetComponent<HitController>().IsDead)
+                        {
                             dist = dir.magnitude;
                             id = i;
                         }
@@ -133,28 +155,35 @@ namespace FightDemo {
             }
         }
 
-        void LateUpdate() {
+        void LateUpdate()
+        {
             if (target == null && isAttacking) return;
             //if (inputVelocity == 0) return;
             Vector3 directionToTarget = transform.forward;
 
-            if (target == null) {
+            if (target == null)
+            {
                 if (inputVelocity > 0)
                     directionToTarget = inputDirection;
-            } else {
+            }
+            else
+            {
                 directionToTarget = target.position - rb.position;
             }
             Quaternion rotation = Quaternion.LookRotation(directionToTarget.normalized, Vector3.up);
             rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), Time.deltaTime * 10);
         }
 
-        void ChangeTarget(Transform target) {
+        void ChangeTarget(Transform target)
+        {
             this.target = target;
             lookAtTimer = 2;
         }
 
-        void OnAnimatorIK() {
-            if (lookAt) {
+        void OnAnimatorIK()
+        {
+            if (lookAt)
+            {
                 animator.SetLookAtWeight(1, 0.5f);
                 animator.SetLookAtPosition(lookAtPos);
             }

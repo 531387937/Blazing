@@ -5,6 +5,10 @@ using RagdollMecanimMixer;
 
 public class RagdollController : MonoBehaviour
 {
+    //移动
+    private Vector3 inputDirection;
+    private float inputVelocity;
+    public Transform cam;
     //眩晕时长
     public float stunTime = 2f;
     //死亡时长
@@ -57,6 +61,13 @@ public class RagdollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        inputDirection = Quaternion.Euler(0, cam.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
+        inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis("Horizontal")), Mathf.Abs(Input.GetAxis("Vertical")));
+
+        float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
+        //anim.SetFloat("direction", angle / 180);
+        anim.SetFloat("velocity", inputVelocity);
+
         if (!dead && !stunned)
         {
             anim.SetBool("block", Input.GetKeyDown(KeyCode.LeftShift));
@@ -85,6 +96,15 @@ public class RagdollController : MonoBehaviour
         {
             stun -= 0.8f * Time.deltaTime;
         }
+    }
+
+    void LateUpdate()
+    {
+        Vector3 directionToTarget = transform.forward;
+        if (inputVelocity > 0)
+            directionToTarget = inputDirection;
+        Quaternion rotation = Quaternion.LookRotation(directionToTarget.normalized, Vector3.up);
+        rb.rotation = Quaternion.Slerp(rb.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), Time.deltaTime * 10);
     }
 
     /// <summary>
