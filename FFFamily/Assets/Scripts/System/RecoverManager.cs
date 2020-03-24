@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class RecoverManager : MonoBehaviour
 {
     public float recoverTime = 5;
     public float posSpeed = 2f;
+    public CinemachineTargetGroup target;
     private Camera cam;
     private bool survie = false;
     public List<GameObject> recoverPos = new List<GameObject>(4);
@@ -13,11 +15,19 @@ public class RecoverManager : MonoBehaviour
     {
         cam = Camera.main;
     }
-    public void RecoverPlayer(int i)
+    public void RecoverPlayer(int a)
     {
-        recoverPos[i].SetActive(true);
+        for (int i = 0; i < target.m_Targets.Length; i++)
+        {
+            if (target.m_Targets[i].target.gameObject == GameManager.Instance.players[a].gameObject)
+            {
+                target.m_Targets[i].target = recoverPos[a].transform;
+                StartCoroutine(surving(a,i));
+            }
+        }
+        recoverPos[a].SetActive(true);
         survie = true;
-        StartCoroutine(surving(i));
+        
     }
     private void Update()
     {
@@ -37,7 +47,7 @@ public class RecoverManager : MonoBehaviour
             }
         }
     }
-    IEnumerator surving(int i)
+    IEnumerator surving(int i,int a)
     {
         yield return new WaitForSeconds(recoverTime);
         recoverPos[i].SetActive(false);
@@ -47,5 +57,7 @@ public class RecoverManager : MonoBehaviour
         GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
         GameManager.Instance.players[i].gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        target.m_Targets[a].target = GameManager.Instance.players[i].gameObject.transform;
     }
 }

@@ -42,10 +42,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c259af8f3ad174596cfe8a93ef6a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  playerNum: 1
   stunTime: 2
   deathTime: 3
   hitManager: {fileID: 1788918262}
+  anim: {fileID: 0}
+  recoving: 0
 --- !u!114 &4813834350445216393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3595,6 +3597,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7224130309153378347}
     m_Modifications:
+    - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Name
+      value: Frog
+      objectReference: {fileID: 0}
+    - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3638,22 +3652,6 @@ PrefabInstance:
     - target: {fileID: 400124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400074, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.022366242
-      objectReference: {fileID: 0}
-    - target: {fileID: 400074, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.0074824668
-      objectReference: {fileID: 0}
-    - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
-      propertyPath: m_Name
-      value: Frog
-      objectReference: {fileID: 0}
-    - target: {fileID: 100124, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_Controller
@@ -3959,6 +3957,14 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 4813834351081464970}
+    - target: {fileID: 400074, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.022366242
+      objectReference: {fileID: 0}
+    - target: {fileID: 400074, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0074824668
+      objectReference: {fileID: 0}
     - target: {fileID: 13700012, guid: ed0e4d232a1535643adea1929b327bf1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
