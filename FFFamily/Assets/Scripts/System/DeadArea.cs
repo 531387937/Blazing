@@ -8,8 +8,14 @@ public class DeadArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.gameObject.transform.localPosition = new Vector3(0, 15, 0);
-            other.gameObject.GetComponent<Players>().Fall();
+            PlayerRecover(other.gameObject.GetComponent<RagdollController>().playerNum);
+            other.gameObject.transform.parent.GetChild(0).gameObject.SetActive(false);
+            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            other.gameObject.SetActive(false);
         }
+    }
+    private void PlayerRecover(int player)
+    {
+        GameManager.Instance.PlayerDead(player - 1);
     }
 }

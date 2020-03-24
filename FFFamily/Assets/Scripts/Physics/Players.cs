@@ -171,11 +171,11 @@ public class Players : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = Color.blue;
         canMove = false;
-        BuffLogic.Instance.EffectRecover(() =>
-        {
-            GetComponent<MeshRenderer>().material.color = Color.white;
-            canMove = true;
-        }, Global.dizzyEffect);
+        //BuffLogic.Instance.EffectRecover(() =>
+        //{
+        //    GetComponent<MeshRenderer>().material.color = Color.white;
+        //    canMove = true;
+        //}, Global.dizzyEffect);
     }
 
     public void Fall()
