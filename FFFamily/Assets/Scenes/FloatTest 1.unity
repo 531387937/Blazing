@@ -197,7 +197,7 @@ PrefabInstance:
     - target: {fileID: 11616992247378557, guid: d7c9c5bbc365a4762b2e4ca9e46f45ac,
         type: 3}
       propertyPath: m_Mass
-      value: 21.612953
+      value: 142.4682
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7c9c5bbc365a4762b2e4ca9e46f45ac, type: 3}
@@ -1168,7 +1168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4640962864853918, guid: ae69801ee730ae747ac3d7c3c17cab3e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.057994787
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4640962864853918, guid: ae69801ee730ae747ac3d7c3c17cab3e, type: 3}
       propertyPath: m_LocalScale.z
@@ -1785,6 +1785,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Strawberry_LOD0 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6665316432955296339, guid: 0b0fcd5739b744fb7bbd8d06fca781e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6665316432955296340, guid: 0b0fcd5739b744fb7bbd8d06fca781e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2173,6 +2178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Strawberry_LOD0 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665316432955296339, guid: 0b0fcd5739b744fb7bbd8d06fca781e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6665316432955296340, guid: 0b0fcd5739b744fb7bbd8d06fca781e9,
         type: 3}
@@ -3144,6 +3154,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Strawberry_LOD0 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665316432955296339, guid: 0b0fcd5739b744fb7bbd8d06fca781e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6665316432955296340, guid: 0b0fcd5739b744fb7bbd8d06fca781e9,
         type: 3}
