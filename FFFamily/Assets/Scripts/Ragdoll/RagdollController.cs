@@ -36,10 +36,13 @@ public class RagdollController : MonoBehaviour
         }
     }
     public HitManager hitManager;
+
+    [HideInInspector]
+    public Animator anim;
+
     [Range(0.01f, 10)]
     private float stun;
     private RamecanMixer ramecanMixer;
-    private Animator anim;
     private Rigidbody rb;
     //是否在防御
     private bool blocking = false;
