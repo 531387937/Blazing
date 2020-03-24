@@ -51,8 +51,8 @@ public class RecoverManager : MonoBehaviour
     {
         yield return new WaitForSeconds(recoverTime);
         recoverPos[i].SetActive(false);
-        GameManager.Instance.players[i].gameObject.transform.position = recoverPos[i].transform.position + new Vector3(0, 10, 0);
-        GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.transform.position += new Vector3(0, 15, 0);
+        GameManager.Instance.players[i].gameObject.transform.position = recoverPos[i].transform.position + new Vector3(0, 5, 0);
+        //GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.transform.position += new Vector3(0, 10, 0);
         GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.SetActive(true);
         GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;

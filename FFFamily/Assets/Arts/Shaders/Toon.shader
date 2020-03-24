@@ -26,10 +26,10 @@
 				#pragma fragment frag
 			// make fog work
 			#pragma multi_compile_fog
-
+			#pragma multi_compile_fwdbase
 			#include "UnityCG.cginc"
 			#include "Lighting.cginc"
-
+			#include "AutoLight.cginc"
 			struct appdata
 			{
 				float4 vertex : POSITION;
@@ -43,8 +43,9 @@
 				float2 uv : TEXCOORD0;
 				float3 worldNormal : TEXCOORD1;
 				float3 worldPos : TEXCOORD2;
+				SHADOW_COORDS(4)
 				UNITY_FOG_COORDS(3)
-				float4 vertex : SV_POSITION;
+				float4 pos : SV_POSITION;
 			};
 
 			sampler2D _MainTex;
@@ -59,11 +60,12 @@
 			v2f vert(appdata v)
 			{
 				v2f o;
-				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.pos = UnityObjectToClipPos(v.vertex);
 				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
 				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				UNITY_TRANSFER_FOG(o,o.vertex);
+				UNITY_TRANSFER_FOG(o,o.pos);
+				TRANSFER_SHADOW(o);
 				return o;
 			}
 
@@ -84,9 +86,9 @@
 				fixed rimStep = step(_RimThreshold, rimValue * pow(dot(worldNormal,worldLightDir), _RimPower));
 				//fixed rimValue = pow(1 - dot(worldNormal, worldViewDir), _RimPower);
 				//fixed rimStep = step(_RimThreshold, rimValue);
-
+				fixed  shadow = SHADOW_ATTENUATION(i);
 				fixed4 rim = light * rimStep * 0.5 * diffStep * _RimColor;
-				fixed4 final = diffuse + rim;
+				fixed4 final = (diffuse + rim )*shadow*0.9;
 
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, final);

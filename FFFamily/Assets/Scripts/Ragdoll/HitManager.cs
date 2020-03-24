@@ -37,6 +37,7 @@ public class HitManager : MonoBehaviour
             Rigidbody boneRb = go.GetComponent<Rigidbody>();
             boneRb.AddForceAtPosition(impulse.normalized * 100, point, ForceMode.Impulse);
             Vector3 dir = new Vector3(impulse.x, 0, impulse.z);
+            GameManager.Instance.audioManager.PlayHit();
             //rb.AddForce(dir.normalized * 400, ForceMode.Impulse);
             //Instantiate(hitParticle, point, Quaternion.identity);
         }

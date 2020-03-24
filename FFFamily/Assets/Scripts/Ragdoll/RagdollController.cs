@@ -173,7 +173,7 @@ public class RagdollController : MonoBehaviour
     /// <summary>
     /// 将布娃娃转换为正常状态
     /// </summary>
-    private void Ragdoll2Normal()
+    public void Ragdoll2Normal()
     {
         ChangeRagdollState("normal");
     }
@@ -210,6 +210,10 @@ public class RagdollController : MonoBehaviour
         stunned = true;
         hitManager.StopHit();
         StartCoroutine(StunnedTimer());
+    }
+    public void Ragdoll2OnlyAnim()
+    {
+        ChangeRagdollState("animOnly");
     }
     /// <summary>
     /// 修改布娃娃的状态接口

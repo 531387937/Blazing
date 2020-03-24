@@ -9,6 +9,7 @@ public class DeadArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+                        other.gameObject.GetComponent<RagdollController>().Ragdoll2OnlyAnim();
             PlayerRecover(other.gameObject.GetComponent<RagdollController>().playerNum);
 
 

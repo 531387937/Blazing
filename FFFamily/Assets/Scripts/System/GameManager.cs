@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public RecoverManager recoverManager;
-    //public TimeManager timeManager;
+    public AudioManager audioManager;
     public List<int> deadCount = new List<int>(4);
     public List<RagdollController> players = new List<RagdollController>(4);
     public float gameTime;
