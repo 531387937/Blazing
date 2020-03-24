@@ -96,6 +96,8 @@ public class RagdollController : MonoBehaviour
 
     [HideInInspector]
     public Animator anim;
+    [HideInInspector]
+    public bool recoving = false;
 
     [Range(0.01f, 10)]
     private float stun;
@@ -122,12 +124,6 @@ public class RagdollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis(_horizontal), 0, Input.GetAxis(_vertical)).normalized;
-        inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis(_horizontal)), Mathf.Abs(Input.GetAxis(_vertical)));
-
-        float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
-        //anim.SetFloat("direction", angle / 180);
-        anim.SetFloat("velocity", inputVelocity);
 
         if (!dead && !stunned)
         {
@@ -141,8 +137,12 @@ public class RagdollController : MonoBehaviour
                 anim.SetTrigger("grab");
                 Ragdoll2Grab();
             }
-            //To Do
-            //移动逻辑 动画机里对应float变量velocity 
+            inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis(_horizontal), 0, Input.GetAxis(_vertical)).normalized;
+            inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis(_horizontal)), Mathf.Abs(Input.GetAxis(_vertical)));
+
+            float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
+            //anim.SetFloat("direction", angle / 180);
+            anim.SetFloat("velocity", inputVelocity);
 
         }
         if (!hitManager.fighting)
@@ -206,6 +206,7 @@ public class RagdollController : MonoBehaviour
         ChangeRagdollState("stunned");
         anim.SetBool("stun", true);
         stunned = true;
+        hitManager.StopHit();
         StartCoroutine(StunnedTimer());
     }
     /// <summary>

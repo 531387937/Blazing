@@ -188,10 +188,10 @@ public class PlayerBase
     {
         _player.GetComponent<MeshRenderer>().material.color = Color.blue;
         canMove = false;
-        BuffLogic.Instance.EffectRecover(() =>
-        {
-            _player.GetComponent<MeshRenderer>().material.color = Color.white;
-            canMove = true;
-        }, Global.dizzyEffect);
+        //BuffLogic.Instance.EffectRecover(() =>
+        //{
+        //    _player.GetComponent<MeshRenderer>().material.color = Color.white;
+        //    canMove = true;
+        //}, Global.dizzyEffect);
     }
 }
