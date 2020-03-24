@@ -73,8 +73,8 @@ Material:
     - _Parallax: 0.005
     - _RimPower: 4
     - _RimThreshold: 0.35
-    - _ShadowBrightness: 0.6
-    - _ShadowThreshold: 0.2
+    - _ShadowBrightness: 1
+    - _ShadowThreshold: 1
     - _Shininess: 0.078125
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
