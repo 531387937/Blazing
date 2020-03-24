@@ -99,6 +99,8 @@ public class RagdollController : MonoBehaviour
     [HideInInspector]
     public bool recoving = false;
 
+    public ParticleSystem stunFX;
+
     [Range(0.01f, 10)]
     private float stun;
     private RamecanMixer ramecanMixer;
@@ -236,7 +238,10 @@ public class RagdollController : MonoBehaviour
     IEnumerator StunnedTimer()
     {
         anim.ResetTrigger("attack");
+        stunFX.gameObject.SetActive(true);
+        stunFX.Play();
         yield return new WaitForSeconds(stunTime);
+        stunFX.gameObject.SetActive(false);
         anim.SetBool("stun", false);
         stun = 0.01f;
         stunned = false;
