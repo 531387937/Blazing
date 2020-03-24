@@ -5,6 +5,63 @@ using RagdollMecanimMixer;
 
 public class RagdollController : MonoBehaviour
 {
+    public int playerNum;
+    /// <summary>
+    /// 手柄映射
+    /// 0--A
+    /// 1--B
+    /// 2--X
+    /// 3--Y
+    /// 4--LB
+    /// 5--RB
+    /// </summary>
+    public KeyCode[] Buttons
+    {
+        get
+        {
+            if (_button == null)
+            {
+                _button = new KeyCode[6];
+                int keycode = 0;
+                switch (playerNum)
+                {
+                    case 1:
+                        keycode = (int)KeyCode.Joystick1Button0;
+                        break;
+                    case 2:
+                        keycode = (int)KeyCode.Joystick2Button0;
+                        break;
+                    case 3:
+                        keycode = (int)KeyCode.Joystick3Button0;
+                        break;
+                    case 4:
+                        keycode = (int)KeyCode.Joystick4Button0;
+                        break;
+                }
+                for (int i = 0; i < 6; i++)
+                {
+                    _button[i] = (KeyCode)keycode;
+                    keycode++;
+                }
+            }
+            return _button;
+        }
+    }
+    private KeyCode[] _button = null;
+    private string _horizontal
+    {
+        get
+        {
+            return "Horizontal" + playerNum.ToString();
+        }
+    }
+    private string _vertical
+    {
+        get
+        {
+            return "Vertical" + playerNum.ToString();
+        }
+    }
     //移动
     private Vector3 inputDirection;
     private float inputVelocity;
@@ -65,8 +122,8 @@ public class RagdollController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
-        inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis("Horizontal")), Mathf.Abs(Input.GetAxis("Vertical")));
+        inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis(_horizontal), 0, Input.GetAxis(_vertical)).normalized;
+        inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis(_horizontal)), Mathf.Abs(Input.GetAxis(_vertical)));
 
         float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
         //anim.SetFloat("direction", angle / 180);
