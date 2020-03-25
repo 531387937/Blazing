@@ -49,15 +49,19 @@ public class RecoverManager : MonoBehaviour
     }
     IEnumerator surving(int i,int a)
     {
+        //Transform t = GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.transform;
         yield return new WaitForSeconds(recoverTime);
         recoverPos[i].SetActive(false);
-        GameManager.Instance.players[i].gameObject.transform.position = recoverPos[i].transform.position + new Vector3(0, 5, 0);
-        //GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.transform.position += new Vector3(0, 10, 0);
-        GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.SetActive(true);
+        //GameManager.Instance.players[i].gameObject.transform.position = recoverPos[i].transform.position + new Vector3(0, 5, 0);
+        GameManager.Instance.players[i].gameObject.transform.parent.position += recoverPos[i].transform.position - GameManager.Instance.players[i].gameObject.transform.position + new Vector3(0, 10, 0);
+        //GameManager.Instance.players[i].gameObject.SetActive(true);
+        //GameManager.Instance.players[i].gameObject.transform.parent.GetChild(0).gameObject.SetActive(true);
+        GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().WakeUp();
         GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         GameManager.Instance.players[i].gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-        GameManager.Instance.players[i].gameObject.SetActive(true);
+        
         yield return new WaitForSeconds(0.5f);
         target.m_Targets[a].target = GameManager.Instance.players[i].gameObject.transform;
+        GameManager.Instance.players[i].Ragdoll2Normal();
     }
 }

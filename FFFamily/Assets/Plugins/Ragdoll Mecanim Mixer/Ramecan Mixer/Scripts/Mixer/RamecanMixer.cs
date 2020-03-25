@@ -33,7 +33,31 @@ namespace RagdollMecanimMixer
                 return Camera.main;
             }
         }
-        void Start()
+        //void Start()
+        //{
+        //    foreach (Bone bone in bones)
+        //    {
+        //        //ignore collision between bones
+        //        foreach (Bone bone1 in bones)
+        //            Physics.IgnoreCollision(bone.collider, bone1.collider, !bone.selfCollision);
+
+        //        //ignore collision between bones and character collider
+        //        if (GetComponent<Collider>())
+        //            Physics.IgnoreCollision(bone.collider, GetComponent<Collider>());
+        //    }
+
+        //    ChangeStateImmediately();
+
+        //    foreach (Bone bone in bones)
+        //    {
+        //        bone.beforeAnimationPos = bone.animPosition = bone.animTransform.position;
+        //        bone.beforeAnimationRot = bone.animTransform.rotation;
+
+        //        bone.rbPrevPos = bone.rigidbody.position;
+        //        bone.rbPrevRot = bone.rigidbody.rotation;
+        //    }
+        //}
+        private void OnEnable()
         {
             foreach (Bone bone in bones)
             {

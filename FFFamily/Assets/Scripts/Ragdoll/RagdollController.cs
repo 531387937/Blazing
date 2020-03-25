@@ -5,6 +5,7 @@ using RagdollMecanimMixer;
 
 public class RagdollController : MonoBehaviour
 {
+    public bool canHit = true;
     public int playerNum;
     /// <summary>
     /// 手柄映射
@@ -127,7 +128,7 @@ public class RagdollController : MonoBehaviour
     void Update()
     {
 
-        if (!dead && !stunned)
+        if (!dead && !stunned&&canHit)
         {
             anim.SetBool("block", Input.GetKeyDown(KeyCode.LeftShift));
             if (Input.GetMouseButtonDown(0))

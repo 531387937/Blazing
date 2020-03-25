@@ -49,8 +49,6 @@ public class HitSensor : MonoBehaviour
             collision.gameObject.transform.root.GetComponent<HitManager>().BeGrabed();
             grabRig = collision.gameObject.transform.root.GetComponent<HitManager>().ragCtr.GetComponent<RagdollMecanimMixer.RamecanMixer>().RootBoneRb;
             r = collision.gameObject.transform.root.GetChild(1).GetComponent<Rigidbody>();
-
-            r.transform.root.SetParent(specialTr);
         }
     }
 
@@ -61,8 +59,8 @@ public class HitSensor : MonoBehaviour
         if (grabRig)
         {
             //grabRig.velocity = velocity*2.3f;
-            grabRig.AddForce(velocity.normalized * 70, ForceMode.Acceleration);
-            //r.velocity = grabRig.velocity;
+            grabRig.AddForce(velocity.normalized * 170, ForceMode.Acceleration);
+            r.velocity = grabRig.velocity;
         }
     }
     public void StopGrabing()
@@ -70,14 +68,6 @@ public class HitSensor : MonoBehaviour
         if (grabRig)
         {
             //grabRig.velocity = velocity*20;
-            r.transform.parent.SetParent(null);
-            r.transform.localRotation = r.transform.parent.rotation;
-            Transform tr = r.transform.parent;
-            r.transform.SetParent(null, true);
-            grabRig.transform.parent.SetParent(null, true);
-            tr.rotation = new Quaternion();
-            grabRig.transform.parent.SetParent(tr, true);
-            r.transform.SetParent(tr, true);
             grabRig = null;
         }
     }
