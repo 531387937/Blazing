@@ -7,6 +7,7 @@ public class HitSensor : MonoBehaviour
     public bool canHit = false;
     public bool specialGrab = false;
     public Transform specialTr;
+    public GameObject hitEffect;
 
     private Vector3 velocity
     {
@@ -41,6 +42,7 @@ public class HitSensor : MonoBehaviour
             transform.root.GetComponent<HitManager>().fighting = true;
             canHit = false;
             collision.gameObject.transform.root.GetComponent<HitManager>().GetHurt(collision.gameObject, collision.contacts[0].point, velocity);
+            Instantiate(hitEffect, collision.contacts[0].point, new Quaternion());
         }
         if (specialGrab && collision.gameObject.layer == 11 && collision.gameObject.transform.root != transform.root)
         {

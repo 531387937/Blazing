@@ -1415,6 +1415,7 @@ MonoBehaviour:
   canHit: 0
   specialGrab: 0
   specialTr: {fileID: 0}
+  hitEffect: {fileID: 1045299808630862, guid: 5492f7234677da44bb7fb236d1ea4e0a, type: 3}
 --- !u!1 &7224130308395491993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1904,6 +1905,7 @@ MonoBehaviour:
   canHit: 0
   specialGrab: 0
   specialTr: {fileID: 0}
+  hitEffect: {fileID: 0}
 --- !u!1 &7224130308686720157
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,6 +2710,7 @@ MonoBehaviour:
   canHit: 0
   specialGrab: 0
   specialTr: {fileID: 4813834351081465000}
+  hitEffect: {fileID: 1045299808630862, guid: 5492f7234677da44bb7fb236d1ea4e0a, type: 3}
 --- !u!1 &7224130309056382031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,6 +3176,7 @@ MonoBehaviour:
   canHit: 0
   specialGrab: 0
   specialTr: {fileID: 0}
+  hitEffect: {fileID: 0}
 --- !u!1 &7224130309549688646
 GameObject:
   m_ObjectHideFlags: 0
