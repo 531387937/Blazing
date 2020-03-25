@@ -66,6 +66,7 @@ public class RagdollController : MonoBehaviour
     //移动
     private Vector3 inputDirection;
     private float inputVelocity;
+    private bool canMove = true;
     private Camera cam;
     //眩晕时长
     public float stunTime = 2f;
@@ -134,18 +135,23 @@ public class RagdollController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 anim.SetTrigger("attack");
+                canMove = false;
             }
             if (Input.GetMouseButtonDown(1))
             {
+                canMove = false;
                 anim.SetTrigger("grab");
                 Ragdoll2Grab();
             }
-            inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis(_horizontal), 0, Input.GetAxis(_vertical)).normalized;
-            inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis(_horizontal)), Mathf.Abs(Input.GetAxis(_vertical)));
+            if (canMove)
+            {
+                inputDirection = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y, 0) * new Vector3(Input.GetAxis(_horizontal), 0, Input.GetAxis(_vertical)).normalized;
+                inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis(_horizontal)), Mathf.Abs(Input.GetAxis(_vertical)));
 
-            float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
-            //anim.SetFloat("direction", angle / 180);
-            anim.SetFloat("velocity", inputVelocity);
+                float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
+                //anim.SetFloat("direction", angle / 180);
+                anim.SetFloat("velocity", inputVelocity);
+            }
 
         }
         if (!hitManager.fighting)
@@ -261,5 +267,9 @@ public class RagdollController : MonoBehaviour
     public void StopHit()
     {
         hitManager.StopHit();
+    }
+    public void CanMove()
+    {
+        canMove = true;
     }
 }
