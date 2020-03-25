@@ -10,12 +10,15 @@ namespace RagdollMecanimMixer {
         public int parentID;
         public List<int> childIDs;
 
-        //transform from character hierarchy
+        //动画骨骼的Transform
         public Transform animTransform;
-        //trabsform from ragdoll hierarchy
+        //布娃娃的Transform
         public Transform physTransform;
+        //骨骼的刚体
         public Rigidbody rigidbody;
+        //骨骼的joint，连接父骨骼
         public ConfigurableJoint joint;
+        //骨骼的碰撞体
         public Collider collider;
         
         public Quaternion rotOffset;
@@ -24,6 +27,7 @@ namespace RagdollMecanimMixer {
         public Quaternion animLocalRotation;
         public Quaternion physStartLocalRotation;
         
+        //用于插值计算
         public Vector3 rbPrevPos;
         public Quaternion rbPrevRot;
         public Vector3 rbLerpPos;
