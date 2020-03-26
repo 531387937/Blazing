@@ -118,7 +118,7 @@ namespace RagdollMecanimMixer
         {
             foreach (Bone bone in bones)
             {
-                if (!bone.rigidbody.isKinematic)
+                if (!bone.rigidbody.isKinematic&&bone.positionAccuracy == 0)
                 {
                     //rotation drive
                     if (!bone.IsRoot)
@@ -129,8 +129,9 @@ namespace RagdollMecanimMixer
                             bone.joint.targetRotation = Quaternion.identity;
                     }
                     //position drive
-                    if (bone.positionAccuracy > 0 && !bone.withoutAnimation)
+                    if (bone.positionAccuracy == 0 && !bone.withoutAnimation)
                     {
+                        print(Vector3.Distance(bone.animPosition, bone.rigidbody.position));
                         float force = Vector3.Distance(bone.animPosition, bone.rigidbody.position) * bone.positionDriveSpring * bone.positionAccuracy;
                         Vector3 direction = (bone.animPosition - bone.rigidbody.position).normalized;
                         Vector3 velocity = bone.rigidbody.velocity;
@@ -232,6 +233,7 @@ namespace RagdollMecanimMixer
                     bone.animTransform.rotation = bone.rbLerpRot;
                 }
             }
+            transform.position = RootBoneTr.position;
         }
 
         private Quaternion CalculateRotation(Vector3 axis, Vector3 secondaryAxis, Quaternion targetRotation, Quaternion startRotation)
