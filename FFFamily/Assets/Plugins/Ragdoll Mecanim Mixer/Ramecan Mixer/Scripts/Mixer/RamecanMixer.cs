@@ -118,21 +118,27 @@ namespace RagdollMecanimMixer
         {
             foreach (Bone bone in bones)
             {
-                if (!bone.rigidbody.isKinematic&&bone.positionAccuracy == 0)
+                if (!bone.rigidbody.isKinematic)
                 {
                     //rotation drive
                     if (!bone.IsRoot)
                     {
+                        if(bone.beforePositionAccuracy!=bone.positionAccuracy)
+                        {
+                            bone.joint.slerpDrive = bone.mixDrive;
+                            bone.beforePositionAccuracy = bone.positionAccuracy;
+                        }
+                        bone.noPhy = false;
                         if (!bone.withoutAnimation)
                             bone.joint.targetRotation = CalculateRotation(bone.joint.axis, bone.joint.secondaryAxis, bone.animLocalRotation, bone.physStartLocalRotation);
-                        else
-                            bone.joint.targetRotation = Quaternion.identity;
+                        else { }
+                            //bone.joint.targetRotation = Quaternion.identity;
                     }
                     //position drive
-                    if (bone.positionAccuracy == 0 && !bone.withoutAnimation)
+                    if (!bone.withoutAnimation)
                     {
-                        print(Vector3.Distance(bone.animPosition, bone.rigidbody.position));
-                        float force = Vector3.Distance(bone.animPosition, bone.rigidbody.position) * bone.positionDriveSpring * bone.positionAccuracy;
+                        //print(Vector3.Distance(bone.animPosition, bone.rigidbody.position));
+                        float force = Vector3.Distance(bone.animPosition, bone.rigidbody.position) * bone.positionDriveSpring *0;
                         Vector3 direction = (bone.animPosition - bone.rigidbody.position).normalized;
                         Vector3 velocity = bone.rigidbody.velocity;
                         bone.rigidbody.AddForce(force * direction - velocity * bone.positionDriveDamper, ForceMode.Acceleration);
@@ -144,6 +150,11 @@ namespace RagdollMecanimMixer
                 else
                 {
                     //calculate velocity when isKinematic
+                    if (!bone.IsRoot)
+                    {
+                        //bone.joint.rotationDriveMode = RotationDriveMode.XYAndZ;
+                        bone.noPhy = true;
+                    }
                     bone.kinVelocity = (bone.rigidbody.position - bone.rbPrevPos) / Time.fixedDeltaTime;
 
                     Quaternion deltaRotation = bone.rigidbody.rotation * Quaternion.Inverse(bone.rbPrevRot);

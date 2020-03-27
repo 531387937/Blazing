@@ -77,6 +77,7 @@ namespace RagdollMecanimMixer {
         public float positionDriveSpring;
         public float positionDriveDamper;
         public float positionAccuracy;
+        public float beforePositionAccuracy;
 
         public float rotationDriveSpring;
         public float rotationDriveDamper;
@@ -86,9 +87,10 @@ namespace RagdollMecanimMixer {
                 rotationAccuracy = value;
                 if (!IsRoot) {
                     JointDrive jointDrive = joint.slerpDrive;
-                    jointDrive.positionSpring = rotationAccuracy * rotationDriveSpring * rigidbody.mass;
-                    jointDrive.positionDamper = rotationDriveDamper * rigidbody.mass;
+                    jointDrive.positionSpring = rotationAccuracy * rotationAccuracy * rotationDriveSpring*rigidbody.mass ;
+                    jointDrive.positionDamper = rotationDriveDamper*rigidbody.mass ;
                     joint.slerpDrive = jointDrive;
+                    mixDrive = jointDrive;
                 }
             }
             get {
@@ -101,7 +103,59 @@ namespace RagdollMecanimMixer {
                 return parentID == -1;
             }
         }
+        public JointDrive mixDrive
+        {
+            get
+            {
+                if(positionAccuracy>0)
+                {
+                    JointDrive mix = new JointDrive();
+                    mix = drive;
+                    mix.positionSpring = drive.positionSpring * positionAccuracy;
+                    return mix;
+                }
+                else
+                {
+                    JointDrive mix = new JointDrive();
+                    mix = drive;
+                    mix.positionSpring = drive.positionSpring*0.01f;
+                    return mix;
+                }
+            }
+            set {
+                if(!IsRoot)
+                drive = value;
+            }
+        }
+        private JointDrive drive = new JointDrive();
 
-        public bool dependOnDir = false;
+        public bool noPhy
+        {
+            get { return nophy; }
+            set
+            {
+                if (value != noPhy)
+                {
+                    JointDrive j = new JointDrive();
+                    if (value)
+                    {
+                        j = joint.slerpDrive;
+                        j.positionSpring = joint.slerpDrive.positionSpring / 100;
+                        j.positionDamper = joint.slerpDrive.positionDamper;
+                        joint.slerpDrive = j;
+                    }
+                    else
+                    {
+                        j = joint.slerpDrive;
+                        j.positionSpring = joint.slerpDrive.positionSpring * 100;
+                        j.positionDamper = joint.slerpDrive.positionDamper;
+                        joint.slerpDrive = j;
+                    }
+                    nophy = value;
+                }
+            }
+        }
+        private bool nophy = false;
     }
+    
 }
