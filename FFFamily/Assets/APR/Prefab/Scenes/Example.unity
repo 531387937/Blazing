@@ -1362,6 +1362,11 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.z
       value: -0.03978973
       objectReference: {fileID: 0}
+    - target: {fileID: 5072531227150629154, guid: 2a8b2c0f34dba35488b9b713b5812940,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -0.5259961
+      objectReference: {fileID: 0}
     - target: {fileID: 5072531227726385242, guid: 2a8b2c0f34dba35488b9b713b5812940,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -3967,6 +3972,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 880001263}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &935217427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8067712694169478048, guid: 2a8b2c0f34dba35488b9b713b5812940,
+    type: 3}
+  m_PrefabInstance: {fileID: 159834617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &944602103
 GameObject:
   m_ObjectHideFlags: 0
@@ -10368,6 +10379,7 @@ GameObject:
   - component: {fileID: 2035191102}
   - component: {fileID: 2035191101}
   - component: {fileID: 2035191105}
+  - component: {fileID: 2035191106}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Object
@@ -10463,6 +10475,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2035191106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035191100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 674bf6913a5f94748b3ba97957b3e4cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ragdollAnim: {fileID: 0}
+  ragdoll: {fileID: 935217427}
 --- !u!1 &2039305857
 GameObject:
   m_ObjectHideFlags: 0

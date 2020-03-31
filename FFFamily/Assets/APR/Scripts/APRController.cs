@@ -160,7 +160,11 @@ public class APRController : MonoBehaviour
 			//11
 			RightFoot,
 			//12
-			LeftFoot
+			LeftFoot,
+            //13
+            RightHand.gameObject,
+            //14
+            LeftHand.gameObject
 		};
         orgin = APR_Parts[3].transform.localRotation;
 		//Setup original pose for joint drives
@@ -865,7 +869,7 @@ public class APRController : MonoBehaviour
 			
             
             //Left hand punch forward
-			//LeftHand.AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
+			LeftHand.AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
  
 			APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
 			
@@ -1091,4 +1095,18 @@ public static class ConfigurableJointExtensions {
 		// Set target rotation to our newly calculated rotation
 		joint.targetRotation = resultRotation;
 	}
+    public static GameObject FindC(this Transform tr, string name)
+    {
+        foreach (Transform t in tr.GetComponentsInChildren<Transform>())
+        {
+            if (t.name == name)
+            {
+
+                return t.gameObject;
+
+            }
+
+        }
+        return null;
+    }
 }
