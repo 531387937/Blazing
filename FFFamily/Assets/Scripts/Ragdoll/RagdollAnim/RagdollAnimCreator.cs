@@ -6,6 +6,7 @@ public class RagdollAnimCreator : MonoBehaviour
 {
     public RagdollAnim ragdollAnim;
     public GameObject ragdoll;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,10 @@ public class RagdollAnimCreator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            ragdoll.GetComponent<APRController>().PlayAnim(ragdollAnim);
+        }
     }
 
     public void CreateNewAnim()
@@ -23,9 +27,8 @@ public class RagdollAnimCreator : MonoBehaviour
         ragdollAnim = new RagdollAnim(ragdoll);
         ragdollAnim.CreateNewAnim();
     }
-
-    public void SaveAnim()
+    public void AddAnim()
     {
-
+        ragdollAnim.AddAnimClip(ragdoll);
     }
 }

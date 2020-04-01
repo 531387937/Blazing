@@ -134,7 +134,8 @@ public class RagdollController : MonoBehaviour
             anim.SetBool("block", Input.GetKeyDown(KeyCode.LeftShift));
             if (Input.GetMouseButtonDown(0))
             {
-                anim.SetTrigger("attack");
+                Ragdoll2Die();
+                //anim.SetTrigger("attack");
                 canMove = false;
             }
             if (Input.GetMouseButtonDown(1))
@@ -149,7 +150,6 @@ public class RagdollController : MonoBehaviour
                 inputVelocity = Mathf.Max(Mathf.Abs(Input.GetAxis(_horizontal)), Mathf.Abs(Input.GetAxis(_vertical)));
 
                 float angle = Vector3.SignedAngle(transform.forward, inputDirection, Vector3.up);
-                //anim.SetFloat("direction", angle / 180);
                 anim.SetFloat("velocity", inputVelocity);
             }
 
@@ -234,9 +234,10 @@ public class RagdollController : MonoBehaviour
     IEnumerator DeathTimer()
     {
         yield return new WaitForSeconds(deathTime);
-        anim.applyRootMotion = true;
+
         Vector3 reviveDir = ramecanMixer.RootBoneTr.forward;
         Quaternion reviveRot = Quaternion.LookRotation(-reviveDir, Vector3.up);
+        ramecanMixer.RootBoneRb.AddForce(new Vector3(0, 30, 0), ForceMode.VelocityChange);
         rb.rotation = Quaternion.Euler(0, reviveRot.eulerAngles.y, 0);
         rb.transform.rotation = Quaternion.Euler(0, 0, 0);
         //Time.timeScale = 1;

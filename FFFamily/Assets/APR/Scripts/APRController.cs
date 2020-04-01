@@ -77,7 +77,7 @@ public class APRController : MonoBehaviour
 	
 	//Active Ragdoll Player Parts Array
 	private GameObject[] APR_Parts;
-	
+    private Quaternion[] APR_Parts_Orgin;
     //Hands
 	public Rigidbody RightHand, LeftHand;
     
@@ -167,6 +167,13 @@ public class APRController : MonoBehaviour
             LeftHand.gameObject
 		};
         orgin = APR_Parts[3].transform.localRotation;
+        APR_Parts_Orgin = new Quaternion[APR_Parts.Length];
+        for(int i = 0;i<APR_Parts.Length;i++)
+        {
+            APR_Parts_Orgin[i] = APR_Parts[i].transform.localRotation;
+            print(APR_Parts[i].name);
+            print(APR_Parts_Orgin[i].eulerAngles);
+        }
 		//Setup original pose for joint drives
         BodyTarget = APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation;
 		HeadTarget = APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation;
@@ -1043,70 +1050,42 @@ public class APRController : MonoBehaviour
 			Gizmos.DrawWireSphere(COMP.position, 0.3f);
 		}
 	}
-    
-}
-public static class ConfigurableJointExtensions {
-	/// <summary>
-	/// Sets a joint's targetRotation to match a given local rotation.
-	/// The joint transform's local rotation must be cached on Start and passed into this method.
-	/// </summary>
-	public static void SetTargetRotationLocal (this ConfigurableJoint joint, Quaternion targetLocalRotation, Quaternion startLocalRotation)
-	{
-		if (joint.configuredInWorldSpace) {
-			Debug.LogError ("SetTargetRotationLocal should not be used with joints that are configured in world space. For world space joints, use SetTargetRotation.", joint);
-		}
-		SetTargetRotationInternal (joint, targetLocalRotation, startLocalRotation, Space.Self);
-	}
-	
-	/// <summary>
-	/// Sets a joint's targetRotation to match a given world rotation.
-	/// The joint transform's world rotation must be cached on Start and passed into this method.
-	/// </summary>
-	public static void SetTargetRotation (this ConfigurableJoint joint, Quaternion targetWorldRotation, Quaternion startWorldRotation)
-	{
-		if (!joint.configuredInWorldSpace) {
-			Debug.LogError ("SetTargetRotation must be used with joints that are configured in world space. For local space joints, use SetTargetRotationLocal.", joint);
-		}
-		SetTargetRotationInternal (joint, targetWorldRotation, startWorldRotation, Space.World);
-	}
-	
-	static void SetTargetRotationInternal (ConfigurableJoint joint, Quaternion targetRotation, Quaternion startRotation, Space space)
-	{
-		// Calculate the rotation expressed by the joint's axis and secondary axis
-		var right = joint.axis;
-		var forward = Vector3.Cross (joint.axis, joint.secondaryAxis).normalized;
-		var up = Vector3.Cross (forward, right).normalized;
-		Quaternion worldToJointSpace = Quaternion.LookRotation (forward, up);
-		
-		// Transform into world space
-		Quaternion resultRotation = Quaternion.Inverse (worldToJointSpace);
-		
-		// Counter-rotate and apply the new local rotation.
-		// Joint space is the inverse of world space, so we need to invert our value
-		if (space == Space.World) {
-			resultRotation *= startRotation * Quaternion.Inverse (targetRotation);
-		} else {
-			resultRotation *= Quaternion.Inverse (targetRotation) * startRotation;
-		}
-		
-		// Transform back into joint space
-		resultRotation *= worldToJointSpace;
-		
-		// Set target rotation to our newly calculated rotation
-		joint.targetRotation = resultRotation;
-	}
-    public static GameObject FindC(this Transform tr, string name)
+    public void PlayAnim(RagdollAnim anim)
     {
-        foreach (Transform t in tr.GetComponentsInChildren<Transform>())
+        if(anim!=null&&anim.animation.Count>=1)
         {
-            if (t.name == name)
-            {
-
-                return t.gameObject;
-
-            }
-
+            StartCoroutine(PlayAnims(anim));
         }
-        return null;
+    }
+
+    IEnumerator PlayAnims(RagdollAnim anim)
+    {
+        for (int i = 0; i < anim.animation.Count; i++)
+        {
+            for (int j = 0; j < APR_Parts.Length; j++)
+            {
+                if (anim.animation[i].bones[j].rotaThis)
+                {
+                    APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
+                    print(APR_Parts_Orgin[i].eulerAngles);
+                    if (anim.animation[i].bones[j].force != 0)
+                    {
+                        APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * anim.animation[i].bones[j].force, ForceMode.Impulse);
+                    }
+                }
+            }
+            yield return new WaitForSeconds(anim.animation[i].nextAnim);
+        }
+        yield return new WaitForSeconds(3);
+        APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
+        APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation = HeadTarget;
+        APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
+        APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
+        APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
+        APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
+        APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = UpperRightLegTarget;
+        APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = LowerRightLegTarget;
+        APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftLegTarget;
+        APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftLegTarget;
     }
 }

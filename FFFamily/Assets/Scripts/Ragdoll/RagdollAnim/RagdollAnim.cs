@@ -7,17 +7,13 @@ public class RagdollBones
 {
     [HideInInspector]
     public string name;
-    public RagdollBones(GameObject bone)
-    {
-        orgin = bone.transform.rotation;
-    }
+    public bool rotaThis = false;
 
     [Header("该关节目标角度")]
     public Vector3 targetRotation;
     [Header("向该关节施加的力")]
     public float force;
-    [HideInInspector]
-    public Quaternion orgin;
+
 }
 [System.Serializable]
 public class RagdollClip
@@ -79,7 +75,7 @@ public class RagdollClip
         };
         for (int i = 0; i < obj.Length; i++)
         {
-            bones[i] = new RagdollBones(obj[i]);
+            bones[i] = new RagdollBones();
             bones[i].name = obj[i].name;
         }
     }
@@ -148,9 +144,9 @@ public class RagdollAnim : ScriptableObject
         animation[animation.Count - 1].name = "AnimationClip" + animation.Count;
     }
 
-    public void AddAnimClip()
+    public void AddAnimClip(GameObject obj)
     {
-        animation.Add(new RagdollClip(ragdoll));
+        animation.Add(new RagdollClip(obj));
         animation[animation.Count - 1].name = "AnimationClip" + animation.Count;
     }
 
