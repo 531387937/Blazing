@@ -184,6 +184,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7610814571882091904, guid: 69974444c9c8e70468d3bb3ef291ff49,
+        type: 3}
+      propertyPath: editorDebugMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69974444c9c8e70468d3bb3ef291ff49, type: 3}
 --- !u!1 &613837082
@@ -236,7 +241,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6b53e852e45ba8445aa893bee73bd3b7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -273,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 613837082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3504, y: 3.3504, z: 3.3504}
+  m_LocalScale: {x: 44.814953, y: 44.814953, z: 44.814953}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -382,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674bf6913a5f94748b3ba97957b3e4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdollAnim: {fileID: 1725041650}
+  ragdollAnim: {fileID: 0}
   ragdoll: {fileID: 788815424}
 --- !u!4 &924550606
 Transform:
@@ -480,79 +485,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 48.804, y: 0, z: 0}
---- !u!114 &1725041650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432c67062a97d834292121ee2cb550d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animation:
-  - name: AnimationClip1
-    nextAnim: 0
-    bones:
-    - name: APR_Root
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_Body
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_Head
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_UpperRightArm
-      rotaThis: 1
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_LowerRightArm
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_UpperLeftArm
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_LowerLeftArm
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_UpperRightLeg
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_LowerRightLeg
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_UpperLeftLeg
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_LowerLeftLeg
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_RightFoot
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_LeftFoot
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_RightHand
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
-    - name: APR_LeftHand
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
-      force: 0
