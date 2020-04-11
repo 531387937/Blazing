@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AudioManager :MonoBehaviour
 {
-    private List<AudioSource> AudioPlayers = new List<AudioSource>();
+    private List<AudioSource> audioPlayers = new List<AudioSource>();
+    private Dictionary<string, AudioClip> audios = new Dictionary<string, AudioClip>();
     public Queue<AudioSource> freePlayers = new Queue<AudioSource>();
+
     private string path = "Audio/音效/";
     private void Awake()
     {
@@ -13,12 +15,12 @@ public class AudioManager :MonoBehaviour
     }
     private void Update()
     {
-        for(int i = 0;i<AudioPlayers.Count;i++)
+        for(int i = 0;i<audioPlayers.Count;i++)
         {
-            if(!AudioPlayers[i].isPlaying)
+            if(!audioPlayers[i].isPlaying)
             {
-                freePlayers.Enqueue(AudioPlayers[i]);
-                AudioPlayers.RemoveAt(i);
+                freePlayers.Enqueue(audioPlayers[i]);
+                audioPlayers.RemoveAt(i);
             }
         }
     }
@@ -43,9 +45,15 @@ public class AudioManager :MonoBehaviour
         }
         AudioSource audio = freePlayers.Dequeue();
         audio.playOnAwake = false;
-        audio.clip =  Resources.Load<AudioClip>(path+name);
+        AudioClip clip;
+        if(!audios.TryGetValue(name,out clip))
+        {
+            clip = Resources.Load<AudioClip>(path + name);
+            audios.Add(name, clip);
+        }
+        audio.clip = clip;
         audio.loop = loop;
-        AudioPlayers.Add(audio);
+        audioPlayers.Add(audio);
         audio.Play();
     }
 }
