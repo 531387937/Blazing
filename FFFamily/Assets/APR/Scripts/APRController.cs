@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class APRController : MonoBehaviour
 {
-    public Vector3 test;
-    public Quaternion orgin;
-    [Header("Input On this Player")]
+    [Header("测试玩家")]
     //Enable controls
     public bool useControls;
-    
-    [Header("Input Keys")]
+    [Header("无手柄测试按键")]
     //Player input controls
     public string moveForward = "w";
     public string moveBackward = "s";
@@ -22,7 +20,10 @@ public class APRController : MonoBehaviour
     public string reachRight = "p";
     public string reachLeft = "o";
     public string pickupThrow = "f";
-    
+    [Header("设置为几号玩家")]
+    public int PlayerNum = 1;
+    [SerializeField]
+    private PlayerInput input;
     [Header("The Layer Only This Player Is On")]
     //Player Layer
     public string thisPlayerLayer;
@@ -111,9 +112,13 @@ public class APRController : MonoBehaviour
 	UpperLeftArmTarget, LowerLeftArmTarget,
 	UpperRightLegTarget, LowerRightLegTarget,
 	UpperLeftLegTarget, LowerLeftLegTarget;
+
+    private Dictionary<string, RagdollAnim> anims = new Dictionary<string, RagdollAnim>();
+    private string animPath = "RagdollAnim";
 	
     void Awake()
 	{
+        input = new PlayerInput(PlayerNum);
 		//Setup joint drives
 		BalanceOn = new JointDrive();
         BalanceOn.positionSpring = 5000;
@@ -166,13 +171,11 @@ public class APRController : MonoBehaviour
             //14
             LeftHand.gameObject
 		};
-        orgin = APR_Parts[3].transform.localRotation;
         APR_Parts_Orgin = new Quaternion[APR_Parts.Length];
+        // Setup original Quaternion for joint rotation
         for(int i = 0;i<APR_Parts.Length;i++)
         {
             APR_Parts_Orgin[i] = APR_Parts[i].transform.localRotation;
-            print(APR_Parts[i].name);
-            print(APR_Parts_Orgin[i].eulerAngles);
         }
 		//Setup original pose for joint drives
         BodyTarget = APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation;
@@ -224,7 +227,7 @@ public class APRController : MonoBehaviour
 	void InputControls()
 	{
         //Walk forward
-        if (Input.GetKey(moveForward) && balanced && !KnockedOut)
+        if ((Input.GetKey(moveForward)||Input.GetAxis(input.vertical)>0.1f) && balanced && !KnockedOut)
         {
             var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
             v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
@@ -233,7 +236,7 @@ public class APRController : MonoBehaviour
             isKeyDown = true;
         }
 		
-        if(Input.GetKeyUp(moveForward))
+        if(Input.GetKeyUp(moveForward)||(Input.GetAxis(input.vertical)<0.1f&& Input.GetAxis(input.vertical)>=0))
         {
             WalkForward = false;
             isKeyDown = false;
@@ -242,7 +245,7 @@ public class APRController : MonoBehaviour
         
         
         //Walk backward
-        if (Input.GetKey(moveBackward) && balanced && !KnockedOut)
+        if ((Input.GetKey(moveBackward) || Input.GetAxis(input.vertical) < -0.1f) && balanced && !KnockedOut)
         {
             var v3 = - APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
             v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
@@ -251,7 +254,7 @@ public class APRController : MonoBehaviour
             isKeyDown = true;
         }
 		
-        if(Input.GetKeyUp(moveBackward))
+        if(Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) >-0.1f && Input.GetAxis(input.vertical) <= 0))
         {
             WalkBackward = false;
             isKeyDown = false;
@@ -260,13 +263,13 @@ public class APRController : MonoBehaviour
         
         
         //Turn right
-        if (Input.GetKey(turnRight) && balanced && !KnockedOut)
+        if ((Input.GetKey(turnRight) || Input.GetAxis(input.horizontal) > 0.1f) && balanced && !KnockedOut)
         {
             APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x,APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - turnSpeed, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
         }
 		
         //Turn left
-        if (Input.GetKey(turnLeft) && balanced && !KnockedOut)
+        if ((Input.GetKey(turnLeft) || Input.GetAxis(input.horizontal) < -0.1f) && balanced && !KnockedOut)
         {
             APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x,APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y + turnSpeed, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
         }
@@ -286,7 +289,7 @@ public class APRController : MonoBehaviour
         
         
         //Get up
-        if(Input.GetKeyDown(jumpGetup) && !balanced && !isJumping)
+        if((Input.GetKeyDown(jumpGetup)||Input.GetKeyDown(input.button[0])) && !balanced && !isJumping)
         {
             GettingUp = true;
             balanced = true;
@@ -300,7 +303,7 @@ public class APRController : MonoBehaviour
         
         
         //Jump
-        else if(Input.GetKeyDown(jumpGetup) && balanced && !inAir && !Jump && !KnockedOut)
+        else if((Input.GetKeyDown(jumpGetup) || Input.GetKeyDown(input.button[0])) && balanced && !inAir && !Jump && !KnockedOut)
         {
             Jump = true;
             Grounded = false;
@@ -312,12 +315,12 @@ public class APRController : MonoBehaviour
             
             
         //Reach Left
-        if(Input.GetKeyDown(reachLeft) && !KnockedOut)
+        if((Input.GetKeyDown(reachLeft)||Input.GetAxis(input.leftTrigger)>=0.9f) && !KnockedOut)
         {
             ReachingLeft = true;
         }
             
-        if(Input.GetKeyUp(reachLeft) && !KnockedOut)
+        if((Input.GetKeyUp(reachLeft) || Input.GetAxis(input.leftTrigger) < 0.9f) && !KnockedOut)
         {
             ReachingLeft = false;
             PickedUp = false;
@@ -326,12 +329,12 @@ public class APRController : MonoBehaviour
             
             
         //Reach Right
-        if(Input.GetKeyDown(reachRight) && !KnockedOut)
+        if((Input.GetKeyDown(reachRight) || Input.GetAxis(input.rightTrigger) >= 0.9f) && !KnockedOut)
         {
             ReachingRight = true;
         }
             
-        if(Input.GetKeyUp(reachRight) && !KnockedOut)
+        if((Input.GetKeyUp(reachRight) || Input.GetAxis(input.rightTrigger) < 0.9f) && !KnockedOut)
         {
              ReachingRight = false;
              PickedUp = false;
@@ -340,7 +343,7 @@ public class APRController : MonoBehaviour
         
         
         //Pick up left helper
-        if(Input.GetKey(reachLeft) && ReachingLeft && GrabLeft.hasJoint && !KnockedOut)
+        if(/*Input.GetKey(reachLeft) &&*/ ReachingLeft && GrabLeft.hasJoint && !KnockedOut)
         {
             if(GrabLeft.GetComponent<FixedJoint>() != null)
             {
@@ -358,7 +361,7 @@ public class APRController : MonoBehaviour
         }
         
         //Pick up right helper
-        if(Input.GetKey(reachRight) && ReachingRight && GrabRight.hasJoint && !KnockedOut)
+        if(/*Input.GetKey(reachRight) &&*/ ReachingRight && GrabRight.hasJoint && !KnockedOut)
         {
             if(GrabRight.GetComponent<FixedJoint>() != null)
             {
@@ -375,14 +378,14 @@ public class APRController : MonoBehaviour
         }
         
         //Pickup and Throw
-        if(Input.GetKeyDown(pickupThrow) && !PickedUp && !KnockedOut)
+        if((Input.GetKeyDown(pickupThrow)||Input.GetKeyDown(input.button[1])) && !PickedUp && !KnockedOut)
         {
             PickedUp = true;
             GrabbedLeft = null;
             GrabbedRight = null;
         }
         
-        else if(Input.GetKeyDown(pickupThrow) && PickedUp && !KnockedOut)
+        else if((Input.GetKeyDown(pickupThrow) || Input.GetKeyDown(input.button[1])) && PickedUp && !KnockedOut)
         {
             //Let go left
             if(GrabLeft.hasJoint)
@@ -441,13 +444,13 @@ public class APRController : MonoBehaviour
 
             
         //punch
-        if(Input.GetKeyDown(punchRight) && !KnockedOut)
+        if((Input.GetKeyDown(punchRight)||Input.GetKeyDown(input.button[5])) && !KnockedOut)
         {
             Punching = true;
             PunchRight();
         }
             
-        if(Input.GetKeyDown(punchLeft) && !KnockedOut)
+        if((Input.GetKeyDown(punchLeft) || Input.GetKeyDown(input.button[4])) && !KnockedOut)
         {
             Punching = true;
             PunchLeft();
@@ -833,24 +836,24 @@ public class APRController : MonoBehaviour
     //Punch Right
 	void PunchRight()
 	{
-        //APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-        APR_Parts[3].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(test),orgin);// new Quaternion( -0.25f, -0.7f, 0.3f, 1);
-		//APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.5f, 0, 0, 1);
+        APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
+        //APR_Parts[3].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(test),orgin);// new Quaternion( -0.25f, -0.7f, 0.3f, 1);
+		APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.5f, 0, 0, 1);
 		
 		StartCoroutine(DelayCoroutine());
 			
 		IEnumerator DelayCoroutine()
 		{
 			yield return new WaitForSeconds(0.5f);
-			//APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-			//APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.12f, -0.8f, 0, 1);
-			//APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.15f, 0, 0, 1);
+			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
+			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.12f, -0.8f, 0, 1);
+		APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.15f, 0, 0, 1);
 			
             
-   //         //Right hand punch forward
-			//RightHand.AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
+            //Right hand punch forward
+			RightHand.AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
  
-			//APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
+			APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
 			
 			yield return new WaitForSeconds(0.3f);
 			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
@@ -1050,6 +1053,16 @@ public class APRController : MonoBehaviour
 			Gizmos.DrawWireSphere(COMP.position, 0.3f);
 		}
 	}
+    public void PlayAnim(string name)
+    {
+        RagdollAnim anim;
+        if(!anims.TryGetValue(name,out anim))
+        {
+            anim = Resources.Load<RagdollAnim>(animPath + name);
+            anims.Add(name, anim);
+        }
+        PlayAnim(anim);
+    }
     public void PlayAnim(RagdollAnim anim)
     {
         if(anim!=null&&anim.animation.Count>=1)
@@ -1076,7 +1089,14 @@ public class APRController : MonoBehaviour
             }
             yield return new WaitForSeconds(anim.animation[i].nextAnim);
         }
-        yield return new WaitForSeconds(3);
+        if (SceneManager.GetActiveScene().name == "RogdollAnim")
+        {
+            yield return new WaitForSeconds(3);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
         APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
         APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation = HeadTarget;
         APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
