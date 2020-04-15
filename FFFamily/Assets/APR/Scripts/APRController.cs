@@ -59,8 +59,8 @@ public class APRController : MonoBehaviour
 	private bool inAir;
 	private bool Landed = true;
 	private bool Grounded = true;
-    private bool ReachingRight;
-    private bool ReachingLeft;
+    public bool ReachingRight;
+    public bool ReachingLeft;
     private bool Punching;
     private bool ResetPose;
     private bool PickedUp;
@@ -315,12 +315,12 @@ public class APRController : MonoBehaviour
             
             
         //Reach Left
-        if((Input.GetKeyDown(reachLeft)||Input.GetAxis(input.leftTrigger)>=0.9f) && !KnockedOut)
+        if((Input.GetKeyDown(reachLeft)||Input.GetAxis(input.trigger)>=0.2f) && !KnockedOut)
         {
             ReachingLeft = true;
         }
             
-        if((Input.GetKeyUp(reachLeft) || Input.GetAxis(input.leftTrigger) < 0.9f) && !KnockedOut)
+        if((Input.GetKeyUp(reachLeft) || Input.GetAxis(input.trigger) < 0.2f&& Input.GetAxis(input.trigger) > -0.1f) && !KnockedOut)
         {
             ReachingLeft = false;
             PickedUp = false;
@@ -329,12 +329,12 @@ public class APRController : MonoBehaviour
             
             
         //Reach Right
-        if((Input.GetKeyDown(reachRight) || Input.GetAxis(input.rightTrigger) >= 0.9f) && !KnockedOut)
+        if((Input.GetKeyDown(reachRight) || Input.GetAxis(input.trigger) <= -0.9f) && !KnockedOut)
         {
             ReachingRight = true;
         }
             
-        if((Input.GetKeyUp(reachRight) || Input.GetAxis(input.rightTrigger) < 0.9f) && !KnockedOut)
+        if((Input.GetKeyUp(reachRight) || Input.GetAxis(input.trigger) > -0.2f&&Input.GetAxis(input.trigger) < 0.1f) && !KnockedOut)
         {
              ReachingRight = false;
              PickedUp = false;

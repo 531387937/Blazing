@@ -33,8 +33,7 @@ public class PlayerInput
         }
         horizontal = "Horizontal" + playerNum.ToString();
         vertical = "Vertical" + playerNum.ToString();
-        leftTrigger = "LeftTrigger" + playerNum.ToString();
-        rightTrigger = "RightTrigger" + playerNum.ToString();
+        trigger = "Trigger" + playerNum.ToString();
     }
     /// <summary>
     /// 0--A
@@ -47,6 +46,5 @@ public class PlayerInput
     public KeyCode[] button = null;
     public string horizontal;
     public string vertical;
-    public string leftTrigger;
-    public string rightTrigger;
+    public string trigger;
 }

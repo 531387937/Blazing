@@ -1,53 +1,153 @@
-﻿Shader "Custom/STest"
+﻿Shader "Toon"
 {
-    Properties
-    {
-        _Color ("Color", Color) = (1,1,1,1)
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-        LOD 200
+	// Properties are like public variables in C#.
+	// The same variables are declared again below.
+	Properties
+	{
+		_Color("Color", Color) = (0.5, 0.65, 1, 1)
+		_MainTex("Main Texture", 2D) = "white" {}
 
-        CGPROGRAM
-        // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+	// we are storing HDR ambient color, which
+	// offers greater range and accuracy.
+	[HDR]
+	_AmbientColor("Ambient Color", Color) = (0.4, 0.4, 0.4, 1)
+	[HDR]
+	_SpecularColor("Specular Color", Color) = (0.9, 0.9, 0.9, 1)
+	_Glossiness("Glossiness", Float) = 1024
+	[HDR]
+	_RimColor("Rim Color", Color) = (1,1,1,1)
+	_RimAmount("Rim Amount", Range(0, 1)) = 0.716
+		// Control how far the rim extends along the lit surface
+		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
+	}
 
-        // Use shader model 3.0 target, to get nicer looking lighting
-        #pragma target 3.0
+		// Container for the shader code.
+		SubShader
+	{
+		Pass
+		{
+		// Tags specify properties of the shader.
+		// Setup forward rendering to receive only directional light data.
+		Tags
+		{
+			"LightMode" = "ForwardBase"
+			"PassFlags" = "OnlyDirectional"
+		}
 
-        sampler2D _MainTex;
+		CGPROGRAM
+		#pragma vertex vert
+		#pragma fragment frag
+		// Compile multiple versions of this shader depending on lighting settings.
+		#pragma multi_compile_fwdbase
+		#pragma target 3.0
 
-        struct Input
-        {
-            float2 uv_MainTex;
-        };
+		#include "UnityCG.cginc"
+		#include "Lighting.cginc"
+		#include "AutoLight.cginc"
 
-        half _Glossiness;
-        half _Metallic;
-        fixed4 _Color;
+		// Vertex shader input
+		struct appdata
+		{
+			float4 vertex : POSITION;
+			float4 uv : TEXCOORD0;
+			float3 normal : NORMAL;
+		};
 
-        // Add instancing support for this shader. You need to check 'Enable Instancing' on materials that use the shader.
-        // See https://docs.unity3d.com/Manual/GPUInstancing.html for more information about instancing.
-        // #pragma instancing_options assumeuniformscaling
-        UNITY_INSTANCING_BUFFER_START(Props)
-            // put more per-instance properties here
-        UNITY_INSTANCING_BUFFER_END(Props)
+	// Vertex shader output, also Fragment shader input
+	struct v2f
+	{
+		float4 pos : SV_POSITION;
+		float2 uv : TEXCOORD0;
+		float3 worldNormal: NORMAL;
+		float3 viewDir: TEXCOORD1;
+		// Macro found in Autolight.cginc. Declares a vector4
+		// into the TEXCOORD2 semantic with varying precision 
+		// depending on platform target.
+		SHADOW_COORDS(2)
+	};
 
-        void surf (Input IN, inout SurfaceOutputStandard o)
-        {
-            // Albedo comes from a texture tinted by color
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = c.rgb;
-            // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
-            o.Smoothness = _Glossiness;
-            o.Alpha = c.a;
-        }
-        ENDCG
-    }
-    FallBack "Diffuse"
+	sampler2D _MainTex;
+	float4 _MainTex_ST;
+
+	v2f vert(appdata v)
+	{
+		v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
+		o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+		o.worldNormal = UnityObjectToWorldNormal(v.normal);
+		o.viewDir = WorldSpaceViewDir(v.vertex);
+		// Defined in Autolight.cginc. Assigns the above shadow coordinate
+		// by transforming the vertex from world space to shadow-map space.
+		TRANSFER_SHADOW(o)
+		return o;
+	}
+
+	float4 _Color;
+	float4 _AmbientColor;
+	float4 _SpecularColor;
+	float _Glossiness;
+	float4 _RimColor;
+	float _RimAmount;
+	float _RimThreshold;
+
+	float4 frag(v2f i) : SV_Target
+	{
+		// Diffuse light
+		float3 normal = normalize(i.worldNormal);
+		float NdotL = dot(_WorldSpaceLightPos0, normal);
+
+		// Cast and Receive Shadows
+		// Samples the shadow map and returns a value between 0 and 1,
+		// where 0 is no shadow and 1 is fully covered by shadow
+		float shadow = SHADOW_ATTENUATION(i);
+
+		// Using smoothstep softens the edge between light and dark while
+		// clamping lightIntensity. The effect of this is explained in the
+		// project writeup.
+		float lightIntensity;
+		if (NdotL < 0.5) {
+			lightIntensity = smoothstep(0, 0.01, NdotL * shadow) / 2.0;
+		}
+else {
+ lightIntensity = smoothstep(0.5, 0.51, NdotL * shadow) / 2.0 + 0.5;
+}
+
+
+		// factor in the color of the main directional light.
+		// _LightColor 0 is declared in Lighting.cginc.
+		float4 diffLight = lightIntensity * _LightColor0;
+
+
+		// Specular Light
+		float3 viewDir = normalize(i.viewDir);
+		float3 halfVec = normalize(_WorldSpaceLightPos0 + viewDir);
+		float NdotH = dot(normal, halfVec);
+		// multiply NdotH by lightIntensity achieves a sim
+		float specIntensity = pow(NdotH * lightIntensity, _Glossiness);
+		// Again, smoothstep clamps values between 0 and 1 to achieve
+		// toonified look, while softening the edges of the highlight
+		specIntensity = smoothstep(0.005, 0.01, specIntensity);
+		float4 specLight = specIntensity * _SpecularColor;
+
+		// Rim Light: illuminates edge of an object
+		// The less the angle between normal and view direction,
+		// the closer the fragment is to the edge, and the stronger
+		// the rim illumination.
+		float4 rimDot = 1 - dot(viewDir, normal);
+		// Smoothstep similar to before. We multiply rimDot by NdotL
+		// to ensure only illuminated surfaces of the object has rimLight
+		float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
+		rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
+		float4 rimLight = rimIntensity * _RimColor;
+
+		float4 sample = tex2D(_MainTex, i.uv);
+
+		return _Color * sample * (_AmbientColor + diffLight + specLight + rimLight);
+	}
+	ENDCG
+}
+
+// Use Unity's shadow casting shader
+UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
+	}
 }

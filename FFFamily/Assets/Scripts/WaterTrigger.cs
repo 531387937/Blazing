@@ -8,7 +8,7 @@ public class WaterTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.Instance.audioManager.DropInWater();
+            GameManager.Instance.audioManager.PlaySound("落水声");
             }
     }
 }
