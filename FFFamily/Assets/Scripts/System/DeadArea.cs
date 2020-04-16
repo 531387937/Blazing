@@ -10,8 +10,8 @@ public class DeadArea : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //other.gameObject.GetComponent<RagdollController>().Ragdoll2OnlyAnim();
-            other.gameObject.GetComponent<Rigidbody>().Sleep();
-            PlayerRecover(other.gameObject.GetComponent<RagdollController>().playerNum);
+            //other.gameObject.GetComponent<Rigidbody>().Sleep();
+            //PlayerRecover(other.gameObject.GetComponent<RagdollController>().playerNum);
 
 
             //other.gameObject.transform.parent.GetChild(0).gameObject.SetActive(false);

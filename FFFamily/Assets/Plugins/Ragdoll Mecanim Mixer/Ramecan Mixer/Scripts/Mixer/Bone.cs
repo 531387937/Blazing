@@ -129,33 +129,6 @@ namespace RagdollMecanimMixer {
         }
         private JointDrive drive = new JointDrive();
 
-        public bool noPhy
-        {
-            get { return nophy; }
-            set
-            {
-                if (value != noPhy)
-                {
-                    JointDrive j = new JointDrive();
-                    if (value)
-                    {
-                        j = joint.slerpDrive;
-                        j.positionSpring = joint.slerpDrive.positionSpring / 100;
-                        j.positionDamper = joint.slerpDrive.positionDamper;
-                        joint.slerpDrive = j;
-                    }
-                    else
-                    {
-                        j = joint.slerpDrive;
-                        j.positionSpring = joint.slerpDrive.positionSpring * 100;
-                        j.positionDamper = joint.slerpDrive.positionDamper;
-                        joint.slerpDrive = j;
-                    }
-                    nophy = value;
-                }
-            }
-        }
-        private bool nophy = false;
     }
     
 }

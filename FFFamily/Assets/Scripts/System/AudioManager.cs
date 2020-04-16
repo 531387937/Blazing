@@ -2,22 +2,58 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager :MonoBehaviour
 {
-    public AudioSource bgm;
-    public AudioSource dropInWater;
-    public AudioSource[] hit;
-    private void Start()
-    {
-    }
+    private List<AudioSource> audioPlayers = new List<AudioSource>();
+    private Dictionary<string, AudioClip> audios = new Dictionary<string, AudioClip>();
+    public Queue<AudioSource> freePlayers = new Queue<AudioSource>();
 
+    private string path = "Audio/音效/";
+    private void Awake()
+    {
+        PlaySound("bgm",true);
+    }
+    private void Update()
+    {
+        for(int i = 0;i<audioPlayers.Count;i++)
+        {
+            if(!audioPlayers[i].isPlaying)
+            {
+                freePlayers.Enqueue(audioPlayers[i]);
+                audioPlayers.RemoveAt(i);
+            }
+        }
+    }
     public void PlayHit()
     {
-        hit[Random.Range(0, hit.Length)].Play();
+
     }
 
     public void DropInWater()
     {
-        dropInWater.Play();
+        
+    }
+
+    public void PlaySound(string name,bool loop = false)
+    {
+        if(freePlayers.Count<1)
+        {
+            GameObject player = new GameObject();
+            player.transform.SetParent(this.transform);
+            freePlayers.Enqueue( player.AddComponent<AudioSource>());
+            
+        }
+        AudioSource audio = freePlayers.Dequeue();
+        audio.playOnAwake = false;
+        AudioClip clip;
+        if(!audios.TryGetValue(name,out clip))
+        {
+            clip = Resources.Load<AudioClip>(path + name);
+            audios.Add(name, clip);
+        }
+        audio.clip = clip;
+        audio.loop = loop;
+        audioPlayers.Add(audio);
+        audio.Play();
     }
 }
