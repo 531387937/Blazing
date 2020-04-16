@@ -57,6 +57,7 @@ namespace RagdollMecanimMixer
         //        bone.rbPrevRot = bone.rigidbody.rotation;
         //    }
         //}
+        public bool air = true;
         private void OnEnable()
         {
             foreach (Bone bone in bones)
@@ -128,20 +129,17 @@ namespace RagdollMecanimMixer
                             bone.joint.slerpDrive = bone.mixDrive;
                             bone.beforePositionAccuracy = bone.positionAccuracy;
                         }
-                        bone.noPhy = false;
                         if (!bone.withoutAnimation)
                             bone.joint.targetRotation = CalculateRotation(bone.joint.axis, bone.joint.secondaryAxis, bone.animLocalRotation, bone.physStartLocalRotation);
-                        else { }
-                            //bone.joint.targetRotation = Quaternion.identity;
                     }
                     //position drive
-                    if (!bone.withoutAnimation)
+                    if (!bone.withoutAnimation&&!air&&!bone.IsRoot)
                     {
                         //print(Vector3.Distance(bone.animPosition, bone.rigidbody.position));
-                        float force = Vector3.Distance(bone.animPosition, bone.rigidbody.position) * bone.positionDriveSpring *0;
-                        Vector3 direction = (bone.animPosition - bone.rigidbody.position).normalized;
+                        //float force = Vector3.Distance(bone.animPosition, bone.rigidbody.position) * bone.positionDriveSpring;
+                        //Vector3 direction = (bone.animPosition - bone.rigidbody.position).normalized;
                         Vector3 velocity = bone.rigidbody.velocity;
-                        bone.rigidbody.AddForce(force * direction - velocity * bone.positionDriveDamper, ForceMode.Acceleration);
+                        bone.rigidbody.AddForce( - velocity * bone.positionDriveDamper, ForceMode.Acceleration);
                     }
 
                     bone.kinVelocity = bone.rigidbody.velocity;
@@ -150,11 +148,6 @@ namespace RagdollMecanimMixer
                 else
                 {
                     //calculate velocity when isKinematic
-                    if (!bone.IsRoot)
-                    {
-                        //bone.joint.rotationDriveMode = RotationDriveMode.XYAndZ;
-                        bone.noPhy = true;
-                    }
                     bone.kinVelocity = (bone.rigidbody.position - bone.rbPrevPos) / Time.fixedDeltaTime;
 
                     Quaternion deltaRotation = bone.rigidbody.rotation * Quaternion.Inverse(bone.rbPrevRot);
@@ -168,12 +161,12 @@ namespace RagdollMecanimMixer
                 bone.rbPrevPos = bone.rigidbody.position;
                 bone.rbPrevRot = bone.rigidbody.rotation;
             }
-            if(states[currentState].name.Equals("die"))
-            {
-                ragdollContainer.parent.GetChild(1).transform.position = new Vector3(RootBoneRb.transform.position.x, 
-                 ragdollContainer.parent.GetChild(1).transform.position.y, 
-                    RootBoneRb.transform.position.z);
-            }
+            //if(states[currentState].name.Equals("die"))
+            //{
+            //    ragdollContainer.parent.GetChild(1).transform.position = new Vector3(RootBoneRb.transform.position.x, 
+            //     ragdollContainer.parent.GetChild(1).transform.position.y, 
+            //        RootBoneRb.transform.position.z);
+            //}
         }
 
         private void Update()

@@ -320,7 +320,7 @@ public class APRController : MonoBehaviour
             ReachingLeft = true;
         }
             
-        if((Input.GetKeyUp(reachLeft) || Input.GetAxis(input.trigger) < 0.2f&& Input.GetAxis(input.trigger) > -0.1f) && !KnockedOut)
+        if((Input.GetKeyUp(reachLeft) || Input.GetAxis(input.trigger) == 0) && !KnockedOut&&ReachingLeft)
         {
             ReachingLeft = false;
             PickedUp = false;
@@ -334,7 +334,7 @@ public class APRController : MonoBehaviour
             ReachingRight = true;
         }
             
-        if((Input.GetKeyUp(reachRight) || Input.GetAxis(input.trigger) > -0.2f&&Input.GetAxis(input.trigger) < 0.1f) && !KnockedOut)
+        if((Input.GetKeyUp(reachRight) || Input.GetAxis(input.trigger) ==0 ) && !KnockedOut&&ReachingRight)
         {
              ReachingRight = false;
              PickedUp = false;
@@ -1077,6 +1077,7 @@ public class APRController : MonoBehaviour
         {
             for (int j = 0; j < APR_Parts.Length; j++)
             {
+                print(APR_Parts[j].name+ anim.animation[i].bones[j].rotaThis);
                 if (anim.animation[i].bones[j].rotaThis)
                 {
                     APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
@@ -1089,14 +1090,9 @@ public class APRController : MonoBehaviour
             }
             yield return new WaitForSeconds(anim.animation[i].nextAnim);
         }
-        if (SceneManager.GetActiveScene().name == "RogdollAnim")
-        {
+
             yield return new WaitForSeconds(3);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
+
         APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
         APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation = HeadTarget;
         APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;

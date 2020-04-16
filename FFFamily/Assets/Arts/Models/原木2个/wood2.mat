@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: wood2
-  m_Shader: {fileID: 4800000, guid: c4e983d527b334c4db3d94d451111304, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0767cfd7fb2301a40984f1c82d2e5461, type: 3}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -70,6 +70,7 @@ Material:
     - _OcclusionStrength: 1
     - _Outline: 0.1
     - _Parallax: 0.02
+    - _RimAmount: 0.716
     - _RimPower: 4
     - _RimThreshold: 0.461
     - _ShadowBrightness: 0.6
@@ -82,9 +83,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _AmbientColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _Specular: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 1}
