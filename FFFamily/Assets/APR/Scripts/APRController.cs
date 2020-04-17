@@ -1083,7 +1083,7 @@ public class APRController : MonoBehaviour
                 if (anim.animation[i].bones[j].rotaThis)
                 {
                     if(j<=10)
-                    APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts[j].transform.localRotation);
+                    APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
                     if (anim.animation[i].bones[j].force != 0)
                     {
                         APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * anim.animation[i].bones[j].force, ForceMode.Impulse);
