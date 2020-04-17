@@ -118,6 +118,7 @@ public class RagdollAnimEditor : Editor
             {
                 Handles.color = Color.red;
                 Handles.CubeHandleCap(1, debugObj.transform.position, Quaternion.Euler(debugObj.transform.parent.InverseTransformVector(creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation)), 0.5f, EventType.Repaint);
+            Handles.PositionHandle(debugObj.transform.position, Quaternion.Euler(debugObj.transform.parent.InverseTransformVector(creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation)));
                 EditorGUI.BeginChangeCheck();
                 Quaternion q = Handles.RotationHandle(Quaternion.Euler(debugObj.transform.parent.InverseTransformVector(creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation)), debugObj.transform.position);
                 if (EditorGUI.EndChangeCheck())

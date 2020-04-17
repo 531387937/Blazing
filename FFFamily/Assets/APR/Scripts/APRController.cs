@@ -65,7 +65,7 @@ public class APRController : MonoBehaviour
     private bool ResetPose;
     private bool PickedUp;
     private bool Threw;
-    
+    private bool PlayingAnim;
     //Active Ragdoll Player parts
 	public GameObject
 	//
@@ -171,12 +171,7 @@ public class APRController : MonoBehaviour
             //14
             LeftHand.gameObject
 		};
-        APR_Parts_Orgin = new Quaternion[APR_Parts.Length];
-        // Setup original Quaternion for joint rotation
-        for(int i = 0;i<APR_Parts.Length;i++)
-        {
-            APR_Parts_Orgin[i] = APR_Parts[i].transform.localRotation;
-        }
+        
 		//Setup original pose for joint drives
         BodyTarget = APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation;
 		HeadTarget = APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation;
@@ -189,8 +184,16 @@ public class APRController : MonoBehaviour
         UpperLeftLegTarget = APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation;
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
 	}
-	
-	//Call Update Functions
+    private void Start()
+    {
+        APR_Parts_Orgin = new Quaternion[APR_Parts.Length];
+        // Setup original Quaternion for joint rotation
+        for(int i = 0;i<APR_Parts.Length;i++)
+        {
+            APR_Parts_Orgin[i] = APR_Parts[i].transform.localRotation;
+        }
+    }
+    //Call Update Functions
     void Update()
     {
     
@@ -751,7 +754,7 @@ public class APRController : MonoBehaviour
 		}
 		
 		//Landed
-		if(!Landed && Grounded && !isJumping && !ReachingRight && !ReachingLeft)
+		if(!Landed && Grounded && !isJumping && !ReachingRight && !ReachingLeft&&!PlayingAnim)
 		{
 			Landed = true;
             ResetPose = true;
@@ -764,12 +767,12 @@ public class APRController : MonoBehaviour
             {
                 //upper arms pose
                 APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.58f, -0.88f, 0.67f, 1);
-                
+                print(new Quaternion(0.58f, -0.88f, 0.67f, 1).eulerAngles);
                 //lower arms pose
                 APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0.12f, 1);
-                
+                print(new Quaternion(0, 0, 0.12f, 1).eulerAngles);
                 //Body pose
-                 APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0, 1);
+                APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0, 1);
             }
             
             else if(PickedUp)
@@ -902,7 +905,6 @@ public class APRController : MonoBehaviour
 			inAir = false;
 			GettingUp = false;
 			Landed = false;
-			
 			//reset body pose after fall
 			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0, 1);
 		}
@@ -1067,6 +1069,7 @@ public class APRController : MonoBehaviour
     {
         if(anim!=null&&anim.animation.Count>=1)
         {
+            PlayingAnim = true;
             StartCoroutine(PlayAnims(anim));
         }
     }
@@ -1077,14 +1080,14 @@ public class APRController : MonoBehaviour
         {
             for (int j = 0; j < APR_Parts.Length; j++)
             {
-                print(APR_Parts[j].name+ anim.animation[i].bones[j].rotaThis);
                 if (anim.animation[i].bones[j].rotaThis)
                 {
-                    APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
-                    print(APR_Parts_Orgin[i].eulerAngles);
+                    if(j<=10)
+                    APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts[j].transform.localRotation);
                     if (anim.animation[i].bones[j].force != 0)
                     {
                         APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * anim.animation[i].bones[j].force, ForceMode.Impulse);
+                        APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * anim.animation[i].bones[j].force, ForceMode.Impulse);
                     }
                 }
             }
@@ -1092,7 +1095,8 @@ public class APRController : MonoBehaviour
         }
 
             yield return new WaitForSeconds(3);
-
+        PlayingAnim = false;
+        //ResetPose = true;
         APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
         APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation = HeadTarget;
         APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
