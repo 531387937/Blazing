@@ -739,7 +739,7 @@ public class APRController : MonoBehaviour
 	void Posing()
 	{
 		//Jump pose
-		if(inAir)
+		if(inAir&&!PlayingAnim)
 		{
 			//upper arms pose
 			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0, 1);
@@ -1015,27 +1015,13 @@ public class APRController : MonoBehaviour
 			
 			(APR_Parts[0].GetComponent<Rigidbody>().mass * APR_Parts[0].transform.position + 
             APR_Parts[1].GetComponent<Rigidbody>().mass * APR_Parts[1].transform.position +
-            APR_Parts[2].GetComponent<Rigidbody>().mass * APR_Parts[2].transform.position +
-            APR_Parts[3].GetComponent<Rigidbody>().mass * APR_Parts[3].transform.position +
-            APR_Parts[4].GetComponent<Rigidbody>().mass * APR_Parts[4].transform.position +
-            APR_Parts[5].GetComponent<Rigidbody>().mass * APR_Parts[5].transform.position +
-            APR_Parts[6].GetComponent<Rigidbody>().mass * APR_Parts[6].transform.position +
-			APR_Parts[7].GetComponent<Rigidbody>().mass * APR_Parts[7].transform.position +
-			APR_Parts[8].GetComponent<Rigidbody>().mass * APR_Parts[8].transform.position +
-			APR_Parts[9].GetComponent<Rigidbody>().mass * APR_Parts[9].transform.position +
-			APR_Parts[10].GetComponent<Rigidbody>().mass * APR_Parts[10].transform.position +
-			APR_Parts[11].GetComponent<Rigidbody>().mass * APR_Parts[11].transform.position +
-			APR_Parts[12].GetComponent<Rigidbody>().mass * APR_Parts[12].transform.position) 
+            APR_Parts[2].GetComponent<Rigidbody>().mass * APR_Parts[2].transform.position 
+            ) 
             
             /
 			
             (APR_Parts[0].GetComponent<Rigidbody>().mass + APR_Parts[1].GetComponent<Rigidbody>().mass +
-            APR_Parts[2].GetComponent<Rigidbody>().mass + APR_Parts[3].GetComponent<Rigidbody>().mass +
-            APR_Parts[4].GetComponent<Rigidbody>().mass + APR_Parts[5].GetComponent<Rigidbody>().mass +
-            APR_Parts[6].GetComponent<Rigidbody>().mass + APR_Parts[7].GetComponent<Rigidbody>().mass +
-			APR_Parts[8].GetComponent<Rigidbody>().mass + APR_Parts[9].GetComponent<Rigidbody>().mass +
-			APR_Parts[10].GetComponent<Rigidbody>().mass + APR_Parts[11].GetComponent<Rigidbody>().mass +
-			APR_Parts[12].GetComponent<Rigidbody>().mass);
+            APR_Parts[2].GetComponent<Rigidbody>().mass);
 			
 			COMP.position = CenterOfMassPoint;
 	}
@@ -1093,7 +1079,7 @@ public class APRController : MonoBehaviour
             }
             yield return new WaitForSeconds(anim.animation[i].nextAnim);
         }
-
+        print((APR_Parts_Orgin[4] * Quaternion.Inverse(APR_Parts_Orgin[3])* Quaternion.Euler(anim.animation[0].bones[4].targetRotation)).eulerAngles);
             yield return new WaitForSeconds(3);
         PlayingAnim = false;
         //ResetPose = true;

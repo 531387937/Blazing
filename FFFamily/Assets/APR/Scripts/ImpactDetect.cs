@@ -14,7 +14,7 @@ public class ImpactDetect : MonoBehaviour
 	{
         
         //Knockout by impact
-		if(col.relativeVelocity.magnitude > KnockoutForce)
+		if(col.relativeVelocity.magnitude > KnockoutForce&&col.transform.root!=transform.root)
 		{
 			APR_Player.ActivateRagdoll();
             
@@ -27,7 +27,7 @@ public class ImpactDetect : MonoBehaviour
 		}
         
         //Sound on impact
-        if(col.relativeVelocity.magnitude > ImpactForce)
+        if(col.relativeVelocity.magnitude > ImpactForce && col.transform.root != transform.root)
         {
             if(!SoundSource.isPlaying)
             {
