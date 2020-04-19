@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 432c67062a97d834292121ee2cb550d8, type: 3}
-  m_Name: defence
+  m_Name: kick
   m_EditorClassIdentifier: 
   animation:
   - name: AnimationClip1
-    nextAnim: 0.1
+    nextAnim: 0.3
     bones:
     - name: APR_Root
       rotaThis: 0
@@ -29,11 +29,11 @@ MonoBehaviour:
       targetRotation: {x: 50.747353, y: 0, z: 0}
       force: 0
     - name: APR_UpperRightArm
-      rotaThis: 1
+      rotaThis: 0
       targetRotation: {x: -100, y: 0, z: 0}
       force: 0
     - name: APR_LowerRightArm
-      rotaThis: 1
+      rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 90}
       force: 0
     - name: APR_UpperLeftArm
@@ -45,12 +45,12 @@ MonoBehaviour:
       targetRotation: {x: 357.62158, y: 185.1796, z: 193.37303}
       force: 0
     - name: APR_UpperRightLeg
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      rotaThis: 1
+      targetRotation: {x: 30, y: 0, z: 0}
       force: 0
     - name: APR_LowerRightLeg
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      rotaThis: 1
+      targetRotation: {x: 90, y: 0, z: 0}
       force: 0
     - name: APR_UpperLeftLeg
       rotaThis: 0
@@ -64,6 +64,69 @@ MonoBehaviour:
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
       force: 0
+    - name: APR_LeftFoot
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_RightHand
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_LeftHand
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+  - name: AnimationClip2
+    nextAnim: 0
+    bones:
+    - name: APR_Root
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_Body
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_Head
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_UpperRightArm
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_LowerRightArm
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_UpperLeftArm
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_LowerLeftArm
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_UpperRightLeg
+      rotaThis: 1
+      targetRotation: {x: -30, y: 0, z: 0}
+      force: 0
+    - name: APR_LowerRightLeg
+      rotaThis: 1
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_UpperLeftLeg
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_LowerLeftLeg
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+    - name: APR_RightFoot
+      rotaThis: 1
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 20
     - name: APR_LeftFoot
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
