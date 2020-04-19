@@ -520,32 +520,35 @@ public class APRController : MonoBehaviour
             Alert_Leg_Right = false;
             Alert_Leg_Left = false;
         }
-		
-		//Check direction to walk when off balance
+
+        //Check direction to walk when off balance
         //Backwards
-		if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
+        if (!PlayingAnim&&!inAir)
         {
-            WalkBackward = true;
-        }
-        else
-        {
-			if(!isKeyDown)
-			{
-				WalkBackward = false;
-			}
-        }
-        
-        //Forward
-        if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
-        {
-            WalkForward = true;
-        }
-        else
-        {
-            if(!isKeyDown)
-			{
-				WalkForward = false;
-			}
+            if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
+            {
+                WalkBackward = true;
+            }
+            else
+            {
+                if (!isKeyDown)
+                {
+                    WalkBackward = false;
+                }
+            }
+
+            //Forward
+            if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
+            {
+                WalkForward = true;
+            }
+            else
+            {
+                if (!isKeyDown)
+                {
+                    WalkForward = false;
+                }
+            }
         }
 	}
 	
@@ -558,6 +561,7 @@ public class APRController : MonoBehaviour
 	{
 		if(Grounded)
 		{
+            print("!!!!!!!!!!!!!!!!!");
 			//checking which leg to step with based on direction
 			if (WalkForward)
 			{
@@ -712,11 +716,11 @@ public class APRController : MonoBehaviour
 				inAir = true;
                 Landed = false;
                 
-				var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.up * jumpForce;
+				var v3 = Vector3.up * jumpForce;
 				v3.x = APR_Parts[0].GetComponent<Rigidbody>().velocity.x;
 				v3.z = APR_Parts[0].GetComponent<Rigidbody>().velocity.z;
 				APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
-			}
+        }
 
 		if (isJumping)
 		{
@@ -901,6 +905,7 @@ public class APRController : MonoBehaviour
 	{
 		if(balanced && !isJumping)
 		{
+
 			Grounded = true;
 			inAir = false;
 			GettingUp = false;
@@ -1011,20 +1016,34 @@ public class APRController : MonoBehaviour
 	////////////////////////////
 	void CenterOfMass()
 	{
-			CenterOfMassPoint =
-			
-			(APR_Parts[0].GetComponent<Rigidbody>().mass * APR_Parts[0].transform.position + 
-            APR_Parts[1].GetComponent<Rigidbody>().mass * APR_Parts[1].transform.position +
-            APR_Parts[2].GetComponent<Rigidbody>().mass * APR_Parts[2].transform.position 
-            ) 
-            
-            /
-			
-            (APR_Parts[0].GetComponent<Rigidbody>().mass + APR_Parts[1].GetComponent<Rigidbody>().mass +
-            APR_Parts[2].GetComponent<Rigidbody>().mass);
-			
-			COMP.position = CenterOfMassPoint;
-	}
+        CenterOfMassPoint =
+
+        (APR_Parts[0].GetComponent<Rigidbody>().mass * APR_Parts[0].transform.position +
+        APR_Parts[1].GetComponent<Rigidbody>().mass * APR_Parts[1].transform.position +
+        APR_Parts[2].GetComponent<Rigidbody>().mass * APR_Parts[2].transform.position +
+        APR_Parts[3].GetComponent<Rigidbody>().mass * APR_Parts[3].transform.position +
+        APR_Parts[4].GetComponent<Rigidbody>().mass * APR_Parts[4].transform.position +
+        APR_Parts[5].GetComponent<Rigidbody>().mass * APR_Parts[5].transform.position +
+        APR_Parts[6].GetComponent<Rigidbody>().mass * APR_Parts[6].transform.position +
+        APR_Parts[7].GetComponent<Rigidbody>().mass * APR_Parts[7].transform.position +
+        APR_Parts[8].GetComponent<Rigidbody>().mass * APR_Parts[8].transform.position +
+        APR_Parts[9].GetComponent<Rigidbody>().mass * APR_Parts[9].transform.position +
+        APR_Parts[10].GetComponent<Rigidbody>().mass * APR_Parts[10].transform.position +
+        APR_Parts[11].GetComponent<Rigidbody>().mass * APR_Parts[11].transform.position +
+        APR_Parts[12].GetComponent<Rigidbody>().mass * APR_Parts[12].transform.position)
+
+        /
+
+        (APR_Parts[0].GetComponent<Rigidbody>().mass + APR_Parts[1].GetComponent<Rigidbody>().mass +
+        APR_Parts[2].GetComponent<Rigidbody>().mass + APR_Parts[3].GetComponent<Rigidbody>().mass +
+        APR_Parts[4].GetComponent<Rigidbody>().mass + APR_Parts[5].GetComponent<Rigidbody>().mass +
+        APR_Parts[6].GetComponent<Rigidbody>().mass + APR_Parts[7].GetComponent<Rigidbody>().mass +
+        APR_Parts[8].GetComponent<Rigidbody>().mass + APR_Parts[9].GetComponent<Rigidbody>().mass +
+        APR_Parts[10].GetComponent<Rigidbody>().mass + APR_Parts[11].GetComponent<Rigidbody>().mass +
+        APR_Parts[12].GetComponent<Rigidbody>().mass);
+
+        COMP.position = CenterOfMassPoint;
+    }
     
     
 	
@@ -1068,8 +1087,10 @@ public class APRController : MonoBehaviour
             {
                 if (anim.animation[i].bones[j].rotaThis)
                 {
-                    if(j<=10)
-                    APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
+                    if (j <= 10)
+                    { APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
+                        print(APR_Parts[j].name);
+                    }
                     if (anim.animation[i].bones[j].force != 0)
                     {
                         APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * anim.animation[i].bones[j].force, ForceMode.Impulse);
