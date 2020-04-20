@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 432c67062a97d834292121ee2cb550d8, type: 3}
-  m_Name: attack(1)
+  m_Name: StickAttack
   m_EditorClassIdentifier: 
   animation:
   - name: AnimationClip1
@@ -30,19 +30,19 @@ MonoBehaviour:
       force: 0
     - name: APR_UpperRightArm
       rotaThis: 1
-      targetRotation: {x: 7.6678853, y: 41.49843, z: 50.524513}
+      targetRotation: {x: -90, y: 0, z: 90}
       force: 0
     - name: APR_LowerRightArm
-      rotaThis: 1
-      targetRotation: {x: 48.60606, y: 334.0418, z: 115.67412}
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 30}
       force: 0
     - name: APR_UpperLeftArm
       rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      targetRotation: {x: -5, y: 23, z: 140}
       force: 0
     - name: APR_LowerLeftArm
       rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      targetRotation: {x: 0, y: 30, z: 90}
       force: 0
     - name: APR_UpperRightLeg
       rotaThis: 0
@@ -84,8 +84,8 @@ MonoBehaviour:
       targetRotation: {x: 0, y: 0, z: 0}
       force: 0
     - name: APR_Body
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      rotaThis: 1
+      targetRotation: {x: 0, y: -20, z: 0}
       force: 0
     - name: APR_Head
       rotaThis: 0
@@ -93,11 +93,11 @@ MonoBehaviour:
       force: 0
     - name: APR_UpperRightArm
       rotaThis: 1
-      targetRotation: {x: 316.55865, y: 318.41595, z: 81.87294}
+      targetRotation: {x: -60, y: -30, z: 30}
       force: 0
     - name: APR_LowerRightArm
       rotaThis: 1
-      targetRotation: {x: 318.3022, y: 301.5681, z: 96.03578}
+      targetRotation: {x: 0, y: 0, z: 60}
       force: 0
     - name: APR_UpperLeftArm
       rotaThis: 0
@@ -133,8 +133,8 @@ MonoBehaviour:
       force: 0
     - name: APR_RightHand
       rotaThis: 1
-      targetRotation: {x: 0.0000010564911, y: -0.0000013583455, z: 90}
-      force: 30
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 40
     - name: APR_LeftHand
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}

@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class APRController : MonoBehaviour
 {
+    [Header("仅限做动画时勾选，否则可能造成严重的动画播放错误")]
+    public bool CreatingAnim;
+
     [Header("测试玩家")]
     //Enable controls
     public bool useControls;
@@ -65,7 +68,11 @@ public class APRController : MonoBehaviour
     private bool ResetPose;
     private bool PickedUp;
     private bool Threw;
+
+    //是否在播放动画
     private bool PlayingAnim;
+    //Idle动画
+    public RagdollAnim resetAnim;
     //Active Ragdoll Player parts
 	public GameObject
 	//
@@ -561,7 +568,6 @@ public class APRController : MonoBehaviour
 	{
 		if(Grounded)
 		{
-            print("!!!!!!!!!!!!!!!!!");
 			//checking which leg to step with based on direction
 			if (WalkForward)
 			{
@@ -771,10 +777,8 @@ public class APRController : MonoBehaviour
             {
                 //upper arms pose
                 APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.58f, -0.88f, 0.67f, 1);
-                print(new Quaternion(0.58f, -0.88f, 0.67f, 1).eulerAngles);
                 //lower arms pose
                 APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0.12f, 1);
-                print(new Quaternion(0, 0, 0.12f, 1).eulerAngles);
                 //Body pose
                 APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0, 0, 0, 1);
             }
@@ -818,20 +822,34 @@ public class APRController : MonoBehaviour
                  APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.1f, 0, 0, 1);
             }
         }
-        
-        
+
+
         //Reset pose
-        if(ResetPose && !Punching && !Jump)
+        if (ResetPose && !Punching && !Jump)
         {
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
+            APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation = HeadTarget;
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
-			APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
+            APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
-			APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
-            
+            APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
+            if (resetAnim != null)
+            {
+                {
+                    for (int j = 0; j < APR_Parts.Length; j++)
+                    {
+                        if (resetAnim.animation[0].bones[j].rotaThis)
+                        {
+                            if (j <= 10)
+                            {
+                                APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation=resetAnim.animation[0].bones[j].jointTarget;
+                            }
+                        }
+                    }
+                }
+            }
             ResetPose = false;
         }
-		
 	}
     
     
@@ -923,9 +941,9 @@ public class APRController : MonoBehaviour
     
 	
 	
-	//////////////////////
-	//Activate Full Ragdoll
-	//////////////////////
+/// <summary>
+/// 转为纯布娃娃
+/// </summary>
 	public void ActivateRagdoll()
 	{
 		balanced = false;
@@ -1011,9 +1029,7 @@ public class APRController : MonoBehaviour
 	
 	
     
-    ////////////////////////////
-	//Calculating Center of mass
-	////////////////////////////
+	//计算质心
 	void CenterOfMass()
 	{
         CenterOfMassPoint =
@@ -1072,7 +1088,8 @@ public class APRController : MonoBehaviour
     }
     public void PlayAnim(RagdollAnim anim)
     {
-        if(anim!=null&&anim.animation.Count>=1)
+        //禁止套娃
+        if(anim!=null&&anim.animation.Count>=1&&!PlayingAnim)
         {
             PlayingAnim = true;
             StartCoroutine(PlayAnims(anim));
@@ -1088,8 +1105,16 @@ public class APRController : MonoBehaviour
                 if (anim.animation[i].bones[j].rotaThis)
                 {
                     if (j <= 10)
-                    { APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
-                        print(APR_Parts[j].name);
+                    {
+                        if (CreatingAnim)
+                        {
+                            APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
+                            anim.animation[i].bones[j].jointTarget = APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation;
+                        }
+                        else
+                        {
+                            APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = anim.animation[i].bones[j].jointTarget;
+                        }
                     }
                     if (anim.animation[i].bones[j].force != 0)
                     {
@@ -1100,19 +1125,8 @@ public class APRController : MonoBehaviour
             }
             yield return new WaitForSeconds(anim.animation[i].nextAnim);
         }
-        print((APR_Parts_Orgin[4] * Quaternion.Inverse(APR_Parts_Orgin[3])* Quaternion.Euler(anim.animation[0].bones[4].targetRotation)).eulerAngles);
             yield return new WaitForSeconds(3);
         PlayingAnim = false;
-        //ResetPose = true;
-        APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
-        APR_Parts[2].GetComponent<ConfigurableJoint>().targetRotation = HeadTarget;
-        APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
-        APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
-        APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
-        APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
-        APR_Parts[7].GetComponent<ConfigurableJoint>().targetRotation = UpperRightLegTarget;
-        APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation = LowerRightLegTarget;
-        APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftLegTarget;
-        APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftLegTarget;
+        ResetPose = true;
     }
 }

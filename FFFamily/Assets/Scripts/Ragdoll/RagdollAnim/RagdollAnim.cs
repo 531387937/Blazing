@@ -14,6 +14,8 @@ public class RagdollBones
     [Header("向该关节施加的力")]
     public float force;
 
+    public Quaternion jointTarget;
+
 }
 [System.Serializable]
 public class RagdollClip

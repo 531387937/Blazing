@@ -37,6 +37,7 @@ ModelImporter:
     4300000: Quad Sphere
     9500000: //RootNode
     13700000: Quad Sphere
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -49,7 +50,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftFoot' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -57,7 +59,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -104,7 +106,82 @@ ModelImporter:
   humanDescription:
     serializedVersion: 2
     human: []
-    skeleton: []
+    skeleton:
+    - name: Onesie(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Quad Sphere
+      parentName: Onesie(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.5, y: 0.5, z: 0.5}
+    - name: Armature
+      parentName: Onesie(Clone)
+      position: {x: -0, y: 0.43062773, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Bone
+      parentName: Armature
+      position: {x: -0, y: -0.0009996718, z: 0}
+      rotation: {x: 0.71442646, y: 0, z: -0, w: 0.69971055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bone.001
+      parentName: Bone
+      position: {x: -0, y: 0.0036951792, z: -4.1909514e-11}
+      rotation: {x: -0.010405729, y: 0, z: -0, w: 0.9999459}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bone.002
+      parentName: Bone.001
+      position: {x: -0, y: 0.004536971, z: 1.5332083e-11}
+      rotation: {x: -0.3061551, y: -0.00000011348507, z: 0.00000003649653, w: 0.95198166}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bone.003
+      parentName: Bone.002
+      position: {x: -3.5527136e-17, y: 0.0043533933, z: 0}
+      rotation: {x: 0.51058656, y: 1.7548898e-14, z: -0.00000012173331, w: 0.8598263}
+      scale: {x: 1, y: 1, z: 0.99999994}
+    - name: Bone.004
+      parentName: Bone.002
+      position: {x: -0.005998031, y: 0.0044756886, z: 0.000087736786}
+      rotation: {x: 0.17676386, y: -0.2564101, z: 0.6680811, w: 0.6757781}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Bone.005
+      parentName: Bone.004
+      position: {x: 5.5084226e-10, y: 0.0062688612, z: 6.984919e-11}
+      rotation: {x: 0.0035884872, y: 0.70657736, z: 0.012963257, w: 0.70750797}
+      scale: {x: 0.99999994, y: 1.0000001, z: 0.99999994}
+    - name: Bone.008
+      parentName: Bone.002
+      position: {x: 0.0060428833, y: 0.0044756886, z: 0.000087733984}
+      rotation: {x: 0.6904259, y: 0.71497464, z: 0.02982956, w: -0.105988644}
+      scale: {x: 0.9999998, y: 0.9999998, z: 0.99999994}
+    - name: Bone.009
+      parentName: Bone.008
+      position: {x: -4.4703483e-10, y: 0.006268863, z: 0}
+      rotation: {x: -0.0126262335, y: 0.5604642, z: 0.004636856, w: 0.82806945}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: Bone.006
+      parentName: Bone
+      position: {x: -0.0037679938, y: -0.000029458999, z: -0.00062835205}
+      rotation: {x: 0.99994594, y: -0.0000000012407558, z: -0.00000011920179, w: 0.010402449}
+      scale: {x: 1, y: 1, z: 0.9999822}
+    - name: Bone.007
+      parentName: Bone.006
+      position: {x: -8.8415796e-11, y: 0.0020729569, z: -6.3382403e-11}
+      rotation: {x: -0.00000039954452, y: -1.7655017e-20, z: 9.525714e-14, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: Bone.010
+      parentName: Bone
+      position: {x: 0.0038128458, y: -0.000029459297, z: -0.00062835217}
+      rotation: {x: 0.99994594, y: -0.0000000012407603, z: -0.00000011920222, w: 0.010402449}
+      scale: {x: 1, y: 1, z: 0.9999892}
+    - name: Bone.011
+      parentName: Bone.010
+      position: {x: -8.841577e-11, y: 0.0020729564, z: -7.934126e-11}
+      rotation: {x: -0.00000038091505, y: -1.0234477e-20, z: 9.0816243e-14, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -114,7 +191,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
