@@ -62,6 +62,7 @@ public class APRController : MonoBehaviour
 	private bool inAir;
 	private bool Landed = true;
 	private bool Grounded = true;
+    private bool armed = false;
     public bool ReachingRight;
     public bool ReachingLeft;
     private bool Punching;
@@ -71,8 +72,12 @@ public class APRController : MonoBehaviour
 
     //是否在播放动画
     private bool PlayingAnim;
+    //武器
+    private Weapon weapon;
     //Idle动画
-    public RagdollAnim resetAnim;
+    private RagdollAnim resetAnim;
+    //攻击动画
+    private RagdollAnim attackAnim;
     //Active Ragdoll Player parts
 	public GameObject
 	//
@@ -85,7 +90,8 @@ public class APRController : MonoBehaviour
 	
 	//Active Ragdoll Player Parts Array
 	private GameObject[] APR_Parts;
-    private Quaternion[] APR_Parts_Orgin;
+    [HideInInspector]
+    public Quaternion[] APR_Parts_Orgin;
     //Hands
 	public Rigidbody RightHand, LeftHand;
     
@@ -121,7 +127,7 @@ public class APRController : MonoBehaviour
 	UpperLeftLegTarget, LowerLeftLegTarget;
 
     private Dictionary<string, RagdollAnim> anims = new Dictionary<string, RagdollAnim>();
-    private string animPath = "RagdollAnim";
+    private string animPath = "RagdollAnims/";
 	
     void Awake()
 	{
@@ -842,7 +848,7 @@ public class APRController : MonoBehaviour
                         {
                             if (j <= 10)
                             {
-                                APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation=resetAnim.animation[0].bones[j].jointTarget;
+                                APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = resetAnim.animation[0].bones[j].jointTarget;
                             }
                         }
                     }
@@ -872,7 +878,7 @@ public class APRController : MonoBehaviour
 			yield return new WaitForSeconds(0.5f);
 			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
 			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.12f, -0.8f, 0, 1);
-		APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.15f, 0, 0, 1);
+		    APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.15f, 0, 0, 1);
 			
             
             //Right hand punch forward
@@ -1076,14 +1082,21 @@ public class APRController : MonoBehaviour
 			Gizmos.DrawWireSphere(COMP.position, 0.3f);
 		}
 	}
-    public void PlayAnim(string name)
+    public RagdollAnim LoadAnim(string name)
     {
         RagdollAnim anim;
-        if(!anims.TryGetValue(name,out anim))
+        if (!anims.TryGetValue(name, out anim))
         {
             anim = Resources.Load<RagdollAnim>(animPath + name);
             anims.Add(name, anim);
         }
+        return anim;
+    }
+
+    public void PlayAnim(string name)
+    {
+        RagdollAnim anim = LoadAnim(name);
+        
         PlayAnim(anim);
     }
     public void PlayAnim(RagdollAnim anim)
@@ -1109,7 +1122,6 @@ public class APRController : MonoBehaviour
                         if (CreatingAnim)
                         {
                             APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
-                            anim.animation[i].bones[j].jointTarget = APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation;
                         }
                         else
                         {
@@ -1128,5 +1140,20 @@ public class APRController : MonoBehaviour
             yield return new WaitForSeconds(3);
         PlayingAnim = false;
         ResetPose = true;
+    }
+
+    public bool OnGetWeapon(Weapon w)
+    {
+        if(armed)
+        {
+            return false;
+        }
+        armed = true;
+        weapon = w;
+        resetAnim = LoadAnim(weapon.idleAnim);
+        print(resetAnim.name);
+        attackAnim = LoadAnim(weapon.attackAnim);
+
+        return true;
     }
 }

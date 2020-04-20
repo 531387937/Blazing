@@ -33,6 +33,7 @@ public class RagdollAnimEditor : Editor
         }
         else
         {
+            EditorUtility.SetDirty(creator.ragdollAnim);
             Undo.RecordObject(creator.ragdollAnim, "Change Anim");
             GUILayout.Space(30);
             Undo.RecordObject(this, "change");
@@ -58,7 +59,6 @@ public class RagdollAnimEditor : Editor
                         {
                             tempBone.targetRotation = EditorGUILayout.Vector3Field("骨骼的旋转角度", tempBone.targetRotation);
                             tempBone.force = EditorGUILayout.FloatField("对该骨骼施加的力", tempBone.force);
-                            
                             if(GUILayout.Button("校准布娃娃目前旋转角度"))
                             {
                                 GameObject obj = creator.ragdoll.transform.FindC(tempBone.name);
@@ -109,7 +109,13 @@ public class RagdollAnimEditor : Editor
                     AssetDatabase.CreateAsset(creator.ragdollAnim, "Assets/Resources/RagdollAnims/" + animName + ".asset");
                 }
             }
-            
+            else if (File.Exists("Assets/Resources/RagdollAnims/" + creator.ragdollAnim.name + ".asset")&&Application.isPlaying)
+            {
+                if (GUILayout.Button("保存四元数数据"))
+                {
+                    SaveAnim();
+                }
+            }
         }
     }
     private void OnSceneGUI()
@@ -128,5 +134,27 @@ public class RagdollAnimEditor : Editor
                 }
             }
         
+    }
+
+    private void SaveAnim()
+    {
+        Undo.RecordObject(creator.ragdollAnim, "Save Quaternion");
+        for (int i = 0; i < creator.ragdollAnim.animation.Count; i++)
+        {
+            RagdollClip tempAnim = creator.ragdollAnim.animation[i];
+
+                for (int j = 0; j < tempAnim.bones.Length; j++)
+                {
+                
+                    RagdollBones tempBone = tempAnim.bones[j];
+                if (tempBone.rotaThis)
+                {
+                    GameObject obj = creator.ragdoll.transform.FindC(tempBone.name);
+                    tempBone.jointTarget = obj.GetComponent<ConfigurableJoint>().GetTargetRotation(Quaternion.Euler(tempBone.targetRotation), creator.ragdoll.GetComponent<APRController>().APR_Parts_Orgin[j]);
+                }
+                }
+            
+        }
+        Debug.Log("保存成功");
     }
 }

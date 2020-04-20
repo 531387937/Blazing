@@ -6,7 +6,8 @@ public class Weapon : MonoBehaviour
 {
     public Vector3 posOffset;
     public Vector3 rotOffset;
-    public RagdollAnim idleAnim;
+    public string idleAnim;
+    public string attackAnim;
     private bool weaponed = false;
     private Rigidbody rig;
     private Collider col;
@@ -28,21 +29,27 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!weaponed&&other.gameObject.tag=="Player")
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!weaponed && collision.gameObject.tag == "Player")
         {
-            var ragdoll = other.transform.root.GetComponent<APRController>();
-            var rightHand = ragdoll.RightHand;
-            var joint = gameObject.AddComponent<FixedJoint>();
-            weaponed = true;
-            col.isTrigger = false;
-            rig.isKinematic = false;
-            rig.useGravity = false;
-            transform.SetParent(rightHand.transform);
-            transform.localPosition = posOffset;
-            transform.localEulerAngles = rotOffset;
-            transform.SetParent(transform.root);
-            joint.connectedBody = rightHand;
-            
+            var ragdoll = collision.transform.root.GetComponent<APRController>();
+            if (ragdoll.OnGetWeapon(this))
+            {
+                var rightHand = ragdoll.RightHand;
+                var joint = gameObject.AddComponent<FixedJoint>();
+                weaponed = true;
+                col.isTrigger = false;
+                rig.isKinematic = false;
+                rig.useGravity = false;
+                transform.SetParent(rightHand.transform);
+                transform.localPosition = posOffset;
+                transform.localEulerAngles = rotOffset;
+                transform.SetParent(transform.root);
+                joint.connectedBody = rightHand;
+            }
         }
     }
 }
