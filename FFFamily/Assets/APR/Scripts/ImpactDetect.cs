@@ -12,7 +12,8 @@ public class ImpactDetect : MonoBehaviour
 
 	void OnCollisionEnter(Collision col)
 	{
-        
+        if(col.transform.root != transform.root)
+        print(col.relativeVelocity.magnitude);
         //Knockout by impact
 		if(col.relativeVelocity.magnitude > KnockoutForce&&col.transform.root!=transform.root)
 		{

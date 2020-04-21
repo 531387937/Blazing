@@ -25,7 +25,6 @@ public class APRController : MonoBehaviour
     public string pickupThrow = "f";
     [Header("设置为几号玩家")]
     public int PlayerNum = 1;
-    [SerializeField]
     private PlayerInput input;
     [Header("The Layer Only This Player Is On")]
     //Player Layer
@@ -62,7 +61,6 @@ public class APRController : MonoBehaviour
 	private bool inAir;
 	private bool Landed = true;
 	private bool Grounded = true;
-    private bool armed = false;
     public bool ReachingRight;
     public bool ReachingLeft;
     private bool Punching;
@@ -213,7 +211,10 @@ public class APRController : MonoBehaviour
         if(useControls)
         {
             InputControls();
-            
+            if(Input.GetKeyDown(KeyCode.J))
+            {
+                ThrowWeapon();
+            }
         }
         
         if(!KnockedOut)
@@ -460,13 +461,13 @@ public class APRController : MonoBehaviour
 
             
         //punch
-        if((Input.GetKeyDown(punchRight)||Input.GetKeyDown(input.button[5])) && !KnockedOut)
+        if((Input.GetKeyDown(punchRight)||Input.GetKeyDown(input.button[5])) && !KnockedOut&&!Punching)
         {
             Punching = true;
             PunchRight();
         }
             
-        if((Input.GetKeyDown(punchLeft) || Input.GetKeyDown(input.button[4])) && !KnockedOut)
+        if((Input.GetKeyDown(punchLeft) || Input.GetKeyDown(input.button[4])) && !KnockedOut&&!Punching)
         {
             Punching = true;
             PunchLeft();
@@ -538,7 +539,7 @@ public class APRController : MonoBehaviour
         //Backwards
         if (!PlayingAnim&&!inAir)
         {
-            if (COMP.position.z < APR_Parts[11].transform.position.z && COMP.position.z < APR_Parts[12].transform.position.z)
+            if (COMP.position.z < APR_Parts[11].transform.position.z-0.1f && COMP.position.z < APR_Parts[12].transform.position.z-0.1f)
             {
                 WalkBackward = true;
             }
@@ -551,7 +552,7 @@ public class APRController : MonoBehaviour
             }
 
             //Forward
-            if (COMP.position.z > APR_Parts[11].transform.position.z && COMP.position.z > APR_Parts[12].transform.position.z)
+            if (COMP.position.z > APR_Parts[11].transform.position.z+0.1f && COMP.position.z > APR_Parts[12].transform.position.z+0.1f)
             {
                 WalkForward = true;
             }
@@ -1144,16 +1145,42 @@ public class APRController : MonoBehaviour
 
     public bool OnGetWeapon(Weapon w)
     {
-        if(armed)
+        if(weapon!=null)
         {
             return false;
         }
-        armed = true;
         weapon = w;
         resetAnim = LoadAnim(weapon.idleAnim);
-        print(resetAnim.name);
         attackAnim = LoadAnim(weapon.attackAnim);
 
         return true;
+    }
+
+    void ThrowWeapon()
+    {
+        if (weapon != null)
+        {
+            weapon.GetComponent<FixedJoint>().breakForce = 0;
+
+            //随便扔武器
+            weapon.GetComponent<Rigidbody>().velocity *= 3;
+            weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * 10, ForceMode.Impulse);
+            weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * 30, ForceMode.Impulse);
+            weapon.GetComponent<Rigidbody>().AddForceAtPosition(APR_Parts[0].transform.forward * 5, weapon.posOffset, ForceMode.Impulse);
+            //安装动画速度扔武器
+
+            //weapon.GetComponent<Rigidbody>().AddForce(Vector3.up * 5, ForceMode.Impulse);
+            weapon.OnThrow();
+            OnLostWeapon();
+                }
+    }
+
+    void OnLostWeapon()
+    {
+        weapon.transform.SetParent(null);
+        weapon = null;
+        resetAnim = null;
+        attackAnim = null;
+        RightHand.GetComponent<Collider>().isTrigger = false;
     }
 }

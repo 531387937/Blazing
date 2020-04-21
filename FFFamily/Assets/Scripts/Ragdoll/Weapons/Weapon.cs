@@ -10,21 +10,24 @@ public class Weapon : MonoBehaviour
     public string attackAnim;
     private bool weaponed = false;
     private Rigidbody rig;
-    private Collider col;
+    private bool _throw;
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody>();
-        col = GetComponent<Collider>();
-       Quaternion q1 = Quaternion.Euler(new Vector3(30, 42, 22));
-       Quaternion q2 = Quaternion.Euler(new Vector3(-27, 3, 90));
-        Debug.Log((q1 * q2).eulerAngles);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if(_throw)
+        {
+            if(rig.velocity.magnitude<=0.2f)
+            {
+                _throw = false;
+                weaponed = false;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,11 +42,9 @@ public class Weapon : MonoBehaviour
             if (ragdoll.OnGetWeapon(this))
             {
                 var rightHand = ragdoll.RightHand;
+                rightHand.GetComponent<Collider>().isTrigger = true;
                 var joint = gameObject.AddComponent<FixedJoint>();
                 weaponed = true;
-                col.isTrigger = false;
-                rig.isKinematic = false;
-                rig.useGravity = false;
                 transform.SetParent(rightHand.transform);
                 transform.localPosition = posOffset;
                 transform.localEulerAngles = rotOffset;
@@ -51,5 +52,9 @@ public class Weapon : MonoBehaviour
                 joint.connectedBody = rightHand;
             }
         }
+    }
+    public void OnThrow()
+    {
+        _throw = true;
     }
 }

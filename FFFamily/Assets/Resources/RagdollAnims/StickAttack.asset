@@ -22,8 +22,8 @@ MonoBehaviour:
       force: 0
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_Body
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      rotaThis: 1
+      targetRotation: {x: 0, y: 10, z: 0}
       force: 0
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_Head
@@ -101,7 +101,7 @@ MonoBehaviour:
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_Body
       rotaThis: 1
-      targetRotation: {x: 0, y: -20, z: 0}
+      targetRotation: {x: 0, y: -10, z: 0}
       force: 0
       jointTarget: {x: 0, y: 0.17364818, z: 0, w: 0.9848077}
     - name: APR_Head
@@ -111,12 +111,12 @@ MonoBehaviour:
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_UpperRightArm
       rotaThis: 1
-      targetRotation: {x: -60, y: -30, z: 30}
+      targetRotation: {x: -30, y: -30, z: 40}
       force: 0
       jointTarget: {x: 0.43559575, y: -0.30618626, z: 0.53033006, w: 0.6597396}
     - name: APR_LowerRightArm
       rotaThis: 1
-      targetRotation: {x: 0, y: 0, z: 60}
+      targetRotation: {x: -10, y: 0, z: 80}
       force: 0
       jointTarget: {x: -0.000000009063679, y: -0.000000011973461, z: 0.25881904, w: 0.9659259}
     - name: APR_UpperLeftArm
@@ -162,7 +162,7 @@ MonoBehaviour:
     - name: APR_RightHand
       rotaThis: 1
       targetRotation: {x: 0, y: 0, z: 0}
-      force: 40
+      force: 50
       jointTarget: {x: -0.000000002022155, y: -0.00000001617724, z: 0.70710677, w: 0.70710677}
     - name: APR_LeftHand
       rotaThis: 0
