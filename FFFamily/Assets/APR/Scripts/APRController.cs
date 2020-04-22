@@ -124,6 +124,8 @@ public class APRController : MonoBehaviour
 	UpperRightLegTarget, LowerRightLegTarget,
 	UpperLeftLegTarget, LowerLeftLegTarget;
 
+    GameObject a;
+
     private Dictionary<string, RagdollAnim> anims = new Dictionary<string, RagdollAnim>();
     private string animPath = "RagdollAnims/";
 	
@@ -203,6 +205,8 @@ public class APRController : MonoBehaviour
         {
             APR_Parts_Orgin[i] = APR_Parts[i].transform.localRotation;
         }
+        a = new GameObject();
+        a.transform.SetParent(APR_Parts[3].transform);
     }
     //Call Update Functions
     void Update()
@@ -235,6 +239,7 @@ public class APRController : MonoBehaviour
 		  Jumping();
 		  Walking();
         }
+        a.transform.rotation = APR_Parts[4].transform.rotation;
 	}
 	
 	
@@ -1120,14 +1125,15 @@ public class APRController : MonoBehaviour
                 {
                     if (j <= 10)
                     {
-                        if (CreatingAnim)
-                        {
-                            APR_Parts[j].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(anim.animation[i].bones[j].targetRotation), APR_Parts_Orgin[j]);
-                        }
-                        else
+                        if (anim.animation[i].bones[j].jointTarget.z > 0)
                         {
                             APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = anim.animation[i].bones[j].jointTarget;
                         }
+                        else
+                        {
+                            APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(anim.animation[i].bones[j].targetRotation.x, anim.animation[i].bones[j].targetRotation.y, anim.animation[i].bones[j].targetRotation.z, 1);
+                        }
+                        
                     }
                     if (anim.animation[i].bones[j].force != 0)
                     {

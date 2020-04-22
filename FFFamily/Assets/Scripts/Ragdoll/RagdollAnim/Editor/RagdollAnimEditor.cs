@@ -12,9 +12,9 @@ public class RagdollAnimEditor : Editor
     private string animName;
     bool[] showAnim;
     GameObject debugObj = null;
+    ConfigurableJoint joint = null;
 
-    int curAnim;
-    int curBone;
+    RagdollBones curBone;
     private void OnEnable()
     {
         creator = (RagdollAnimCreator)target;
@@ -37,6 +37,7 @@ public class RagdollAnimEditor : Editor
             Undo.RecordObject(creator.ragdollAnim, "Change Anim");
             GUILayout.Space(30);
             Undo.RecordObject(this, "change");
+            GUILayout.Label("开启辅助调整后(0,0,0)状态下,x为绕蓝色轴旋转,y为绕绿色轴旋转,z为绕红色轴旋转,数字不宜太大");
             for (int i = 0;i<creator.ragdollAnim.animation.Count;i++)
             {
                 RagdollClip tempAnim = creator.ragdollAnim.animation[i];
@@ -59,25 +60,25 @@ public class RagdollAnimEditor : Editor
                         {
                             tempBone.targetRotation = EditorGUILayout.Vector3Field("骨骼的旋转角度", tempBone.targetRotation);
                             tempBone.force = EditorGUILayout.FloatField("对该骨骼施加的力", tempBone.force);
-                            if(GUILayout.Button("校准布娃娃目前旋转角度"))
-                            {
-                                GameObject obj = creator.ragdoll.transform.FindC(tempBone.name);
-                                tempBone.targetRotation = obj.transform.localRotation.eulerAngles;
-                            }
-                            if(GUILayout.Button("开启/关闭辅助调整"))
+                            if(GUILayout.Button("开启/关闭辅助调整")&&Application.isPlaying)
                             {
                                 GameObject obj = creator.ragdoll.transform.FindC(tempBone.name);
                                 if (debugObj!=obj)
                                 {
                                     debugObj = obj;
-                                    curAnim = i;
-                                    curBone = j;
+                                    joint = obj.GetComponent<ConfigurableJoint>();
+                                    curBone = tempBone;
+                                    creator.ragdoll.GetComponent<APRController>().enabled = false;
                                 }
                                 else
                                 {
                                     debugObj = null;
+                                    joint = null;
+                                    creator.ragdoll.GetComponent<APRController>().enabled = true;
                                 }
                             }
+
+                            
                         }
                         EditorGUILayout.EndVertical();
                         EditorGUILayout.Space();
@@ -122,16 +123,11 @@ public class RagdollAnimEditor : Editor
     {
             if(debugObj!=null)
             {
-                Handles.color = Color.red;
-                Handles.CubeHandleCap(1, debugObj.transform.position, Quaternion.Euler(debugObj.transform.parent.InverseTransformVector(creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation)), 0.5f, EventType.Repaint);
-            Handles.PositionHandle(debugObj.transform.position, Quaternion.Euler(debugObj.transform.parent.InverseTransformVector(creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation)));
-                EditorGUI.BeginChangeCheck();
-                Quaternion q = Handles.RotationHandle(Quaternion.Euler(debugObj.transform.parent.InverseTransformVector(creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation)), debugObj.transform.position);
-                if (EditorGUI.EndChangeCheck())
-                {
-                Undo.RecordObject(creator.ragdollAnim, "Free Rotate");
-                creator.ragdollAnim.animation[curAnim].bones[curBone].targetRotation =q.eulerAngles;
-                }
+            ConfigurableJoint j = debugObj.GetComponent<ConfigurableJoint>();
+            Quaternion q1 = Quaternion.LookRotation(joint.axis, joint.secondaryAxis);
+            q1 = debugObj.transform.rotation*q1;
+            Handles.PositionHandle(debugObj.transform.position,q1);
+            joint.targetRotation = new Quaternion(curBone.targetRotation.x, curBone.targetRotation.y, curBone.targetRotation.z, 1);
             }
         
     }
@@ -150,7 +146,7 @@ public class RagdollAnimEditor : Editor
                 if (tempBone.rotaThis)
                 {
                     GameObject obj = creator.ragdoll.transform.FindC(tempBone.name);
-                    tempBone.jointTarget = obj.GetComponent<ConfigurableJoint>().GetTargetRotation(Quaternion.Euler(tempBone.targetRotation), creator.ragdoll.GetComponent<APRController>().APR_Parts_Orgin[j]);
+                    tempBone.jointTarget = new Quaternion(tempBone.targetRotation.x, tempBone.targetRotation.y, tempBone.targetRotation.z, 1);
                 }
                 }
             
