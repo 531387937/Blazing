@@ -88,8 +88,6 @@ public class APRController : MonoBehaviour
 	
 	//Active Ragdoll Player Parts Array
 	private GameObject[] APR_Parts;
-    [HideInInspector]
-    public Quaternion[] APR_Parts_Orgin;
     //Hands
 	public Rigidbody RightHand, LeftHand;
     
@@ -124,7 +122,8 @@ public class APRController : MonoBehaviour
 	UpperRightLegTarget, LowerRightLegTarget,
 	UpperLeftLegTarget, LowerLeftLegTarget;
 
-    GameObject a;
+    Quaternion[] localToJointSpace;
+    Quaternion[] startLocalRotation;
 
     private Dictionary<string, RagdollAnim> anims = new Dictionary<string, RagdollAnim>();
     private string animPath = "RagdollAnims/";
@@ -199,20 +198,22 @@ public class APRController : MonoBehaviour
 	}
     private void Start()
     {
-        APR_Parts_Orgin = new Quaternion[APR_Parts.Length];
-        // Setup original Quaternion for joint rotation
-        for(int i = 0;i<APR_Parts.Length;i++)
+        localToJointSpace = new Quaternion[15];
+        startLocalRotation = new Quaternion[15];
+        for(int i = 0;i<15;i++)
         {
-            APR_Parts_Orgin[i] = APR_Parts[i].transform.localRotation;
+            ConfigurableJoint j = APR_Parts[i].GetComponent<ConfigurableJoint>();
+            localToJointSpace[i] = Quaternion.LookRotation(Vector3.Cross(j.axis, j.secondaryAxis), j.secondaryAxis);
+            startLocalRotation[i] = j.transform.localRotation * localToJointSpace[i];
+            localToJointSpace[i] = Quaternion.Inverse(localToJointSpace[i]);
         }
-        a = new GameObject();
-        a.transform.SetParent(APR_Parts[3].transform);
+
     }
     //Call Update Functions
     void Update()
     {
-    
-        if(useControls)
+
+        if (useControls)
         {
             InputControls();
             if(Input.GetKeyDown(KeyCode.J))
@@ -239,7 +240,6 @@ public class APRController : MonoBehaviour
 		  Jumping();
 		  Walking();
         }
-        a.transform.rotation = APR_Parts[4].transform.rotation;
 	}
 	
 	
@@ -368,13 +368,8 @@ public class APRController : MonoBehaviour
         if(/*Input.GetKey(reachLeft) &&*/ ReachingLeft && GrabLeft.hasJoint && !KnockedOut)
         {
             if(GrabLeft.GetComponent<FixedJoint>() != null)
-            {
-                if(GrabLeft.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Player")
-                {
-                    GrabLeft.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * GrabLeft.GetComponent<FixedJoint>().connectedBody.mass * 150);
-                }
-            
-                else if(GrabLeft.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Object")
+            { 
+                if(GrabLeft.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Object")
                 {
                     GrabLeft.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * GrabLeft.GetComponent<FixedJoint>().connectedBody.mass * 5);
                 }
@@ -387,12 +382,7 @@ public class APRController : MonoBehaviour
         {
             if(GrabRight.GetComponent<FixedJoint>() != null)
             {
-                if(GrabRight.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Player")
-                {
-                    GrabRight.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * GrabRight.GetComponent<FixedJoint>().connectedBody.mass * 150);
-                }
-            
-                else if(GrabRight.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Object")
+                if(GrabRight.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Object")
                 {
                     GrabRight.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * GrabRight.GetComponent<FixedJoint>().connectedBody.mass * 5);
                 }
@@ -435,12 +425,6 @@ public class APRController : MonoBehaviour
                     GrabbedLeft.AddForce(APR_Parts[0].transform.forward * ThrowForce * GrabbedLeft.mass, ForceMode.Impulse);
                     GrabbedLeft.AddForce(APR_Parts[0].transform.up * ThrowForce * (GrabbedLeft.mass / 3), ForceMode.Impulse);
                 }
-                
-                else if(GrabbedLeft != null && GrabbedLeft.gameObject.tag == "Player")
-                {
-                    GrabbedLeft.AddForce(APR_Parts[0].transform.forward * ThrowForce * GrabbedLeft.mass * 5, ForceMode.Impulse);
-                    GrabbedLeft.AddForce(APR_Parts[0].transform.up * ThrowForce * GrabbedLeft.mass * 3.5f, ForceMode.Impulse);
-                }
             }
             
             //Throw right
@@ -450,12 +434,6 @@ public class APRController : MonoBehaviour
                 {
                     GrabbedRight.AddForce(APR_Parts[0].transform.forward * ThrowForce * GrabbedRight.mass, ForceMode.Impulse);
                     GrabbedRight.AddForce(APR_Parts[0].transform.up * ThrowForce * (GrabbedRight.mass / 3), ForceMode.Impulse);
-                }
-                
-                else if(GrabbedRight != null && GrabbedRight.gameObject.tag == "Player")
-                {
-                    GrabbedRight.AddForce(APR_Parts[0].transform.forward * ThrowForce * GrabbedRight.mass * 5, ForceMode.Impulse);
-                    GrabbedRight.AddForce(APR_Parts[0].transform.up * ThrowForce * GrabbedRight.mass * 3.5f, ForceMode.Impulse);
                 }
             }
             
@@ -873,58 +851,71 @@ public class APRController : MonoBehaviour
     //Punch Right
 	void PunchRight()
 	{
-        APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-        //APR_Parts[3].GetComponent<ConfigurableJoint>().SetTargetRotationLocal(Quaternion.Euler(test),orgin);// new Quaternion( -0.25f, -0.7f, 0.3f, 1);
-		APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 1.5f, 0, 0, 1);
 		
 		StartCoroutine(DelayCoroutine());
 			
 		IEnumerator DelayCoroutine()
 		{
-			yield return new WaitForSeconds(0.5f);
-			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.12f, -0.8f, 0, 1);
-		    APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.15f, 0, 0, 1);
-			
-            
-            //Right hand punch forward
-			RightHand.AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
- 
-			APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
-			
-			yield return new WaitForSeconds(0.3f);
-			APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
+            RagdollAnim anim = LoadAnim("PunchRight");
+            for(int i = 0;i<anim.animation.Count;i++)
+            {
+                PlayAnimClip(anim.animation[i]);
+                yield return new WaitForSeconds(anim.animation[i].nextAnim);
+            }
+            //简易IK
+            RaycastHit hit;
+            if (Physics.Raycast(APR_Parts[1].transform.position, APR_Parts[0].transform.forward, out hit, 2.5f))
+            {
+
+                if (hit.collider.gameObject.tag == "Player")
+
+                {
+                    Transform target = hit.collider.transform.root.GetComponent<APRController>().Head.transform;
+
+                    Quaternion t = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[4].transform.position, target.position - APR_Parts[4].transform.position);
+                    APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = localToJointSpace[4] * Quaternion.Inverse(t) * startLocalRotation[4];
+                    Quaternion t1 = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[3].transform.position, target.position - APR_Parts[3].transform.position);
+                    APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = localToJointSpace[3] * Quaternion.Inverse(t1) * startLocalRotation[3];
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+            APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
             Punching = false;
-		}
+        }
 	}
     
     //punch Left
     void PunchLeft()
 	{
-		APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0.15f, 0, 1);
-		APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( 0.25f, -0.7f, -0.3f, 1);
-		APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -1.5f, 0, 0, 1);
-		
-		StartCoroutine(DelayCoroutine());
-			
-		IEnumerator DelayCoroutine()
-		{
-			yield return new WaitForSeconds(0.5f);
-			APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, -0.15f, 0, 1);
-			APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.12f, 0.8f, 0, 1);
-			APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion( -0.15f, 0, 0, 1);
-			
-            
-            //Left hand punch forward
-			LeftHand.AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
- 
-			APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * PunchForce, ForceMode.Impulse);
-			
-			yield return new WaitForSeconds(0.3f);
-			APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
+        StartCoroutine(DelayCoroutine());
+
+        IEnumerator DelayCoroutine()
+        {
+            RagdollAnim anim = LoadAnim("PunchLeft");
+            for (int i = 0; i < anim.animation.Count; i++)
+            {
+                PlayAnimClip(anim.animation[i]);
+                yield return new WaitForSeconds(anim.animation[i].nextAnim);
+            }
+            //简易IK
+            RaycastHit hit;
+            if (Physics.Raycast(APR_Parts[1].transform.position, APR_Parts[0].transform.forward, out hit, 2.5f))
+            {
+                if (hit.collider.gameObject.tag == "Player")
+
+                {
+                    Transform target = hit.collider.transform.root.GetComponent<APRController>().Head.transform;
+                    Quaternion t = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[5].transform.position, target.position - APR_Parts[5].transform.position);
+                    APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(localToJointSpace[5] * Quaternion.Inverse(t) * startLocalRotation[5]);
+                    Quaternion t1 = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[6].transform.position, target.position - APR_Parts[6].transform.position);
+                    APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(localToJointSpace[6] * Quaternion.Inverse(t1) * startLocalRotation[6]);
+                }
+            }
+            yield return new WaitForSeconds(0.3f);
+            APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
             Punching = false;
-		}
-	}
+        }
+    }
     
     
     
@@ -1125,7 +1116,7 @@ public class APRController : MonoBehaviour
                 {
                     if (j <= 10)
                     {
-                        if (anim.animation[i].bones[j].jointTarget.z > 0)
+                        if (anim.animation[i].bones[j].jointTarget.z != 0)
                         {
                             APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = anim.animation[i].bones[j].jointTarget;
                         }
@@ -1147,6 +1138,27 @@ public class APRController : MonoBehaviour
             yield return new WaitForSeconds(3);
         PlayingAnim = false;
         ResetPose = true;
+    }
+
+    void PlayAnimClip(RagdollClip clip)
+    {
+        for (int j = 0; j < APR_Parts.Length; j++)
+        {
+            if (clip.bones[j].rotaThis)
+            {
+                if (j <= 10)
+                {
+
+                    APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = clip.bones[j].jointTarget;
+
+                }
+                if (clip.bones[j].force != 0)
+                {
+                    APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force, ForceMode.Impulse);
+                    APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force, ForceMode.Impulse);
+                }
+            }
+        }
     }
 
     public bool OnGetWeapon(Weapon w)
@@ -1188,5 +1200,21 @@ public class APRController : MonoBehaviour
         resetAnim = null;
         attackAnim = null;
         RightHand.GetComponent<Collider>().isTrigger = false;
+    }
+
+    public void GetHurt(GameObject hitobj,Vector3 force)
+    {
+        //ActivateRagdoll();
+        for (int i = 0;i<APR_Parts.Length;i++)
+        {
+            if(hitobj == APR_Parts[i])
+            {
+                APR_Parts[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+            }
+            else
+            {
+                APR_Parts[i].GetComponent<Rigidbody>().AddForce(force * 0.5f, ForceMode.Impulse);
+            }
+        }
     }
 }

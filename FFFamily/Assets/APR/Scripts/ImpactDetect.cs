@@ -12,8 +12,11 @@ public class ImpactDetect : MonoBehaviour
 
 	void OnCollisionEnter(Collision col)
 	{
-        if(col.transform.root != transform.root)
-        print(col.relativeVelocity.magnitude);
+        if (col.transform.root != transform.root)
+        {
+            ContactPoint point = col.contacts[0];
+            APR_Player.GetHurt(gameObject, col.relativeVelocity*0.3f);
+        }
         //Knockout by impact
 		if(col.relativeVelocity.magnitude > KnockoutForce&&col.transform.root!=transform.root)
 		{

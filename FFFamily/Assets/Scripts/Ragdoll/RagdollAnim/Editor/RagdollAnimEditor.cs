@@ -87,11 +87,11 @@ public class RagdollAnimEditor : Editor
                 EditorGUILayout.Space();
             }
             GUILayout.BeginHorizontal();
-            if(GUILayout.Button("欢乐喜加一"))
+            if(GUILayout.Button("新增动画片段"))
             {
                 creator.AddAnim();
             }
-            if(GUILayout.Button("删了最后一个"))
+            if(GUILayout.Button("删除动画片段"))
             {
                 creator.ragdollAnim.DelletAnimClip();
             }
@@ -100,12 +100,12 @@ public class RagdollAnimEditor : Editor
             if (!File.Exists("Assets/Resources/RagdollAnims/" + creator.ragdollAnim.name + ".asset"))
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("给动画起个名");
+                GUILayout.Label("动画名");
                 animName = GUILayout.TextField(animName);
                 GUILayout.EndHorizontal();
                 GUILayout.Space(10);
 
-                if (GUILayout.Button("这里进行保存"))
+                if (GUILayout.Button("保存"))
                 {
                     AssetDatabase.CreateAsset(creator.ragdollAnim, "Assets/Resources/RagdollAnims/" + animName + ".asset");
                 }
