@@ -127,7 +127,6 @@ public class APRController : MonoBehaviour
 
     private Dictionary<string, RagdollAnim> anims = new Dictionary<string, RagdollAnim>();
     private string animPath = "RagdollAnims/";
-	
     void Awake()
 	{
         input = new PlayerInput(PlayerNum);
@@ -204,7 +203,7 @@ public class APRController : MonoBehaviour
         {
             ConfigurableJoint j = APR_Parts[i].GetComponent<ConfigurableJoint>();
             localToJointSpace[i] = Quaternion.LookRotation(Vector3.Cross(j.axis, j.secondaryAxis), j.secondaryAxis);
-            startLocalRotation[i] = j.transform.localRotation * localToJointSpace[i];
+            startLocalRotation[i] = j.transform.localRotation* localToJointSpace[i];
             localToJointSpace[i] = Quaternion.Inverse(localToJointSpace[i]);
         }
 
@@ -212,7 +211,6 @@ public class APRController : MonoBehaviour
     //Call Update Functions
     void Update()
     {
-
         if (useControls)
         {
             InputControls();
@@ -864,18 +862,16 @@ public class APRController : MonoBehaviour
             }
             //简易IK
             RaycastHit hit;
-            if (Physics.Raycast(APR_Parts[1].transform.position, APR_Parts[0].transform.forward, out hit, 2.5f))
+            if (Physics.Raycast(APR_Parts[1].transform.position, APR_Parts[0].transform.forward, out hit, 3.5f))
             {
 
                 if (hit.collider.gameObject.tag == "Player")
 
                 {
                     Transform target = hit.collider.transform.root.GetComponent<APRController>().Head.transform;
-
-                    Quaternion t = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[4].transform.position, target.position - APR_Parts[4].transform.position);
+                    print("!!!!!!!!!!!!!");
+                    Quaternion t = Quaternion.FromToRotation(APR_Parts[3].transform.position - APR_Parts[4].transform.position, APR_Parts[4].transform.position - target.position);
                     APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = localToJointSpace[4] * Quaternion.Inverse(t) * startLocalRotation[4];
-                    Quaternion t1 = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[3].transform.position, target.position - APR_Parts[3].transform.position);
-                    APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = localToJointSpace[3] * Quaternion.Inverse(t1) * startLocalRotation[3];
                 }
             }
             yield return new WaitForSeconds(0.3f);
@@ -899,16 +895,14 @@ public class APRController : MonoBehaviour
             }
             //简易IK
             RaycastHit hit;
-            if (Physics.Raycast(APR_Parts[1].transform.position, APR_Parts[0].transform.forward, out hit, 2.5f))
+            if (Physics.Raycast(APR_Parts[1].transform.position, APR_Parts[0].transform.forward, out hit, 3.5f))
             {
                 if (hit.collider.gameObject.tag == "Player")
 
                 {
                     Transform target = hit.collider.transform.root.GetComponent<APRController>().Head.transform;
-                    Quaternion t = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[5].transform.position, target.position - APR_Parts[5].transform.position);
-                    APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(localToJointSpace[5] * Quaternion.Inverse(t) * startLocalRotation[5]);
-                    Quaternion t1 = Quaternion.FromToRotation(APR_Parts[0].transform.position - APR_Parts[6].transform.position, target.position - APR_Parts[6].transform.position);
-                    APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Inverse(localToJointSpace[6] * Quaternion.Inverse(t1) * startLocalRotation[6]);
+                    Quaternion t1 = Quaternion.FromToRotation(APR_Parts[5].transform.position - APR_Parts[6].transform.position, APR_Parts[6].transform.position-target.position);
+                    APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = localToJointSpace[6] * Quaternion.Inverse(t1) * startLocalRotation[6];
                 }
             }
             yield return new WaitForSeconds(0.3f);

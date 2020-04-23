@@ -32,10 +32,10 @@ MonoBehaviour:
       force: 0
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_UpperRightArm
-      rotaThis: 0
+      rotaThis: 1
       targetRotation: {x: 0.12, y: -0.8, z: 0}
       force: 0
-      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+      jointTarget: {x: 0.12, y: -0.8, z: 0, w: 1}
     - name: APR_LowerRightArm
       rotaThis: 1
       targetRotation: {x: 1.5, y: 0, z: 0}
