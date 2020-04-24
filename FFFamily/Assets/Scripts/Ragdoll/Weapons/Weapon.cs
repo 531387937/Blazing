@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
     private bool weaponed = false;
     private Rigidbody rig;
     private bool _throw;
+    private RagdollAnim attack;
+    private float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,8 @@ public class Weapon : MonoBehaviour
     {
         if(_throw)
         {
-            if(rig.velocity.magnitude<=0.2f)
+            timer += Time.deltaTime;
+            if(rig.velocity.magnitude<=0.2f&&timer>1)
             {
                 _throw = false;
                 weaponed = false;
@@ -38,7 +41,7 @@ public class Weapon : MonoBehaviour
     {
         if (!weaponed && collision.gameObject.tag == "Player")
         {
-            var ragdoll = collision.transform.root.GetComponent<APRController>();
+             var ragdoll = collision.transform.root.GetComponent<APRController>();
             if (ragdoll.OnGetWeapon(this))
             {
                 var rightHand = ragdoll.RightHand;

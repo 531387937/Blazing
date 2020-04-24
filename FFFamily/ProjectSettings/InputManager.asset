@@ -137,7 +137,7 @@ InputManager:
     m_Name: Trigger1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: p
+    negativeButton: l
     positiveButton: o
     altNegativeButton: 
     altPositiveButton: 

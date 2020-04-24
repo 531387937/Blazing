@@ -548,8 +548,7 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2633492668495250738, guid: 69974444c9c8e70468d3bb3ef291ff49, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69974444c9c8e70468d3bb3ef291ff49, type: 3}
 --- !u!1 &548789802 stripped
 GameObject:
@@ -759,7 +758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674bf6913a5f94748b3ba97957b3e4cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdollAnim: {fileID: 11400000, guid: 399f8d13ee19a4e42beb99f0dc9caab6, type: 2}
+  ragdollAnim: {fileID: 11400000, guid: 261ced5fd99c8f148bf8703ab2664005, type: 2}
   ragdoll: {fileID: 788815424}
 --- !u!4 &924550606
 Transform:
@@ -872,7 +871,7 @@ PrefabInstance:
     - target: {fileID: 7610814571882091911, guid: 69974444c9c8e70468d3bb3ef291ff49,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4055310656456041643, guid: 69974444c9c8e70468d3bb3ef291ff49,
         type: 3}
@@ -957,7 +956,7 @@ PrefabInstance:
     - target: {fileID: 7610814571882091904, guid: 69974444c9c8e70468d3bb3ef291ff49,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7610814571882091904, guid: 69974444c9c8e70468d3bb3ef291ff49,
         type: 3}
@@ -1527,7 +1526,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1058607458}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6c924a6744e81c4e8b4788b7b8345b3, type: 3}
   m_Name: 
