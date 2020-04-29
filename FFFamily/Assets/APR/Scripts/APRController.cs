@@ -41,7 +41,21 @@ public class APRController : MonoBehaviour
 	public float PunchForce;
     public float ThrowForce;
 	public float FeetMountForce;
-	
+    [SerializeField]
+    private AnimationCurve powerCurve;
+    
+    public float Power
+    {
+        set { power = value;
+            if (power > 1)
+                power = 1;
+        }
+        get
+        {
+            return power;
+        }
+    }
+    private float power = 0.1f;
 	//Actions
     private float timer;
     private float Step_R_timer;
@@ -127,7 +141,7 @@ public class APRController : MonoBehaviour
 
 
     void Awake()
-	{
+    { 
         input = new PlayerInput(PlayerNum);
 		//Setup joint drives
 		BalanceOn = new JointDrive();
@@ -304,9 +318,9 @@ public class APRController : MonoBehaviour
         
         
         //Get up
-        if((Input.GetKeyDown(jumpGetup)||Input.GetKeyDown(input.button[0])) && !balanced && !isJumping)
+        if((Input.GetKeyDown(jumpGetup)||Input.GetKeyDown(input.button[0])) && !balanced && !isJumping&&GettingUp)
         {
-            GettingUp = true;
+            
             balanced = true;
             
             if(KnockedOut)
@@ -864,6 +878,7 @@ public class APRController : MonoBehaviour
 		IEnumerator DelayCoroutine()
 		{
             RagdollAnim anim = Utility.LoadAnim("PunchRight");
+            RightHand.tag = "HitObj";
             for(int i = 0;i<anim.animation.Count;i++)
             {
                 PlayAnimClip(anim.animation[i]);
@@ -884,6 +899,7 @@ public class APRController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.3f);
             APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
+            RightHand.tag = "Player";
             Punching = false;
         }
 	}
@@ -895,6 +911,7 @@ public class APRController : MonoBehaviour
 
         IEnumerator DelayCoroutine()
         {
+            LeftHand.tag = "HitObj";
             RagdollAnim anim =Utility.LoadAnim("PunchLeft");
             for (int i = 0; i < anim.animation.Count; i++)
             {
@@ -914,6 +931,7 @@ public class APRController : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(0.3f);
+            LeftHand.tag = "Player";
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperRightArmTarget;
             Punching = false;
         }
@@ -925,6 +943,7 @@ public class APRController : MonoBehaviour
 
         IEnumerator DelayCoroutine()
         {
+            weapon.gameObject.tag = "HitObj";
             RagdollAnim anim = Utility.LoadAnim(weapon.attackAnim);
             for (int i = 0; i < anim.animation.Count; i++)
             {
@@ -945,6 +964,7 @@ public class APRController : MonoBehaviour
             //    }
             //}
             yield return new WaitForSeconds(0.3f);
+            weapon.gameObject.tag = "Untagged";
             ResetPose = true;
             Punching = false;
         }
@@ -980,40 +1000,47 @@ public class APRController : MonoBehaviour
 /// </summary>
 	public void ActivateRagdoll()
 	{
-		balanced = false;
-		KnockedOut = true;
-		
-		//Root
-		APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[0].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		//body
-		APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		//head
-		APR_Parts[2].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[2].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		//arms
-		APR_Parts[3].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[5].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		//legs
-		APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
-		APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
-		APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            balanced = false;
+        KnockedOut = true;
+        power = 0;
+            //Root
+            APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[0].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            //body
+            APR_Parts[1].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[1].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            //head
+            APR_Parts[2].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[2].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            //arms
+            APR_Parts[3].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[3].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[4].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[4].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[5].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[5].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[6].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[6].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            //legs
+            APR_Parts[7].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[7].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[8].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[8].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[9].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[9].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[10].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[10].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[11].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[11].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            APR_Parts[12].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
+            APR_Parts[12].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
+            StartCoroutine(timer());
+            IEnumerator timer()
+            {
+                yield return new WaitForSeconds(3);
+                
+            GettingUp = true;
+            }
 	}
 	
     
@@ -1183,8 +1210,8 @@ public class APRController : MonoBehaviour
                 }
                 if (clip.bones[j].force != 0)
                 {
-                    APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force, ForceMode.Impulse);
-                    APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force, ForceMode.Impulse);
+                    APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force*powerCurve.Evaluate(power)* APR_Parts[j].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                    APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force * powerCurve.Evaluate(power) * APR_Parts[1].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
                 }
             }
         }
@@ -1212,7 +1239,6 @@ public class APRController : MonoBehaviour
             weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * ThrowForce * weapon.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
             weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * ThrowForce * weapon.GetComponent<Rigidbody>().mass/3, ForceMode.Impulse);
 
-            //weapon.GetComponent<Rigidbody>().AddForce(Vector3.up * 5, ForceMode.Impulse);
             weapon.OnThrow();
             OnLostWeapon();
                 }
@@ -1238,14 +1264,16 @@ public class APRController : MonoBehaviour
         //ActivateRagdoll();
         for (int i = 0;i<APR_Parts.Length;i++)
         {
-            if(hitobj == APR_Parts[i])
+            if (APR_Parts[i].GetComponent<ConfigurableJoint>().connectedBody != null)
             {
-                APR_Parts[i].GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
+                var obj = APR_Parts[i].GetComponent<ConfigurableJoint>().connectedBody.gameObject;
+                if (hitobj == obj)
+                {
+                    APR_Parts[i].GetComponent<Rigidbody>().AddForce(force * APR_Parts[i].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                    GetHurt(APR_Parts[i], force * 0.95f);
+                }
             }
-            else
-            {
-                APR_Parts[i].GetComponent<Rigidbody>().AddForce(force * 0.5f, ForceMode.Impulse);
-            }
+            
         }
     }
 }

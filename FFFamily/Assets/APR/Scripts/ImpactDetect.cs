@@ -10,35 +10,42 @@ public class ImpactDetect : MonoBehaviour
     public AudioClip[] Hits;
     public AudioSource SoundSource;
 
-	void OnCollisionEnter(Collision col)
-	{
-        if (col.transform.root != transform.root)
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "HitObj")
         {
-            ContactPoint point = col.contacts[0];
-            APR_Player.GetHurt(gameObject, col.relativeVelocity*0.3f);
-        }
-        //Knockout by impact
-		if(col.relativeVelocity.magnitude > KnockoutForce&&col.transform.root!=transform.root)
-		{
-			APR_Player.ActivateRagdoll();
-            
-            if(!SoundSource.isPlaying)
+            if (col.transform.root != transform.root)
             {
-                int i = Random.Range(0, Hits.Length);
-                SoundSource.clip = Hits[i];
-                SoundSource.Play();
+                ContactPoint point = col.contacts[0];
+                GetComponent<Rigidbody>().AddForceAtPosition(col.relativeVelocity * 0.8f * GetComponent<Rigidbody>().mass, point.point, ForceMode.Impulse);
+                APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.8f);
             }
-		}
-        
-        //Sound on impact
-        if(col.relativeVelocity.magnitude > ImpactForce && col.transform.root != transform.root)
-        {
-            if(!SoundSource.isPlaying)
+            //Knockout by impact
+            if (col.relativeVelocity.magnitude > KnockoutForce / APR_Player.Power && col.transform.root != transform.root)
             {
-                int i = Random.Range(0, Impacts.Length);
-                SoundSource.clip = Impacts[i];
-                SoundSource.Play();
+                col.transform.root.GetComponent<APRController>().Power += 0.1f;
+                APR_Player.ActivateRagdoll();
+                GetComponent<Rigidbody>().AddForce(Vector3.up * col.relativeVelocity.magnitude * 4 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                APR_Player.GetHurt(gameObject, Vector3.up * col.relativeVelocity.magnitude * 4);
+                if (!SoundSource.isPlaying)
+                {
+                    int i = Random.Range(0, Hits.Length);
+                    SoundSource.clip = Hits[i];
+                    SoundSource.Play();
+                }
+            }
+
+            //Sound on impact
+            if (col.relativeVelocity.magnitude > ImpactForce && col.transform.root != transform.root)
+            {
+                col.transform.root.GetComponent<APRController>().Power += 0.1f;
+                if (!SoundSource.isPlaying)
+                {
+                    int i = Random.Range(0, Impacts.Length);
+                    SoundSource.clip = Impacts[i];
+                    SoundSource.Play();
+                }
             }
         }
-	}
+    }
 }
