@@ -1,134 +1,153 @@
-﻿Shader "Custom/Toon"
+﻿Shader "Toon"
 {
+	// Properties are like public variables in C#.
+	// The same variables are declared again below.
 	Properties
 	{
-		[Header(Main)]
-		_MainTex("Texture", 2D) = "white" {}
-		_Color("Color", Color) = (1.0, 1.0, 1.0, 1.0)
-		_RimColor("RimColor", Color) = (1.0, 1.0, 1.0, 1.0)
-		_ShadowThreshold("ShadowThreshold", Range(-1.0, 1.0)) = 0.2
-		_ShadowBrightness("ShadowBrightness", Range(0.0, 1.0)) = 0.6
-		_RimThreshold("RimThreshold", Range(0.0, 1.0)) = 0.35
-		_RimPower("RimPower", Range(0.0, 16)) = 4.0
+		_Color("Color", Color) = (0.5, 0.65, 1, 1)
+		_MainTex("Main Texture", 2D) = "white" {}
 
+	// we are storing HDR ambient color, which
+	// offers greater range and accuracy.
+	[HDR]
+	_AmbientColor("Ambient Color", Color) = (0.4, 0.4, 0.4, 1)
+	[HDR]
+	_SpecularColor("Specular Color", Color) = (0.9, 0.9, 0.9, 1)
+	_Glossiness("Glossiness", Float) = 1024
+	[HDR]
+	_RimColor("Rim Color", Color) = (1,1,1,1)
+	_RimAmount("Rim Amount", Range(0, 1)) = 0.716
+		// Control how far the rim extends along the lit surface
+		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
 	}
+
+		// Container for the shader code.
 		SubShader
+	{
+		Pass
 		{
-			Tags { "RenderType" = "Opaque" }
-			LOD 100
-
-			Pass
-			{
-				Cull Back
-				Tags { "LightMode" = "ForwardBase" }
-				CGPROGRAM
-				#pragma vertex vert
-				#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
-			#pragma multi_compile_fwdbase
-			#include "UnityCG.cginc"
-			#include "Lighting.cginc"
-			#include "AutoLight.cginc"
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float2 uv : TEXCOORD0;
-				float3 normal : NORMAL;
-
-			};
-
-			struct v2f
-			{
-				float2 uv : TEXCOORD0;
-				float3 worldNormal : TEXCOORD1;
-				float3 worldPos : TEXCOORD2;
-				SHADOW_COORDS(4)
-				UNITY_FOG_COORDS(3)
-				float4 pos : SV_POSITION;
-			};
-
-			sampler2D _MainTex;
-			float4 _MainTex_ST;
-			fixed4 _Color;
-			fixed4 _RimColor;
-			fixed _ShadowThreshold;
-			fixed _ShadowBrightness;
-			fixed _RimThreshold;
-			half _RimPower;
-
-			v2f vert(appdata v)
-			{
-				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				o.worldNormal = mul(v.normal, (float3x3)unity_WorldToObject);
-				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
-				UNITY_TRANSFER_FOG(o,o.pos);
-				TRANSFER_SHADOW(o);
-				return o;
-			}
-
-			fixed4 frag(v2f i) : SV_Target
-			{
-				fixed3 worldNormal = normalize(i.worldNormal); //法线 N
-				fixed3 worldLightDir = normalize(UnityWorldSpaceLightDir(i.worldPos)); //光照方向 L
-				fixed3 worldViewDir = normalize(UnityWorldSpaceViewDir(i.worldPos)); //视角方向 V
-
-				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv);
-				fixed diffValue = dot(worldNormal, worldLightDir);
-				fixed diffStep = step(_ShadowThreshold, diffValue);
-				fixed4 light = _LightColor0 * 0.5 + 0.5;
-				fixed4 diffuse = light * col * (diffStep + (1 - diffStep) * _ShadowBrightness) * _Color;
-				// 模仿参考文章的方法，感觉效果不是太好
-				fixed rimValue = 1 - dot(worldNormal, worldViewDir);
-				fixed rimStep = step(_RimThreshold, rimValue * pow(dot(worldNormal,worldLightDir), _RimPower));
-				//fixed rimValue = pow(1 - dot(worldNormal, worldViewDir), _RimPower);
-				//fixed rimStep = step(_RimThreshold, rimValue);
-				fixed  shadow = SHADOW_ATTENUATION(i);
-				fixed4 rim = light * rimStep * 0.5 * diffStep * _RimColor;
-				fixed4 final = (diffuse + rim )*shadow*0.9;
-
-				// apply fog
-				UNITY_APPLY_FOG(i.fogCoord, final);
-
-				return  final;
-			}
-			ENDCG
+		// Tags specify properties of the shader.
+		// Setup forward rendering to receive only directional light data.
+		Tags
+		{
+			"LightMode" = "ForwardBase"
+			"PassFlags" = "OnlyDirectional"
 		}
-			Pass {
-		Name "ShadowCaster"
-		Tags { "LightMode" = "ShadowCaster" }
 
-  CGPROGRAM
-  #pragma vertex vert
-  #pragma fragment frag
-  #pragma target 2.0
-  #pragma multi_compile_shadowcaster
-  #pragma multi_compile_instancing // allow instanced shadow pass for most of the shaders
-  #include "UnityCG.cginc"
+		CGPROGRAM
+		#pragma vertex vert
+		#pragma fragment frag
+		// Compile multiple versions of this shader depending on lighting settings.
+		#pragma multi_compile_fwdbase
+		#pragma target 3.0
 
-struct v2f {
-	V2F_SHADOW_CASTER;
-	UNITY_VERTEX_OUTPUT_STEREO
-};
+		#include "UnityCG.cginc"
+		#include "Lighting.cginc"
+		#include "AutoLight.cginc"
 
-v2f vert(appdata_base v)
-{
-	v2f o;
-	UNITY_SETUP_INSTANCE_ID(v);
-	UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-	TRANSFER_SHADOW_CASTER_NORMALOFFSET(o)
-	return o;
-}
+		// Vertex shader input
+		struct appdata
+		{
+			float4 vertex : POSITION;
+			float4 uv : TEXCOORD0;
+			float3 normal : NORMAL;
+		};
 
-float4 frag(v2f i) : SV_Target
-{
-	SHADOW_CASTER_FRAGMENT(i)
-}
-ENDCG
+	// Vertex shader output, also Fragment shader input
+	struct v2f
+	{
+		float4 pos : SV_POSITION;
+		float2 uv : TEXCOORD0;
+		float3 worldNormal: NORMAL;
+		float3 viewDir: TEXCOORD1;
+		// Macro found in Autolight.cginc. Declares a vector4
+		// into the TEXCOORD2 semantic with varying precision 
+		// depending on platform target.
+		SHADOW_COORDS(2)
+	};
 
+	sampler2D _MainTex;
+	float4 _MainTex_ST;
+
+	v2f vert(appdata v)
+	{
+		v2f o;
+		o.pos = UnityObjectToClipPos(v.vertex);
+		o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+		o.worldNormal = UnityObjectToWorldNormal(v.normal);
+		o.viewDir = WorldSpaceViewDir(v.vertex);
+		// Defined in Autolight.cginc. Assigns the above shadow coordinate
+		// by transforming the vertex from world space to shadow-map space.
+		TRANSFER_SHADOW(o)
+		return o;
 	}
+
+	float4 _Color;
+	float4 _AmbientColor;
+	float4 _SpecularColor;
+	float _Glossiness;
+	float4 _RimColor;
+	float _RimAmount;
+	float _RimThreshold;
+
+	float4 frag(v2f i) : SV_Target
+	{
+		// Diffuse light
+		float3 normal = normalize(i.worldNormal);
+		float NdotL = dot(_WorldSpaceLightPos0, normal);
+
+		// Cast and Receive Shadows
+		// Samples the shadow map and returns a value between 0 and 1,
+		// where 0 is no shadow and 1 is fully covered by shadow
+		float shadow = SHADOW_ATTENUATION(i);
+
+		// Using smoothstep softens the edge between light and dark while
+		// clamping lightIntensity. The effect of this is explained in the
+		// project writeup.
+		float lightIntensity;
+		if (NdotL < 0.5) {
+			lightIntensity = smoothstep(0, 0.01, NdotL * shadow) / 2.0;
 		}
+else {
+ lightIntensity = smoothstep(0.5, 0.51, NdotL * shadow) / 2.0 + 0.5;
+}
+
+
+		// factor in the color of the main directional light.
+		// _LightColor 0 is declared in Lighting.cginc.
+		float4 diffLight = lightIntensity * _LightColor0;
+
+
+		// Specular Light
+		float3 viewDir = normalize(i.viewDir);
+		float3 halfVec = normalize(_WorldSpaceLightPos0 + viewDir);
+		float NdotH = dot(normal, halfVec);
+		// multiply NdotH by lightIntensity achieves a sim
+		float specIntensity = pow(NdotH * lightIntensity, _Glossiness);
+		// Again, smoothstep clamps values between 0 and 1 to achieve
+		// toonified look, while softening the edges of the highlight
+		specIntensity = smoothstep(0.005, 0.01, specIntensity);
+		float4 specLight = specIntensity * _SpecularColor;
+
+		// Rim Light: illuminates edge of an object
+		// The less the angle between normal and view direction,
+		// the closer the fragment is to the edge, and the stronger
+		// the rim illumination.
+		float4 rimDot = 1 - dot(viewDir, normal);
+		// Smoothstep similar to before. We multiply rimDot by NdotL
+		// to ensure only illuminated surfaces of the object has rimLight
+		float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
+		rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
+		float4 rimLight = rimIntensity * _RimColor;
+
+		float4 sample = tex2D(_MainTex, i.uv);
+
+		return _Color * sample * (_AmbientColor + diffLight + specLight + rimLight);
+	}
+	ENDCG
+}
+
+// Use Unity's shadow casting shader
+UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
+	}
 }
