@@ -9,14 +9,18 @@ public class ImpactDetect : MonoBehaviour
     public AudioClip[] Impacts;
     public AudioClip[] Hits;
     public AudioSource SoundSource;
-
+    private GameObject hitFX;
+    private void Start()
+    {
+        hitFX = Resources.Load<GameObject>("FX/HitEffect");
+    }
     void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "HitObj")
         {
+            ContactPoint point = col.contacts[0];
             if (col.transform.root != transform.root)
             {
-                ContactPoint point = col.contacts[0];
                 GetComponent<Rigidbody>().AddForceAtPosition(col.relativeVelocity * 0.8f * GetComponent<Rigidbody>().mass, point.point, ForceMode.Impulse);
                 APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.8f);
             }
@@ -38,6 +42,7 @@ public class ImpactDetect : MonoBehaviour
             //Sound on impact
             if (col.relativeVelocity.magnitude > ImpactForce && col.transform.root != transform.root)
             {
+                Instantiate(hitFX,point.point,Quaternion.identity);
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
                 if (!SoundSource.isPlaying)
                 {
