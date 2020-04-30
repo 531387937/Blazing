@@ -1037,6 +1037,9 @@ public class APRController : MonoBehaviour
         StartCoroutine(timer());
         IEnumerator timer()
         {
+            var stars = Resources.Load<GameObject>("FX/Stars");
+             var a =Instantiate(stars, Head.transform.position+Head.transform.up*1.5f,stars.transform.rotation);
+            a.transform.SetParent(Head.transform, true);
             yield return new WaitForSeconds(3);
 
             GettingUp = true;
