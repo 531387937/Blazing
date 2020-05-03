@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class APRController : MonoBehaviour
 {
 
-    [Header("测试玩家")]
+    [Header("测试玩家,打包前去除")]
     //Enable controls
     public bool useControls;
     [Header("无手柄测试按键")]
@@ -23,10 +23,9 @@ public class APRController : MonoBehaviour
     public string pickupThrow = "f";
     [Header("设置为几号玩家")]
     public int PlayerNum = 1;
+    //输入管理
     private PlayerInput input;
     [Header("The Layer Only This Player Is On")]
-    //Player Layer
-    public string thisPlayerLayer;
 
     [Header("Player Parameters")]
     //Player parameters
@@ -88,24 +87,23 @@ public class APRController : MonoBehaviour
     private Weapon weapon;
     //Idle动画
     private RagdollAnim resetAnim;
-    //攻击动画
+    //武器攻击动画
     private RagdollAnim attackAnim;
-    //Active Ragdoll Player parts
+    [Header("布娃娃的身体部位")]
     public GameObject
-    //
-    Root, Body, Head,
-    UpperRightArm, LowerRightArm,
-    UpperLeftArm, LowerLeftArm,
-    UpperRightLeg, LowerRightLeg,
-    UpperLeftLeg, LowerLeftLeg,
-    RightFoot, LeftFoot;
+       Root, Body, Head,
+       UpperRightArm, LowerRightArm,
+       UpperLeftArm, LowerLeftArm,
+       UpperRightLeg, LowerRightLeg,
+       UpperLeftLeg, LowerLeftLeg,
+       RightFoot, LeftFoot;
 
     //Active Ragdoll Player Parts Array
     private GameObject[] APR_Parts;
     //Hands
     public Rigidbody RightHand, LeftHand;
 
-    //Center of mass point
+    //质心
     public Transform COMP;
     private Vector3 CenterOfMassPoint;
 
@@ -127,15 +125,16 @@ public class APRController : MonoBehaviour
     //
     BalanceOn, PoseOn, DriveOff;
 
-    //Original pose target rotation
+    //joint默认的TargetRotation
     Quaternion
-    //
+
     HeadTarget, BodyTarget,
     UpperRightArmTarget, LowerRightArmTarget,
     UpperLeftArmTarget, LowerLeftArmTarget,
     UpperRightLegTarget, LowerRightLegTarget,
     UpperLeftLegTarget, LowerLeftLegTarget;
 
+    //用于IK计算的四元数据
     Quaternion[] localToJointSpace;
     Quaternion[] startLocalRotation;
 
@@ -248,14 +247,10 @@ public class APRController : MonoBehaviour
             Walking();
         }
     }
-
-
-    ////////////////
-    //Input Controls
-    ////////////////
+    //输入管理
     void InputControls()
     {
-        //Walk forward
+        #region 行走输入
         if ((Input.GetKey(moveForward) || Input.GetAxis(input.vertical) > 0.1f) && balanced && !KnockedOut)
         {
             var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
@@ -340,9 +335,9 @@ public class APRController : MonoBehaviour
             APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
             APR_Parts[0].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
         }
+        #endregion
 
-
-
+        #region 抓取 扔出
         //Reach Left
         if ((Input.GetKeyDown(reachLeft) || Input.GetAxis(input.trigger) >= 0.2f) && !KnockedOut)
         {
@@ -447,10 +442,9 @@ public class APRController : MonoBehaviour
             PickedUp = false;
             Threw = false;
         }
+        #endregion
 
-
-
-        //punch
+        #region 攻击
         if ((Input.GetKeyDown(punchRight) || Input.GetKeyDown(input.button[5])) && !KnockedOut && !Punching)
         {
             if (weapon == null)
@@ -476,13 +470,14 @@ public class APRController : MonoBehaviour
         {
             ThrowWeapon();
         }
+        #endregion
     }
 
 
 
-    /////////////////
-    //Checking Ground
-    /////////////////
+    /// <summary>
+    /// 地面检测
+    /// </summary>
     void GroundCheck()
     {
         //Raycast to detect ground, Note: the floor object must be tagged "Ground".
@@ -523,12 +518,12 @@ public class APRController : MonoBehaviour
 
 
 
-    //////////////////
-    //Checking Balance
-    //////////////////
+    /// <summary>
+    /// 计算是否需要维持平衡
+    /// </summary>
     void Balance()
     {
-        //Reset variables when balanced
+        //平衡时重置变量
         if (!WalkForward && !WalkBackward)
         {
             StepRight = false;
@@ -539,8 +534,7 @@ public class APRController : MonoBehaviour
             Alert_Leg_Left = false;
         }
 
-        //Check direction to walk when off balance
-        //Backwards
+        //需要向后退
         if (!PlayingAnim && !inAir)
         {
             if (COMP.position.z < APR_Parts[11].transform.position.z - 0.1f && COMP.position.z < APR_Parts[12].transform.position.z - 0.1f)
@@ -555,7 +549,7 @@ public class APRController : MonoBehaviour
                 }
             }
 
-            //Forward
+            //需要向前走
             if (COMP.position.z > APR_Parts[11].transform.position.z + 0.1f && COMP.position.z > APR_Parts[12].transform.position.z + 0.1f)
             {
                 WalkForward = true;
@@ -571,10 +565,9 @@ public class APRController : MonoBehaviour
     }
 
 
-
-    /////////////////
-    //Control Walking
-    /////////////////
+    /// <summary>
+    /// 行走的方法
+    /// </summary>
     void Walking()
     {
         if (Grounded)
@@ -719,12 +712,9 @@ public class APRController : MonoBehaviour
         }
     }
 
-
-
-
-    /////////
-    //Jumping
-    /////////
+    /// <summary>
+    /// 跳跃
+    /// </summary>
     void Jumping()
     {
         if (Jump)
@@ -753,13 +743,12 @@ public class APRController : MonoBehaviour
     }
 
 
-
-    ////////
-    //Posing
-    ////////
+    /// <summary>
+    /// 管理站立姿势
+    /// </summary>
     void Posing()
     {
-        //Jump pose
+        //空中姿势
         if (inAir && !PlayingAnim)
         {
             //upper arms pose
@@ -835,7 +824,7 @@ public class APRController : MonoBehaviour
         }
 
 
-        //Reset pose
+        //重置站姿
         if (ResetPose && !Punching && !Jump)
         {
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = BodyTarget;
@@ -865,9 +854,7 @@ public class APRController : MonoBehaviour
 
 
 
-    //////////////////
-    //Fighting Actions
-    //////////////////
+    #region 攻击方法
 
     //Punch Right
     void PunchRight()
@@ -894,7 +881,7 @@ public class APRController : MonoBehaviour
                 {
                     Transform target = hit.collider.transform.root.GetComponent<APRController>().Head.transform;
                     Quaternion t = Quaternion.FromToRotation(APR_Parts[3].transform.position - APR_Parts[4].transform.position, APR_Parts[4].transform.position - target.position);
-                    APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation =localToJointSpace[4] * t * startLocalRotation[4];
+                    APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = localToJointSpace[4] * t * startLocalRotation[4];
                 }
             }
             yield return new WaitForSeconds(0.3f);
@@ -969,10 +956,10 @@ public class APRController : MonoBehaviour
             Punching = false;
         }
     }
-
-    /////////////////////////
-    //Feet Contact With Floor
-    /////////////////////////
+    #endregion
+    /// <summary>
+    /// 检测落地
+    /// </summary>
     public void OnFeetContact()
     {
         if (balanced && !isJumping)
@@ -982,7 +969,7 @@ public class APRController : MonoBehaviour
             inAir = false;
             GettingUp = false;
             Landed = false;
-            //reset body pose after fall
+            //落地后恢复站立
             APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, 0, 1);
         }
 
@@ -996,13 +983,14 @@ public class APRController : MonoBehaviour
 
 
     /// <summary>
-    /// 转为纯布娃娃
+    /// 转为纯布娃娃,被击晕时使用
     /// </summary>
     public void ActivateRagdoll()
     {
         balanced = false;
         KnockedOut = true;
         power = 0;
+        ThrowWeapon(true);
         //Root
         APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
         APR_Parts[0].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
@@ -1038,7 +1026,7 @@ public class APRController : MonoBehaviour
         IEnumerator timer()
         {
             var stars = Resources.Load<GameObject>("FX/Stars");
-             var a =Instantiate(stars, Head.transform.position+Head.transform.up*1.5f,stars.transform.rotation);
+            var a = Instantiate(stars, Head.transform.position + Head.transform.up * 1.5f, stars.transform.rotation);
             a.transform.SetParent(Head.transform, true);
             yield return new WaitForSeconds(3);
 
@@ -1047,10 +1035,9 @@ public class APRController : MonoBehaviour
     }
 
 
-
-    /////////////////////////
-    //Deactivate Full Ragdoll
-    /////////////////////////
+    /// <summary>
+    /// 恢复Joint驱动
+    /// </summary>
     public void DeactivateRagdoll()
     {
         balanced = true;
@@ -1091,9 +1078,9 @@ public class APRController : MonoBehaviour
         ResetPose = true;
     }
 
-
-
-    //计算质心
+    /// <summary>
+    /// 计算质心
+    /// </summary>
     void CenterOfMass()
     {
         CenterOfMassPoint =
@@ -1126,12 +1113,9 @@ public class APRController : MonoBehaviour
     }
 
 
-
-    ///////////////////
-    //Editor Debug Mode
-    ///////////////////
     void OnDrawGizmos()
     {
+        //质心可视化
         if (editorDebugMode)
         {
             Debug.DrawRay(Root.transform.position, -Root.transform.up * balanceHeight, Color.green);
@@ -1140,14 +1124,38 @@ public class APRController : MonoBehaviour
             Gizmos.DrawWireSphere(COMP.position, 0.3f);
         }
     }
-
-
-    public void PlayAnim(string name)
+    /// <summary>
+    /// 播放动画片段
+    /// </summary>
+    /// <param name="clip"></param>
+    void PlayAnimClip(RagdollClip clip)
     {
-        RagdollAnim anim = Utility.LoadAnim(name);
+        for (int j = 0; j < APR_Parts.Length; j++)
+        {
+            if (clip.bones[j].rotaThis)
+            {
+                if (j <= 10)
+                {
 
-        PlayAnim(anim);
+                    if (clip.bones[j].jointTarget.z != 0)
+                    {
+                        APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = clip.bones[j].jointTarget;
+                    }
+                    else
+                    {
+                        APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(clip.bones[j].targetRotation.x, clip.bones[j].targetRotation.y, clip.bones[j].targetRotation.z, 1);
+                    }
+
+                }
+                if (clip.bones[j].force != 0)
+                {
+                    APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force * powerCurve.Evaluate(power) * APR_Parts[j].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                    APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force * powerCurve.Evaluate(power) * APR_Parts[1].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                }
+            }
+        }
     }
+    #region 用于动画编辑器的动画播放
     public void PlayAnim(RagdollAnim anim)
     {
         //禁止套娃
@@ -1191,34 +1199,8 @@ public class APRController : MonoBehaviour
         PlayingAnim = false;
         ResetPose = true;
     }
+    #endregion
 
-    void PlayAnimClip(RagdollClip clip)
-    {
-        for (int j = 0; j < APR_Parts.Length; j++)
-        {
-            if (clip.bones[j].rotaThis)
-            {
-                if (j <= 10)
-                {
-
-                    if (clip.bones[j].jointTarget.z != 0)
-                    {
-                        APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = clip.bones[j].jointTarget;
-                    }
-                    else
-                    {
-                        APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(clip.bones[j].targetRotation.x, clip.bones[j].targetRotation.y, clip.bones[j].targetRotation.z, 1);
-                    }
-
-                }
-                if (clip.bones[j].force != 0)
-                {
-                    APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force * powerCurve.Evaluate(power) * APR_Parts[j].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-                    APR_Parts[1].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force * powerCurve.Evaluate(power) * APR_Parts[1].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-                }
-            }
-        }
-    }
 
     public bool OnGetWeapon(Weapon w)
     {
@@ -1232,16 +1214,24 @@ public class APRController : MonoBehaviour
         return true;
     }
 
-    void ThrowWeapon()
+    #region 扔出武器
+    void ThrowWeapon(bool drop = false)
     {
         if (weapon != null)
         {
             weapon.GetComponent<FixedJoint>().breakForce = 0;
 
             //随便扔武器
-            weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * ThrowForce * weapon.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-            weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * ThrowForce * weapon.GetComponent<Rigidbody>().mass / 3, ForceMode.Impulse);
-
+            if (!drop)
+            {
+                weapon.gameObject.tag = "HitObj";
+                weapon.GetComponent<Rigidbody>().AddForceAtPosition(APR_Parts[0].transform.forward * ThrowForce * weapon.GetComponent<Rigidbody>().mass, RightHand.transform.position, ForceMode.Impulse);
+                weapon.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * ThrowForce * weapon.GetComponent<Rigidbody>().mass / 3f, ForceMode.Impulse);
+            }
+            else
+            {
+                weapon.GetComponent<Rigidbody>().AddForceAtPosition((APR_Parts[0].transform.forward + APR_Parts[0].transform.up) * ThrowForce * weapon.GetComponent<Rigidbody>().mass / 3, RightHand.transform.position, ForceMode.Impulse);
+            }
             weapon.OnThrow();
             OnLostWeapon();
         }
@@ -1261,7 +1251,13 @@ public class APRController : MonoBehaviour
             RightHand.GetComponent<Collider>().isTrigger = false;
         }
     }
+    #endregion
 
+    /// <summary>
+    /// 被击打时优化整体表现
+    /// </summary>
+    /// <param name="hitobj"></param>
+    /// <param name="force"></param>
     public void GetHurt(GameObject hitobj, Vector3 force)
     {
         //ActivateRagdoll();
@@ -1273,7 +1269,7 @@ public class APRController : MonoBehaviour
                 if (hitobj == obj)
                 {
                     APR_Parts[i].GetComponent<Rigidbody>().AddForce(force * APR_Parts[i].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-                    GetHurt(APR_Parts[i], force * 0.95f);
+                    GetHurt(APR_Parts[i], force * 0.8f);
                 }
             }
 

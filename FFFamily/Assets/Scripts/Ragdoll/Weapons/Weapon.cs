@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
             {
                 _throw = false;
                 weaponed = false;
+                gameObject.tag = "Untagged";
             }
         }
     }

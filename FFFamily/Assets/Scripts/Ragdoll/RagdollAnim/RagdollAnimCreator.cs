@@ -23,11 +23,11 @@ public class RagdollAnimCreator : MonoBehaviour
     }
     private void OnGUI()
     {
-        if(GUILayout.Button("播放动画"))
+        if (GUILayout.Button("播放动画"))
         {
             ragdoll.GetComponent<APRController>().PlayAnim(ragdollAnim);
         }
-        if(GUILayout.Button("复位"))
+        if (GUILayout.Button("复位"))
         {
             ragdoll.transform.GetChild(0).transform.position = o;
         }

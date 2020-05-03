@@ -2,10 +2,10 @@
 
 public class ImpactDetect : MonoBehaviour
 {
-	public APRController APR_Player;
+    public APRController APR_Player;
     public float ImpactForce;
-	public float KnockoutForce;
-    
+    public float KnockoutForce;
+
     public AudioClip[] Impacts;
     public AudioClip[] Hits;
     public AudioSource SoundSource;
@@ -24,7 +24,7 @@ public class ImpactDetect : MonoBehaviour
                 GetComponent<Rigidbody>().AddForceAtPosition(col.relativeVelocity * 0.8f * GetComponent<Rigidbody>().mass, point.point, ForceMode.Impulse);
                 APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.8f);
             }
-            //Knockout by impact
+            //击倒
             if (col.relativeVelocity.magnitude > KnockoutForce / APR_Player.Power && col.transform.root != transform.root)
             {
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
@@ -39,10 +39,10 @@ public class ImpactDetect : MonoBehaviour
                 }
             }
 
-            //Sound on impact
+            //有效打击
             if (col.relativeVelocity.magnitude > ImpactForce && col.transform.root != transform.root)
             {
-                Instantiate(hitFX,point.point,Quaternion.identity);
+                Instantiate(hitFX, point.point, Quaternion.identity);
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
                 if (!SoundSource.isPlaying)
                 {

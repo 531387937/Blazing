@@ -71,17 +71,6 @@ public class HandController : MonoBehaviour
                     }
                 }
                 
-                //else if(col.gameObject.tag == "Player" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
-                //{
-                //    if(APR_Player.ReachingLeft && !hasJoint)
-                //    {
-                //        hasJoint = true;
-                //        hasWaitedAfterThrow = false;
-                //        this.gameObject.AddComponent<FixedJoint>();
-                //        this.gameObject.GetComponent<FixedJoint>().breakForce = 100000;
-                //        this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
-                //    }
-                //}
             }
 
             //Right Hand
@@ -99,17 +88,6 @@ public class HandController : MonoBehaviour
                     }
                 }
                 
-                //if(col.gameObject.tag == "Player" && col.gameObject.layer != LayerMask.NameToLayer(APR_Player.thisPlayerLayer) && !hasJoint)
-                //{
-                //    if(APR_Player.ReachingRight && !hasJoint)
-                //    {
-                //        hasJoint = true;
-                //        hasWaitedAfterThrow = false;
-                //        this.gameObject.AddComponent<FixedJoint>();
-                //        this.gameObject.GetComponent<FixedJoint>().breakForce = 100000;
-                //        this.gameObject.GetComponent<FixedJoint>().connectedBody = col.gameObject.GetComponent<Rigidbody>();
-                //    }
-                //}
             }
         }
     }
