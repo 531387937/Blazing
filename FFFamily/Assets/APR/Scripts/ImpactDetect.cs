@@ -31,7 +31,12 @@ public class ImpactDetect : MonoBehaviour
                 APR_Player.ActivateRagdoll();
                 GetComponent<Rigidbody>().AddForce(Vector3.up * col.relativeVelocity.magnitude * 4 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
                 APR_Player.GetHurt(gameObject, Vector3.up * col.relativeVelocity.magnitude * 4);
-                if (!SoundSource.isPlaying)
+                if(col.gameObject.GetComponent<Weapon>()!=null&& !SoundSource.isPlaying)
+                {
+                    SoundSource.clip = col.gameObject.GetComponent<Weapon>().knockOut;
+                    SoundSource.Play();
+                }
+                else if (!SoundSource.isPlaying)
                 {
                     int i = Random.Range(0, Hits.Length);
                     SoundSource.clip = Hits[i];
@@ -44,7 +49,12 @@ public class ImpactDetect : MonoBehaviour
             {
                 Instantiate(hitFX, point.point, Quaternion.identity);
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
-                if (!SoundSource.isPlaying)
+                if (col.gameObject.GetComponent<Weapon>() != null && !SoundSource.isPlaying)
+                {
+                    SoundSource.clip = col.gameObject.GetComponent<Weapon>().impact;
+                    SoundSource.Play();
+                }
+                else if (!SoundSource.isPlaying)
                 {
                     int i = Random.Range(0, Impacts.Length);
                     SoundSource.clip = Impacts[i];

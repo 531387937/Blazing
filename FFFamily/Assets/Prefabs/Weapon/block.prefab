@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 353591049}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0.177, y: 1.35, z: 2.228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
 --- !u!33 &353591054
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -125,3 +125,5 @@ MonoBehaviour:
   rotOffset: {x: 0, y: 90, z: -90}
   idleAnim: BlockIdle
   attackAnim: BlockAttack
+  impact: {fileID: 8300000, guid: de7b3f4524fe17345b26f9bc613b79f6, type: 3}
+  knockOut: {fileID: 8300000, guid: aebf5b469a618b24f918bf48ba027c38, type: 3}

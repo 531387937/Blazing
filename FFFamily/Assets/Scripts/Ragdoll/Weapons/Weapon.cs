@@ -13,6 +13,9 @@ public class Weapon : MonoBehaviour
     private bool _throw;
     private RagdollAnim attack;
     private float timer;
+
+    public AudioClip impact;
+    public AudioClip knockOut;
     // Start is called before the first frame update
     void Start()
     {

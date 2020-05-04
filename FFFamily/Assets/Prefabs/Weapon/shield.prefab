@@ -51,6 +51,8 @@ MonoBehaviour:
   rotOffset: {x: -90, y: -180, z: 90}
   idleAnim: ShieldIdle
   attackAnim: ShieldAttack
+  impact: {fileID: 8300000, guid: 211388041adc1d84f9ecb499082cfe41, type: 3}
+  knockOut: {fileID: 8300000, guid: b6474290f15a73a40a612eab35fa82c0, type: 3}
 --- !u!54 &1703479016549406152
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -59,7 +61,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703479016549406151}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 0.5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -149,23 +151,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400004, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
+    - target: {fileID: 2300002, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9936782b871555d40bde89dcd131bb4f, type: 2}
-    - target: {fileID: 2300002, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
+    - target: {fileID: 2300000, guid: 2b1808e290ff0554cbccd0ff006b3ec0, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9936782b871555d40bde89dcd131bb4f, type: 2}
