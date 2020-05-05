@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animation:
   - name: AnimationClip1
-    nextAnim: 0.3
+    nextAnim: 0.15
     bones:
     - name: APR_Root
       rotaThis: 0
@@ -23,9 +23,9 @@ MonoBehaviour:
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_Body
       rotaThis: 1
-      targetRotation: {x: 0, y: 10, z: 0}
+      targetRotation: {x: 0, y: -0.36, z: 0}
       force: 0
-      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+      jointTarget: {x: 0, y: -0.36, z: 0, w: 1}
     - name: APR_Head
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
@@ -33,14 +33,14 @@ MonoBehaviour:
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_UpperRightArm
       rotaThis: 1
-      targetRotation: {x: -90, y: 0, z: 90}
+      targetRotation: {x: 0.22, y: 0, z: 0}
       force: 0
-      jointTarget: {x: -0.000000005587935, y: -0.7071068, z: -0.000000005587935, w: 0.70710677}
+      jointTarget: {x: 0.22, y: 0, z: 0, w: 1}
     - name: APR_LowerRightArm
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 30}
+      rotaThis: 1
+      targetRotation: {x: 2.12, y: -2, z: -0.37}
       force: 0
-      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+      jointTarget: {x: 2.12, y: -2, z: -0.37, w: 1}
     - name: APR_UpperLeftArm
       rotaThis: 0
       targetRotation: {x: -5, y: 23, z: 140}
@@ -82,17 +82,17 @@ MonoBehaviour:
       force: 0
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_RightHand
-      rotaThis: 0
-      targetRotation: {x: 0, y: 0, z: 0}
+      rotaThis: 1
+      targetRotation: {x: -0.02, y: 0, z: 0}
       force: 0
-      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+      jointTarget: {x: -0.02, y: 0, z: 0, w: 1}
     - name: APR_LeftHand
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
       force: 0
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
   - name: AnimationClip2
-    nextAnim: 0
+    nextAnim: 0.15
     bones:
     - name: APR_Root
       rotaThis: 0
@@ -100,10 +100,10 @@ MonoBehaviour:
       force: 0
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_Body
-      rotaThis: 1
-      targetRotation: {x: 0, y: -10, z: 0}
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
       force: 0
-      jointTarget: {x: 0, y: 0.17364818, z: 0, w: 0.9848077}
+      jointTarget: {x: 0, y: 0.03, z: 0, w: 1}
     - name: APR_Head
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
@@ -111,14 +111,14 @@ MonoBehaviour:
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_UpperRightArm
       rotaThis: 1
-      targetRotation: {x: -30, y: -30, z: 40}
+      targetRotation: {x: -0.01, y: 1.77, z: 0.02}
       force: 0
-      jointTarget: {x: 0.43559575, y: -0.30618626, z: 0.53033006, w: 0.6597396}
+      jointTarget: {x: -0.01, y: 1.77, z: 0.02, w: 1}
     - name: APR_LowerRightArm
       rotaThis: 1
-      targetRotation: {x: -10, y: 0, z: 80}
+      targetRotation: {x: 2.58, y: -3.87, z: -1.57}
       force: 0
-      jointTarget: {x: -0.000000009063679, y: -0.000000011973461, z: 0.25881904, w: 0.9659259}
+      jointTarget: {x: 2.58, y: -3.87, z: -1.57, w: 1}
     - name: APR_UpperLeftArm
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
@@ -161,9 +161,87 @@ MonoBehaviour:
       jointTarget: {x: 0, y: 0, z: 0, w: 0}
     - name: APR_RightHand
       rotaThis: 1
+      targetRotation: {x: 0, y: -0.53, z: 0}
+      force: 10
+      jointTarget: {x: 0, y: -0.53, z: 0, w: 1}
+    - name: APR_LeftHand
+      rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
-      force: 50
-      jointTarget: {x: -0.000000002022155, y: -0.00000001617724, z: 0.70710677, w: 0.70710677}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+  - name: AnimationClip3
+    nextAnim: 0
+    bones:
+    - name: APR_Root
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_Body
+      rotaThis: 1
+      targetRotation: {x: 0, y: 0.16, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0.16, z: 0, w: 1}
+    - name: APR_Head
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_UpperRightArm
+      rotaThis: 1
+      targetRotation: {x: 0.48, y: -0.09, z: 0}
+      force: 0
+      jointTarget: {x: 0.48, y: -0.09, z: 0, w: 1}
+    - name: APR_LowerRightArm
+      rotaThis: 1
+      targetRotation: {x: 0.36, y: -1.21, z: 1.15}
+      force: 0
+      jointTarget: {x: 0.36, y: -1.21, z: 1.15, w: 1}
+    - name: APR_UpperLeftArm
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_LowerLeftArm
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_UpperRightLeg
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_LowerRightLeg
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_UpperLeftLeg
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_LowerLeftLeg
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_RightFoot
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_LeftFoot
+      rotaThis: 0
+      targetRotation: {x: 0, y: 0, z: 0}
+      force: 0
+      jointTarget: {x: 0, y: 0, z: 0, w: 0}
+    - name: APR_RightHand
+      rotaThis: 1
+      targetRotation: {x: -0.24, y: 0.12, z: 0}
+      force: 60
+      jointTarget: {x: -0.24, y: 0.12, z: 0, w: 1}
     - name: APR_LeftHand
       rotaThis: 0
       targetRotation: {x: 0, y: 0, z: 0}
