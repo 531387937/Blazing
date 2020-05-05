@@ -231,13 +231,11 @@ public class APRController : MonoBehaviour
         {
             InputControls();
         }
-        print(Input.GetAxis(input.trigger));
         if (!KnockedOut)
         {
             GroundCheck();
             Balance();
-            CenterOfMass();
-            Posing();
+            CenterOfMass();        
         }
 
     }
@@ -249,6 +247,7 @@ public class APRController : MonoBehaviour
         {
             Jumping();
             Walking();
+            Posing();
         }
     }
     //输入管理

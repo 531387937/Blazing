@@ -27,7 +27,9 @@ public class ImpactDetect : MonoBehaviour
                 APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.8f);
             }
             //击倒
-            if (col.relativeVelocity.magnitude*p > KnockoutForce / APR_Player.Power && col.transform.root != transform.root)
+            print(KnockoutForce / Mathf.Sqrt(APR_Player.Power));
+            print(col.relativeVelocity.magnitude * p);
+            if (col.relativeVelocity.magnitude*p > KnockoutForce /Mathf.Sqrt(APR_Player.Power) && col.transform.root != transform.root)
             {
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
                 APR_Player.ActivateRagdoll();
