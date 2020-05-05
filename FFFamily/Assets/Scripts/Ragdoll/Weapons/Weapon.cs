@@ -16,6 +16,8 @@ public class Weapon : MonoBehaviour
 
     public AudioClip impact;
     public AudioClip knockOut;
+    [Range(1,1.5f)]
+    public float powerOffset =1;
     // Start is called before the first frame update
     void Start()
     {

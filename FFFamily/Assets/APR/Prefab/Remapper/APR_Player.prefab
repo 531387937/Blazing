@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 91100162661304011}
   - component: {fileID: 91100162661304009}
   - component: {fileID: 91100162661304010}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_UpperLeftLeg
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100162661304008}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -120,7 +120,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -1.1051587, y: -0.16859978, z: -0.0134604005}
+  m_ConnectedAnchor: {x: -1.1051593, y: -0.16859964, z: -0.013460353}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -213,7 +213,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 91100162932534807}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_COMP
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 91100163113639670}
   - component: {fileID: 91100163113639669}
   - component: {fileID: 91100163113639628}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_RightFoot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100163113639667}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -356,7 +356,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009304752, y: -0.5967073, z: 0.18177004}
+  m_ConnectedAnchor: {x: 0.009305225, y: -0.59670717, z: 0.18177004}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 91100163316385753}
   - component: {fileID: 91100163316385752}
   - component: {fileID: 91100163316385735}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_UpperRightArm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100163316385733}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -573,7 +573,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.53125966, y: 0.05511782, z: -0.23272721}
+  m_ConnectedAnchor: {x: 0.5312598, y: 0.05511782, z: -0.23272721}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -671,7 +671,7 @@ GameObject:
   - component: {fileID: 91100163671660527}
   - component: {fileID: 91100163671660525}
   - component: {fileID: 91100163671660526}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_LowerLeftLeg
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100163671660524}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -778,7 +778,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.5912213, z: 0.00000032835803}
+  m_ConnectedAnchor: {x: -0.0000006740173, y: -0.5912213, z: 0.0000004947261}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 91100163745247361}
   - component: {fileID: 91100163745247375}
   - component: {fileID: 91100163745247360}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_LowerRightLeg
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -949,7 +949,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100163745247374}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -982,7 +982,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -0.5912214, z: 0.00000031376436}
+  m_ConnectedAnchor: {x: 0.0000002839267, y: -0.5912213, z: 0.0000004013265}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1080,7 +1080,7 @@ GameObject:
   - component: {fileID: 91100163746484244}
   - component: {fileID: 91100163746484242}
   - component: {fileID: 91100163746484243}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_UpperRightLeg
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1153,7 +1153,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100163746484241}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1186,7 +1186,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 1.0769446, y: -0.16859978, z: -0.0134604005}
+  m_ConnectedAnchor: {x: 1.0769448, y: -0.16859964, z: -0.01346039}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1284,7 +1284,7 @@ GameObject:
   - component: {fileID: 91100163821111179}
   - component: {fileID: 91100163821111178}
   - component: {fileID: 91100163821111177}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_LowerRightArm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1357,7 +1357,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100163821111223}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1390,7 +1390,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000008466491, y: -0.5319975, z: -0.000000054538177}
+  m_ConnectedAnchor: {x: -0.00000008466492, y: -0.531998, z: -0.0000001810272}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1488,7 +1488,7 @@ GameObject:
   - component: {fileID: 91100164022116247}
   - component: {fileID: 91100164022116245}
   - component: {fileID: 91100164022116246}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_Root
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1561,7 +1561,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100164022116244}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1594,7 +1594,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.0861253, z: 0.008}
+  m_ConnectedAnchor: {x: 1.408, y: 2.4761252, z: 2.03}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 2
@@ -1693,7 +1693,7 @@ GameObject:
   - component: {fileID: 91100164240495534}
   - component: {fileID: 91100164240495533}
   - component: {fileID: 91100164240495528}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_LeftFoot
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1767,7 +1767,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100164240495532}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -1800,7 +1800,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.009272523, y: -0.5967053, z: 0.18177012}
+  m_ConnectedAnchor: {x: 0.0092722345, y: -0.59670514, z: 0.18177004}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1911,7 +1911,8 @@ GameObject:
   - component: {fileID: 91100164303628181}
   - component: {fileID: 91100164303628180}
   - component: {fileID: 91100164303628179}
-  m_Layer: 8
+  - component: {fileID: 1157740044}
+  m_Layer: 11
   m_Name: APR_Body
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1984,9 +1985,9 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100164303628177}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2017,7 +2018,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.61696535, z: -0.009789382}
+  m_ConnectedAnchor: {x: 0, y: 0.61696565, z: -0.009789382}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2072,7 +2073,7 @@ ConfigurableJoint:
     positionSpring: 0
     positionDamper: 0
     maximumForce: 3.4028233e+38
-  m_TargetRotation: {x: -0.05, y: 0, z: 0, w: 1}
+  m_TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   m_TargetAngularVelocity: {x: 0, y: 0, z: 0}
   m_RotationDriveMode: 0
   m_AngularXDrive:
@@ -2101,6 +2102,20 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!136 &1157740044
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91100164303628177}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.36734322
+  m_Height: 1.0664629
+  m_Direction: 1
+  m_Center: {x: 0.004101849, y: 0, z: -0.018699618}
 --- !u!1 &91100164374446346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2117,7 +2132,7 @@ GameObject:
   - component: {fileID: 91100164374446351}
   - component: {fileID: 2633492668495250739}
   - component: {fileID: 2633492668495250738}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_Head
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2190,7 +2205,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100164374446346}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2223,7 +2238,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.24565394, z: 0.00000009309966}
+  m_ConnectedAnchor: {x: -1.5626811e-14, y: 0.24565381, z: 0.00000014835963}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2417,7 +2432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   APR_Player: {fileID: 7610814571882091904}
   ImpactForce: 15
-  KnockoutForce: 25
+  KnockoutForce: 40
   Impacts:
   - {fileID: 8300000, guid: 6c4cb0d9b484065469606431acecaf73, type: 3}
   - {fileID: 8300000, guid: 4cfd3bf123be1e74d84fd84739aef04e, type: 3}
@@ -2443,7 +2458,7 @@ GameObject:
   - component: {fileID: 91100164420499982}
   - component: {fileID: 91100164420499981}
   - component: {fileID: 91100164420499980}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_LowerLeftArm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2516,7 +2531,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100164420499978}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2549,7 +2564,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000054111933, y: 0.52276933, z: 0.0000000123368}
+  m_ConnectedAnchor: {x: -0.00000054111933, y: 0.5227696, z: -0.00000020153347}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2647,7 +2662,7 @@ GameObject:
   - component: {fileID: 91100164634728785}
   - component: {fileID: 91100164634728784}
   - component: {fileID: 91100164634728799}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_UpperLeftArm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2720,7 +2735,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91100164634728797}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2753,7 +2768,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.54181623, y: 0.0551181, z: -0.3036655}
+  m_ConnectedAnchor: {x: -0.5418164, y: 0.0551181, z: -0.30366555}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2852,7 +2867,7 @@ GameObject:
   - component: {fileID: 4615079327421343346}
   - component: {fileID: 4615079327421343357}
   - component: {fileID: 2633492668495250742}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_LeftHand
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2925,7 +2940,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615079327421343353}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2958,7 +2973,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: -0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000077302765, y: 0.52321976, z: -0.000000012347377}
+  m_ConnectedAnchor: {x: 0.00000007730276, y: 0.52322114, z: -0.00000022621772}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3072,7 +3087,7 @@ GameObject:
   - component: {fileID: 4615079328070504250}
   - component: {fileID: 4615079328070504197}
   - component: {fileID: 2633492668495250743}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_RightHand
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3086,7 +3101,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615079328070504193}
-  m_LocalRotation: {x: -0.0000000018626451, y: -0.000000014901161, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: -0.000000002022155, y: -0.00000001617724, z: 0.70710677, w: 0.70710677}
   m_LocalPosition: {x: 1.696, y: 1.607, z: -0.187}
   m_LocalScale: {x: 0.35200322, y: 0.28608796, z: 0.3534125}
   m_Children: []
@@ -3145,7 +3160,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615079328070504193}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a24dccfe725ef654789ebc0dff959028, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -3178,7 +3193,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000084664926, y: -0.52475774, z: -0.00000006047315}
+  m_ConnectedAnchor: {x: -0.000000084664926, y: -0.5247587, z: -0.00000014479919}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -3287,7 +3302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4055310656456041643}
   - component: {fileID: 7610814571882091904}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: APR_Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3344,16 +3359,10 @@ MonoBehaviour:
   jumpGetup: space
   punchRight: e
   punchLeft: q
-  reachRight: p
+  reachRight: l
   reachLeft: o
   pickupThrow: f
   PlayerNum: 1
-  input:
-    button: 
-    horizontal: 
-    vertical: 
-    trigger: 
-  thisPlayerLayer: Player_1
   MoveSpeed: 7
   turnSpeed: 0.5
   balanceHeight: 2
@@ -3361,10 +3370,35 @@ MonoBehaviour:
   StepHeight: 2
   jumpForce: 13
   PunchForce: 50
-  ThrowForce: 30
+  ThrowForce: 65
   FeetMountForce: 25
+  powerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   ReachingRight: 0
   ReachingLeft: 0
+  footOnGround: 0
   Root: {fileID: 91100164022116244}
   Body: {fileID: 91100164303628177}
   Head: {fileID: 91100164374446346}

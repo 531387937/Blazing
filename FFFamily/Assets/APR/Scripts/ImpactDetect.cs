@@ -18,6 +18,8 @@ public class ImpactDetect : MonoBehaviour
     {
         if (col.gameObject.tag == "HitObj")
         {
+            var weapon = col.gameObject.GetComponent<Weapon>();
+            float p = weapon != null ? weapon.powerOffset : 1;
             ContactPoint point = col.contacts[0];
             if (col.transform.root != transform.root)
             {
@@ -25,13 +27,13 @@ public class ImpactDetect : MonoBehaviour
                 APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.8f);
             }
             //击倒
-            if (col.relativeVelocity.magnitude > KnockoutForce / APR_Player.Power && col.transform.root != transform.root)
+            if (col.relativeVelocity.magnitude*p > KnockoutForce / APR_Player.Power && col.transform.root != transform.root)
             {
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
                 APR_Player.ActivateRagdoll();
                 GetComponent<Rigidbody>().AddForce(Vector3.up * col.relativeVelocity.magnitude * 4 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
                 APR_Player.GetHurt(gameObject, Vector3.up * col.relativeVelocity.magnitude * 4);
-                if(col.gameObject.GetComponent<Weapon>()!=null&& !SoundSource.isPlaying)
+                if(weapon!=null&& !SoundSource.isPlaying)
                 {
                     SoundSource.clip = col.gameObject.GetComponent<Weapon>().knockOut;
                     SoundSource.Play();
@@ -45,11 +47,11 @@ public class ImpactDetect : MonoBehaviour
             }
 
             //有效打击
-            if (col.relativeVelocity.magnitude > ImpactForce && col.transform.root != transform.root)
+            if (col.relativeVelocity.magnitude*p > ImpactForce && col.transform.root != transform.root)
             {
                 Instantiate(hitFX, point.point, Quaternion.identity);
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
-                if (col.gameObject.GetComponent<Weapon>() != null && !SoundSource.isPlaying)
+                if (weapon != null && !SoundSource.isPlaying)
                 {
                     SoundSource.clip = col.gameObject.GetComponent<Weapon>().impact;
                     SoundSource.Play();

@@ -46,15 +46,15 @@ public class APRController : MonoBehaviour
         set
         {
             power = value;
-            if (power > 1)
-                power = 1;
+            if (power > 2)
+                power = 2;
         }
         get
         {
             return power;
         }
     }
-    private float power = 0.1f;
+    private float power = 1f;
     //Actions
     private float timer;
     private float Step_R_timer;
@@ -80,7 +80,8 @@ public class APRController : MonoBehaviour
     private bool ResetPose;
     private bool PickedUp;
     private bool Threw;
-
+    [HideInInspector]
+    public bool footOnGround;
     //是否在播放动画
     private bool PlayingAnim;
     //武器
@@ -132,7 +133,8 @@ public class APRController : MonoBehaviour
     UpperRightArmTarget, LowerRightArmTarget,
     UpperLeftArmTarget, LowerLeftArmTarget,
     UpperRightLegTarget, LowerRightLegTarget,
-    UpperLeftLegTarget, LowerLeftLegTarget;
+    UpperLeftLegTarget, LowerLeftLegTarget,
+        RightHandTarget, LeftHandTarget;
 
     //用于IK计算的四元数据
     Quaternion[] localToJointSpace;
@@ -206,6 +208,8 @@ public class APRController : MonoBehaviour
         LowerRightLegTarget = APR_Parts[8].GetComponent<ConfigurableJoint>().targetRotation;
         UpperLeftLegTarget = APR_Parts[9].GetComponent<ConfigurableJoint>().targetRotation;
         LowerLeftLegTarget = APR_Parts[10].GetComponent<ConfigurableJoint>().targetRotation;
+        RightHandTarget = APR_Parts[13].GetComponent<ConfigurableJoint>().targetRotation;
+        LeftHandTarget = APR_Parts[14].GetComponent<ConfigurableJoint>().targetRotation;
     }
     private void Start()
     {
@@ -227,7 +231,7 @@ public class APRController : MonoBehaviour
         {
             InputControls();
         }
-
+        print(Input.GetAxis(input.trigger));
         if (!KnockedOut)
         {
             GroundCheck();
@@ -256,6 +260,10 @@ public class APRController : MonoBehaviour
             var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
             v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
             APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
+            if(!WalkForward)
+            {
+                StepRight = true;
+            }
             WalkForward = true;
             isKeyDown = true;
         }
@@ -264,6 +272,7 @@ public class APRController : MonoBehaviour
         {
             WalkForward = false;
             isKeyDown = false;
+            
         }
 
 
@@ -276,6 +285,10 @@ public class APRController : MonoBehaviour
             APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
             WalkBackward = true;
             isKeyDown = true;
+            if (!WalkBackward)
+            {
+                StepRight = true;
+            }
         }
 
         if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.1f && Input.GetAxis(input.vertical) <= 0))
@@ -485,9 +498,9 @@ public class APRController : MonoBehaviour
         RaycastHit hit;
 
         //Balance when ground detected
-        if (Physics.Raycast(ray, out hit, balanceHeight) && Grounded && !balanced && !isJumping)
+        if ((Physics.Raycast(ray, out hit, balanceHeight)||footOnGround) && Grounded && !balanced && !isJumping)
         {
-            if (hit.transform.tag == "Ground")
+            if (hit.transform.tag == "Ground"||footOnGround)
             {
                 balanced = true;
                 GettingUp = false;
@@ -495,7 +508,7 @@ public class APRController : MonoBehaviour
         }
 
         //Fall when ground is not detected
-        else if (!Physics.Raycast(ray, out hit, balanceHeight) && !GettingUp)
+        else if (!Physics.Raycast(ray, out hit, balanceHeight) && !GettingUp&&!footOnGround)
         {
             balanced = false;
             Grounded = false;
@@ -833,6 +846,8 @@ public class APRController : MonoBehaviour
             APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = LowerRightArmTarget;
             APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = UpperLeftArmTarget;
             APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = LowerLeftArmTarget;
+            APR_Parts[13].GetComponent<ConfigurableJoint>().targetRotation = RightHandTarget;
+            APR_Parts[14].GetComponent<ConfigurableJoint>().targetRotation = LeftHandTarget;
             if (resetAnim != null)
             {
                 {
@@ -840,10 +855,7 @@ public class APRController : MonoBehaviour
                     {
                         if (resetAnim.animation[0].bones[j].rotaThis)
                         {
-                            if (j <= 10)
-                            {
                                 APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = resetAnim.animation[0].bones[j].jointTarget;
-                            }
                         }
                     }
                 }
@@ -964,7 +976,6 @@ public class APRController : MonoBehaviour
     {
         if (balanced && !isJumping)
         {
-
             Grounded = true;
             inAir = false;
             GettingUp = false;
@@ -989,7 +1000,7 @@ public class APRController : MonoBehaviour
     {
         balanced = false;
         KnockedOut = true;
-        power = 0;
+        power = 1;
         ThrowWeapon(true);
         //Root
         APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
@@ -1134,8 +1145,6 @@ public class APRController : MonoBehaviour
         {
             if (clip.bones[j].rotaThis)
             {
-                if (j <= 10)
-                {
 
                     if (clip.bones[j].jointTarget.z != 0)
                     {
@@ -1146,7 +1155,6 @@ public class APRController : MonoBehaviour
                         APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(clip.bones[j].targetRotation.x, clip.bones[j].targetRotation.y, clip.bones[j].targetRotation.z, 1);
                     }
 
-                }
                 if (clip.bones[j].force != 0)
                 {
                     APR_Parts[j].GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.forward * clip.bones[j].force * powerCurve.Evaluate(power) * APR_Parts[j].GetComponent<Rigidbody>().mass, ForceMode.Impulse);
