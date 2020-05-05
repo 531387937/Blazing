@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8569980419860728726}
   - component: {fileID: 8569980419860728727}
   - component: {fileID: 8569980419860728722}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: strick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8569980419860728725}
   serializedVersion: 2
-  m_Mass: 0.5
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -81,6 +81,7 @@ MonoBehaviour:
   attackAnim: StickAttack
   impact: {fileID: 8300000, guid: 5ee4b39f9bb31e14395e3e3c30dbcfe7, type: 3}
   knockOut: {fileID: 8300000, guid: 4bb64adfb8e283a49be8e74975d5207e, type: 3}
+  powerOffset: 1.5
 --- !u!1001 &985137677
 PrefabInstance:
   m_ObjectHideFlags: 0
