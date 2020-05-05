@@ -82,6 +82,8 @@ public class APRController : MonoBehaviour
     private bool Threw;
     [HideInInspector]
     public bool footOnGround;
+    [HideInInspector]
+    public bool down = false;
     //是否在播放动画
     private bool PlayingAnim;
     //武器
@@ -999,6 +1001,7 @@ public class APRController : MonoBehaviour
     {
         balanced = false;
         KnockedOut = true;
+        down = true;
         power = 1;
         ThrowWeapon(true);
         //Root

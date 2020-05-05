@@ -27,14 +27,15 @@ public class ImpactDetect : MonoBehaviour
                 APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.8f);
             }
             //击倒
-            print(KnockoutForce / Mathf.Sqrt(APR_Player.Power));
-            print(col.relativeVelocity.magnitude * p);
+
             if (col.relativeVelocity.magnitude*p > KnockoutForce /Mathf.Sqrt(APR_Player.Power) && col.transform.root != transform.root)
             {
                 col.transform.root.GetComponent<APRController>().Power += 0.1f;
                 APR_Player.ActivateRagdoll();
-                GetComponent<Rigidbody>().AddForce(Vector3.up * col.relativeVelocity.magnitude * 4 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-                APR_Player.GetHurt(gameObject, Vector3.up * col.relativeVelocity.magnitude * 4);
+                GetComponent<Rigidbody>().AddForceAtPosition(col.relativeVelocity * 0.4f * GetComponent<Rigidbody>().mass, point.point, ForceMode.Impulse);
+                APR_Player.GetHurt(gameObject, col.relativeVelocity * 0.4f);
+                GetComponent<Rigidbody>().AddForce(Vector3.up * col.relativeVelocity.magnitude * 2.5f * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                APR_Player.GetHurt(gameObject, Vector3.up * col.relativeVelocity.magnitude * 2.5f);
                 if(weapon!=null&& !SoundSource.isPlaying)
                 {
                     SoundSource.clip = col.gameObject.GetComponent<Weapon>().knockOut;
