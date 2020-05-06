@@ -5,57 +5,54 @@ using UnityEngine;
 public class RouteLine : MonoBehaviour
 {
     [SerializeField] private Transform points;                          //控制点父对象
-    private List<Transform> point_tranList = new List<Transform>();     //控制点列表
+    private List<Vector3> point_tranList = new List<Vector3>(3);     //控制点列表
     [SerializeField] private int pointCount = 100;                      //曲线点的个数
     private List<Vector3> line_pointList;                               //曲线点列表
 
-    [SerializeField] private Transform lookTarget;                      //看向目标
     [SerializeField] private GameObject ball;                           //运动物体
     [SerializeField] private float time0 = 0;                           //曲线点之间移动时间间隔
     private float timer = 0;                    //计时器
     private int item = 1;                       //曲线点的索引
     private bool isTrue = false;
-
+    public PathFinders finder;
     //使小球沿曲线运动
     //这里不能直接在for里以Point使用差值运算，看不到小球运算效果
     //定义一个计时器，在相隔时间内进行一次差值运算。
-    void Awake()
+    void Start()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            point_tranList.Add(new Vector3(0, 0, 0));
+        }
+        ball.transform.position = finder.FindNextRoute();
+        point_tranList[0] = ball.transform.position;
+        point_tranList[2] = finder.FindNextRoute();
         Init();
     }
     void Init()
     {
-        if (null != points && point_tranList.Count == 0)
+        line_pointList = new List<Vector3>();
+        Vector3 offset = Vector3.Cross((point_tranList[2] - point_tranList[0]).normalized, Vector3.up) * 3;
+        point_tranList[1] = (point_tranList[0] + point_tranList[2]) / 2;
+        
+        for (int i = 0; i < 30; i++)
         {
-            for(int i = 0;i<points.childCount;i++)
+            Ray ray = new Ray(point_tranList[0], Quaternion.AngleAxis(15 - i, Vector3.up) * (point_tranList[2] - point_tranList[0]));
+            RaycastHit hit;
+            if ((Physics.Raycast(ray, out hit, Vector3.Distance(point_tranList[0], point_tranList[2]))))
             {
-                point_tranList.Add(points.GetChild(i));
+                if (hit.transform.tag == "Ground")
+                {
+                        point_tranList[1] -= offset;
+                        break;
+                }
             }
         }
-        line_pointList = new List<Vector3>();
         for (int i = 0; point_tranList.Count != 0 && i < pointCount; i++)
         {
             //一
-            point_tranList[1].position = (point_tranList[0].position + point_tranList[2].position) / 2 + Vector3.Cross((point_tranList[2].position - point_tranList[0].position).normalized, Vector3.up) * (point_tranList[2].position - point_tranList[0].position).magnitude / 2 * 1.732f;
-            Vector3 pos1 = Vector3.Lerp(point_tranList[0].position, point_tranList[1].position, i / (float)pointCount);
-            Vector3 pos2 = Vector3.Lerp(point_tranList[1].position, point_tranList[2].position, i / (float)pointCount);
-            Vector3 pos3 = Vector3.Lerp(point_tranList[2].position, point_tranList[3].position, i / (float)pointCount);
-            Vector3 pos4 = Vector3.Lerp(point_tranList[3].position, point_tranList[4].position, i / (float)pointCount);
-            Vector3 pos5 = Vector3.Lerp(point_tranList[4].position, point_tranList[5].position, i / (float)pointCount);
-
-            //二
-            var pos1_0 = Vector3.Lerp(pos1, pos2, i / (float)pointCount);
-            var pos1_1 = Vector3.Lerp(pos2, pos3, i / (float)pointCount);
-            var pos1_2 = Vector3.Lerp(pos3, pos4, i / (float)pointCount);
-            var pos1_3 = Vector3.Lerp(pos4, pos5, i / (float)pointCount);
-            //三
-            var pos2_0 = Vector3.Lerp(pos1_0, pos1_1, i / (float)pointCount);
-            var pos2_1 = Vector3.Lerp(pos1_1, pos1_2, i / (float)pointCount);
-            var pos2_2 = Vector3.Lerp(pos1_2, pos1_3, i / (float)pointCount);
-            //四
-            var pos3_0 = Vector3.Lerp(pos2_0, pos2_1, i / (float)pointCount);
-            var pos3_1 = Vector3.Lerp(pos2_1, pos2_2, i / (float)pointCount);
-            //五
+            Vector3 pos1 = Vector3.Lerp(point_tranList[0], point_tranList[1], i / (float)pointCount);
+            Vector3 pos2 = Vector3.Lerp(point_tranList[1], point_tranList[2], i / (float)pointCount);
             Vector3 find = Vector3.Lerp(pos1, pos2, i / (float)pointCount);
 
             line_pointList.Add(find);
@@ -78,9 +75,6 @@ public class RouteLine : MonoBehaviour
             }
             else
             {
-                if (lookTarget)
-                    ball.transform.LookAt(lookTarget);
-                else
                     ball.transform.LookAt(line_pointList[item]);
             }
             if (item == 0)
@@ -93,7 +87,19 @@ public class RouteLine : MonoBehaviour
             }
             item++;
             if (item >= line_pointList.Count)
+            {
                 item = 0;
+                while (true)
+                {
+                    point_tranList[0] = ball.transform.position;
+                    point_tranList[2] = finder.FindNextRoute();
+                    if(Vector3.Distance(point_tranList[0],point_tranList[2])>3)
+                    {
+                        break;
+                    }
+                }
+                Init();
+            }
         }
     }
 
@@ -101,9 +107,9 @@ public class RouteLine : MonoBehaviour
     //在scene视图显示
     void OnDrawGizmos()//画线
     {
-        Init();
+        //Init();
         Gizmos.color = Color.yellow;
-        for (int i = 0; i < line_pointList.Count - 1; i++)
+        for (int i = 0; i < line_pointList.Count; i++)
         {
             Gizmos.DrawLine(line_pointList[i], line_pointList[i + 1]);
         }
