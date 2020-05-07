@@ -15,14 +15,6 @@ public class TimeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((int)(GameManager.Instance.gameTime % 60f) < 10)
-        {
-            sec = "0" + (int)(GameManager.Instance.gameTime % 60f);
-        }
-        else
-        {
-            sec = ((int)(GameManager.Instance.gameTime % 60f)).ToString();
-        }
-        timer.text = (int)(GameManager.Instance.gameTime / 60f) + ":" + sec;
+
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RouteLine : MonoBehaviour
 {
-    [SerializeField] private Transform points;                          //控制点父对象
     private List<Vector3> point_tranList = new List<Vector3>(3);     //控制点列表
     [SerializeField] private int pointCount = 100;                      //曲线点的个数
     private List<Vector3> line_pointList;                               //曲线点列表

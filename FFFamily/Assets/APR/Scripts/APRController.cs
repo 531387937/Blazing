@@ -256,7 +256,7 @@ public class APRController : MonoBehaviour
     void InputControls()
     {
         #region 行走输入
-        if ((Input.GetKey(moveForward) || Input.GetAxis(input.vertical) > 0.1f) && balanced && !KnockedOut)
+        if ((Input.GetKey(moveForward) || Input.GetAxis(input.vertical) > 0.1f) && balanced && !KnockedOut&&!inAir)
         {
             var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
             v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
@@ -279,7 +279,7 @@ public class APRController : MonoBehaviour
 
 
         //Walk backward
-        if ((Input.GetKey(moveBackward) || Input.GetAxis(input.vertical) < -0.1f) && balanced && !KnockedOut)
+        if ((Input.GetKey(moveBackward) || Input.GetAxis(input.vertical) < -0.1f) && balanced && !KnockedOut&&!inAir)
         {
             var v3 = -APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
             v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
@@ -1284,5 +1284,14 @@ public class APRController : MonoBehaviour
             }
 
         }
+    }
+
+    public void GetBoat(GameObject ship)
+    {
+            foreach (var part in APR_Parts)
+            {
+                Physics.IgnoreCollision(ship.GetComponent<Collider>(), part.GetComponent<Collider>(), true);
+            }
+        
     }
 }

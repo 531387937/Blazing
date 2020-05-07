@@ -101,7 +101,7 @@ public class MapEditor : EditorWindow
                 }
             }
         }
-        if (Event.current.type == EventType.MouseDown && Event.current.button == 1)
+        if (Event.current.type == EventType.MouseDrag && Event.current.button == 1)
         {
             for (int i = 0; i < rects.Length; i++)
             {
