@@ -32,7 +32,7 @@ public class EventManager : Singleton<EventManager>
     }
     public void TriggerEvent(string name,params object[] arg)
     {
-        if(eventDictionary.ContainsKey(name))
+        if (eventDictionary.ContainsKey(name))
         {
             eventDictionary[name](arg);
         }

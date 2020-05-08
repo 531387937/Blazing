@@ -9,18 +9,8 @@ public class DeadArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //other.gameObject.GetComponent<RagdollController>().Ragdoll2OnlyAnim();
-            //other.gameObject.GetComponent<Rigidbody>().Sleep();
-            //PlayerRecover(other.gameObject.GetComponent<RagdollController>().playerNum);
-
-
-            //other.gameObject.transform.parent.GetChild(0).gameObject.SetActive(false);
-            //other.gameObject.GetComponent<Rigidbody>().Sleep();
-            //other.gameObject.SetActive(false);
+            int num = other.transform.root.GetComponent<APRController>().PlayerNum;
+            EventManager.Instance.TriggerEvent("Player"+num+"Dead");
         }
-    }
-    private void PlayerRecover(int player)
-    {
-        GameManager.Instance.PlayerDead(player - 1);
     }
 }

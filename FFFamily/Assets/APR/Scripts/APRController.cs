@@ -40,6 +40,8 @@ public class APRController : MonoBehaviour
     public float FeetMountForce;
     [SerializeField]
     private AnimationCurve powerCurve;
+    [HideInInspector]
+    public bool dead;
 
     public float Power
     {
@@ -144,9 +146,17 @@ public class APRController : MonoBehaviour
     Quaternion[] localToJointSpace;
     Quaternion[] startLocalRotation;
 
-
+    Event_CallBack deadCallback;
+    private void OnEnable()
+    {
+        //事件注册
+        deadCallback += PlayerDead;
+        EventManager.Instance.AddListener("Player"+PlayerNum+"Dead", deadCallback);
+    }
     void Awake()
     {
+        
+
         input = new PlayerInput(PlayerNum);
         //Setup joint drives
         BalanceOn = new JointDrive();
@@ -231,23 +241,25 @@ public class APRController : MonoBehaviour
     //Call Update Functions
     void Update()
     {
-        if (useControls)
+        if (!dead)
         {
-            InputControls();
+            if (useControls)
+            {
+                InputControls();
+            }
+            if (!KnockedOut)
+            {
+                GroundCheck();
+                Balance();
+                CenterOfMass();
+            }
         }
-        if (!KnockedOut)
-        {
-            GroundCheck();
-            Balance();
-            CenterOfMass();
-        }
-
     }
 
     //Call FixedUpdate Functions
     void FixedUpdate()
     {
-        if (!KnockedOut)
+        if (!KnockedOut&&!dead)
         {
             Jumping();
             Walking();
@@ -1319,5 +1331,16 @@ public class APRController : MonoBehaviour
         OnBoat = false;
         shipCtr = null;
         transform.SetParent(null);
+    }
+
+    private void PlayerDead(params object[] arg)
+    {
+        if (!dead)
+        {
+            print("啊我死了");
+            dead = true;
+            EventManager.Instance.RemoveListener("Player" + PlayerNum + "Dead", deadCallback);
+            EventManager.Instance.TriggerEvent("PlayerDead", PlayerNum);
+        }
     }
 }

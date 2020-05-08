@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
+    //爆炸相关
     public float exploreRange;
     public float power;
     [HideInInspector]
-    public Vector3 target;
+    private Vector3 target;
     private float distanceToTarget;
-    public float time = 3;
     public float g = -10;//重力加速度
     // Use this for initialization
     private Vector3 speed;//初速度向量
@@ -72,11 +72,12 @@ public class Cannon : MonoBehaviour
         {
             var root = collision.transform.root.GetComponent<APRController>().Root;
             ContactPoint point = collision.contacts[0];
+            collision.transform.root.GetComponent<APRController>().ActivateRagdoll(0.5f);
             root.GetComponent<Rigidbody>().AddExplosionForce(power, point.point, exploreRange, 10);//这个函数会自动根据距离给刚体衰减的力
         }
     }
 
-    public void Fire(Vector3 target)
+    public void Fire(Vector3 target,float time)
     {
         this.target = target-new Vector3(0,0.5f,0);
         speed = new Vector3((target.x - transform.position.x) / time,
