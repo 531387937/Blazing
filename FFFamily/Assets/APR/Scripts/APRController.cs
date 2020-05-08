@@ -74,12 +74,14 @@ public class APRController : MonoBehaviour
     private bool inAir;
     private bool Landed = true;
     private bool Grounded = true;
+    private bool OnBoat;
     public bool ReachingRight;
     public bool ReachingLeft;
     private bool Punching;
     private bool ResetPose;
     private bool PickedUp;
     private bool Threw;
+    private ShipCtr shipCtr;
     [HideInInspector]
     public bool footOnGround;
     [HideInInspector]
@@ -237,7 +239,7 @@ public class APRController : MonoBehaviour
         {
             GroundCheck();
             Balance();
-            CenterOfMass();        
+            CenterOfMass();
         }
 
     }
@@ -256,92 +258,99 @@ public class APRController : MonoBehaviour
     void InputControls()
     {
         #region 行走输入
-        if ((Input.GetKey(moveForward) || Input.GetAxis(input.vertical) > 0.1f) && balanced && !KnockedOut&&!inAir)
+        if (!OnBoat)
         {
-            var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
-            v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
-            APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
-            if(!WalkForward)
+            if ((Input.GetKey(moveForward) || Input.GetAxis(input.vertical) > 0.1f) && balanced && !KnockedOut)
             {
-                StepRight = true;
+                var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
+                v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
+                APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
+                if (!WalkForward)
+                {
+                    StepRight = true;
+                }
+                WalkForward = true;
+                isKeyDown = true;
             }
-            WalkForward = true;
-            isKeyDown = true;
-        }
 
-        if (Input.GetKeyUp(moveForward) || (Input.GetAxis(input.vertical) < 0.1f && Input.GetAxis(input.vertical) >= 0))
-        {
-            WalkForward = false;
-            isKeyDown = false;
-            
-        }
-
-
-
-        //Walk backward
-        if ((Input.GetKey(moveBackward) || Input.GetAxis(input.vertical) < -0.1f) && balanced && !KnockedOut&&!inAir)
-        {
-            var v3 = -APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
-            v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
-            APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
-            WalkBackward = true;
-            isKeyDown = true;
-            if (!WalkBackward)
+            if (Input.GetKeyUp(moveForward) || (Input.GetAxis(input.vertical) < 0.1f && Input.GetAxis(input.vertical) >= 0))
             {
-                StepRight = true;
+                WalkForward = false;
+                isKeyDown = false;
+
             }
-        }
-
-        if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.1f && Input.GetAxis(input.vertical) <= 0))
-        {
-            WalkBackward = false;
-            isKeyDown = false;
-        }
 
 
 
-        //Turn right
-        if ((Input.GetKey(turnRight) || Input.GetAxis(input.horizontal) > 0.1f) && balanced && !KnockedOut)
-        {
-            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - turnSpeed, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
-        }
-
-        //Turn left
-        if ((Input.GetKey(turnLeft) || Input.GetAxis(input.horizontal) < -0.1f) && balanced && !KnockedOut)
-        {
-            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y + turnSpeed, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
-        }
-
-
-        //reset turn upon target rotation limit
-        if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y < -0.98f)
-        {
-            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, 0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
-        }
-
-        else if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y > 0.98f)
-        {
-            APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, -0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
-        }
-
-
-
-        //Get up
-        if ((Input.GetKeyDown(jumpGetup) || Input.GetKeyDown(input.button[0])) && !balanced && !isJumping && GettingUp)
-        {
-
-            balanced = true;
-
-            if (KnockedOut)
+            //Walk backward
+            if ((Input.GetKey(moveBackward) || Input.GetAxis(input.vertical) < -0.1f) && balanced && !KnockedOut)
             {
-                DeactivateRagdoll();
+                var v3 = -APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
+                v3.y = APR_Parts[0].GetComponent<Rigidbody>().velocity.y;
+                APR_Parts[0].GetComponent<Rigidbody>().velocity = v3;
+                WalkBackward = true;
+                isKeyDown = true;
+                if (!WalkBackward)
+                {
+                    StepRight = true;
+                }
+            }
+
+            if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.1f && Input.GetAxis(input.vertical) <= 0))
+            {
+                WalkBackward = false;
+                isKeyDown = false;
+            }
+
+
+
+            //Turn right
+            if ((Input.GetKey(turnRight) || Input.GetAxis(input.horizontal) > 0.1f) && balanced && !KnockedOut)
+            {
+                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y - turnSpeed, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
+            }
+
+            //Turn left
+            if ((Input.GetKey(turnLeft) || Input.GetAxis(input.horizontal) < -0.1f) && balanced && !KnockedOut)
+            {
+                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = Quaternion.Lerp(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation, new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y + turnSpeed, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w), 6 * Time.fixedDeltaTime);
+            }
+
+
+            //reset turn upon target rotation limit
+            if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y < -0.98f)
+            {
+                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, 0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
+            }
+
+            else if (APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.y > 0.98f)
+            {
+                APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.x, -0.98f, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.z, APR_Parts[0].GetComponent<ConfigurableJoint>().targetRotation.w);
             }
         }
+        else
+        {
+            Vector3 dir = new Vector3(Input.GetAxis(input.horizontal), 0, Input.GetAxis(input.vertical)).normalized;
+            shipCtr.CannonCtr(dir);
+        }
 
 
+            //Get up
+            if ((Input.GetKeyDown(jumpGetup) || Input.GetKeyDown(input.button[0])) && !balanced && !isJumping && GettingUp && !OnBoat)
+            {
+
+                balanced = true;
+
+                if (KnockedOut)
+                {
+                    DeactivateRagdoll();
+                }
+            }
+
+        
 
         //Jump
-        else if ((Input.GetKeyDown(jumpGetup) || Input.GetKeyDown(input.button[0])) && balanced && !inAir && !Jump && !KnockedOut)
+        else if ((Input.GetKeyDown(jumpGetup) || Input.GetKeyDown(input.button[0])) && balanced && !inAir && !Jump && !KnockedOut && !OnBoat)
         {
             Jump = true;
             Grounded = false;
@@ -349,11 +358,15 @@ public class APRController : MonoBehaviour
             APR_Parts[0].GetComponent<ConfigurableJoint>().angularXDrive = DriveOff;
             APR_Parts[0].GetComponent<ConfigurableJoint>().angularYZDrive = DriveOff;
         }
-        #endregion
+        else if ((Input.GetKeyDown(jumpGetup) || Input.GetKeyDown(input.button[0])) && balanced && !inAir && !Jump && !KnockedOut && OnBoat)
+        {
+            shipCtr.Sink();
+        }
+            #endregion
 
-        #region 抓取 扔出
-        //Reach Left
-        if ((Input.GetKeyDown(reachLeft) || Input.GetAxis(input.trigger) >= 0.2f) && !KnockedOut)
+            #region 抓取 扔出
+            //Reach Left
+            if ((Input.GetKeyDown(reachLeft) || Input.GetAxis(input.trigger) >= 0.2f) && !KnockedOut)
         {
             ReachingLeft = true;
         }
@@ -459,7 +472,7 @@ public class APRController : MonoBehaviour
         #endregion
 
         #region 攻击
-        if ((Input.GetKeyDown(punchRight) || Input.GetKeyDown(input.button[5])) && !KnockedOut && !Punching)
+        if ((Input.GetKeyDown(punchRight) || Input.GetKeyDown(input.button[5])) && !KnockedOut && !Punching&&!OnBoat)
         {
             if (weapon == null)
             {
@@ -473,14 +486,19 @@ public class APRController : MonoBehaviour
             }
         }
 
-        if ((Input.GetKeyDown(punchLeft) || Input.GetKeyDown(input.button[4])) && !KnockedOut && !Punching)
+        if ((Input.GetKeyDown(punchLeft) || Input.GetKeyDown(input.button[4])) && !KnockedOut && !Punching&&!OnBoat)
         {
             Punching = true;
             PunchLeft();
         }
 
-        //throwWeapon
-        if (Input.GetKeyDown(KeyCode.J))
+        if((Input.GetKeyDown(punchRight) || Input.GetKeyDown(input.button[5])) && !KnockedOut && !Punching && OnBoat)
+        {
+            shipCtr.Fire();
+        }
+
+            //throwWeapon
+            if (Input.GetKeyDown(KeyCode.J)|| Input.GetKeyDown(input.button[3]))
         {
             ThrowWeapon();
         }
@@ -499,9 +517,9 @@ public class APRController : MonoBehaviour
         RaycastHit hit;
 
         //Balance when ground detected
-        if ((Physics.Raycast(ray, out hit, balanceHeight)||footOnGround) && Grounded && !balanced && !isJumping)
+        if ((Physics.Raycast(ray, out hit, balanceHeight) || footOnGround) && Grounded && !balanced && !isJumping)
         {
-            if (hit.transform.tag == "Ground"||footOnGround)
+            if (hit.transform.tag == "Ground" || footOnGround)
             {
                 balanced = true;
                 GettingUp = false;
@@ -509,7 +527,7 @@ public class APRController : MonoBehaviour
         }
 
         //Fall when ground is not detected
-        else if (!Physics.Raycast(ray, out hit, balanceHeight) && !GettingUp&&!footOnGround)
+        else if (!Physics.Raycast(ray, out hit, balanceHeight) && !GettingUp && !footOnGround)
         {
             balanced = false;
             Grounded = false;
@@ -856,7 +874,7 @@ public class APRController : MonoBehaviour
                     {
                         if (resetAnim.animation[0].bones[j].rotaThis)
                         {
-                                APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = resetAnim.animation[0].bones[j].jointTarget;
+                            APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = resetAnim.animation[0].bones[j].jointTarget;
                         }
                     }
                 }
@@ -997,7 +1015,7 @@ public class APRController : MonoBehaviour
     /// <summary>
     /// 转为纯布娃娃,被击晕时使用
     /// </summary>
-    public void ActivateRagdoll()
+    public void ActivateRagdoll(float downTime = 3)
     {
         balanced = false;
         KnockedOut = true;
@@ -1041,7 +1059,7 @@ public class APRController : MonoBehaviour
             var stars = Resources.Load<GameObject>("FX/Stars");
             var a = Instantiate(stars, Head.transform.position + Head.transform.up * 1.5f, stars.transform.rotation);
             a.transform.SetParent(Head.transform, true);
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(downTime);
 
             GettingUp = true;
         }
@@ -1148,14 +1166,14 @@ public class APRController : MonoBehaviour
             if (clip.bones[j].rotaThis)
             {
 
-                    if (clip.bones[j].jointTarget.z != 0)
-                    {
-                        APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = clip.bones[j].jointTarget;
-                    }
-                    else
-                    {
-                        APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(clip.bones[j].targetRotation.x, clip.bones[j].targetRotation.y, clip.bones[j].targetRotation.z, 1);
-                    }
+                if (clip.bones[j].jointTarget.z != 0)
+                {
+                    APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = clip.bones[j].jointTarget;
+                }
+                else
+                {
+                    APR_Parts[j].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(clip.bones[j].targetRotation.x, clip.bones[j].targetRotation.y, clip.bones[j].targetRotation.z, 1);
+                }
 
                 if (clip.bones[j].force != 0)
                 {
@@ -1288,10 +1306,18 @@ public class APRController : MonoBehaviour
 
     public void GetBoat(GameObject ship)
     {
-            foreach (var part in APR_Parts)
-            {
-                Physics.IgnoreCollision(ship.GetComponent<Collider>(), part.GetComponent<Collider>(), true);
-            }
-        
+        foreach (var part in APR_Parts)
+        {
+            Physics.IgnoreCollision(ship.GetComponent<Collider>(), part.GetComponent<Collider>());
+        }
+        OnBoat = true;
+        shipCtr = ship.GetComponent<ShipCtr>();
+        transform.SetParent(ship.transform);
+    }
+    public void Disembark()
+    {
+        OnBoat = false;
+        shipCtr = null;
+        transform.SetParent(null);
     }
 }

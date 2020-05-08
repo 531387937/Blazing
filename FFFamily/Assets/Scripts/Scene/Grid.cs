@@ -7,7 +7,7 @@ public class Grid : MonoBehaviour
     public int index;
     public GridType type;
 
-    public void DestroyGrid()
+    public virtual void DestroyGrid(float time)
     {
 
     }

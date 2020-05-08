@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wood : Grid
 {
-    public float destoryTime;
+    private float destoryTime;
     private Material material;
     private float timer;
     private bool des;
@@ -20,7 +20,7 @@ public class Wood : Grid
             timer += Time.deltaTime;
             if (timer >= destoryTime)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
     }
@@ -33,10 +33,16 @@ public class Wood : Grid
             if (ctr.down)
             {
                 ctr.down = false;
-                material = new Material(GetComponent<Renderer>().material);
-                GetComponent<Renderer>().material = material;
-                des = true;
+                
+                GameManager.Instance.mapManager.DestoryGrid(index,5);
             }
         }
+    }
+    public override void DestroyGrid(float time)
+    {
+        des = true;
+        material = new Material(GetComponent<Renderer>().material);
+        GetComponent<Renderer>().material = material;
+        destoryTime = time;
     }
 }

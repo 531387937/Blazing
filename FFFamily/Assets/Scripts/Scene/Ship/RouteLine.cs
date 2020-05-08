@@ -8,7 +8,7 @@ public class RouteLine : MonoBehaviour
     [SerializeField] private int pointCount = 100;                      //曲线点的个数
     private List<Vector3> line_pointList;                               //曲线点列表
 
-    [SerializeField] private GameObject ball;                           //运动物体
+    [SerializeField] private GameObject boat;                           //运动物体
     [SerializeField] private float time0 = 0;                           //曲线点之间移动时间间隔
     private float timer = 0;                    //计时器
     private int item = 1;                       //曲线点的索引
@@ -23,12 +23,12 @@ public class RouteLine : MonoBehaviour
         {
             point_tranList.Add(new Vector3(0, 0, 0));
         }
-        ball.transform.position = finder.FindNextRoute();
+        boat.transform.position = finder.FindNextRoute();
         line_pointList = new List<Vector3>();
-        point_tranList[0] = ball.transform.position;
+        point_tranList[0] = boat.transform.position;
         point_tranList[2] = finder.FindNextRoute();
         Init();
-        for (int i = 0; i < finder.pathFinders.Count-1; i++)
+        for (int i = 0; i < finder.pathFinders.Count - 1; i++)
         {
             point_tranList[0] = point_tranList[2];
             point_tranList[2] = finder.FindNextRoute();
@@ -37,11 +37,11 @@ public class RouteLine : MonoBehaviour
     }
     void Init()
     {
-        
+
         Vector3 offset = Vector3.Cross((point_tranList[2] - point_tranList[0]).normalized, Vector3.up) * 6;
         point_tranList[1] = (point_tranList[0] + point_tranList[2]) / 2;
         float a = pointCount;
-        if(Mathf.Abs(point_tranList[2].x - point_tranList[0].x) * Mathf.Abs(point_tranList[2].z - point_tranList[0].z) > 5f)
+        if (Mathf.Abs(point_tranList[2].x - point_tranList[0].x) * Mathf.Abs(point_tranList[2].z - point_tranList[0].z) > 5f)
         {
             point_tranList[1] -= offset;
             a *= 1.5f;
@@ -61,15 +61,15 @@ public class RouteLine : MonoBehaviour
 
     void Update()
     {
-        if (!isTrue)
+        if (!isTrue||!boat.GetComponent<ShipCtr>().drifting)
             return;
         timer += Time.deltaTime;
         if (timer > time0)
         {
             timer = 0;
 
-                    ball.transform.LookAt(line_pointList[item]);
-                ball.transform.localPosition = Vector3.Lerp(line_pointList[item - 1], line_pointList[item], 1f);
+            boat.transform.LookAt(line_pointList[item]);
+            boat.transform.localPosition = Vector3.Lerp(line_pointList[item - 1], line_pointList[item], 1f);
             item++;
             if (item >= line_pointList.Count)
             {
