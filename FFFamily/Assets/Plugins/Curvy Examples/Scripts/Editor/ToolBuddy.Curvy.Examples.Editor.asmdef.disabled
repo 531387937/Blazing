@@ -1,0 +1,14 @@
+{
+    "name": "ToolBuddy.Curvy.Examples.Editor",
+    "references": [
+        "FluffyUnderware.DevTools",
+        "FluffyUnderware.DevTools.Editor",
+        "ToolBuddy.Curvy",
+        "ToolBuddy.Curvy.Editor",
+        "ToolBuddy.Curvy.Examples"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

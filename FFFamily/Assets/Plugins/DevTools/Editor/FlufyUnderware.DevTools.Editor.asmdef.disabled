@@ -1,0 +1,10 @@
+{
+    "name": "FluffyUnderware.DevTools.Editor",
+    "references": [
+        "FluffyUnderware.DevTools"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": []
+}

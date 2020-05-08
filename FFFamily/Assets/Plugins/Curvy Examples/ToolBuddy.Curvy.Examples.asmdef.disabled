@@ -1,0 +1,9 @@
+{
+    "name": "ToolBuddy.Curvy.Examples",
+    "references": [
+        "FluffyUnderware.DevTools",
+        "ToolBuddy.Curvy"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": []
+}
