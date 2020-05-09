@@ -146,12 +146,10 @@ public class APRController : MonoBehaviour
     Quaternion[] localToJointSpace;
     Quaternion[] startLocalRotation;
 
-    Event_CallBack deadCallback;
     private void OnEnable()
     {
         //事件注册
-        deadCallback += PlayerDead;
-        EventManager.Instance.AddListener("Player"+PlayerNum+"Dead", deadCallback);
+        EventManager.Instance.AddListener("PlayerDead", PlayerDead);
     }
     void Awake()
     {
@@ -1335,12 +1333,12 @@ public class APRController : MonoBehaviour
 
     private void PlayerDead(params object[] arg)
     {
-        if (!dead)
+        if (!dead&&(int)arg[0]==PlayerNum)
         {
             dead = true;
             GameManager.Instance.audioManager.PlaySound("落水声");
-            EventManager.Instance.RemoveListener("Player" + PlayerNum + "Dead", deadCallback);
-            EventManager.Instance.TriggerEvent("PlayerDead", PlayerNum);
+            EventManager.Instance.RemoveListener("PlayerDead", PlayerDead);
+            gameObject.SetActive(false);
         }
     }
 }

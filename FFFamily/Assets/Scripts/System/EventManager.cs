@@ -5,26 +5,31 @@ using UnityEngine.Events;
 
 public class EventManager : Singleton<EventManager>
 {
-    private Dictionary<string, Event_CallBack> eventDictionary = new Dictionary<string, Event_CallBack>();
+    private Dictionary<string,List<Event_CallBack>> eventDictionary = new Dictionary<string, List<Event_CallBack>>();
 
     public void AddListener(string name, Event_CallBack listener)
     {
-        Event_CallBack callback;
+        List<Event_CallBack> callback;
         if(eventDictionary.TryGetValue(name,out callback))
         {
-            callback += listener;
+            callback.Add(listener);
         }
         else
         {
-            eventDictionary.Add(name, listener);
+            callback = new List<Event_CallBack>();
+            callback.Add(listener);
+            eventDictionary.Add(name, callback);
         }
     }
     public void RemoveListener(string name,Event_CallBack listener)
     {
         if (eventDictionary.ContainsKey(name))
         {
-            eventDictionary[name] -= listener;
-            if(eventDictionary[name]==null)
+            if(eventDictionary[name].Contains(listener))
+            {
+                eventDictionary[name].Remove(listener);
+            }
+            if(eventDictionary[name].Count==0)
             {
                 eventDictionary.Remove(name);
             }
@@ -34,7 +39,11 @@ public class EventManager : Singleton<EventManager>
     {
         if (eventDictionary.ContainsKey(name))
         {
-            eventDictionary[name](arg);
+            for (int i = 0;i < eventDictionary[name].Count;i++)
+            {
+                eventDictionary[name][i](arg);
+            }
+            //eventDictionary[name](arg);
         }
     }
 }

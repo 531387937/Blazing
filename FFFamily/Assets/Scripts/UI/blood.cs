@@ -5,20 +5,18 @@ using UnityEngine.UI;
 
 public class blood : MonoBehaviour
 {
-    public RagdollController ragCtr;
+    public APRController ragCtr;
 
-    private Image hp;
-    private Text text;
-    float recoverTimer = 3;
-    private void Awake()
+    private Image power;
+    public Sprite deadSprite;
+    private void OnEnable()
     {
-        text = GetComponentInChildren<Text>();
+        EventManager.Instance.AddListener("PlayerDead", Dead);
     }
     // Start is called before the first frame update
     void Start()
     {
-        hp = GetComponent<Image>();
-        text.gameObject.SetActive(false);
+        power = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -26,18 +24,21 @@ public class blood : MonoBehaviour
     {
         if (ragCtr != null)
         {
-            hp.fillAmount = (10 - ragCtr.Stun) / 10;
-            if (!ragCtr.gameObject.activeInHierarchy)
+            power.fillAmount = ragCtr.Power-1;
+            if(power.fillAmount==1)
             {
-                text.gameObject.SetActive(true);
-                recoverTimer -= Time.deltaTime;
-                text.text = ((int)recoverTimer).ToString();
+                //燃烧
             }
-            else
-            {
-                recoverTimer = 3;
-                text.gameObject.SetActive(false);
-            }
+        }
+    }
+
+    private void Dead(params object[] arg)
+    {
+        if ((int)arg[0] == ragCtr.PlayerNum)
+        {
+            EventManager.Instance.RemoveListener("PlayerDead", Dead);
+            power.fillAmount = 0;
+            transform.parent.GetComponent<Image>().sprite = deadSprite;
         }
     }
 }

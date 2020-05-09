@@ -39,7 +39,6 @@ public class GameManager : Singleton<GameManager>
             {
                 aliveNum--;
                 players.Remove(player);
-                player.gameObject.SetActive(false);
                 break;
             }
         }
