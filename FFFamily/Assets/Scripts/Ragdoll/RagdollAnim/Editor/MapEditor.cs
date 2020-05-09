@@ -9,6 +9,7 @@ public class MapEditor : EditorWindow
     private GameObject wood;
     private GameObject edge;
     private GameObject ring;
+    private GameObject rope;
     private string path = "Assets/Resources/"+"map.asset";
     Rect[] rects = null;
     //利用构造函数来设置窗口名称
@@ -30,6 +31,7 @@ public class MapEditor : EditorWindow
         wood = (GameObject)EditorGUILayout.ObjectField("木块", wood, typeof(GameObject), true);
         edge = (GameObject)EditorGUILayout.ObjectField("边界", edge, typeof(GameObject), true);
         ring = (GameObject)EditorGUILayout.ObjectField("擂台柱子", ring, typeof(GameObject), true);
+        rope = (GameObject)EditorGUILayout.ObjectField("擂台绳子", rope, typeof(GameObject), true);
         if (map == null)
         {
             if (GUILayout.Button("创建新的地图文件"))
@@ -77,7 +79,7 @@ public class MapEditor : EditorWindow
             }
             if (GUILayout.Button("生成地图格"))
             {
-                map.InitMap(wood, edge, ring);
+                map.InitMap(wood, edge, ring,rope);
             }
         }
         if (ClickMap())
