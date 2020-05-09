@@ -16,6 +16,7 @@ public class Cannon : MonoBehaviour
     private Vector3 Gravity;//重力向量
     private float dTime = 0;
     private bool fire = false;
+    private bool destoryGrid;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,20 +40,33 @@ public class Cannon : MonoBehaviour
         {
             int index = collision.gameObject.GetComponent<Grid>().index;
             int sqr =(int)Mathf.Sqrt( GameManager.Instance.mapManager.mapGrid.Length);
-            GameManager.Instance.mapManager.DestoryGrid(index, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index-1, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index+1, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index-sqr, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index+sqr, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index-sqr-1, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index-sqr+1, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index+sqr-1, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index+sqr+1, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index + sqr + sqr, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index - sqr - sqr, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index +2, 0);
-            GameManager.Instance.mapManager.DestoryGrid(index -2, 0);
-
+            if (GameManager.Instance.mapManager.DestoryGrid(index, 0))
+                destoryGrid = true;
+            if(GameManager.Instance.mapManager.DestoryGrid(index-1, 0))
+            destoryGrid = true;
+            if(GameManager.Instance.mapManager.DestoryGrid(index+1, 0))
+            destoryGrid = true;
+            if(GameManager.Instance.mapManager.DestoryGrid(index-sqr, 0))
+            destoryGrid = true;
+            if(GameManager.Instance.mapManager.DestoryGrid(index+sqr, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index-sqr-1, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index-sqr+1, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index+sqr-1, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index+sqr+1, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index + sqr + sqr, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index - sqr - sqr, 0))
+            destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index + 2, 0))
+                destoryGrid = true;
+            if (GameManager.Instance.mapManager.DestoryGrid(index - 2, 0))
+                destoryGrid = true;
+            GameManager.Instance.audioManager.PlaySound("炮击冰块碎裂");
             ContactPoint point = collision.contacts[0];
             Collider[] others = Physics.OverlapSphere(point.point, exploreRange);//获取所有碰撞体
             Rigidbody other;//刚体，通过添加力实现爆炸的视觉效果

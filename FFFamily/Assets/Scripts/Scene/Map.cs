@@ -88,16 +88,17 @@ public class MapManager
         }
     }
 
-    public void DestoryGrid(int index,float time)
+    public bool DestoryGrid(int index,float time)
     {
         if(index<0||index>625)
         {
-            return;
+            return false;
         }
         if (mapGrid[index]!=null&&mapGrid[index].type == GridType.Wood)
         {
             mapGrid[index].DestroyGrid(time);
             mapGrid[index] = null;
         }
+        return true;
     }
 }

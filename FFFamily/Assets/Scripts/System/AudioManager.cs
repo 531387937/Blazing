@@ -11,7 +11,7 @@ public class AudioManager :MonoBehaviour
     private string path = "Audio/音效/";
     private void Awake()
     {
-        PlaySound("bgm",true);
+        PlaySound("bgm",true,0.05f);
     }
     private void Update()
     {
@@ -24,17 +24,8 @@ public class AudioManager :MonoBehaviour
             }
         }
     }
-    public void PlayHit()
-    {
 
-    }
-
-    public void DropInWater()
-    {
-        
-    }
-
-    public void PlaySound(string name,bool loop = false)
+    public void PlaySound(string name,bool loop = false,float volum = 1)
     {
         if(freePlayers.Count<1)
         {
@@ -54,6 +45,7 @@ public class AudioManager :MonoBehaviour
         audio.clip = clip;
         audio.loop = loop;
         audioPlayers.Add(audio);
+        audio.volume = volum;
         audio.Play();
     }
 }

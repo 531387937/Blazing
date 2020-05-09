@@ -34,7 +34,8 @@ public class Wood : Grid
             {
                 ctr.down = false;
                 
-                GameManager.Instance.mapManager.DestoryGrid(index,5);
+                GameManager.Instance.mapManager.DestoryGrid(index,1.3f);
+                GameManager.Instance.audioManager.PlaySound("冰面碎裂");
             }
         }
     }

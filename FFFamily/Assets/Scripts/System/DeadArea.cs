@@ -12,5 +12,9 @@ public class DeadArea : MonoBehaviour
             int num = other.transform.root.GetComponent<APRController>().PlayerNum;
             EventManager.Instance.TriggerEvent("Player"+num+"Dead");
         }
+        else
+        {
+            GameManager.Instance.audioManager.PlaySound("落水声");
+        }
     }
 }

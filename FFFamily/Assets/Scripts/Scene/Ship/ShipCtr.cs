@@ -16,6 +16,7 @@ public class ShipCtr : MonoBehaviour
     public Transform cannonPos;
     //瞄准点移动的速度
     public float targetSpeed;
+    private Animator targetAnim;
     //布娃娃相关
     private Rigidbody rig;
     private APRController rag;
@@ -44,6 +45,7 @@ public class ShipCtr : MonoBehaviour
         lastCannon = cannonNum;
         floatObj = GetComponentInChildren<FloatingObject>();
         splineController = GetComponent<SplineController>();
+        targetAnim = target.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -61,7 +63,7 @@ public class ShipCtr : MonoBehaviour
         if(drifting&&operated)
         {
             timer += Time.deltaTime;
-            if(timer>attackTime||lastCannon<=0)
+            if(timer>attackTime)
             {
                 Sink();
             }
@@ -69,6 +71,10 @@ public class ShipCtr : MonoBehaviour
         if(sink)
         {
             floatObj.MaterialDensity += 100 * Time.deltaTime;
+            if (splineController.Speed > 0.2f)
+            {
+                splineController.Speed -= 1 * Time.deltaTime;
+            }
         }
         if(splineController.Speed>0.2f&&!operated)
         {
@@ -97,7 +103,8 @@ public class ShipCtr : MonoBehaviour
             lastCannon--;
             canFire = false;
             var c = GameObject.Instantiate(cannon, cannonPos.position, Quaternion.identity, null);
-            c.GetComponent<Cannon>().Fire(target.transform.position,cannonTime-0.5f);
+            c.GetComponent<Cannon>().Fire(target.transform.position,cannonTime);
+            GameManager.Instance.audioManager.PlaySound("开炮");
             StartCoroutine(timer());
             IEnumerator timer()
             {
@@ -118,13 +125,16 @@ public class ShipCtr : MonoBehaviour
     //沉没
     public void Sink()
     {
-        target.SetActive(false);
-        //弹出玩家
-        rig.velocity = -transform.right * 50 + new Vector3(0, 150, 0);
-        rig = null;
-        rag.Disembark();
-        rag = null;
-        sink = true;
+        if (!sink)
+        {
+            target.SetActive(false);
+            //弹出玩家
+            rig.velocity = -transform.right * 50 + new Vector3(0, 150, 0);
+            rig = null;
+            rag.Disembark();
+            rag = null;
+            sink = true;
+        }
     }
     /// <summary>
     /// 控制瞄准点
@@ -163,6 +173,7 @@ public class ShipCtr : MonoBehaviour
             float fz = Mathf.Clamp(target.transform.position.z, zMin, zMax);
             target.transform.position = new Vector3(fx, 0, fz);
         }
+        targetAnim.SetBool("Fire", !canFire);
     }
 
     #region 进船和弹回处理
@@ -184,7 +195,7 @@ public class ShipCtr : MonoBehaviour
         {
             var rig = ragdoll.Root.GetComponent<Rigidbody>();
             rig.velocity = new Vector3(-rig.velocity.x, 0, -rig.velocity.z).normalized * 100 + new Vector3(0, 40, 0);
-            ragdoll.ActivateRagdoll(1);
+            ragdoll.ActivateRagdoll();
         }
     }
     private void OnDrawGizmosSelected()

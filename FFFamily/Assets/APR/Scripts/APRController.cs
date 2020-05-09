@@ -1027,7 +1027,7 @@ public class APRController : MonoBehaviour
     /// <summary>
     /// 转为纯布娃娃,被击晕时使用
     /// </summary>
-    public void ActivateRagdoll(float downTime = 3)
+    public void ActivateRagdoll(float downTime = 0.5f)
     {
         balanced = false;
         KnockedOut = true;
@@ -1068,9 +1068,9 @@ public class APRController : MonoBehaviour
         StartCoroutine(timer());
         IEnumerator timer()
         {
-            var stars = Resources.Load<GameObject>("FX/Stars");
-            var a = Instantiate(stars, Head.transform.position + Head.transform.up * 1.5f, stars.transform.rotation);
-            a.transform.SetParent(Head.transform, true);
+            //var stars = Resources.Load<GameObject>("FX/Stars");
+            //var a = Instantiate(stars, Head.transform.position + Head.transform.up * 1.5f, stars.transform.rotation);
+            //a.transform.SetParent(Head.transform, true);
             yield return new WaitForSeconds(downTime);
 
             GettingUp = true;
@@ -1337,8 +1337,8 @@ public class APRController : MonoBehaviour
     {
         if (!dead)
         {
-            print("啊我死了");
             dead = true;
+            GameManager.Instance.audioManager.PlaySound("落水声");
             EventManager.Instance.RemoveListener("Player" + PlayerNum + "Dead", deadCallback);
             EventManager.Instance.TriggerEvent("PlayerDead", PlayerNum);
         }
