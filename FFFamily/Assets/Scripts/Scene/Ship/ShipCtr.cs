@@ -39,6 +39,8 @@ public class ShipCtr : MonoBehaviour
     //导航
     public SplineController splineController;
     FloatingObject floatObj;
+    //开炮粒子效果
+    private GameObject fireFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +48,8 @@ public class ShipCtr : MonoBehaviour
         floatObj = GetComponentInChildren<FloatingObject>();
         splineController = GetComponent<SplineController>();
         targetAnim = target.GetComponentInChildren<Animator>();
+        fireFX = Resources.Load<GameObject>("FX/Fire");
+        fireFX = Instantiate(fireFX, cannonPos);
     }
 
     // Update is called once per frame
@@ -100,6 +104,7 @@ public class ShipCtr : MonoBehaviour
     {
         if (lastCannon > 0&&canFire)
         {
+            fireFX.SetActive(true);
             lastCannon--;
             canFire = false;
             var c = GameObject.Instantiate(cannon, cannonPos.position, Quaternion.identity, null);

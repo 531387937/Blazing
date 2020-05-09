@@ -17,6 +17,7 @@ public class Cannon : MonoBehaviour
     private float dTime = 0;
     private bool fire = false;
     private bool destoryGrid;
+    GameObject fx;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +37,9 @@ public class Cannon : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<Grid>())
+        fx = Resources.Load<GameObject>("FX/Explosion");
+        fx = Instantiate(fx, transform.position,fx.transform.rotation);
+        if (collision.gameObject.GetComponent<Grid>())
         {
             int index = collision.gameObject.GetComponent<Grid>().index;
             int sqr =(int)Mathf.Sqrt( GameManager.Instance.mapManager.mapGrid.Length);
