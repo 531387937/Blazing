@@ -1472,7 +1472,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!153 &29856099
 ConfigurableJoint:
   m_ObjectHideFlags: 0
@@ -11499,7 +11499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &208574933
 Transform:
   m_ObjectHideFlags: 0
@@ -60207,7 +60207,7 @@ PrefabInstance:
     - target: {fileID: 7610814571882091904, guid: 69974444c9c8e70468d3bb3ef291ff49,
         type: 3}
       propertyPath: PlayerNum
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4055310656456041643, guid: 69974444c9c8e70468d3bb3ef291ff49,
         type: 3}
@@ -95691,7 +95691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1684001976
 Transform:
   m_ObjectHideFlags: 0
@@ -107394,7 +107394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1914084930
 Transform:
   m_ObjectHideFlags: 0
@@ -107504,7 +107504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1918847637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120315,26 +120315,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1396564979}
-    - target: {fileID: 4382214562879874326, guid: 1a5a000544b8d16458ced51b15bf3fd5,
-        type: 3}
-      propertyPath: attackTime
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 4382214562879874326, guid: 1a5a000544b8d16458ced51b15bf3fd5,
-        type: 3}
-      propertyPath: targetSpeed
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4382214562879874328, guid: 1a5a000544b8d16458ced51b15bf3fd5,
         type: 3}
       propertyPath: m_Spline
       value: 
       objectReference: {fileID: 1861224152}
-    - target: {fileID: 4382214562879874328, guid: 1a5a000544b8d16458ced51b15bf3fd5,
-        type: 3}
-      propertyPath: m_Speed
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4382214562450495134, guid: 1a5a000544b8d16458ced51b15bf3fd5,
         type: 3}
       propertyPath: m_Material
