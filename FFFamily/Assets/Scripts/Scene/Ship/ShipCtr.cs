@@ -38,9 +38,15 @@ public class ShipCtr : MonoBehaviour
 
     //导航
     public SplineController splineController;
+    public float commonSpeed;
     FloatingObject floatObj;
     //开炮粒子效果
     private GameObject fireFX;
+    private float reduceTime = 0;
+
+    public float minTime;
+    public float maxTime;
+    private bool reduce = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +56,8 @@ public class ShipCtr : MonoBehaviour
         targetAnim = target.GetComponentInChildren<Animator>();
         fireFX = Resources.Load<GameObject>("FX/Fire");
         fireFX = Instantiate(fireFX, cannonPos);
+        splineController.Speed = commonSpeed;
+        reduceTime = Random.Range(minTime, maxTime);
     }
 
     // Update is called once per frame
@@ -80,13 +88,29 @@ public class ShipCtr : MonoBehaviour
                 splineController.Speed -= 1 * Time.deltaTime;
             }
         }
-        if(splineController.Speed>0.2f&&!operated)
+        if(!reduce)
         {
-            splineController.Speed -= 2 * Time.deltaTime;
+            if(reduceTime>0)
+            {
+                reduceTime -= Time.deltaTime;
+            }
+            else
+            {
+                reduce = true;
+                GetComponent<AudioSource>().Play();
+            }
         }
-        else if(splineController.Speed <= 0.2f && !operated)
+        if(splineController.Speed>0.2f&&!operated&&reduce)
+        {
+            splineController.Speed -= Time.deltaTime;
+            
+            GetComponent<AudioSource>().volume = splineController.Speed / commonSpeed / 2;
+        }
+        else if(splineController.Speed <= 0.2f && !operated&&reduce)
         {
             splineController.Speed = 0;
+            GetComponent<Collider>().isTrigger = true;
+            GetComponent<AudioSource>().Stop();
         }
     }
     private void FixedUpdate()
