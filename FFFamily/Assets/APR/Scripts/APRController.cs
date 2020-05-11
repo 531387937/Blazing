@@ -24,7 +24,7 @@ public class APRController : MonoBehaviour
     [Header("设置为几号玩家")]
     public int PlayerNum = 1;
     //输入管理
-    private PlayerInput input;
+    public PlayerInput input;
     [Header("The Layer Only This Player Is On")]
 
     [Header("Player Parameters")]
@@ -154,8 +154,6 @@ public class APRController : MonoBehaviour
     void Awake()
     {
         
-
-        input = new PlayerInput(PlayerNum);
         //Setup joint drives
         BalanceOn = new JointDrive();
         BalanceOn.positionSpring = 5000;
