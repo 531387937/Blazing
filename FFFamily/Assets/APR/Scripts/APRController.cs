@@ -1335,6 +1335,7 @@ public class APRController : MonoBehaviour
         if (!dead&&(int)arg[0]==PlayerNum)
         {
             dead = true;
+            power = 0;
             GameManager.Instance.audioManager.PlaySound("落水声");
             EventManager.Instance.RemoveListener("PlayerDead", PlayerDead);
             gameObject.SetActive(false);

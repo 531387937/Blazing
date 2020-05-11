@@ -9,6 +9,7 @@ public class blood : MonoBehaviour
 
     private Image power;
     public Sprite deadSprite;
+    public GameObject FireOpen;
     private void OnEnable()
     {
         EventManager.Instance.AddListener("PlayerDead", Dead);
@@ -25,9 +26,14 @@ public class blood : MonoBehaviour
         if (ragCtr != null)
         {
             power.fillAmount = ragCtr.Power-1;
-            if(power.fillAmount==1)
+            if(power.fillAmount==1&&!FireOpen.activeInHierarchy)
             {
+                FireOpen.SetActive(true);
                 //燃烧
+            }
+            else if(power.fillAmount < 1)
+            {
+                FireOpen.SetActive(false);
             }
         }
     }
