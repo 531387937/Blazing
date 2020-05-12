@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posOffset:
   - {x: -1, y: -0.5, z: 0}
-  - {x: -1, y: -0.5, z: 0}
+  - {x: -1.3, y: 0.5, z: -0.2}
   - {x: -1, y: -0.5, z: 0}
   - {x: -1, y: -0.5, z: 0}
   rotOffset: {x: 0, y: 90, z: -90}

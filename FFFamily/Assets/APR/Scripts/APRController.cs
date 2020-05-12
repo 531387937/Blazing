@@ -1079,6 +1079,7 @@ public class APRController : MonoBehaviour
             return false;
         }
         weapon = w;
+        weapon.gameObject.GetComponent<Rigidbody>().mass = 0.1f;
         resetAnim = Utility.LoadAnim(weapon.idleAnim);
 
         return true;
@@ -1090,7 +1091,7 @@ public class APRController : MonoBehaviour
         if (weapon != null)
         {
             weapon.GetComponent<FixedJoint>().breakForce = 0;
-
+            weapon.gameObject.GetComponent<Rigidbody>().mass = 1f;
             //随便扔武器
             if (!drop)
             {
