@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - FxTemporaire
   - Water
+  - Object
+  - HitObj
+  - ShipCamera
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -22,7 +26,7 @@ TagManager:
   - RagDollController
   - Ragdoll
   - Test
-  - 
+  - Edge
   - 
   - 
   - 
