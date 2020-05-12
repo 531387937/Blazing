@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 67053dbe8db0ccf4e94ec4f27400dd10
+guid: 2c899ed501686de4d849cda2facb474b
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -16,13 +16,11 @@ ModelImporter:
     100020: Bone_009
     100022: Bone_010
     100024: Bone_011
-    100026: //RootNode
-    100028: hua
-    100030: shenti
-    100032: xie
-    100034: xiedaimian
-    100036: yanjing
-    100038: yanjing_2
+    100026: meimao
+    100028: shenti
+    100030: toufa
+    100032: yanjing
+    100034: //RootNode
     400000: Armature
     400002: Bone
     400004: Bone_001
@@ -36,27 +34,23 @@ ModelImporter:
     400020: Bone_009
     400022: Bone_010
     400024: Bone_011
-    400026: //RootNode
-    400028: hua
-    400030: shenti
-    400032: xie
-    400034: xiedaimian
-    400036: yanjing
-    400038: yanjing_2
-    2100000: No Name
+    400026: meimao
+    400028: shenti
+    400030: toufa
+    400032: yanjing
+    400034: //RootNode
+    2100000: "\u6750\u8D28.6"
+    2100002: "\u6750\u8D28.5"
+    2100004: "\u6750\u8D28"
     4300000: yanjing
-    4300002: hua
-    4300004: yanjing_2
-    4300006: shenti
-    4300008: xie
-    4300010: xiedaimian
+    4300002: toufa
+    4300004: shenti
+    4300006: meimao
     9500000: //RootNode
-    13700000: hua
+    13700000: meimao
     13700002: shenti
-    13700004: xie
-    13700006: xiedaimian
-    13700008: yanjing
-    13700010: yanjing_2
+    13700004: toufa
+    13700006: yanjing
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -88,7 +82,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1.2
+    globalScale: 1.35
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -109,7 +103,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
+    previousCalculatedGlobalScale: 0.012999999
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
