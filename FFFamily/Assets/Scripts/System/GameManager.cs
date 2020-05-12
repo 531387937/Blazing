@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
                     break;
                 case GameState.Fight:
                     StartCoroutine(FightTimer());
-                    timeline.enabled = false;
+                    
                     break;
             }
         }
@@ -145,7 +145,8 @@ public class GameManager : Singleton<GameManager>
     IEnumerator FightTimer()
     {
         yield return new WaitForSeconds(3);
-        foreach(var play in players)
+        timeline.enabled = false;
+        foreach (var play in players)
         {
             play.useControls = true;
         }

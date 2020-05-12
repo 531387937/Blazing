@@ -153,7 +153,8 @@ public class APRController : MonoBehaviour
     }
     void Awake()
     {
-        
+        input = new PlayerInput(1);
+
         //Setup joint drives
         BalanceOn = new JointDrive();
         BalanceOn.positionSpring = 5000;
