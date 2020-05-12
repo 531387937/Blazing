@@ -144,7 +144,7 @@ public class APRController : MonoBehaviour
     }
     void Awake()
     {
-        input = new PlayerInput(1);
+        input = new PlayerInput(PlayerNum==0?1:PlayerNum);
 
         //Setup joint drives
         BalanceOn = new JointDrive();
