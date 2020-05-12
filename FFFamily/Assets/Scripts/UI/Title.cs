@@ -13,11 +13,11 @@ public class Title : MonoBehaviour
     void Start()
     {
         start.onClick.AddListener(StartButton);
-        //doAnim.onComplete.AddListener(() =>
-        //{
-        //    EventManager.Instance.TriggerEvent("EnterGame");
-        //    gameObject.SetActive(false);
-        //});
+        doAnim.onComplete.AddListener(() =>
+        {
+            EventManager.Instance.TriggerEvent("EnterGame");
+            gameObject.SetActive(false);
+        });
         AddEffect(start.gameObject);
         AddEffect(help.gameObject);
         AddEffect(about.gameObject);
@@ -31,8 +31,8 @@ public class Title : MonoBehaviour
 
     private void StartButton()
     {start.interactable = false;
-        EventManager.Instance.TriggerEvent("EnterGame");
-        gameObject.SetActive(false);
+        //EventManager.Instance.TriggerEvent("EnterGame");
+        //gameObject.SetActive(false);
         doAnim.DOPlay();
         
     }
