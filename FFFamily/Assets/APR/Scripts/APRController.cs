@@ -77,8 +77,6 @@ public class APRController : MonoBehaviour
     private bool Landed = true;
     private bool Grounded = true;
     private bool OnBoat;
-    public bool ReachingRight;
-    public bool ReachingLeft;
     private bool Punching;
     private bool ResetPose;
     private bool PickedUp;
@@ -113,13 +111,6 @@ public class APRController : MonoBehaviour
     //质心
     public Transform COMP;
     private Vector3 CenterOfMassPoint;
-
-    [Header("Hand Dependancies")]
-    //Hand dependancies
-    public HandController GrabRight;
-    public HandController GrabLeft;
-    private Rigidbody GrabbedRight;
-    private Rigidbody GrabbedLeft;
 
     [Header("Player Editor Debug Mode")]
     //Debug
@@ -372,112 +363,6 @@ public class APRController : MonoBehaviour
         }
             #endregion
 
-            #region 抓取 扔出
-            //Reach Left
-            if ((Input.GetKeyDown(reachLeft) || Input.GetAxis(input.trigger) >= 0.2f) && !KnockedOut)
-        {
-            ReachingLeft = true;
-        }
-
-        if ((Input.GetKeyUp(reachLeft) || Input.GetAxis(input.trigger) == 0) && !KnockedOut && ReachingLeft)
-        {
-            ReachingLeft = false;
-            PickedUp = false;
-            ResetPose = true;
-        }
-
-
-        //Reach Right
-        if ((Input.GetKeyDown(reachRight) || Input.GetAxis(input.trigger) <= -0.9f) && !KnockedOut)
-        {
-            ReachingRight = true;
-        }
-
-        if ((Input.GetKeyUp(reachRight) || Input.GetAxis(input.trigger) == 0) && !KnockedOut && ReachingRight)
-        {
-            ReachingRight = false;
-            PickedUp = false;
-            ResetPose = true;
-        }
-
-
-        //Pick up left helper
-        if (/*Input.GetKey(reachLeft) &&*/ ReachingLeft && GrabLeft.hasJoint && !KnockedOut)
-        {
-            if (GrabLeft.GetComponent<FixedJoint>() != null)
-            {
-                if (GrabLeft.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Object")
-                {
-                    GrabLeft.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * GrabLeft.GetComponent<FixedJoint>().connectedBody.mass * 5);
-                }
-
-            }
-        }
-
-        //Pick up right helper
-        if (/*Input.GetKey(reachRight) &&*/ ReachingRight && GrabRight.hasJoint && !KnockedOut)
-        {
-            if (GrabRight.GetComponent<FixedJoint>() != null)
-            {
-                if (GrabRight.GetComponent<FixedJoint>().connectedBody.gameObject.tag == "Object")
-                {
-                    GrabRight.GetComponent<Rigidbody>().AddForce(APR_Parts[0].transform.up * GrabRight.GetComponent<FixedJoint>().connectedBody.mass * 5);
-                }
-            }
-        }
-
-        //Pickup and Throw
-        if ((Input.GetKeyDown(pickupThrow) || Input.GetKeyDown(input.button[1])) && !PickedUp && !KnockedOut)
-        {
-            PickedUp = true;
-            GrabbedLeft = null;
-            GrabbedRight = null;
-        }
-
-        else if ((Input.GetKeyDown(pickupThrow) || Input.GetKeyDown(input.button[1])) && PickedUp && !KnockedOut)
-        {
-            //Let go left
-            if (GrabLeft.hasJoint)
-            {
-                GrabbedLeft = GrabLeft.GetComponent<FixedJoint>().connectedBody;
-                GrabLeft.GetComponent<FixedJoint>().breakForce = 0;
-                GrabLeft.hasJoint = false;
-            }
-
-            //Let go right
-            if (GrabRight.hasJoint)
-            {
-                GrabbedRight = GrabRight.GetComponent<FixedJoint>().connectedBody;
-                GrabRight.GetComponent<FixedJoint>().breakForce = 0;
-                GrabRight.hasJoint = false;
-            }
-
-            Threw = true;
-
-            //Throw left
-            if (Threw)
-            {
-                if (GrabbedLeft != null && GrabbedLeft.gameObject.tag == "Object")
-                {
-                    GrabbedLeft.AddForce(APR_Parts[0].transform.forward * ThrowForce * GrabbedLeft.mass, ForceMode.Impulse);
-                    GrabbedLeft.AddForce(APR_Parts[0].transform.up * ThrowForce * (GrabbedLeft.mass / 3), ForceMode.Impulse);
-                }
-            }
-
-            //Throw right
-            if (Threw)
-            {
-                if (GrabbedRight != null && GrabbedRight.gameObject.tag == "Object")
-                {
-                    GrabbedRight.AddForce(APR_Parts[0].transform.forward * ThrowForce * GrabbedRight.mass, ForceMode.Impulse);
-                    GrabbedRight.AddForce(APR_Parts[0].transform.up * ThrowForce * (GrabbedRight.mass / 3), ForceMode.Impulse);
-                }
-            }
-
-            PickedUp = false;
-            Threw = false;
-        }
-        #endregion
 
         #region 攻击
         if ((Input.GetKeyDown(punchRight) || Input.GetKeyDown(input.button[5])) && !KnockedOut && !Punching&&!OnBoat)
@@ -804,64 +689,13 @@ public class APRController : MonoBehaviour
         }
 
         //Landed
-        if (!Landed && Grounded && !isJumping && !ReachingRight && !ReachingLeft && !PlayingAnim)
+        if (!Landed && Grounded && !isJumping && !PlayingAnim)
         {
             Landed = true;
             ResetPose = true;
         }
 
         //Reaching
-        if (ReachingRight)
-        {
-            if (!PickedUp)
-            {
-                //upper arms pose
-                APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.58f, -0.88f, 0.67f, 1);
-                //lower arms pose
-                APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, 0.12f, 1);
-                //Body pose
-                APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, 0, 1);
-            }
-
-            else if (PickedUp)
-            {
-                //upper arms pose
-                APR_Parts[3].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(3.3f, -6.5f, 3.4f, 1);
-
-                //lower arms pose
-                APR_Parts[4].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, 0.12f, 1);
-
-                //Body pose
-                APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.1f, 0, 0, 1);
-            }
-        }
-
-        if (ReachingLeft)
-        {
-            if (!PickedUp)
-            {
-                //upper arms pose
-                APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-0.58f, -0.88f, -0.67f, 1);
-
-                //lower arms pose
-                APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, -0.12f, 1);
-
-                //Body pose
-                APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, 0, 1);
-            }
-
-            else if (PickedUp)
-            {
-                //upper arms pose
-                APR_Parts[5].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(-3.3f, -6.5f, -3.4f, 1);
-
-                //lower arms pose
-                APR_Parts[6].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0, 0, -0.12f, 1);
-
-                //Body pose
-                APR_Parts[1].GetComponent<ConfigurableJoint>().targetRotation = new Quaternion(0.1f, 0, 0, 1);
-            }
-        }
 
 
         //重置站姿

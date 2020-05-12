@@ -99,6 +99,8 @@ public class GameManager : Singleton<GameManager>
     private void GameOver()
     {
         //To Do胜者是最后的一个人
+        Time.timeScale = 0;
+        EventManager.Instance.TriggerEvent("GameOver", players[0].PlayerNum);
     }
 
     private void PlayerDead(params object[] arg)
