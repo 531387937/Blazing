@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using RayFire;
 public class Wood : Grid
 {
     private float destoryTime;
@@ -44,6 +44,8 @@ public class Wood : Grid
         des = true;
         material = new Material(GetComponent<Renderer>().material);
         GetComponent<Renderer>().material = material;
+        GetComponent<RayfireRigid>().Initialize();
+        GetComponent<RayfireRigid>().Demolish();
         destoryTime = time;
     }
 }
