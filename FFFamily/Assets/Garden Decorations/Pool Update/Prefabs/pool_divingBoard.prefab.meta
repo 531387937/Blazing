@@ -1,7 +1,11 @@
 fileFormatVersion: 2
-guid: 02efd90facd368d4485ca221b224dd21
-PrefabImporter:
-  externalObjects: {}
+guid: 3c27739a609e9fd4297b2fee46b5ac22
+labels:
+- beach
+- pool
+timeCreated: 1500899628
+licenseType: Store
+NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 249e6be15707c114bb5b6c68a2e2e226
-PrefabImporter:
-  externalObjects: {}
+guid: e25b2a66dc008ad4f99af7666a14962f
+labels:
+- beach
+- paving
+- pool
+- rock
+timeCreated: 1500896069
+licenseType: Store
+NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 

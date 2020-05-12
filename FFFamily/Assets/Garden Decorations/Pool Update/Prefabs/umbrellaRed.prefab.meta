@@ -1,7 +1,12 @@
 fileFormatVersion: 2
-guid: 4a09d23bccfa4ac43821648dbb1154ae
-PrefabImporter:
-  externalObjects: {}
+guid: 2dfb64e264e143747af18989ae4ab666
+labels:
+- beach
+- pool
+- umbrella
+timeCreated: 1500900644
+licenseType: Store
+NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 

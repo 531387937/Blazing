@@ -1,7 +1,12 @@
 fileFormatVersion: 2
-guid: bcace2e770b68e24985dbc9da714644b
-PrefabImporter:
-  externalObjects: {}
+guid: 991f66ebaa244b34ea1d986c39187d97
+labels:
+- arbor
+- backyard
+- bench
+timeCreated: 1460633651
+licenseType: Store
+NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 

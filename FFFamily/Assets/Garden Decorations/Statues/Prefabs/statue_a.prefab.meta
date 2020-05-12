@@ -1,7 +1,16 @@
 fileFormatVersion: 2
-guid: de4092890d4e51d42a45b31e26a2eca2
-PrefabImporter:
-  externalObjects: {}
+guid: 0ce4b94dff8ab9440a6af0eaa6c7d14a
+labels:
+- decoration
+- park
+- statue
+- column
+- garden
+- sculpture
+- backyard
+timeCreated: 1460632347
+licenseType: Store
+NativeFormatImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
