@@ -1,9 +1,15 @@
 fileFormatVersion: 2
-guid: 902352e0daddf9b4aa4ea74278896e09
+guid: dae6a877a925c4944b44fb3e36218182
+labels:
+- Animation
+- Environment
+timeCreated: 1495530739
+licenseType: Store
 MonoImporter:
-  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - windSubstance: {fileID: -180847618, guid: b6620978afaf9234f9e6fe1cfa32c8ff, type: 3}
+  - windVectors: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

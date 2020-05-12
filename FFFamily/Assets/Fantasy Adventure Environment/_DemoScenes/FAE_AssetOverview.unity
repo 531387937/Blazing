@@ -3488,6 +3488,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1925135285}
     m_Modifications:
+    - target: {fileID: 115214, guid: 32e0928811ddd0e44a0bdde5771205fe, type: 3}
+      propertyPath: m_Name
+      value: SpeedWell
+      objectReference: {fileID: 0}
     - target: {fileID: 424156, guid: 32e0928811ddd0e44a0bdde5771205fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3519,10 +3523,6 @@ PrefabInstance:
     - target: {fileID: 424156, guid: 32e0928811ddd0e44a0bdde5771205fe, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 115214, guid: 32e0928811ddd0e44a0bdde5771205fe, type: 3}
-      propertyPath: m_Name
-      value: SpeedWell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32e0928811ddd0e44a0bdde5771205fe, type: 3}
@@ -8152,6 +8152,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1000010735154890, guid: 2b921f83e3023db489286b9d6df19b96, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010334180700, guid: 2b921f83e3023db489286b9d6df19b96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.4
@@ -8255,10 +8259,6 @@ PrefabInstance:
         type: 3}
       propertyPath: windAmplitude
       value: 6.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000010735154890, guid: 2b921f83e3023db489286b9d6df19b96, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b921f83e3023db489286b9d6df19b96, type: 3}

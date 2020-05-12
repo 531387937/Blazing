@@ -1,40 +1,41 @@
 fileFormatVersion: 2
-guid: b13ac1911fe442647bd700353e09c339
+guid: 18624824f2fcc58409cfe17122ffd26c
+timeCreated: 1496075956
+licenseType: Store
 ModelImporter:
-  serializedVersion: 23
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: RockCluster_A
     100002: RockCluster_B
     100004: RockCluster_C
     100006: RockCluster_D
     100008: //RootNode
+    100010: RockCluster_A_LOD1
     400000: RockCluster_A
     400002: RockCluster_B
     400004: RockCluster_C
     400006: RockCluster_D
     400008: //RootNode
-    2100000: RockCluster_AMat
-    2100002: RockCluster_BMat
-    2100004: RockCluster_CMat
-    2100006: RockCluster_DMat
+    400010: RockCluster_A_LOD1
     2300000: RockCluster_A
     2300002: RockCluster_B
     2300004: RockCluster_C
     2300006: RockCluster_D
+    2300008: RockCluster_A_LOD1
     3300000: RockCluster_A
     3300002: RockCluster_B
     3300004: RockCluster_C
     3300006: RockCluster_D
+    3300008: RockCluster_A_LOD1
     4300000: RockCluster_A
     4300002: RockCluster_B
     4300004: RockCluster_C
     4300006: RockCluster_D
-  externalObjects: {}
+    4300008: RockCluster_A_LOD1
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
-    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -47,15 +48,12 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 0
-    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -63,34 +61,22 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
-    importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
-    preserveHierarchy: 0
-    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 3
-    normalCalculationMode: 4
-    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
-    normalSmoothingSource: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
@@ -105,9 +91,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
-    skeletonHasParents: 1
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 0
   humanoidOversampling: 1
