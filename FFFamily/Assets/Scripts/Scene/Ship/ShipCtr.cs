@@ -44,6 +44,9 @@ public class ShipCtr : MonoBehaviour
     private GameObject fireFX;
     private float reduceTime = 0;
 
+    private GameObject smokeFX;
+    public Transform smokePos;
+
     public float minTime;
     public float maxTime;
     private bool reduce = false;
@@ -56,6 +59,9 @@ public class ShipCtr : MonoBehaviour
         targetAnim = target.GetComponentInChildren<Animator>();
         fireFX = Resources.Load<GameObject>("FX/Fire");
         fireFX = Instantiate(fireFX, cannonPos);
+        fireFX.SetActive(false);
+        smokeFX = Resources.Load<GameObject>("FX/weiqi");
+        smokeFX = Instantiate(smokeFX, smokePos);
         splineController.Speed = commonSpeed;
         reduceTime = Random.Range(minTime, maxTime);
     }
