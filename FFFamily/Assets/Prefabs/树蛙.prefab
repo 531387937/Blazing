@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 793980261268485269}
   - component: {fileID: 793980261268485268}
   - component: {fileID: 793980261268485275}
-  - component: {fileID: 8035773327193118672}
   m_Layer: 11
   m_Name: APR_LeftHand
   m_TagString: Player
@@ -159,21 +158,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8035773327193118672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793980261268485279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707eade2541bfc7469cca5ebfbf156ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  APR_Player: {fileID: 2492686742092564326}
-  Left: 1
-  hasJoint: 0
 --- !u!1 &793980261699345895
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +170,6 @@ GameObject:
   - component: {fileID: 793980261699345885}
   - component: {fileID: 793980261699345884}
   - component: {fileID: 793980261699345891}
-  - component: {fileID: 8035773327193118673}
   m_Layer: 11
   m_Name: APR_RightHand
   m_TagString: Player
@@ -333,21 +316,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &8035773327193118673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793980261699345895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707eade2541bfc7469cca5ebfbf156ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  APR_Player: {fileID: 2492686742092564326}
-  Left: 0
-  hasJoint: 0
 --- !u!1 &2492686742092564321
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c924a6744e81c4e8b4788b7b8345b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerType: 0
   useControls: 1
   moveForward: w
   moveBackward: s
@@ -400,8 +369,6 @@ MonoBehaviour:
   jumpGetup: space
   punchRight: e
   punchLeft: q
-  reachRight: l
-  reachLeft: o
   pickupThrow: f
   PlayerNum: 1
   input:
@@ -443,8 +410,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dead: 0
-  ReachingRight: 0
-  ReachingLeft: 0
   footOnGround: 0
   down: 0
   Root: {fileID: 5353480303147109746}
@@ -463,8 +428,6 @@ MonoBehaviour:
   RightHand: {fileID: 793980261699345884}
   LeftHand: {fileID: 793980261268485268}
   COMP: {fileID: 5353480302057766129}
-  GrabRight: {fileID: 8035773327193118673}
-  GrabLeft: {fileID: 8035773327193118672}
   editorDebugMode: 0
 --- !u!1 &5353480302057766130
 GameObject:

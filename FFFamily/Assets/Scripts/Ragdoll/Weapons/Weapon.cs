@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Vector3 posOffset;
+    public Vector3[] posOffset;
     public Vector3 rotOffset;
     public string idleAnim;
     public string attackAnim;
@@ -55,7 +55,7 @@ public class Weapon : MonoBehaviour
                 var joint = gameObject.AddComponent<FixedJoint>();
                 weaponed = true;
                 transform.SetParent(rightHand.transform);
-                transform.localPosition = posOffset;
+                transform.localPosition = posOffset[(int)ragdoll._playerType];
                 transform.localEulerAngles = rotOffset;
                 transform.SetParent(transform.root);
                 joint.connectedBody = rightHand;

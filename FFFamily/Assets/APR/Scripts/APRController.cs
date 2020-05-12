@@ -2,11 +2,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-
+public enum PlayerType
+{
+    Frog,Monkey,Bird,Crab
+}
 public class APRController : MonoBehaviour
 {
-
-    [Header("测试玩家,打包前去除")]
+    public PlayerType _playerType;
     //Enable controls
     public bool useControls;
     [Header("无手柄测试按键")]
@@ -18,8 +20,6 @@ public class APRController : MonoBehaviour
     public string jumpGetup = "space";
     public string punchRight = "e";
     public string punchLeft = "q";
-    public string reachRight = "p";
-    public string reachLeft = "o";
     public string pickupThrow = "f";
     [Header("设置为几号玩家")]
     public int PlayerNum = 1;
@@ -273,7 +273,7 @@ public class APRController : MonoBehaviour
                 isKeyDown = true;
             }
 
-            if (Input.GetKeyUp(moveForward) || (Input.GetAxis(input.vertical) < 0.1f && Input.GetAxis(input.vertical) >0))
+            if (Input.GetKeyUp(moveForward) || (Input.GetAxis(input.vertical) < 0.5f && Input.GetAxis(input.vertical) >0))
             {
                 WalkForward = false;
                 isKeyDown = false;
@@ -295,7 +295,7 @@ public class APRController : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.1f && Input.GetAxis(input.vertical) < 0))
+            if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.5f && Input.GetAxis(input.vertical) < 0))
             {
                 WalkBackward = false;
                 isKeyDown = false;

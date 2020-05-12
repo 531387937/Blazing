@@ -2415,6 +2415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c924a6744e81c4e8b4788b7b8345b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerType: 1
   useControls: 1
   moveForward: w
   moveBackward: s
@@ -2423,10 +2424,8 @@ MonoBehaviour:
   jumpGetup: space
   punchRight: e
   punchLeft: q
-  reachRight: l
-  reachLeft: o
   pickupThrow: f
-  PlayerNum: 2
+  PlayerNum: 1
   input:
     button: 
     horizontal: 
@@ -2466,8 +2465,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   dead: 0
-  ReachingRight: 0
-  ReachingLeft: 0
   footOnGround: 0
   down: 0
   Root: {fileID: 3241956250062290879}
@@ -2486,8 +2483,6 @@ MonoBehaviour:
   RightHand: {fileID: 7904405755517824785}
   LeftHand: {fileID: 7904405756100200025}
   COMP: {fileID: 3241956249004641852}
-  GrabRight: {fileID: 662612662258246940}
-  GrabLeft: {fileID: 662612662258246941}
   editorDebugMode: 0
 --- !u!1 &7904405755517824810
 GameObject:
@@ -2501,7 +2496,6 @@ GameObject:
   - component: {fileID: 7904405755517824784}
   - component: {fileID: 7904405755517824785}
   - component: {fileID: 7904405755517824814}
-  - component: {fileID: 662612662258246940}
   m_Layer: 11
   m_Name: APR_RightHand
   m_TagString: Player
@@ -2648,21 +2642,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &662612662258246940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904405755517824810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707eade2541bfc7469cca5ebfbf156ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  APR_Player: {fileID: 4909225487986029995}
-  Left: 0
-  hasJoint: 0
 --- !u!1 &7904405756100200018
 GameObject:
   m_ObjectHideFlags: 0
@@ -2675,7 +2654,6 @@ GameObject:
   - component: {fileID: 7904405756100200024}
   - component: {fileID: 7904405756100200025}
   - component: {fileID: 7904405756100200022}
-  - component: {fileID: 662612662258246941}
   m_Layer: 11
   m_Name: APR_LeftHand
   m_TagString: Player
@@ -2822,21 +2800,6 @@ ConfigurableJoint:
   m_EnablePreprocessing: 1
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &662612662258246941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7904405756100200018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707eade2541bfc7469cca5ebfbf156ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  APR_Player: {fileID: 4909225487986029995}
-  Left: 1
-  hasJoint: 0
 --- !u!1 &8097678942749819392
 GameObject:
   m_ObjectHideFlags: 0
