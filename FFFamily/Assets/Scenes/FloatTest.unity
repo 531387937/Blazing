@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.14812179, g: 0.46989697, b: 0.75112855, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -1783,7 +1783,7 @@ PrefabInstance:
     - target: {fileID: 1121453462852439973, guid: e93b9457bb28a144489f9e9b148787f8,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 51.840294
+      value: 43.677998
       objectReference: {fileID: 0}
     - target: {fileID: 1121453462852439973, guid: e93b9457bb28a144489f9e9b148787f8,
         type: 3}
@@ -1793,7 +1793,7 @@ PrefabInstance:
     - target: {fileID: 1121453462852439973, guid: e93b9457bb28a144489f9e9b148787f8,
         type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 60.372795
+      value: 51.15
       objectReference: {fileID: 0}
     - target: {fileID: 1121453463075239840, guid: e93b9457bb28a144489f9e9b148787f8,
         type: 3}
@@ -1959,6 +1959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: PlayerNum
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443499526428624307, guid: e93b9457bb28a144489f9e9b148787f8,
+        type: 3}
+      propertyPath: useControls
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93b9457bb28a144489f9e9b148787f8, type: 3}
@@ -2993,7 +2998,7 @@ GameObject:
   - component: {fileID: 50373100}
   - component: {fileID: 50373099}
   - component: {fileID: 50373098}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4591,7 +4596,7 @@ GameObject:
   - component: {fileID: 78892800}
   - component: {fileID: 78892799}
   - component: {fileID: 78892798}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -6525,7 +6530,7 @@ GameObject:
   - component: {fileID: 124012415}
   - component: {fileID: 124012414}
   - component: {fileID: 124012413}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -8221,7 +8226,7 @@ GameObject:
   - component: {fileID: 139060236}
   - component: {fileID: 139060235}
   - component: {fileID: 139060234}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -12297,7 +12302,7 @@ GameObject:
   - component: {fileID: 188200585}
   - component: {fileID: 188200584}
   - component: {fileID: 188200583}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -15479,7 +15484,7 @@ GameObject:
   - component: {fileID: 216854178}
   - component: {fileID: 216854177}
   - component: {fileID: 216854176}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -20256,7 +20261,7 @@ GameObject:
   - component: {fileID: 291819706}
   - component: {fileID: 291819705}
   - component: {fileID: 291819704}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -21624,7 +21629,7 @@ GameObject:
   - component: {fileID: 307394635}
   - component: {fileID: 307394634}
   - component: {fileID: 307394633}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -22390,7 +22395,7 @@ GameObject:
   - component: {fileID: 320607488}
   - component: {fileID: 320607487}
   - component: {fileID: 320607486}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -23851,7 +23856,7 @@ GameObject:
   - component: {fileID: 334005038}
   - component: {fileID: 334005037}
   - component: {fileID: 334005036}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -26385,7 +26390,7 @@ GameObject:
   - component: {fileID: 402104840}
   - component: {fileID: 402104839}
   - component: {fileID: 402104838}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -27669,7 +27674,7 @@ GameObject:
   - component: {fileID: 423608219}
   - component: {fileID: 423608218}
   - component: {fileID: 423608217}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -29105,7 +29110,7 @@ GameObject:
   - component: {fileID: 472873495}
   - component: {fileID: 472873494}
   - component: {fileID: 472873493}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -32239,7 +32244,7 @@ GameObject:
   - component: {fileID: 540569015}
   - component: {fileID: 540569014}
   - component: {fileID: 540569013}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -34001,7 +34006,7 @@ GameObject:
   - component: {fileID: 556169923}
   - component: {fileID: 556169922}
   - component: {fileID: 556169921}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -35978,7 +35983,7 @@ GameObject:
   - component: {fileID: 612873790}
   - component: {fileID: 612873789}
   - component: {fileID: 612873788}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -36985,7 +36990,7 @@ GameObject:
   - component: {fileID: 634453001}
   - component: {fileID: 634453000}
   - component: {fileID: 634452999}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -38724,7 +38729,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654601256}
-  m_LocalRotation: {x: 0.005404347, y: 0.3575112, z: -0.0020688865, w: 0.93389094}
+  m_LocalRotation: {x: 0.005404324, y: 0.3575112, z: -0.0020688786, w: 0.93389094}
   m_LocalPosition: {x: 0, y: 4.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -40122,7 +40127,7 @@ GameObject:
   - component: {fileID: 686477800}
   - component: {fileID: 686477799}
   - component: {fileID: 686477798}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -40587,7 +40592,7 @@ GameObject:
   - component: {fileID: 688102116}
   - component: {fileID: 688102115}
   - component: {fileID: 688102114}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -42877,7 +42882,7 @@ GameObject:
   - component: {fileID: 719008249}
   - component: {fileID: 719008248}
   - component: {fileID: 719008247}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -44341,7 +44346,7 @@ GameObject:
   - component: {fileID: 750671410}
   - component: {fileID: 750671409}
   - component: {fileID: 750671408}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -46731,7 +46736,7 @@ GameObject:
   - component: {fileID: 793841644}
   - component: {fileID: 793841643}
   - component: {fileID: 793841642}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -51629,7 +51634,7 @@ GameObject:
   - component: {fileID: 873766708}
   - component: {fileID: 873766707}
   - component: {fileID: 873766706}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -52571,7 +52576,7 @@ GameObject:
   - component: {fileID: 882653972}
   - component: {fileID: 882653971}
   - component: {fileID: 882653970}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -56443,7 +56448,7 @@ GameObject:
   - component: {fileID: 947831407}
   - component: {fileID: 947831406}
   - component: {fileID: 947831405}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -58692,7 +58697,7 @@ GameObject:
   - component: {fileID: 979903426}
   - component: {fileID: 979903425}
   - component: {fileID: 979903424}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -61221,8 +61226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1010319022}
   - component: {fileID: 1010319025}
-  - component: {fileID: 1010319024}
   - component: {fileID: 1010319023}
+  - component: {fileID: 1010319024}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -61257,7 +61262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0.26500472, y: 11.058499, z: -16.565}
+  m_FollowOffset: {x: 0.06900537, y: 29.8785, z: -13.180002}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -61286,8 +61291,8 @@ MonoBehaviour:
   m_VerticalDamping: 0.5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.5
-  m_DeadZoneHeight: 0.34
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -61301,8 +61306,8 @@ MonoBehaviour:
   m_MaxDollyOut: 5000
   m_MinimumDistance: 1
   m_MaximumDistance: 5000
-  m_MinimumFOV: 1
-  m_MaximumFOV: 56.6
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
 --- !u!114 &1010319025
@@ -63588,7 +63593,7 @@ GameObject:
   - component: {fileID: 1099782791}
   - component: {fileID: 1099782790}
   - component: {fileID: 1099782789}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -64559,7 +64564,7 @@ GameObject:
   - component: {fileID: 1108774347}
   - component: {fileID: 1108774346}
   - component: {fileID: 1108774345}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -65119,7 +65124,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 1817488785}
   m_Follow: {fileID: 1817488785}
   m_Lens:
-    FieldOfView: 38
+    FieldOfView: 56
     OrthographicSize: 10
     NearClipPlane: 0.01
     FarClipPlane: 5000
@@ -65142,14 +65147,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1123452457}
-  m_LocalRotation: {x: 0.3621569, y: -0.00024366543, z: 0.00009467167, w: 0.9321171}
-  m_LocalPosition: {x: 53.7, y: 13.2, z: 43}
+  m_LocalRotation: {x: 0.55775684, y: -0.00043322772, z: 0.0002911102, w: 0.8300043}
+  m_LocalPosition: {x: 53.56, y: 32.02, z: 46.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1010319022}
   m_Father: {fileID: 2302887556889710373}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -2.844, z: 0}
 --- !u!1 &1127409523
 GameObject:
   m_ObjectHideFlags: 0
@@ -66177,7 +66182,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1136663562}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 0.2, y: 0.20000012, z: 0.20000012}
   m_Children: []
   m_Father: {fileID: 1396564980}
@@ -66268,7 +66273,7 @@ GameObject:
   - component: {fileID: 1140407334}
   - component: {fileID: 1140407333}
   - component: {fileID: 1140407332}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -67198,7 +67203,7 @@ GameObject:
   - component: {fileID: 1155807803}
   - component: {fileID: 1155807802}
   - component: {fileID: 1155807801}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -68359,7 +68364,7 @@ GameObject:
   - component: {fileID: 1175645730}
   - component: {fileID: 1175645729}
   - component: {fileID: 1175645728}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -69590,7 +69595,7 @@ GameObject:
   - component: {fileID: 1181634322}
   - component: {fileID: 1181634321}
   - component: {fileID: 1181634320}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -73009,7 +73014,7 @@ GameObject:
   - component: {fileID: 1228013394}
   - component: {fileID: 1228013393}
   - component: {fileID: 1228013392}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -74097,7 +74102,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: bc43630c52fcbc244afffbd2a5f818cc, type: 3}
 --- !u!1 &1263030762
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -74116,7 +74121,7 @@ GameObject:
   m_IsActive: 1
 --- !u!114 &1263030763
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -74138,7 +74143,7 @@ MonoBehaviour:
     Debug: 0
 --- !u!114 &1263030764
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -74150,7 +74155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1263030765
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -74171,7 +74176,7 @@ MonoBehaviour:
     Debug: 0
 --- !u!4 &1263030766
 Transform:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -74201,7 +74206,7 @@ GameObject:
   - component: {fileID: 1264239016}
   - component: {fileID: 1264239015}
   - component: {fileID: 1264239014}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -77320,7 +77325,7 @@ GameObject:
   - component: {fileID: 1329103219}
   - component: {fileID: 1329103218}
   - component: {fileID: 1329103217}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -77990,7 +77995,7 @@ GameObject:
   - component: {fileID: 1358609312}
   - component: {fileID: 1358609311}
   - component: {fileID: 1358609310}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -78665,6 +78670,16 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 1396564979}
+    - target: {fileID: 4382214562879874326, guid: 1a5a000544b8d16458ced51b15bf3fd5,
+        type: 3}
+      propertyPath: minTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382214562879874326, guid: 1a5a000544b8d16458ced51b15bf3fd5,
+        type: 3}
+      propertyPath: maxTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4382214562879874328, guid: 1a5a000544b8d16458ced51b15bf3fd5,
         type: 3}
       propertyPath: m_Spline
@@ -79580,7 +79595,7 @@ GameObject:
   - component: {fileID: 1370879665}
   - component: {fileID: 1370879664}
   - component: {fileID: 1370879663}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -80045,7 +80060,7 @@ GameObject:
   - component: {fileID: 1376425703}
   - component: {fileID: 1376425702}
   - component: {fileID: 1376425701}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -80975,7 +80990,7 @@ GameObject:
   - component: {fileID: 1391654873}
   - component: {fileID: 1391654872}
   - component: {fileID: 1391654871}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -84569,7 +84584,7 @@ GameObject:
   - component: {fileID: 1458565714}
   - component: {fileID: 1458565713}
   - component: {fileID: 1458565712}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -85617,7 +85632,7 @@ GameObject:
   - component: {fileID: 1466520645}
   - component: {fileID: 1466520644}
   - component: {fileID: 1466520643}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -87217,7 +87232,7 @@ GameObject:
   - component: {fileID: 1484571032}
   - component: {fileID: 1484571031}
   - component: {fileID: 1484571030}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -88898,6 +88913,11 @@ PrefabInstance:
       propertyPath: PlayerNum
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2427353252266834410, guid: 8acce22b868663b48a26d4e4b9d5969c,
+        type: 3}
+      propertyPath: useControls
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8104193331888507073, guid: 8acce22b868663b48a26d4e4b9d5969c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -89786,7 +89806,7 @@ GameObject:
   - component: {fileID: 1539163487}
   - component: {fileID: 1539163486}
   - component: {fileID: 1539163485}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -91217,7 +91237,7 @@ GameObject:
   - component: {fileID: 1574389447}
   - component: {fileID: 1574389446}
   - component: {fileID: 1574389445}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -92448,7 +92468,7 @@ GameObject:
   - component: {fileID: 1603761693}
   - component: {fileID: 1603761692}
   - component: {fileID: 1603761691}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -100152,7 +100172,7 @@ GameObject:
   - component: {fileID: 1713343264}
   - component: {fileID: 1713343263}
   - component: {fileID: 1713343262}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -101827,7 +101847,7 @@ GameObject:
   - component: {fileID: 1736963322}
   - component: {fileID: 1736963321}
   - component: {fileID: 1736963320}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -107001,22 +107021,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eb80d8e62d9d145bb50fb783c0f731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PositionMode: 1
+  m_PositionMode: 0
   m_RotationMode: 0
   m_UpdateMethod: 2
   m_Targets:
   - target: {fileID: 786488273}
     weight: 1
-    radius: 8
+    radius: 3
   - target: {fileID: 801674678}
     weight: 1
-    radius: 8
+    radius: 3
   - target: {fileID: 34510792}
     weight: 1
-    radius: 8
+    radius: 3
   - target: {fileID: 1529949711}
     weight: 1
-    radius: 8
+    radius: 3
 --- !u!4 &1817488785
 Transform:
   m_ObjectHideFlags: 0
@@ -107025,7 +107045,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817488783}
   m_LocalRotation: {x: -0, y: 0.000000015568963, z: -0, w: 1}
-  m_LocalPosition: {x: 53.434998, y: 2.1415005, z: 59.565}
+  m_LocalPosition: {x: 53.490997, y: 2.1415002, z: 59.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2302887556889710373}
@@ -110742,9 +110762,9 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.1
   far clip plane: 5000
-  field of view: 38
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -110769,8 +110789,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907438500}
-  m_LocalRotation: {x: 0.3621569, y: -0.00024366543, z: 0.00009467167, w: 0.9321171}
-  m_LocalPosition: {x: 53.6669, y: 22.459354, z: 32.9879}
+  m_LocalRotation: {x: 0, y: -0.86236244, z: 0, w: 0.5062915}
+  m_LocalPosition: {x: 1.3074801, y: 5.5012045, z: -5.086156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111029,7 +111049,7 @@ GameObject:
   - component: {fileID: 1918788588}
   - component: {fileID: 1918788587}
   - component: {fileID: 1918788586}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -115532,7 +115552,7 @@ GameObject:
   - component: {fileID: 1972533674}
   - component: {fileID: 1972533673}
   - component: {fileID: 1972533672}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -117896,7 +117916,7 @@ GameObject:
   - component: {fileID: 2010546618}
   - component: {fileID: 2010546617}
   - component: {fileID: 2010546616}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -118930,7 +118950,7 @@ GameObject:
   - component: {fileID: 2015144411}
   - component: {fileID: 2015144410}
   - component: {fileID: 2015144409}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -119433,7 +119453,7 @@ GameObject:
   - component: {fileID: 2022362699}
   - component: {fileID: 2022362698}
   - component: {fileID: 2022362697}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -119898,7 +119918,7 @@ GameObject:
   - component: {fileID: 2022616679}
   - component: {fileID: 2022616678}
   - component: {fileID: 2022616677}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -121731,7 +121751,7 @@ GameObject:
   - component: {fileID: 2062259278}
   - component: {fileID: 2062259277}
   - component: {fileID: 2062259276}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Ice_edge(Clone)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -124751,7 +124771,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113846255}
-  m_LocalRotation: {x: 0.0057603824, y: 0.28869203, z: -0.0017369657, w: 0.9574031}
+  m_LocalRotation: {x: 0.005760364, y: 0.288692, z: -0.0017369597, w: 0.9574031}
   m_LocalPosition: {x: 0, y: 4.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -129394,7 +129414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &8130490686634534508
 GameObject:
   m_ObjectHideFlags: 0

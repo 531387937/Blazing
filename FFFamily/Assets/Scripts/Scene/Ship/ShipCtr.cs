@@ -33,7 +33,7 @@ public class ShipCtr : MonoBehaviour
     private int lastCannon;
     //标靶位置限制
     private LayerMask mask = 1 << 13;
-    float zMax = 0; float zMin = 0; float xMax = 0; float xMin = 0;
+    float zMax = 60.6f; float zMin = 60.6f; float xMax = 54.56f; float xMin = 54.56f;
     private bool sink = false;
 
     //导航
@@ -61,7 +61,31 @@ public class ShipCtr : MonoBehaviour
         fireFX = Instantiate(fireFX, cannonPos);
         fireFX.SetActive(false);
         smokeFX = Resources.Load<GameObject>("FX/weiqi");
-        smokeFX = Instantiate(smokeFX, smokePos);       
+        smokeFX = Instantiate(smokeFX, smokePos);
+        Ray ray1 = new Ray(target.transform.position, target.transform.forward);
+        RaycastHit hit1;
+        if (Physics.Raycast(ray1, out hit1, 5000, mask))
+        {
+            zMax = hit1.point.z;
+        }
+        Ray ray2 = new Ray(target.transform.position, -target.transform.forward);
+        RaycastHit hit2;
+        if (Physics.Raycast(ray2, out hit2, 5000, mask))
+        {
+            zMin = hit2.point.z;
+        }
+        Ray ray3 = new Ray(target.transform.position, target.transform.right);
+        RaycastHit hit3;
+        if (Physics.Raycast(ray3, out hit3, 5000, mask))
+        {
+            xMax = hit3.point.x;
+        }
+        Ray ray4 = new Ray(target.transform.position, -target.transform.right);
+        RaycastHit hit4;
+        if (Physics.Raycast(ray4, out hit4, 5000, mask))
+        {
+            xMin = hit4.point.x;
+        }
     }
     private void OnEnable()
     {
