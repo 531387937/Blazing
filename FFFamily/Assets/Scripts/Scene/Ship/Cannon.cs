@@ -61,14 +61,14 @@ public class Cannon : MonoBehaviour
             destoryGrid = true;
             if (GameManager.Instance.mapManager.DestoryGrid(index+sqr+1, 0))
             destoryGrid = true;
-            if (GameManager.Instance.mapManager.DestoryGrid(index + sqr + sqr, 0))
-            destoryGrid = true;
-            if (GameManager.Instance.mapManager.DestoryGrid(index - sqr - sqr, 0))
-            destoryGrid = true;
-            if (GameManager.Instance.mapManager.DestoryGrid(index + 2, 0))
-                destoryGrid = true;
-            if (GameManager.Instance.mapManager.DestoryGrid(index - 2, 0))
-                destoryGrid = true;
+            //if (GameManager.Instance.mapManager.DestoryGrid(index + sqr + sqr, 0))
+            //destoryGrid = true;
+            //if (GameManager.Instance.mapManager.DestoryGrid(index - sqr - sqr, 0))
+            //destoryGrid = true;
+            //if (GameManager.Instance.mapManager.DestoryGrid(index + 2, 0))
+            //    destoryGrid = true;
+            //if (GameManager.Instance.mapManager.DestoryGrid(index - 2, 0))
+            //    destoryGrid = true;
             GameManager.Instance.audioManager.PlaySound("炮击冰块碎裂");
             ContactPoint point = collision.contacts[0];
             Collider[] others = Physics.OverlapSphere(point.point, exploreRange);//获取所有碰撞体

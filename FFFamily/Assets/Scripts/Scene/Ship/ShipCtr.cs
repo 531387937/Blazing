@@ -61,11 +61,12 @@ public class ShipCtr : MonoBehaviour
         fireFX = Instantiate(fireFX, cannonPos);
         fireFX.SetActive(false);
         smokeFX = Resources.Load<GameObject>("FX/weiqi");
-        smokeFX = Instantiate(smokeFX, smokePos);
-        splineController.Speed = commonSpeed;
-        reduceTime = Random.Range(minTime, maxTime);
+        smokeFX = Instantiate(smokeFX, smokePos);       
     }
-
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener("GameStart", OnGameStart);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -88,11 +89,7 @@ public class ShipCtr : MonoBehaviour
         }
         if(sink)
         {
-            floatObj.MaterialDensity += 100 * Time.deltaTime;
-            if (splineController.Speed > 0.2f)
-            {
-                splineController.Speed -= 1 * Time.deltaTime;
-            }
+            OnGameStart();
         }
         if(!reduce)
         {
@@ -210,7 +207,14 @@ public class ShipCtr : MonoBehaviour
         }
         targetAnim.SetBool("Fire", !canFire);
     }
-
+    void OnGameStart(params object[] arg)
+    {
+        operated = false;
+           sink = false;
+        reduce = false;
+        splineController.Speed = commonSpeed;
+        reduceTime = Random.Range(minTime, maxTime);
+    }
     #region 进船和弹回处理
     private void OnTriggerEnter(Collider other)
     {

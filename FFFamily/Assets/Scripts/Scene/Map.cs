@@ -156,6 +156,7 @@ public class Map : ScriptableObject
 public class MapManager
 {
     public Grid[] mapGrid;
+
     public MapManager(GameObject map)
     {
         mapGrid = new Grid[625]; 
@@ -179,5 +180,19 @@ public class MapManager
             mapGrid[index] = null;
         }
         return true;
+    }
+
+    public Vector3 GetFreeGrid()
+    {
+        List<Grid> grids = new List<Grid>();
+        for(int i = 0;i<mapGrid.Length;i++)
+        {
+            if(mapGrid[i]!=null)
+            {
+                grids.Add(mapGrid[i]);
+            }
+        }
+        int pos = Random.Range(0, grids.Count - 1);
+        return grids[pos].transform.position + new Vector3(0, 10, 0);
     }
 }

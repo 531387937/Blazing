@@ -26,11 +26,13 @@ public class Title : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void StartButton()
-    {start.interactable = false;
+    {
+        print("?????????");
+        start.interactable = false;
         //EventManager.Instance.TriggerEvent("EnterGame");
         //gameObject.SetActive(false);
         doAnim.DOPlay();

@@ -48,6 +48,7 @@ public class GameManager : Singleton<GameManager>
                     StartCoroutine(ChoosePlayer());
                     break;
                 case GameState.Fight:
+
                     StartCoroutine(FightTimer());
                     
                     break;
