@@ -41,7 +41,7 @@ public class TargetGroupCtr : MonoBehaviour
         {
             if (group.m_Targets[i].target.root.GetComponent<APRController>().PlayerNum == winner)
             {
-                group.m_Targets[i].radius = 3;
+                group.m_Targets[i].radius = 1f;
                 return;
             }
         }

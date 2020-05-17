@@ -33,7 +33,7 @@ public class ShipCtr : MonoBehaviour
     private int lastCannon;
     //标靶位置限制
     private LayerMask mask = 1 << 13;
-    float zMax = 60.6f; float zMin = 60.6f; float xMax = 54.56f; float xMin = 54.56f;
+    float zMax = 0; float zMin = 0; float xMax = 0; float xMin = 0;
     private bool sink = false;
 
     //导航

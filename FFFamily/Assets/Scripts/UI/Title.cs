@@ -31,7 +31,6 @@ public class Title : MonoBehaviour
 
     private void StartButton()
     {
-        print("?????????");
         start.interactable = false;
         //EventManager.Instance.TriggerEvent("EnterGame");
         //gameObject.SetActive(false);

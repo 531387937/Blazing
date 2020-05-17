@@ -149,6 +149,7 @@ public class GameManager : Singleton<GameManager>
     {
         yield return new WaitForSeconds(3);
         timeline.enabled = false;
+        //players[0].useControls = true;
         foreach (var play in players)
         {
             play.useControls = true;
