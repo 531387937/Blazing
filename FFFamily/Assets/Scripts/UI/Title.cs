@@ -8,12 +8,14 @@ public class Title : MonoBehaviour
     public Button start;
     public Button help;
     public Button about;
-    public DOTweenAnimation doAnim;
+    public DOTweenAnimation startAnim;
+    public DOTweenAnimation helpAnim;
     // Start is called before the first frame update
     void Start()
     {
         start.onClick.AddListener(StartButton);
-        doAnim.onComplete.AddListener(() =>
+        help.onClick.AddListener(HelpButton);
+        startAnim.onComplete.AddListener(() =>
         {
             EventManager.Instance.TriggerEvent("EnterGame");
             gameObject.SetActive(false);
@@ -32,10 +34,11 @@ public class Title : MonoBehaviour
     private void StartButton()
     {
         start.interactable = false;
-        //EventManager.Instance.TriggerEvent("EnterGame");
-        //gameObject.SetActive(false);
-        doAnim.DOPlay();
-        
+        startAnim.DOPlay();
+    }
+    private void HelpButton()
+    {
+        helpAnim.DOPlay();
     }
     private void AddEffect(GameObject obj)
     {
