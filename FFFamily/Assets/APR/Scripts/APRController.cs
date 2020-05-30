@@ -260,6 +260,7 @@ public class APRController : MonoBehaviour
         #region 行走输入
         if (!OnBoat)
         {
+            float vertical = 0;
             if ((Input.GetKey(moveForward) || Input.GetAxis(input.vertical) > 0.8f) && balanced && !KnockedOut)
             {
                 var v3 = APR_Parts[0].GetComponent<Rigidbody>().transform.forward * MoveSpeed;
@@ -271,9 +272,10 @@ public class APRController : MonoBehaviour
                 }
                 WalkForward = true;
                 isKeyDown = true;
+                vertical = Input.GetAxis(input.vertical);
             }
 
-            if (Input.GetKeyUp(moveForward) || (Input.GetAxis(input.vertical) < 0.5f && Input.GetAxis(input.vertical) >=0))
+            if (Input.GetKeyUp(moveForward) || (Input.GetAxis(input.vertical) < 0.5f && Input.GetAxis(input.vertical) >=0&&vertical!=0))
             {
                 WalkForward = false;
                 isKeyDown = false;
@@ -293,9 +295,10 @@ public class APRController : MonoBehaviour
                 {
                     StepRight = true;
                 }
+                vertical = Input.GetAxis(input.vertical);
             }
 
-            if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.5f && Input.GetAxis(input.vertical) <= 0))
+            if (Input.GetKeyUp(moveBackward) || (Input.GetAxis(input.vertical) > -0.5f && Input.GetAxis(input.vertical) <= 0&&vertical!=0))
             {
                 WalkBackward = false;
                 isKeyDown = false;
