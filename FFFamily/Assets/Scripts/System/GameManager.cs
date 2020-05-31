@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     {
         EventManager.Instance.AddListener("PlayerDead", PlayerDead);
         EventManager.Instance.AddListener("EnterGame", OnEnterGame);
+        EventManager.Instance.AddListener("GameStart", OnGameStart);
     }
     private void Update()
     {
@@ -47,10 +48,7 @@ public class GameManager : Singleton<GameManager>
                     timeline.Play();
                     StartCoroutine(ChoosePlayer());
                     break;
-                case GameState.Fight:
-
-                    StartCoroutine(FightTimer());
-                    
+                case GameState.Fight:                   
                     break;
             }
         }
@@ -145,15 +143,13 @@ public class GameManager : Singleton<GameManager>
         EventManager.Instance.RemoveListener("ChoosePlayer", ChoosePlayer);
         gameState = GameState.Fight;
     }
-    IEnumerator FightTimer()
+    void OnGameStart(params object[] arg)
     {
-        yield return new WaitForSeconds(3);
         timeline.enabled = false;
         //players[0].useControls = true;
         foreach (var play in players)
         {
             play.useControls = true;
         }
-        EventManager.Instance.TriggerEvent("GameStart");
     }
 }
