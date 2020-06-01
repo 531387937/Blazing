@@ -332,7 +332,24 @@ public class APRController : MonoBehaviour
         }
         else
         {
-            Vector3 dir = new Vector3(Input.GetAxis(input.horizontal), 0, Input.GetAxis(input.vertical)).normalized;
+            Vector3 dir = new Vector3(Input.GetAxis(input.horizontal), 0, Input.GetAxis(input.vertical));
+            if(Input.GetKey(moveForward))
+            {
+                dir.z = 1;
+            }
+            if (Input.GetKey(moveBackward))
+            {
+                dir.z = -1;
+            }
+            if (Input.GetKey(turnLeft))
+            {
+                dir.x = -1;
+            }
+            if (Input.GetKey(turnRight))
+            {
+                dir.x = 1;
+            }
+            dir = dir.normalized;
             shipCtr.CannonCtr(dir);
         }
 
