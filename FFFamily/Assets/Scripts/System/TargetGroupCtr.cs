@@ -27,10 +27,13 @@ public class TargetGroupCtr : MonoBehaviour
         int index = (int)arg[0];
         for(int i = 0;i<group.m_Targets.Length;i++)
         {
-            if(group.m_Targets[i].target.root.GetComponent<APRController>().PlayerNum==index)
+            if (group.m_Targets[i].target.root.gameObject.GetComponent<APRController>())
             {
-                group.m_Targets[i].weight = 0;
-                return;
+                if (group.m_Targets[i].target.root.gameObject.GetComponent<APRController>().PlayerNum == index)
+                {
+                    group.m_Targets[i].weight = 0;
+                    return;
+                }
             }
         }
     }

@@ -33,7 +33,7 @@ public class WeaponManager : MonoBehaviour
 
     void WeaponDropDown()
     {
-        int w = Random.Range(0, weapon.Count - 1);
+        int w = Random.Range(0, weapon.Count);
         Vector3 pos = GameManager.Instance.mapManager.GetFreeGrid();
         Instantiate(weapon[w], pos, weapon[w].transform.rotation);
     }

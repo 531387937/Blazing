@@ -46,10 +46,9 @@ public class ShipTip : MonoBehaviour
 
     void CaculateUIPos()
     {
-        float x = (transform.position.x - map.transform.position.x) / 48;
-        float y = (transform.position.z - map.transform.position.z) / 50;
-
-        rectTr.position = new Vector3(x * 1920, y * 1080);
+        float x = (transform.root.position.x - 55) / 55;
+        float y = (transform.root.position.z - 60) / 60;
+        rectTr.anchoredPosition = new Vector3(x * 1920, y * 1080);
     }
 
     public bool IsInView(Vector3 worldPos)

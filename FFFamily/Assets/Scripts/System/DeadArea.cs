@@ -9,10 +9,13 @@ public class DeadArea : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            int num = other.transform.root.GetComponent<APRController>().PlayerNum;
-            EventManager.Instance.TriggerEvent("PlayerDead",num);
+            if (other.transform.root.GetComponent<APRController>())
+            {
+                int num = other.transform.root.GetComponent<APRController>().PlayerNum;
+                EventManager.Instance.TriggerEvent("PlayerDead", num);
+            }
         }
-        else
+        else if(!other.CompareTag("Ground"))
         {
             GameManager.Instance.audioManager.PlaySound("落水声");
         }

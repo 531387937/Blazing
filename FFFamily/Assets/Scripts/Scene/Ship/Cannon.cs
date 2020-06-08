@@ -76,7 +76,6 @@ public class Cannon : MonoBehaviour
             for (int i = 0; i < others.Length; i++)
             {
                 //others[i].
-                print(others[i].gameObject.name);
                 if ((other = others[i].GetComponent<Rigidbody>()) && other.gameObject.name == "APR_Body")
                 {//检测刚体
                     other.transform.root.GetComponent<APRController>().ActivateRagdoll(0.5f);
