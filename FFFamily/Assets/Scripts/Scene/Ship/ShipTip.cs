@@ -8,6 +8,8 @@ public class ShipTip : MonoBehaviour
     private GameObject map;
     public GameObject shipUI;
     private RectTransform rectTr;
+    public GameObject[] dir;
+    int state = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,8 +48,32 @@ public class ShipTip : MonoBehaviour
 
     void CaculateUIPos()
     {
-        float x = (transform.root.position.x - 55) / 55;
-        float y = (transform.root.position.z - 60) / 60;
+        float x = (transform.root.position.x - 53) / 55;
+        float y = (transform.root.position.z - 60) / 70;
+        if(state!=1&&transform.root.position.x>=74)
+        {
+            state = 1;
+            dir[0].SetActive(true);
+            dir[3].SetActive(false);
+        }
+        if (state != 2 && transform.root.position.z >= 83f)
+        {
+            state = 2;
+            dir[1].SetActive(true);
+            dir[0].SetActive(false);
+        }
+        if (state != 3 && transform.root.position.x <= 33)
+        {
+            state = 3;
+            dir[2].SetActive(true);
+            dir[1].SetActive(false);
+        }
+        if (state != 4 && transform.root.position.z <= 36f)
+        {
+            state = 4;
+            dir[3].SetActive(true);
+            dir[2].SetActive(false);
+        }
         rectTr.anchoredPosition = new Vector3(x * 1920, y * 1080);
     }
 
